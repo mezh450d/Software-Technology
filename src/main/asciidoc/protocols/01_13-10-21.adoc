@@ -1,0 +1,35 @@
+= Protokoll Gruppe XX
+
+Treffen am 13.10.2021
+
+Ort:      BigBlueButton +
+Beginn:   11:15 Uhr +
+Ende:     12:05 Uhr
+
+__Schriftführer:__ Nick Ruider
+
+*Nächstes Treffen:* +
+20.10.2021, 11:30 Uhr, Discord
+
+__Teilnehmer:__
+
+- André Schmidt (Tutor)
+- Hannes Reinhold
+- Jing Zhou
+- Meng Zhang
+- Nick Ruider
+- Shiyue
+- Ziyi Fu
+
+== Bemerkungen
+- Umverlagerung des Meetings auf Discord (Mittwoch, 11:30 Uhr)
+
+== Planung des nächsten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Titel |Beschreibung |Verantwortlicher |Status
+|-     |Einarbeitung     |Guestbook anschauen            |alle                |offen
+|===
