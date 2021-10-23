@@ -1,12 +1,12 @@
 = Pflichtenheft
-:project_name: Projektname
+:project_name: Lotterie
 == __{project_name}__
 
 [options="header"]
 [cols="1, 1, 1, 1, 4"]
 |===
 |Version | Status      | Bearbeitungsdatum   | Autoren(en) |  Vermerk
-|0.1     | In Arbeit   | 10.10.2021          | Autor       | Initiale Version
+|0.1     | In Arbeit   | 10.10.2021          | Hannes, Nick       | Initiale Version
 |===
 
 == Inhaltsverzeichnis
@@ -24,7 +24,52 @@ In welchem Kontext soll das System später genutzt werden? Welche Rahmenbedingun
 Zusätzlich kurze Einleitung für fachfremde Personen
 
 == Interessensgruppen (Stakeholders)
-Welche realen und juristischen Personen(-gruppen) haben Einfluss auf die Anforderungen im Projekt?
+[options="header", cols="2, ^1, 3, 4"]
+|===
+|Name
+|Priorität (1..5)
+|Beschreibung
+|Ziele
+
+|Wirtschaftsministerium Gamblien
+|4
+|Auftraggeber des Projektes.
+a|
+- Populatität der Lotterie ins Ausland verbreiten
+- Glücksspiel online etablieren
+- wirtschaftlichen ERfolg erzielen
+- automatisiertes Auswerten von Tippscheinen
+
+|Nutzer
+|5
+|primärer Nutzer vom Online-Service
+a|
+- übersichtliche Darstellung der Funktionen
+- schnelles Wetten
+- zuverlässige Gewinnauszahlung
+
+|Besucher
+|1
+|kein Nutzer der Webseite
+a|
+- wenig Input über Service preisgeben
+
+-> Besucher zum Registrieren verleiten, um mehr zu erfahren
+
+|Admin
+|2
+|Administrator der Webseite
+a|
+- Möglichkeit, alle Wetten einzusehen
+- Überwachung der Finanzen der Lotterie
+
+|Programmierer
+|3
+|Menschen, die später auf dem Grundgerüst des Services aufbauen können für weitere Erweiterungen.
+a|
+- leicht erweiterbare Webseite
+- testbasierte Anwendung für bessere Kontrollen
+|===
 
 == Systemgrenze und Top-Level-Architektur
 
