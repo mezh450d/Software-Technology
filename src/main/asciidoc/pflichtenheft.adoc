@@ -108,11 +108,125 @@ image:diagrams/use-case-diagram.svg[use-case-diagram]
 [[UC0010]]
 |===
 |ID                         |**<<>>**
+|Name                       |register
+|Beschreibung               |Vistor können einen Account erstellen
+|Actors                     |Vistor
+|Trigger                    |Vistor klickt auf "Registrieren"
+|Precondition(s)           a|Vistor ist nicht angemeldet
+|Essential Steps           a|
+1. Vistor klickt auf den "Registrieren"
+2. Vistor wird auf "register.html" weitergeleitet
+3. Vistor gibt Daten ein und kilckt auf "Registrieren"
+4. System ein neues Konto erstellen
+|Extensions                 |-
+|Functional Requirements    |-
+|===
+
+[cols="1h, 3"]
+[[UC0010]]
+|===
+|ID                         |**<<>>**
+|Name                       |login/logout
+|Beschreibung               |Vistor soll mit eigenem Konto einloggen können, Dieser Vorgang kann durch Abmelden rückgängig gemacht werden.
+|Actors                     |
+Login: Vistor
+
+Logout: User
+|Trigger                    |
+_Login_:
+Vistor klickt auf den Knopf “einloggen”.
+_Logout_:
+Vistor klickt auf den Knopf “ausloggen”.
+
+|Precondition(s)           a|
+_Login_:
+Akteur ist nicht angemeldet.
+
+_Logout_:
+Akteur ist angemeldet.
+|Essential Steps           a|
+_Login_:
+
+            1. Vistor klickt auf den "einloggen".
+            2. Vistor wird auf "login.html" weitergeleitet.
+            3. Vistor gibt Daten ein und klickt auf "einloggen".
+            4. System prüft die Korrektheit der eingegebenen Daten.
+    1.Richtige Daten: Vistor werden User und bekommen zusätzlichen Rechte.
+    2.Fehler: Anzeige der Fehlermitteilung.
+
+_Logout_:
+
+            1. User klickt auf den "ausloggen".
+            2. Benutzer kehren zur Startseite zurück und werden Vistor.
+
+|Extensions                 |-
+|Functional Requirements    |-
+|===
+
+[cols="1h, 3"]
+[[UC0010]]
+|===
+|ID                         |**<<>>**
+|Name                       |showBets
+|Beschreibung               |
+Jeder Besucher (d.h. User und Vistor) sollte auf den Katalog zugreifen können,
+in dem alle angebotenen Lotterien aufgeführt sind.
+Der Katalog muss eine Unterscheidung zwischen den verschiedenen Arten von Lotterien (Zahlenlotterien und Fußballlotterien) enthalten
+|Actors                     |User/Vistor
+|Trigger                    |Akteur klickt auf den Knopf "Zahlenlotterien" oder "Fußballlotterien".
+|Precondition(s)           a|
+|Essential Steps           a|
+1. Der Akteur klickt auf den Knopf "Zahlenlotterien" oder "Fußballlotterien".
+2. Alle gewählten Lotteriensart werden angezeigt.
+|Extensions                 |-
+|Functional Requirements    |-
+|===
+
+[cols="1h, 3"]
+[[UC0010]]
+|===
+|ID                         |**<<>>**
+|Name                       |withdraw/deposit
+|Beschreibung               |User können ihr Guthaben abheben oder ihr Konto aufladen.
+|Actors                     |User
+|Trigger                    |
+_withdraw_: Akteur klickt auf den Knopf "withdraw".
+
+_deposit_: Akteur klickt auf den Knopf "deposit".
+|Precondition(s)           a|Akteur ist eingeloggt.
+|Essential Steps           a|
+1. Akteur klickt auf den Knopf "withdraw" oder "deposit".
+2. Akteur wird auf "withdraw.html"/"deposit.html" weitergeleitet.
+3. Akteur wählt den Betrag, den sie aufladen oder abheben möchten
+|Extensions                 |-
+|Functional Requirements    |-
+|===
+
+[cols="1h, 3"]
+[[UC0010]]
+|===
+|ID                         |**<<>>**
+|Name                       |checkBalance
+|Beschreibung               |Jeder User kann seinen Kontostand einsehen.
+|Actors                     |User
+|Trigger                    |Akteur klickt auf den Knopf "Kontostand" .
+|Precondition(s)           a|Akteur ist eingeloggt.
+|Essential Steps           a|
+1. Der Akteur klickt auf den Knopf "Zahlenlotterien" oder "Fußballlotterien".
+2. Das Kontostand wird angezeigt.
+|Extensions                 |-
+|Functional Requirements    |-
+|===
+
+[cols="1h, 3"]
+[[UC0010]]
+|===
+|ID                         |**<<>>**
 |Name                       |bet/bet change
 |Beschreibung               |User können Wetten platzieren und die Anzahl der Wetten ändern.
 |Actors                     |User
 |Trigger                    |User klickt auf den Knopf “bet”.
-|Precondition(s)           a|ist als User eingeloggt
+|Precondition(s)           a|User ist als User eingeloggt
 |Essential Steps           a|
 1. User klickt auf den Knopf “bet/bet change”.
 2. User gibt die Anzahl der Wetten ein.
