@@ -20,8 +20,16 @@ Text aus Aufgabenstellung kopieren und ggfs. präzisieren.
 Insbesondere ergänzen, welche Ziele mit dem Abschluss des Projektes erreicht werden sollen.
 
 == Produktnutzung
-In welchem Kontext soll das System später genutzt werden? Welche Rahmenbedingungen gelten?
-Zusätzlich kurze Einleitung für fachfremde Personen
+Die Anwendung soll als Online-Variante der Lotterie "Mach Dein
+Glück!!" verwendet werden und wird vom Wirtschaftsministerium Gambliens betrieben. Die Plattform sollte auf einem Server betrieben werden, welcher das Glücksspiel zu jeder Zeit ermöglicht.
+
+Das System soll für folgende Browser optimiert werden:
+
+- Mozilla Firefox
+- Google Chrome
+- Apple Safari
+
+Der Hauptnutzer der Anwendung sollen jegliche Menschen aus dem In- und Ausland sein. Dabei soll das Erlebnis für angemeldete User priorisiert werden. Die Nutzung soll durch eine eindeutige Benutzeroberfläche für jeden zugänglich sein. Wetten sind schnell abschließbar, um den Nutzer intuitive Entscheidungen zu vereinfachen. Der Administrator hat Einsicht über alle Aktivitäten auf der Plattform, ohne groß Einfluss nehmen zu müssen.
 
 == Interessensgruppen (Stakeholders)
 [options="header", cols="2, ^1, 3, 4"]
@@ -74,24 +82,22 @@ a|
 == Systemgrenze und Top-Level-Architektur
 
 === Kontextdiagramm
-Das Kontextdiagramm zeigt das geplante Software-System in seiner Umgebung. Zur Umgebung gehören alle Nutzergruppen des Systems und Nachbarsysteme. Die Grafik kann auch informell gehalten sein. Überlegen Sie sich dann geeignete Symbole. Die Grafik kann beispielsweise mit Visio erstellt werden. Wenn nötig, erläutern Sie diese Grafik.
+image:diagrams/context-diagram.svg[context diagram]
 
 === Top-Level-Architektur
-Dokumentieren Sie ihre Top-Level-Architektur mit Hilfe eines Komponentendiagramm.
+image:diagrams/top-level-architecture.svg[top-level-architecture]
 
 == Anwendungsfälle
 
 === Akteure
 
-Akteure sind die Benutzer des Software-Systems oder Nachbarsysteme, welche darauf zugreifen. Dokumentieren Sie die Akteure in einer Tabelle. Diese Tabelle gibt einen Überblick über die Akteure und beschreibt sie kurz. Die Tabelle hat also mindestens zwei Spalten (Akteur Name und Kommentar).
-Weitere relevante Spalten können bei Bedarf ergänzt werden.
-
-// See http://asciidoctor.org/docs/user-manual/#tables
 [options="header"]
 [cols="1,4"]
 |===
 |Name |Beschreibung
-|...  |...
+|Visitor  |repräsentiert jeden Menschen, der die Webseite ohne angemeldeten Nutzeraccount besucht
+|User |repräsentiert jeden Menschen, der einen eingeloggten Account besitzt und die Webseite zum Wetten verwenden möchte
+|Admin |repräsentiert jeden User, der Admin-Rechte besitzt; kann auf jegliche Wetten zugreifen und die Finanzsituation überwachen
 |===
 
 === Überblick Anwendungsfalldiagramm
