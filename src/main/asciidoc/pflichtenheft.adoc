@@ -104,10 +104,49 @@ image:diagrams/top-level-architecture.svg[top-level-architecture]
 image:diagrams/use-case-diagram.svg[use-case-diagram]
 
 === Anwendungsfallbeschreibungen
-Dieser Unterabschnitt beschreibt die Anwendungsfälle. In dieser Beschreibung müssen noch nicht alle Sonderfälle und Varianten berücksichtigt werden. Schwerpunkt ist es, die wichtigsten Anwendungsfälle des Systems zu finden. Wichtig sind solche Anwendungsfälle, die für den Auftraggeber, den Nutzer den größten Nutzen bringen.
-Für komplexere Anwendungsfälle ein UML-Sequenzdiagramm ergänzen.
-Einfache Anwendungsfälle mit einem Absatz beschreiben.
-Die typischen Anwendungsfälle (Anlegen, Ändern, Löschen) können zu einem einzigen zusammengefasst werden.
+[cols="1h, 3"]
+[[UC0010]]
+|===
+|ID                         |**<<>>**
+|Name                       |bet/bet change
+|Beschreibung               |User können Wetten platzieren und die Anzahl der Wetten ändern.
+|Actors                     |User
+|Trigger                    |User klickt auf den Knopf “bet”.
+|Precondition(s)           a|ist als User eingeloggt
+|Essential Steps           a|
+1. User klickt auf den Knopf “bet/bet change”.
+2. User gibt die Anzahl der Wetten ein.
+|Extensions                 |-
+|Functional Requirements    |-
+|===
+
+[cols="1h, 3"]
+[[UC0010]]
+|===
+|ID                         |**<<>>**
+|Name                       |show Results
+|Beschreibung               |User können die Wettergebnisse prüfen
+|Actors                     |User
+|Trigger                    |User klickt auf  den Knopf “show Results”.
+|Precondition(s)           a|Der Benutzer hat erfolgreich gewettet und die Wette wurde bewertet.
+|Essential Steps           a|User klickt auf den Knopf “show Results”.
+|Extensions                 |-
+|Functional Requirements    |-
+|===
+
+[cols="1h, 3"]
+[[UC0010]]
+|===
+|ID                         |**<<>>**
+|Name                       |message
+|Beschreibung               |User können empfangene Nachrichten anzeigen.
+|Actors                     |User
+|Trigger                    |User klickt auf  den Knopf “message”.
+|Precondition(s)           a|ist als User eingeloggt
+|Essential Steps           a|User klickt auf  den Knopf “message”.
+|Extensions                 |-
+|Functional Requirements    |-
+|===
 
 == Funktionale Anforderungen
 
