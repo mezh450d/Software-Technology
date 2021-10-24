@@ -22,7 +22,7 @@ __Teilnehmer:__
 - Ziyi
 
 == Bemerkungen
-- UML-Programm der Gruppe: StarUML
+- UML-Programm der Gruppe: PlantUML
 
 
 == Retrospektive des letzten Sprints
