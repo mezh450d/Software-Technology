@@ -148,6 +148,69 @@ image:diagrams/use-case-diagram.svg[use-case-diagram]
 |Funktionale Voraussetzungen  |[F0019][F0020]
 |===
 
+[cols="1h, 3"]
+[[UC0010]]
+|===
+|ID                         |**<<>>**
+|Name                       |join
+|Beschreibung               |User kann einer Gemeinschaft beitreten.
+|Actors                     |User
+|Trigger                    |User Benutzer möchte eine Gemeinschaft beitreten.
+|Precondition(s)           a|1）User hat sich beim System authentifiziert
+|                           |2）User hat ein Passwort einer Gemeinschaft.
+|Essential Steps           a|1）User drückt auf der Website auf den Knopf "Community beitreten".
+|                           |2）Geben User das Passwort ein
+|Extensions                 |-
+|Functional Requirements    |F0016
+|===
+
+[cols="1h, 3"]
+[[UC0010]]
+|===
+|ID                         |**<<>>**
+|Name                       |delete
+|Beschreibung               |User kann aus einer Gemeinschaft austreten.
+|Actors                     |User
+|Trigger                    |User möchte aus einer Gemeinschaft aussteigen
+|Precondition(s)           a|1）User hat sich beim System authentifiziert
+|                           |2）User ist ein Mitglied der Gemeinschaft
+|Essential Steps           a|User drückt auf der Website die Schaltfläche "Community löschen".
+|Extensions                 |-
+|Functional Requirements    |brauch noch
+|===
+
+[cols="1h, 3"]
+[[UC0010]]
+|===
+|ID                         |**<<>>**
+|Name                       |create
+|Beschreibung               |User kann eine Gemeinschaft erstellen, das Passwort der Gemeinschaft
+|                           |erhalten und das Passwort verwenden, um andere in die Gemeinschaft einzuladen.
+|Actors                     |User
+|Trigger                    |User möchte eine Gemeinschaft erstellen.
+|Precondition(s)           a|User hat sich beim System authentifiziert.
+|Essential Steps           a|User klickt auf der Webseite auf den Knopf "Eine Gemeinschaft erstellen".
+|Extensions                 |User kann andere Mitglieder in der Gemeinschaft einladen.
+|Functional Requirements    |F0015
+|===
+
+[cols="1h, 3"]
+[[UC0010]]
+|===
+|ID                         |**<<>>**
+|Name                       |kick
+|Beschreibung               |Nach zehn erfolglosen Abbuchungsbenachrichtigungen wird der Nutzer
+|                           |vorübergehend aus der Community entfernt.
+|Actors                     |Gemeischaft
+|Trigger                    |Ein Nutzer in einer Gemeinschaft hat eine erfolglose
+|                           |Abbuchungsbenachrichtigungen erhalten.
+|Precondition(s)           a|1）Actor is in der Gemeinschaft.
+|                           |2）Actor hat neu mal erfolglose Abbuchungsbenachrichtigungen erhalten.
+|Essential Steps           a|--
+|Extensions                 |--
+|Functional Requirements    |F0018
+|===
+
 == Funktionale Anforderungen
 
 === Muss-Kriterien
