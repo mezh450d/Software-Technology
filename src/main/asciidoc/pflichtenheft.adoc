@@ -151,21 +151,292 @@ image:diagrams/use-case-diagram.svg[use-case-diagram]
 == Funktionale Anforderungen
 
 === Muss-Kriterien
-Was das zu erstellende Programm auf alle Fälle leisten muss.
+Dieser Abschnitt bietet einen Überblick aller Anforderungen, welche das System leisten muss.
+
+Die Folgende Tabelle enthält:
+
+- Eine eindeutige ID für die Anforderung
+- Ein Name der Anforderung
+- Eine Beschreibung der Anforderung
+
+
+[cols="1,2,5"]
+|===
+|ID |Name |Beschreibung
+
+|[F0001]
+|Registrierung
+a|Das System stellt nicht registrierten Nutzenden die Möglichkeit zur Verfügung, einen Account zu erstellen.
+Für eine Registrierung werden folgende Informationen benötigt:
+
+- Nutzername (Einzigartig)
+- Passwort
+- Wohnadresse
+- Lotteriebank-Adresse
+- E-Mail-Adresse (Optional)
+
+Das System prüft die angegeben Daten auf ihre Richtigkeit([F0002]). Nach erfolgreicher Überprüfung wird der Nutzende im System eingetragen([F0003]) und ist in der Lage sich Anzumelden.
+
+
+|[F0002]
+|Registrierung validieren
+a|Das System ist in der Lage, die Informationen eines nicht registrierten Nutzenden auf ihre Richtigkeit zu überprüfen.
+Folgende Daten werden überprüft:
+
+- Einzigartigkeit des Nutzernamens
+- Stimmigkeit der Wohnadresse
+- Stimmigkeit der Lotteriebank-Adresse
+- Stimmigkeit der E-Mail-Adresse (falls vorhanden)
+
+Bei Unstimmigkeiten wird der Nutzende umgehend informiert und kann die Daten gegebenenfalls Anpassen.
+
+
+|[F0003]
+|Anmeldung
+a|Das System ist aufgeteilt in Bereiche, die jedem Nutzenden frei zur Verfügung stehen und Bereiche, welche nur durch Login benutzt werden können. Nutzer können durch folgende Informationen Identifiziert:
+
+- Nutzername
+- Passwort
+
+
+|[F0004]
+|Konto einsehen
+a|Das System ermöglicht den Nutzenden in ihr Konto einzusehen. Es können folgende Informationen eingesehen werden:
+
+- Nutzername
+- Wohnadresse
+- E-Mail-Adresse (falls vorhanden)
+
+|[F0005]
+|Konto bearbeiten
+a|Das System ermöglicht dem Nutzenden, bei Bedarf, Informationen zu bearbeiten oder hinzuzufügen. Folgende Informationen können bearbeitet werden:
+
+- Passwort
+- Wohnadresse
+- Lotteriebank-Adresse
+- E-Mail-Adresse
+
+Das System überprüft bei Änderung die neuen Daten auf ihre Richtigkeit.
+Folgende Daten werden überprüft:
+
+- Passwort ist anders
+- Stimmigkeit der Wohnadresse
+- Stimmigkeit der Lotteriebank-Adresse
+- Stimmigkeit der E-Mail-Adresse (falls vorhanden)
+
+Bei Unstimmigkeiten wird der Nutzende umgehend informiert und kann die Daten gegebenenfalls Anpassen.
+
+|[F0005]
+|Kontobearbeitung validieren
+|Das System ist in der Lage die geänderten Informationen auf ihre Richtigkeit zu überprüfen.
+
+|[F0006]
+|Verfügbare Tippscheine einsehen
+|Das System ermöglicht den Nutzenden die Einsicht in alle aktuellen Tippscheine, welche erworben werden können
+
+|[F0007]
+|Tippschein erwerben
+|Das System ermöglicht dem Nutzenden beliebig Tippscheine zu erwerben.
+Nach Erwerb von Tippscheinen werden die Einsätze in Reihenfolge der Auslosungen vom Lotteriekonto des Nutzenden abgebucht.
+
+
+|[F0008]
+|Tippschein ausfüllen
+a|Das System ermöglicht den Nutzenden die erworbenen Tippscheine nach den Regeln der jeweiligen Verlosung auszufüllen.
+
+- Tippscheine für die Lotterie können bis Samstag eingereicht werden
+- Tippscheine für das Fußballtoto können bis 24 Stunden vor dem Spieltag eingreicht werden.
+
+|[F0009]
+|Tippschein ändern
+a|Das System bietet den Nutzenden die Möglichkeit eine Änderung am Tippschein vorzunehmen. Diese wird bis 5 Minuten vor Beginn der Auslosung akzeptiert.
+
+Folgende Informationen können verändert werden:
+
+- Tipp
+- Einsatz
+
+|[F0010]
+|Dauertippschein erwerben
+|Das System ermöglicht den Nutzenden Dauertippscheine für die Zahlenlotterie zu erwerben.
+Der Nutzende kann hier zwischen monatlicher, halbjähriger und ganzjähriger Dauer unterscheiden.
+Nach Erwerb des Dauertippscheins kann der Nutzende seinen Tipp abgeben.
+
+|[F0011]
+|Erworbene Tippscheine einsehen
+|Das System ermöglicht den Nutzenden ihre momentan abgegebenen Tippscheine einzusehen.
+
+|[F0012]
+|Finanzen einsehen
+|Das System ermöglicht den Nutzenden in die finanzielle Situation ihres Lotterie-Kontos einzusehen.
+
+|[F0013]
+|Geld abbuchen
+|Das System bucht bei Erwerb von Tippscheinen den Einsatz vom Lotteriekonto des Nutzenden ab.
+Bei unzureichender Deckung erhält der Nutzende eine Mitteilung und wird von dieser Auslosung ausgeschlossen.
+
+|[F0014]
+|Geld auszahlen
+|Das System ermöglicht den Nutzenden gewonnenes Geld auf ihr Lotteriekonto auszuzahlen.
+
+|[F0015]
+|Gewinngemeinschaft gründen
+|Das System ermöglicht den Nutzenden eine Gewinngemeinschaft zu gründen.
+Bei der Gründung wird ein Mitglieder-Passwort festgelegt. Dieses Passwort kann weitergegeben werden. Kennt ein Nutzender dieses Passwort, kann er der Gemeinschaft beitreten.
+
+|[F0016]
+|Gewinngemeinschaft beitreten
+|Das System ermöglicht den Nutzenden einer Gewinngemeinschaft beizutreten. Mitglieder der Gemeinschaft können dieses Passwort an weiter Nutzende weitergeben und für die Gemeinschaft einen Tipp abgeben.
+
+|[F0017]
+|Gewinngemeinschaft Tipp abgeben
+|Das System ermöglicht den Nutzenden für die Gemeinschaft einen Tipp abzugeben. Neben dem Tipp kann der Nutzende auch seinen Anteil erhöhen, verringern oder zeitweilig aussetzen. Der Anteil muss ein ganzzahliges Vielfaches des Grundeinsatzes sein.
+
+|[F0018]
+|Gewinngemeinschaft Mitglied entfernen
+|Sobald ein Mitglied einer Gewinngemeinschaft 10 Mitteilungen für unzureichende Deckung erhalten hat, wird dieses vorläufig aus der Gemeinschaft entfernt.
+
+|[F0019]
+|Mitteilungen einsehen
+|Das System ermöglicht den Nutzenden die Einsicht in ihre erhaltenen Mitteilungen.
+
+|[F0020]
+|Mitteilung bei unzureichender Deckung
+a|Das System sendet bei unzureichender Deckung eine Mitteilung an das Nutzerkonto. Dabei wird eine Gebühr von 2 Euro vom Lotteriekonto des Nutzenden abgebucht.
+Die Mitteilung beinhaltet folgende Informationen:
+
+- Mitteilung der Nichtteilnahme an der Verlosung
+- Grund der Nichtteilnahme
+- Hinweis auf eine Gebühr von 2 Euro für diese Mitteilung
+
+Nach 10 Mitteilungen wird der Nutzende vorläufig aus all seinen Gemeinschaften entfernt.
+
+|[F0021]
+|Admin Einsicht finanzieller Status
+|Das System ermöglicht einem Administrator einen Tag nach einer Ziehung oder eines Spiels die Einsicht in dessen Gewinne oder Verluste.
+
+|[F0022]
+|Admin Übersicht abgegebene Wetten
+|Das System ermöglicht einem Administrator jederzeit die Einsicht in alle abgegebenen Wetten der Nutzenden.
+Dies beinhaltet den Nutzernamen und den abgegebenen Tipp.
+
+|[F0023]
+|Durchführung Ziehung
+|Das System ermöglicht einem Administrator jeden Sonntag eine Ziehung der Zahlenlotterie durchzuführen
+
+|[F0024]
+|Auswertung Ziehung/Spiel
+|Das System wertet nach jeder Ziehung/nach jedem Spiel die Ergebnisse aus und ermittelt die Gewinner.
+Anschließend werden die Gewinne auf die Konten der Gewinner überwiesen.
+
+|[F0025]
+|Überweisung Gewinne
+|Hat ein Nutzender eine Ziehung gewonnen, wird anschließend der Gewinnbetrag auf sein Konto übertragen
+
+|[F0026]
+|Mehrere Sprachen
+|Das System unterstützt mehrere Sprachen. Die angezeigte Sprache kann beliebig umgestellt werden.
+|===
+
 
 === Kann-Kriterien
-Anforderungen die das Programm leisten können soll, aber für den korrekten Betrieb entbehrlich sind.
+Dieser Abschnitt bietet einen Überblick aller Anforderungen, welche das System leisten kann, aber nicht zwingend für den Betrieb des Systems benötigt werden.
+
+Die Folgende Tabelle enthält:
+
+- Eine eindeutige ID für die Anforderung
+- Der Name der Anforderung
+- Die Beschreibung der Anforderung
+
+
+[cols="1,2,5"]
+|===
+|ID |Name |Beschreibung
+
+|[F0027]
+|Fußballtoto-Daten aus Internet
+|Das System bezieht alle Daten, welche für das Fußballtoto benötigt werden, direkt und aktuell aus dem Internet
+
+|[F0028]
+|Mitteilung Gewinn/Verlust
+|Das System benachrichtigt die Nutzenden nach einer abgeschlossenen Ziehung/Spiel, ob diese Gewonnen oder Verloren haben.
+Diese Nachricht ist nicht kostenpflichtig.
+
+|[F0029]
+|Gewinngemeinschaft Mitglieder einsehen
+|Das System ermöglicht den Nutzenden, welche in eine Gewinngemeinschaft eingetragen sind, dessen Mitglieder und deren Einsatz zu sehen.
+
+|===
+
 
 == Nicht-Funktionale Anforderungen
 
 === Qualitätsziele
 
-Dokumentieren Sie in einer Tabelle die Qualitätsziele, welche das System erreichen soll, sowie deren Priorität.
+Dieser Abschnitt bietet einen Überblick aller Qualitätsziele, welche das System erreichen soll.
+
+Die Folgende Tabelle enthält:
+
+- Der Name des Qualitätsziels
+- Die Priorität des Qualitätsziels (1= nicht wichtig, 5= sehr wichtig)
+- Eine Beschreibung des Qualitätsziels
+
+[cols="2,1,5"]
+|===
+|Qualitätsziel |Priorität |Beschreibung
+
+|Sicherheit
+|5
+|Das System legt besonderen Wert auf die Sicherheit der Nutzerkonten, da hier primär transaktionen mit dem Geld der registrierten Nutzenden getätigt werden.
+
+|Nutzerfreundlichkeit
+|4
+|Das System bietet eine benutzerfreundliche Oberfläche, die ein breites Spektrum von Personen- und Altersgruppen abdeckt.
+
+|Erreichbarkeit
+|3
+|Das System ist zu jeder Zeit von einem Rechner aus erreichbar.
+
+|Wartbarkeit
+|3
+|Das System ist schnell und einfach zu warten. Das dient dazu, die Systemsicherheit und die Funktionsfähigkeit zu erhalten.
+
+|Ausbaubarkeit
+|4
+|Das System ermöglicht, falls gewünscht, neue Funktionen und Inhalte schnell und einfach hinzuzufügen.
+|===
+
 
 === Konkrete Nicht-Funktionale Anforderungen
 
-Beschreiben Sie Nicht-Funktionale Anforderungen, welche dazu dienen, die zuvor definierten Qualitätsziele zu erreichen.
-Achten Sie darauf, dass deren Erfüllung (mindestens theoretisch) messbar sein muss.
+Dieser Abschnitt bietet einen Überblick aller Nicht-Funktionalen Anforderungen, welche dazu dienen, die Qualitätsziele zu erreichen.
+
+Die Folgende Tabelle enthält:
+
+- Eine Eindeutige ID der Anforderung
+- Der Name der Anforderung
+- Die Beschreibung der Anforderung
+
+[cols="1,2,5"]
+|===
+|ID |Name |Beschreibung
+
+|[NF0001]
+|Sicherheit -  Passwortspeicherung
+|Die Passwörter der Nutzenden werden verschlüsselt gespeichert.
+
+|[NF0002]
+|Sicherheit -  2-Faktor-Authentifizierung
+|Für die erfolgreiche Anmeldung wird ein Code an die E-Mail-Adresse oder Telefonnummer geschickt, welchen der Nutzende eingeben muss.
+
+|[NF0003]
+|Nutzerfreundlichkeit - Barrierefreiheit
+|Um möglichst viele Personengruppen anzusprechen, hat der Text einen hohen Kontrast, um auch bei einer Sehschwäche gut erkannt zu werden.
+
+|[NF0004]
+|Erreichbarkeit - Uptime
+|Das System soll eine Uptime von mindestens 99% erreichen.
+|===
 
 == GUI Prototyp
 
