@@ -157,8 +157,8 @@ image:diagrams/use-case-diagram.svg[use-case-diagram]
 |Actors                     |User
 |Trigger                    |User möchte in einer Gemeinschaft beitreten.
 |Precondition(s)           a|
-1.User hat sich beim System authentifiziert
-2.User hat ein Passwort einer Gemeinschaft.
+1. User hat sich beim System authentifiziert
+2. User hat ein Passwort einer Gemeinschaft.
 |Essential Steps           a|
 1.User drückt auf der Website auf den Knopf "Gemeinschaft beitreten".
 2.User gebt das Passwort ein.
@@ -175,8 +175,8 @@ image:diagrams/use-case-diagram.svg[use-case-diagram]
 |Actors                     |User
 |Trigger                    |User möchte aus einer Gemeinschaft austreten.
 |Precondition(s)           a|
-1.User hat sich beim System authentifiziert
-2.User ist ein Mitglied der Gemeinschaft
+1. User hat sich beim System authentifiziert
+2. User ist ein Mitglied der Gemeinschaft
 |Essential Steps           a|User drückt auf der Website die Schaltfläche "Gemeischaft löschen".
 |Extensions                 |-
 |Functional Requirements    |brauch noch
@@ -205,8 +205,8 @@ image:diagrams/use-case-diagram.svg[use-case-diagram]
 |Actors                     |Gemeischaft
 |Trigger                    |Ein Nutzer in einer Gemeinschaft hat eine erfolglose Abbuchungsbenachrichtigungen erhalten.
 |Precondition(s)           a|
-1.Actor is in der Gemeinschaft.
-2.Actor hat schon neu mal erfolglose Abbuchungsbenachrichtigungen erhalten.
+1. Actor is in der Gemeinschaft.
+2. Actor hat schon neu mal erfolglose Abbuchungsbenachrichtigungen erhalten.
 |Essential Steps           a|--
 |Extensions                 |--
 |Functional Requirements    |[F0018]
