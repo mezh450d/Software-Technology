@@ -211,6 +211,107 @@ image:diagrams/use-case-diagram.svg[use-case-diagram]
 |Functional Requirements    |F0018
 |===
 
+[cols="1h, 3"]
+[[UC0010]]
+|===
+|ID                         |**<<>>**
+|Name                       |show all bets
+|Beschreibung               |Der Administrator überprüft den Wettstatus jedes Benutzers
+|Actors                     |Admin
+|Trigger                    |Klicken Administratoren auf "Wettstatus"
+|Precondition(s)           a|Benutzer hat Lotto gekauft
+|Essential Steps           a|1. Der Administrator klickt auf ""Lottoergebnisse anzeigen""
+2. Besuchen Sie jedes Benutzerkonto, um den Wettstatus zu erfahren
+3. Die Seite zeigt den Wettstatus aller teilnehmenden Benutzer in der Community
+|Extensions                 |-
+|Functional Requirements    |-
+|===
+
+[cols="1h, 3"]
+[[UC0010]]
+|===
+|ID                         |**<<>>**
+|Name                       |show all accounts
+|Beschreibung               |Der Administrator überprüft die Gewinne und Verluste des Benutzers nach dem Ziehungstag und nach dem Spieltag
+|Actors                     |Admin
+|Trigger                    |Klicken Administratoren auf "finanzielle Situation"
+|Precondition(s)           a|1.Benutzer hat Lotto gekauft
+2.Die Lotterie wurde gezogen oder das Ergebnis des Spiels wurde veröffentlicht
+|Essential Steps           a|1. Der Manager klickt auf "finanzielle Situation"
+2. Rufen Sie die Wettinformationen aller Benutzer ab
+3. Lesen Sie das Lotterieergebnis oder das Ergebnis des Spiels
+4. Beurteilen Sie den Gewinn oder Verlust jedes Benutzers
+|Extensions                 |-
+|Functional Requirements    |-
+|===
+
+[cols="1h, 3"]
+[[UC0010]]
+|===
+|ID                         |**<<>>**
+|Name                       |Evaluation of lottery（Two lotteries）
+|Beschreibung               |Bestimmen Administratoren, ob das Guthaben auf dem Konto des Benutzers ausreicht, um die Lotterie zu bezahlen
+|Actors                     |Admin
+|Trigger                    |Klicken Administratoren auf "Ergebnisse zeichnen"
+|Precondition(s)           a|1. Lotto wurde gezogen
+2. Benutzer kauft Lotto
+|Essential Steps           a|1. Der Administrator sendet einen Abzugsantrag an die Konten aller Benutzer, die die Lotterie gekauft haben
+2. Das Konto beurteilt, ob das Guthaben ausreicht, um die Lottokaufkosten zu bezahlen
+3. Wenn nicht genug, reichen Sie das Lotto des Benutzers ein, um es zu stornieren
+4. Falls ausreichend, Konto abziehen und Benutzer zur Liste hinzufügen
+|Extensions                 |-
+|Functional Requirements    |-
+|===
+
+[cols="1h, 3"]
+[[UC0010]]
+|===
+|ID                         |**<<>>**
+|Name                       |Aus der Community entfernen
+|Beschreibung               |Benutzer, die in der Community Fußball-Lotterietickets gekauft und das Geld nicht zehnmal abgezogen haben, werden aus der Community entfernt
+|Actors                     |Admin
+|Trigger                    |Klicken Administratoren auf "Ergebnisse zeichnen"
+|Precondition(s)           a|Abzug fehlgeschlagen
+|Essential Steps           a|1. Senden Sie einen Antrag auf Abzug von zwei Euro und senden Sie eine Nachricht an das Konto des Benutzers, der das Fußball-Lotterieticket nicht abgezogen hat
+2. Stellen Sie fest, ob der Benutzer den zehnten Abzug nicht bestanden hat
+3. Wenn ja, löschen Sie den Benutzer aus der Community-Liste
+|Extensions                 |-
+|Functional Requirements    |-
+|===
+
+[cols="1h, 3"]
+[[UC0010]]
+|===
+|ID                         |**<<>>**
+|Name                       |Liste der Gewinner
+|Beschreibung               |Alle Gewinner-Benutzer werden dieser Liste hinzugefügt
+|Actors                     |Admin
+|Trigger                    |Klicken Administratoren auf "Ergebnisse zeichnen"
+|Precondition(s)           a|1. Lotterieergebnisse bekannt gegeben
+2. Benutzerkonto wurde erfolgreich belastet
+|Essential Steps           a|1. Lesen Sie die finanzielle Situation des Benutzerkontos (gewinnen oder verlieren)
+2. Fügen Sie Benutzer hinzu, deren Ergebnisse als ""Win"" angezeigt werden, zur Liste
+|Extensions                 |-
+|Functional Requirements    |-
+|===
+
+[cols="1h, 3"]
+[[UC0010]]
+|===
+|ID                         |**<<>>**
+|Name                       |Geld vergeben
+|Beschreibung               |Der Manager sendet Geld an das Konto des Gewinners
+|Actors                     |Admin
+|Trigger                    |Klicken Administratoren auf "Ergebnis Abrechnung"
+|Precondition(s)           a|1. Lotterieergebnisse bekannt gegeben
+2. Der Nutzer ist der Gewinner
+|Essential Steps           a|1. Der Manager klickt auf "Geld vergeben"
+2. Berechnen Sie den Betrag, den jeder Benutzer erhält
+3. Geld auf das Benutzerkonto vergeben
+|Extensions                 |-
+|Functional Requirements    |-
+|===
+
 == Funktionale Anforderungen
 
 === Muss-Kriterien
