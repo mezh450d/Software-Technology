@@ -107,45 +107,45 @@ image:diagrams/use-case-diagram.svg[use-case-diagram]
 [cols="1h, 3"]
 [[UC0010]]
 |===
-|ID                         |**<<>>**
-|Name                       |bet/bet change
-|Beschreibung               |User können Wetten platzieren und die Anzahl der Wetten ändern.
-|Actors                     |User
-|Trigger                    |User klickt auf den Knopf “bet”.
-|Precondition(s)           a|ist als User eingeloggt
-|Essential Steps           a|
+|ID                           |**<<>>**
+|Name                         |bet/bet change
+|Beschreibung                 |User können Wetten platzieren und die Anzahl der Wetten ändern.
+|Akteur                       |User
+|Auslöser                     |User klickt auf den Knopf “bet”.
+|Voraussetzungen             a|ist als User eingeloggt
+|Essentielle Schritte        a|
 1. User klickt auf den Knopf “bet/bet change”.
 2. User gibt die Anzahl der Wetten ein.
-|Extensions                 |-
-|Functional Requirements    |-
+|Erweiterungen                |-
+|Funktionale Voraussetzungen  |[F0006][F0007][F0008][F0009][F0010]
 |===
 
 [cols="1h, 3"]
 [[UC0010]]
 |===
-|ID                         |**<<>>**
-|Name                       |show Results
-|Beschreibung               |User können die Wettergebnisse prüfen
-|Actors                     |User
-|Trigger                    |User klickt auf  den Knopf “show Results”.
-|Precondition(s)           a|Der Benutzer hat erfolgreich gewettet und die Wette wurde bewertet.
-|Essential Steps           a|User klickt auf den Knopf “show Results”.
-|Extensions                 |-
-|Functional Requirements    |-
+|ID                           |**<<>>**
+|Name                         |show Results
+|Beschreibung                 |User können die Wettergebnisse prüfen
+|Akteur                       |User
+|Auslöser                     |User klickt auf  den Knopf “show Results”.
+|Voraussetzungen             a|Der Benutzer hat erfolgreich gewettet und die Wette wurde bewertet.
+|Essentielle Schritte        a|User klickt auf den Knopf “show Results”.
+|Erweiterungen                |-
+|Funktionale Voraussetzungen  |[F0023][F0024]
 |===
 
 [cols="1h, 3"]
 [[UC0010]]
 |===
-|ID                         |**<<>>**
-|Name                       |message
-|Beschreibung               |User können empfangene Nachrichten anzeigen.
-|Actors                     |User
-|Trigger                    |User klickt auf  den Knopf “message”.
-|Precondition(s)           a|ist als User eingeloggt
-|Essential Steps           a|User klickt auf  den Knopf “message”.
-|Extensions                 |-
-|Functional Requirements    |-
+|ID                           |**<<>>**
+|Name                         |message
+|Beschreibung                 |User können empfangene Nachrichten anzeigen.
+|Akteur                       |User
+|Auslöser                     |User klickt auf  den Knopf “message”.
+|Voraussetzungen             a|ist als User eingeloggt
+|Essentielle Schritte        a|User klickt auf  den Knopf “message”.
+|Erweiterungen                |-
+|Funktionale Voraussetzungen  |[F0019][F0020]
 |===
 
 == Funktionale Anforderungen
