@@ -180,7 +180,7 @@ Der Katalog muss eine Unterscheidung zwischen den verschiedenen Arten von Lotter
 1. Der Akteur klickt auf den Knopf "Zahlenlotterien" oder "Fußballlotterien".
 2. Alle gewählten Lotteriensart werden angezeigt.
 |Erweiterungen              |-
-|Funktionale Voraussetzungen|[F006]
+|Funktionale Voraussetzungen|[F0006]
 |===
 
 [cols="1h, 3"]
