@@ -43,9 +43,9 @@ Der Hauptnutzer der Anwendung sollen jegliche Menschen aus dem In- und Ausland s
 |4
 |Auftraggeber des Projektes.
 a|
-- Populatität der Lotterie ins Ausland verbreiten
+- Popularität der Lotterie ins Ausland verbreiten
 - Glücksspiel online etablieren
-- wirtschaftlichen ERfolg erzielen
+- wirtschaftlichen erfolg erzielen
 - automatisiertes Auswerten von Tippscheinen
 
 |Nutzer
@@ -107,18 +107,137 @@ image:diagrams/use-case-diagram.svg[use-case-diagram]
 [cols="1h, 3"]
 [[UC0010]]
 |===
+|ID                         |**<<>>**
+|Name                       |register
+|Beschreibung               |Vistor können einen Account erstellen
+|Akteur                     |Vistor
+|Trigger                    |Vistor klickt auf "Registrieren"
+|Voraussetzungen           a|Vistor ist nicht angemeldet
+|Essenzielle Schritte      a|
+1. Vistor klickt auf den "Registrieren"
+2. Vistor wird auf "register.html" weitergeleitet
+3. Vistor gibt Daten ein und klickt auf "Registrieren"
+4. System ein neues Konto erstellen
+|Erweiterungen              |-
+|Funktionale Voraussetzungen|[F0001][F0002]
+|===
+
+[cols="1h, 3"]
+[[UC0010]]
+|===
+|ID                         |**<<>>**
+|Name                       |login/logout
+|Beschreibung               |Vistor soll mit eigenem Konto einloggen können, Dieser Vorgang kann durch Abmelden rückgängig gemacht werden.
+|Akteur                     |
+Login: Vistor
+
+Logout: User
+|Trigger                    |
+_Login_:
+Vistor klickt auf den Knopf “einloggen”.
+_Logout_:
+Vistor klickt auf den Knopf “ausloggen”.
+
+|Voraussetzungen           a|
+_Login_:
+Akteur ist nicht angemeldet.
+
+_Logout_:
+Akteur ist angemeldet.
+|Essenzielle Schritte      a|
+_Login_:
+
+1. Vistor klickt auf den "einloggen".
+2. Vistor wird auf "login.html" weitergeleitet.
+3. Vistor gibt Daten ein und klickt auf "einloggen".
+4. System prüft die Korrektheit der eingegebenen Daten.
+1.Richtige Daten: Vistor werden User und bekommen zusätzlichen Rechte.
+2.Fehler: Anzeige der Fehlermitteilung.
+
+_Logout_:
+
+1. User klickt auf den "ausloggen".
+2. Benutzer kehren zur Startseite zurück und werden Vistor.
+
+|Erweiterungen              |-
+|Funktionale Voraussetzungen|[F0003]
+|===
+
+image:diagrams/register_login_logout.png[register/login/logout]
+[cols="1h, 3"]
+[[UC0010]]
+|===
+|ID                         |**<<>>**
+|Name                       |showBets
+|Beschreibung               |
+Jeder Besucher (d.h. User und Vistor) sollte auf den Katalog zugreifen können,
+in dem alle angebotenen Lotterien aufgeführt sind.
+Der Katalog muss eine Unterscheidung zwischen den verschiedenen Arten von Lotterien (Zahlenlotterien und Fußballlotterien) enthalten
+|Akteur                     |User/Vistor
+|Auslöser                   |Akteur klickt auf den Knopf "Zahlenlotterien" oder "Fußballlotterien".
+|Voraussetzungen           a|
+|Essenzielle Schritte      a|
+1. Der Akteur klickt auf den Knopf "Zahlenlotterien" oder "Fußballlotterien".
+2. Alle gewählten Lotteriensart werden angezeigt.
+|Erweiterungen              |-
+|Funktionale Voraussetzungen|
+|===
+
+[cols="1h, 3"]
+[[UC0010]]
+|===
 |ID                           |**<<>>**
 |Name                         |bet/bet change
 |Beschreibung                 |User können Wetten platzieren und die Anzahl der Wetten ändern.
 |Akteur                       |User
 |Auslöser                     |User klickt auf den Knopf “bet”.
 |Voraussetzungen             a|ist als User eingeloggt
-|Essentielle Schritte        a|
+|Essenzielle Schritte        a|
 1. User klickt auf den Knopf “bet/bet change”.
 2. User gibt die Anzahl der Wetten ein.
 |Erweiterungen                |-
 |Funktionale Voraussetzungen  |[F0006][F0007][F0008][F0009][F0010]
 |===
+
+image:diagrams/bet_betchange.png[bet/betchange]
+
+[cols="1h, 3"]
+[[UC0010]]
+|===
+|ID                         |**<<>>**
+|Name                       |checkBalance
+|Beschreibung               |Jeder User kann seinen Kontostand einsehen.
+|Akteur                     |User
+|Auslöser                    |Akteur klickt auf den Knopf "Kontostand" .
+|Voraussetzungen           a|Akteur ist eingeloggt.
+|Essenzielle Schritte            a|
+1. Der Akteur klickt auf den Knopf "Zahlenlotterien" oder "Fußballlotterien".
+2. Der Kontostand wird angezeigt.
+|Erweiterungen              |-
+|Funktionale Voraussetzungen|[F0012]
+|===
+
+[cols="1h, 3"]
+[[UC0010]]
+|===
+|ID                         |**<<>>**
+|Name                       |withdraw/deposit
+|Beschreibung               |User können ihr Guthaben abheben oder ihr Konto aufladen.
+|Akteur                     |User
+|Auslöser                   |
+_withdraw_: Akteur klickt auf den Knopf "withdraw".
+
+_deposit_: Akteur klickt auf den Knopf "deposit".
+|Voraussetzungen           a|Akteur ist eingeloggt.
+|Essenzielle Schritte      a|
+1. Akteur klickt auf den Knopf "withdraw" oder "deposit".
+2. Akteur wird auf "withdraw.html"/"deposit.html" weitergeleitet.
+3. Akteur wählt den Betrag, den sie aufladen oder abheben möchten
+|Erweiterungen              |-
+|Funktionale Voraussetzungen|[F0013][F0014]
+|===
+
+image:diagrams/deposit_withdral.png[deposit/withdral]
 
 [cols="1h, 3"]
 [[UC0010]]
@@ -129,9 +248,77 @@ image:diagrams/use-case-diagram.svg[use-case-diagram]
 |Akteur                       |User
 |Auslöser                     |User klickt auf  den Knopf “show Results”.
 |Voraussetzungen             a|Der Benutzer hat erfolgreich gewettet und die Wette wurde bewertet.
-|Essentielle Schritte        a|User klickt auf den Knopf “show Results”.
+|Essenzielle Schritte        a|User klickt auf den Knopf “show Results”.
 |Erweiterungen                |-
 |Funktionale Voraussetzungen  |[F0023][F0024]
+|===
+
+[cols="1h, 3"]
+[[UC0010]]
+|===
+|ID                         |**<<>>**
+|Name                       |create
+|Beschreibung               |User kann eine Gemeinschaft erstellen, das Passwort der Gemeinschaft erhalten und das Passwort verwenden, um andere in die Gemeinschaft einzuladen.
+|Akteur                     |User
+|Auslöser                   |User möchte eine Gemeinschaft erstellen.
+|Voraussetzungen           a|User hat sich beim System authentifiziert.
+|Essenzielle Schritte      a|User klickt auf der Webseite auf den Knopf "Eine Gemeinschaft erstellen".
+|Erweiterungen              |User kann andere Mitglieder in der Gemeinschaft einladen.
+|Funktionale Voraussetzungen|[F0015]
+|===
+
+image:diagrams/create.png[creat community]
+
+[cols="1h, 3"]
+[[UC0010]]
+|===
+|ID                         |**<<>>**
+|Name                       |join
+|Beschreibung               |User kann in einer Gemeinschaft beitreten.
+|Akteur                     |User
+|Auslöser                  a|User möchte in einer Gemeinschaft beitreten.
+|Voraussetzungen           a|
+1. User hat sich beim System authentifiziert.
+2. User hat ein Passwort einer Gemeinschaft.
+|Essenzielle Schritte      a|
+1.User drückt auf der Website auf den Knopf "Gemeinschaft beitreten".
+2.User gebt das Passwort ein.
+|Erweiterungen              |-
+|Functional Requirements    |[F0016]
+|===
+
+image:diagrams/join.png[join community]
+
+[cols="1h, 3"]
+[[UC0010]]
+|===
+|ID                         |**<<>>**
+|Name                       |delete
+|Beschreibung               |User kann aus einer Gemeinschaft austreten.
+|Akteur                     |User
+|Auslöser                   |User möchte aus einer Gemeinschaft austreten.
+|Voraussetzungen           a|
+1. User hat sich beim System authentifiziert.
+2. User ist ein Mitglied der Gemeinschaft.
+|Essenzielle Schritte      a|User drückt auf der Website die Schaltfläche "Gemeinschaft löschen".
+|Erweiterungen              |-
+|Funktionale Voraussetzungen|brauch noch
+|===
+
+[cols="1h, 3"]
+[[UC0010]]
+|===
+|ID                         |**<<>>**
+|Name                       |kick
+|Beschreibung               |Nach zehn erfolglosen Abbuchungsbenachrichtigungen wird der Nutzer vorübergehend aus der Community entfernt.
+|Akteur                     |Gemeinschaft
+|Auslöser                   |Ein Nutzer in einer Gemeinschaft hat eine erfolglose Abbuchungsbenachrichtigungen erhalten.
+|Essenzielle Schritte      a|
+1. Akteur ist in der Gemeinschaft.
+2. Akteur hat schon neu mal erfolglose Abbuchungsbenachrichtigungen erhalten.
+|Essential Steps           a|--
+|Erweiterungen              |--
+|Funktionale Voraussetzungen|[F0018]
 |===
 
 [cols="1h, 3"]
@@ -143,7 +330,7 @@ image:diagrams/use-case-diagram.svg[use-case-diagram]
 |Akteur                       |User
 |Auslöser                     |User klickt auf  den Knopf “message”.
 |Voraussetzungen             a|ist als User eingeloggt
-|Essentielle Schritte        a|User klickt auf  den Knopf “message”.
+|Essenzielle Schritte        a|User klickt auf  den Knopf “message”.
 |Erweiterungen                |-
 |Funktionale Voraussetzungen  |[F0019][F0020]
 |===
@@ -152,81 +339,17 @@ image:diagrams/use-case-diagram.svg[use-case-diagram]
 [[UC0010]]
 |===
 |ID                         |**<<>>**
-|Name                       |join
-|Beschreibung               |User kann in einer Gemeinschaft beitreten.
-|Actors                     |User
-|Trigger                    |User möchte in einer Gemeinschaft beitreten.
-|Precondition(s)           a|
-1. User hat sich beim System authentifiziert
-2. User hat ein Passwort einer Gemeinschaft.
-|Essential Steps           a|
-1.User drückt auf der Website auf den Knopf "Gemeinschaft beitreten".
-2.User gebt das Passwort ein.
-|Extensions                 |-
-|Functional Requirements    |[F0016]
-|===
-
-[cols="1h, 3"]
-[[UC0010]]
-|===
-|ID                         |**<<>>**
-|Name                       |delete
-|Beschreibung               |User kann aus einer Gemeinschaft austreten.
-|Actors                     |User
-|Trigger                    |User möchte aus einer Gemeinschaft austreten.
-|Precondition(s)           a|
-1. User hat sich beim System authentifiziert
-2. User ist ein Mitglied der Gemeinschaft
-|Essential Steps           a|User drückt auf der Website die Schaltfläche "Gemeischaft löschen".
-|Extensions                 |-
-|Functional Requirements    |brauch noch
-|===
-
-[cols="1h, 3"]
-[[UC0010]]
-|===
-|ID                         |**<<>>**
-|Name                       |create
-|Beschreibung               |User kann eine Gemeinschaft erstellen, das Passwort der Gemeinschaft erhalten und das Passwort verwenden, um andere in die Gemeinschaft einzuladen.
-|Actors                     |User
-|Trigger                    |User möchte eine Gemeinschaft erstellen.
-|Precondition(s)           a|User hat sich beim System authentifiziert.
-|Essential Steps           a|User klickt auf der Webseite auf den Knopf "Eine Gemeinschaft erstellen".
-|Extensions                 |User kann andere Mitglieder in der Gemeinschaft einladen.
-|Functional Requirements    |[F0015]
-|===
-
-[cols="1h, 3"]
-[[UC0010]]
-|===
-|ID                         |**<<>>**
-|Name                       |kick
-|Beschreibung               |Nach zehn erfolglosen Abbuchungsbenachrichtigungen wird der Nutzer vorübergehend aus der Community entfernt.
-|Actors                     |Gemeischaft
-|Trigger                    |Ein Nutzer in einer Gemeinschaft hat eine erfolglose Abbuchungsbenachrichtigungen erhalten.
-|Precondition(s)           a|
-1. Actor is in der Gemeinschaft.
-2. Actor hat schon neu mal erfolglose Abbuchungsbenachrichtigungen erhalten.
-|Essential Steps           a|--
-|Extensions                 |--
-|Functional Requirements    |[F0018]
-|===
-
-[cols="1h, 3"]
-[[UC0010]]
-|===
-|ID                         |**<<>>**
 |Name                       |show all bets
 |Beschreibung               |Der Administrator überprüft den Wettstatus jedes Benutzers
-|Actors                     |Admin
-|Trigger                    |Klicken Administratoren auf "Wettstatus"
-|Precondition(s)           a|Benutzer hat Lotto gekauft
-|Essential Steps           a|
-1. Der Administrator klickt auf ""Lottoergebnisse anzeigen""
-2. Besuchen Sie jedes Benutzerkonto, um den Wettstatus zu erfahren
-3. Die Seite zeigt den Wettstatus aller teilnehmenden Benutzer in der Community
-|Extensions                 |-
-|Functional Requirements    |-
+|Akteur                     |Admin
+|Auslöser                   |Klicken Administratoren auf "Wettstatus"
+|Voraussetzungen           a|Benutzer hat Lotto gekauft
+|Essenzielle Schritte      a|
+1. Der Administrator klickt auf ""Lottoergebnisse anzeigen".
+2. Besuchen Sie jedes Benutzerkonto, um den Wettstatus zu erfahren.
+3. Die Seite zeigt den Wettstatus aller teilnehmenden Benutzer in der Community.
+|Erweiterungen              |-
+|Funktionale Voraussetzungen|[F0022]
 |===
 
 [cols="1h, 3"]
@@ -235,18 +358,18 @@ image:diagrams/use-case-diagram.svg[use-case-diagram]
 |ID                         |**<<>>**
 |Name                       |show all accounts
 |Beschreibung               |Der Administrator überprüft die Gewinne und Verluste des Benutzers nach dem Ziehungstag und nach dem Spieltag
-|Actors                     |Admin
-|Trigger                    |Klicken Administratoren auf "finanzielle Situation"
-|Precondition(s)           a|
+|Akteur                     |Admin
+|Auslöser                   |Klicken Administratoren auf "finanzielle Situation"
+|Voraussetzungen           a|
 1.Benutzer hat Lotto gekauft
 2.Die Lotterie wurde gezogen oder das Ergebnis des Spiels wurde veröffentlicht
-|Essential Steps           a|
+|Essenzielle Schritte      a|
 1. Der Manager klickt auf "finanzielle Situation"
 2. Rufen Sie die Wettinformationen aller Benutzer ab
 3. Lesen Sie das Lotterieergebnis oder das Ergebnis des Spiels
 4. Beurteilen Sie den Gewinn oder Verlust jedes Benutzers
-|Extensions                 |-
-|Functional Requirements    |-
+|Erweiterungen              |-
+|Funktionale Voraussetzungen|-
 |===
 
 [cols="1h, 3"]
@@ -255,36 +378,21 @@ image:diagrams/use-case-diagram.svg[use-case-diagram]
 |ID                         |**<<>>**
 |Name                       |Evaluation of lottery（Two lotteries）
 |Beschreibung               |Bestimmen Administratoren, ob das Guthaben auf dem Konto des Benutzers ausreicht, um die Lotterie zu bezahlen
-|Actors                     |Admin
-|Trigger                    |Klicken Administratoren auf "Ergebnisse zeichnen"
-|Precondition(s)           a|
+|Akteur                     |Admin
+|Auslöser                   |Klicken Administratoren auf "Ergebnisse zeichnen"
+|Voraussetzungen           a|
 1. Lotto wurde gezogen
 2. Benutzer kauft Lotto
-|Essential Steps           a|
+|Essenzielle Schritte      a|
 1. Der Administrator sendet einen Abzugsantrag an die Konten aller Benutzer, die die Lotterie gekauft haben
 2. Das Konto beurteilt, ob das Guthaben ausreicht, um die Lottokaufkosten zu bezahlen
 3. Wenn nicht genug, reichen Sie das Lotto des Benutzers ein, um es zu stornieren
 4. Falls ausreichend, Konto abziehen und Benutzer zur Liste hinzufügen
-|Extensions                 |-
-|Functional Requirements    |-
+|Erweiterungen              |-
+|Funktionale Voraussetzungen|
 |===
 
-[cols="1h, 3"]
-[[UC0010]]
-|===
-|ID                         |**<<>>**
-|Name                       |Aus der Community entfernen
-|Beschreibung               |Benutzer, die in der Community Fußball-Lotterietickets gekauft und das Geld nicht zehnmal abgezogen haben, werden aus der Community entfernt
-|Actors                     |Admin
-|Trigger                    |Klicken Administratoren auf "Ergebnisse zeichnen"
-|Precondition(s)           a|Abzug fehlgeschlagen
-|Essential Steps           a|
-1. Senden Sie einen Antrag auf Abzug von zwei Euro und senden Sie eine Nachricht an das Konto des Benutzers, der das Fußball-Lotterieticket nicht abgezogen hat
-2. Stellen Sie fest, ob der Benutzer den zehnten Abzug nicht bestanden hat
-3. Wenn ja, löschen Sie den Benutzer aus der Community-Liste
-|Extensions                 |-
-|Functional Requirements    |-
-|===
+image:diagrams/Evaluation.png[Evaluation]
 
 [cols="1h, 3"]
 [[UC0010]]
@@ -292,16 +400,16 @@ image:diagrams/use-case-diagram.svg[use-case-diagram]
 |ID                         |**<<>>**
 |Name                       |Liste der Gewinner
 |Beschreibung               |Alle Gewinner-Benutzer werden dieser Liste hinzugefügt
-|Actors                     |Admin
-|Trigger                    |Klicken Administratoren auf "Ergebnisse zeichnen"
-|Precondition(s)           a|
+|Akteur                     |Admin
+|Auslöser                   |Klicken Administratoren auf "Ergebnisse zeichnen"
+|Voraussetzungen           a|
 1. Lotterieergebnisse bekannt gegeben
 2. Benutzerkonto wurde erfolgreich belastet
-|Essential Steps           a|
+|Essenzielle Schritte      a|
 1. Lesen Sie die finanzielle Situation des Benutzerkontos (gewinnen oder verlieren)
 2. Fügen Sie Benutzer hinzu, deren Ergebnisse als ""Win"" angezeigt werden, zur Liste
-|Extensions                 |-
-|Functional Requirements    |-
+|Erweiterungen              |-
+|Funktionale Voraussetzungen|-
 |===
 
 [cols="1h, 3"]
@@ -310,25 +418,27 @@ image:diagrams/use-case-diagram.svg[use-case-diagram]
 |ID                         |**<<>>**
 |Name                       |Geld vergeben
 |Beschreibung               |Der Manager sendet Geld an das Konto des Gewinners
-|Actors                     |Admin
-|Trigger                    |Klicken Administratoren auf "Ergebnis Abrechnung"
-|Precondition(s)           a|
+|Akteur                     |Admin
+|Auslöser                   |Klicken Administratoren auf "Ergebnis Abrechnung"
+|Voraussetzungen           a|
 1. Lotterieergebnisse bekannt gegeben
 2. Der Nutzer ist der Gewinner
-|Essential Steps           a|
+|Essenzielle Schritte      a|
 1. Der Manager klickt auf "Geld vergeben"
 2. Berechnen Sie den Betrag, den jeder Benutzer erhält
 3. Geld auf das Benutzerkonto vergeben
-|Extensions                 |-
-|Functional Requirements    |-
+|Erweiterungen              |-
+|Funktionale Voraussetzungen|[F0023]
 |===
+
+image:diagrams/Geld_vergeben.png[Geld vergeben]
 
 == Funktionale Anforderungen
 
 === Muss-Kriterien
 Dieser Abschnitt bietet einen Überblick aller Anforderungen, welche das System leisten muss.
 
-Die Folgende Tabelle enthält:
+Die folgende Tabelle enthält:
 
 - Eine eindeutige ID für die Anforderung
 - Ein Name der Anforderung
