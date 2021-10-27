@@ -202,7 +202,7 @@ _Logout_:
 |Funktionale Voraussetzungen|[F0003]
 |===
 
-image:diagrams/register_login_logout.png[register/login/logout]
+image:diagrams/seq_register_login_logout.svg[seq_register/login/logout]
 [cols="1h, 3"]
 [[UC0010]]
 |===
@@ -238,7 +238,7 @@ Der Katalog muss eine Unterscheidung zwischen den verschiedenen Arten von Lotter
 |Funktionale Voraussetzungen  |[F0006][F0007][F0008][F0009][F0010]
 |===
 
-image:diagrams/bet_betchange.png[bet/betchange]
+image:diagrams/seq_bet.svg[seq-bet]
 
 [cols="1h, 3"]
 [[UC0010]]
@@ -276,7 +276,7 @@ _deposit_: Akteur klickt auf den Knopf "deposit".
 |Funktionale Voraussetzungen|[F0013][F0014]
 |===
 
-image:diagrams/deposit_withdral.png[deposit/withdral]
+image:diagrams/seq_deposit-withdraw.svg[seq_deposit/withdraw]
 
 [cols="1h, 3"]
 [[UC0010]]
@@ -306,7 +306,7 @@ image:diagrams/deposit_withdral.png[deposit/withdral]
 |Funktionale Voraussetzungen|[F0015]
 |===
 
-image:diagrams/create.png[creat community]
+image:diagrams/seq_create.svg[seq_create]
 
 [cols="1h, 3"]
 [[UC0010]]
@@ -326,7 +326,7 @@ image:diagrams/create.png[creat community]
 |Functional Requirements    |[F0016]
 |===
 
-image:diagrams/join.png[join community]
+image:diagrams/seq_join.svg[seq_join]
 
 [cols="1h, 3"]
 [[UC0010]]
@@ -431,7 +431,7 @@ image:diagrams/join.png[join community]
 |Funktionale Voraussetzungen|
 |===
 
-image:diagrams/Evaluation.png[Evaluation]
+image:diagrams/seq_evaluation.svg[seq_evaluation]
 
 [cols="1h, 3"]
 [[UC0010]]
@@ -470,7 +470,7 @@ image:diagrams/Evaluation.png[Evaluation]
 |Funktionale Voraussetzungen|[F0023]
 |===
 
-image:diagrams/Geld_vergeben.png[Geld vergeben]
+image:diagrams/seq_money.svg[seq_geld-vergeben]
 
 == Funktionale Anforderungen
 
