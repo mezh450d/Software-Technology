@@ -1,7 +1,7 @@
 = Pflichtenheft
 :toc:
 :toc-title: Inhaltsverzeichnis
-:project_name: MDG 2000 - "Mach dein Glück" Online-Lotterie
+:project_name: Lotterie
 
 == __{project_name}__
 
@@ -9,7 +9,7 @@
 [cols="1, 1, 1, 1, 4"]
 |===
 |Version | Status      | Bearbeitungsdatum   | Autoren(en) |  Vermerk
-|0.1     | In Arbeit   | 10.10.2021          | alle      | Initiale Version
+|0.1     | In Arbeit   | 10.10.2021          | Hannes, Nick       | Initiale Version
 |===
 
 //== Inhaltsverzeichnis
@@ -250,7 +250,7 @@ image:diagrams/seq_bet.svg[seq-bet]
 |Auslöser                    |Akteur klickt auf den Knopf "Kontostand" .
 |Voraussetzungen           a|Akteur ist eingeloggt.
 |Essenzielle Schritte            a|
-1. Der Akteur klickt auf den Knopf "Zahlenlotterien" oder "Fußballlotterien".
+1. Der Akteur klickt auf den Knopf "Kontostand".
 2. Der Kontostand wird angezeigt.
 |Erweiterungen              |-
 |Funktionale Voraussetzungen|[F0012]
@@ -271,7 +271,7 @@ _deposit_: Akteur klickt auf den Knopf "deposit".
 |Essenzielle Schritte      a|
 1. Akteur klickt auf den Knopf "withdraw" oder "deposit".
 2. Akteur wird auf "withdraw.html"/"deposit.html" weitergeleitet.
-3. Akteur wählt den Betrag, den sie aufladen oder abheben möchten
+3. Akteur wählt den Betrag, den sie aufladen oder abheben möchten.
 |Erweiterungen              |-
 |Funktionale Voraussetzungen|[F0013][F0014]
 |===
@@ -799,8 +799,102 @@ Dieser Abschnitt stellt eine Vereinigung von Glossar und der Beschreibung von Kl
 |===
 
 == Akzeptanztestfälle
-Mithilfe von Akzeptanztests wird geprüft, ob die Software die funktionalen Erwartungen und Anforderungen im Gebrauch erfüllt. Diese sollen und können aus den Anwendungsfallbeschreibungen und den UML-Sequenzdiagrammen abgeleitet werden. D.h., pro (komplexen) Anwendungsfall gibt es typischerweise mindestens ein Sequenzdiagramm (welches ein Szenarium beschreibt). Für jedes Szenarium sollte es einen Akzeptanztestfall geben. Listen Sie alle Akzeptanztestfälle in tabellarischer Form auf.
-Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumenten (z.B. im Test-Plan) referenzieren zu können.
+
+[cols="1h, 4"]
+[[AT0010]]
+|===
+|ID                     |**<<AT0010>>**
+|Anwendungsfall         |**<<UC0010>>**
+|Voraussetzungen       a|Ein Benutzer ist nicht angemeldet und möchte einen Account erstellen.
+|Event                 a|Ein nicht authentifizierter Benutzer ruft den Anmeldebildschirm auf, gibt die Anmeldedaten eines bestehenden Benutzers des Systems ein und drückt auf "Anmelden".
+|Zu erwartendes Ergebnis a|
+- Falls Benutzer bereits existiert.
+
+Eine Fehlermeldung wird angezeigt, um den Benutzer über das Problem zu informieren.
+
+- Falls Benutzer existiert nicht.
+
+1. Ein neuer Kunde mit den angegebenen Daten wird erstellt
+2. Es ist möglich, sich mit den Anmeldedaten des angelegten Kunden zu authentifizieren.
+3. Der nicht authentifizierte Benutzer ist immer noch nicht authentifiziert und wird auf die Homepage umgeleitet.
+|===
+
+[cols="1h, 4"]
+[[AT0020]]
+|===
+|ID                     |**<<AT0020>>**
+|Anwendungsfall         |**<<UC0020>>**
+|Voraussetzungen       a|Ein Benutzer ist nicht angemeldet und besitzt einen Account.
+|Event                 a|Benutzer klickt auf "Registrieren" , füllt das Formular aus und schickt es über "Registrierung abschließen" ab.
+|Zu erwartendes Ergebnis a|
+- Der Benutzer wird zu einem Willkommenseite weitergeleitet, der eine personalisierte Willkommensnachricht anzeigt.
+- Der Benutzer hat nun Zugriff auf alle Funktionen, die für Benutzer mit der Rolle "Kunde" zugänglich sind.
+- Der Benutzer ist authentifiziert.
+|===
+
+
+[cols="1h, 4"]
+[[AT0021]]
+|===
+|ID                     |**<<AT0021>>**
+|Anwendungsfall         |**<<UC0020>>**
+|Voraussetzungen       a|Ein authentifizierter Benutzer verwendet das System.
+|Event                 a|Der authentifizierte Benutzer drückt auf "Ausloggen".
+|Zu erwartendes Ergebnis a|
+- Der Benutzer ist nun nicht authentifiziert.
+- Der Benutzer wird zu einer Homepage weitergeleitet.
+|===
+
+[cols="1h, 4"]
+[[AT0030]]
+|===
+|ID                     |**<<AT0030>>**
+|Anwendungsfall         |**<<UC0030>>**
+|Voraussetzungen       a|None
+|Event                 a|Ein authentifizierter Benutzer klickt auf den Knopf "Zahlenlotterien" oder "Fußballlotterien".
+|Zu erwartendes Ergebnis a|
+- Falls Knopf "Zahlenlotterien" geklickt wird.
+    Alle Zahlenlotterien werden angezeigt.
+
+- Falls Knopf "Fußballlotterien" geklickt wird.
+    Alle Fußballlotterien werden angezeigt.
+|===
+
+[cols="1h, 4"]
+[[AT0050]]
+|===
+|ID                     |**<<AT0050>>**
+|Anwendungsfall         |**<<UC0050>>**
+|Voraussetzungen       a|Der Benutzer ist authentifiziert.
+|Event                 a|Ein authentifizierter Benutzer klickt auf den Knopf "Kontostand".
+|Zu erwartendes Ergebnis a|Der Kontostand wird angezeigt.
+|===
+
+[cols="1h, 4"]
+[[AT0060]]
+|===
+|ID                     |**<<AT0060>>**
+|Anwendungsfall         |**<<UC0060>>**
+|Voraussetzungen       a|Der Benutzer ist authentifiziert.
+|Event                 a|
+_withdraw_: Ein authentifizierter Benutzer klickt auf den Knopf "withdraw".
+
+_deposit_: Ein authentifizierter Benutzer klickt auf den Knopf "deposit".
+|Zu erwartendes Ergebnis a|
+- Ein authentifizierter Benutzer wird auf "withdraw.html"/"deposit.html" weitergeleitet.
+- Ein authentifizierter Benutzer wählt den Betrag, den sie aufladen oder abheben möchten.
+|===
+
+
+[cols="1h, 4"]
+[[]]
+|===
+|ID                     |**<<>>**
+|Anwendungsfall         |**<<>>**
+|Voraussetzungen       a|
+|Event                 a|
+|Zu erwartendes Ergebnis a|
+|===
 
 == Glossar
 Sämtliche Begriffe, die innerhalb des Projektes verwendet werden und deren gemeinsames Verständnis aller beteiligten Stakeholder essentiell ist, sollten hier aufgeführt werden.
