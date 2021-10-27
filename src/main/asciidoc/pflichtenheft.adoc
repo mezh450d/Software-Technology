@@ -146,36 +146,36 @@ image:diagrams/use-case-diagram.svg[use-case-diagram]
 [cols="1h, 3"]
 [[UC0010]]
 |===
-|ID                         |**<<>>**
+|ID                         |**<<UC0010>>**
 |Name                       |register
-|Beschreibung               |Vistor können einen Account erstellen
-|Akteur                     |Vistor
-|Trigger                    |Vistor klickt auf "Registrieren"
-|Voraussetzungen           a|Vistor ist nicht angemeldet
+|Beschreibung               |Visitor können einen Account erstellen
+|Akteur                     |Visitor
+|Trigger                    |Visitor klickt auf "Registrieren"
+|Voraussetzungen           a|Visitor ist nicht angemeldet
 |Essenzielle Schritte      a|
-1. Vistor klickt auf den "Registrieren"
-2. Vistor wird auf "register.html" weitergeleitet
-3. Vistor gibt Daten ein und klickt auf "Registrieren"
+1. Visitor klickt auf den "Registrieren"
+2. Visitor wird auf "register.html" weitergeleitet
+3. Visitor gibt Daten ein und klickt auf "Registrieren"
 4. System ein neues Konto erstellen
 |Erweiterungen              |-
 |Funktionale Voraussetzungen|[F0001][F0002]
 |===
 
 [cols="1h, 3"]
-[[UC0010]]
+[[UC0020]]
 |===
-|ID                         |**<<>>**
+|ID                         |**<<UC0020>>**
 |Name                       |login/logout
-|Beschreibung               |Vistor soll mit eigenem Konto einloggen können, Dieser Vorgang kann durch Abmelden rückgängig gemacht werden.
+|Beschreibung               |Visitor soll mit eigenem Konto einloggen können, dieser Vorgang kann durch Abmelden rückgängig gemacht werden.
 |Akteur                     |
-Login: Vistor
+Login: Visitor
 
 Logout: User
 |Trigger                    |
 _Login_:
-Vistor klickt auf den Knopf “einloggen”.
+Visitor klickt auf den Knopf “einloggen”.
 _Logout_:
-Vistor klickt auf den Knopf “ausloggen”.
+Visitor klickt auf den Knopf “ausloggen”.
 
 |Voraussetzungen           a|
 _Login_:
@@ -186,17 +186,17 @@ Akteur ist angemeldet.
 |Essenzielle Schritte      a|
 _Login_:
 
-1. Vistor klickt auf den "einloggen".
-2. Vistor wird auf "login.html" weitergeleitet.
-3. Vistor gibt Daten ein und klickt auf "einloggen".
+1. Visitor klickt auf den "einloggen".
+2. Visitor wird auf "login.html" weitergeleitet.
+3. Visitor gibt Daten ein und klickt auf "einloggen".
 4. System prüft die Korrektheit der eingegebenen Daten.
-1.Richtige Daten: Vistor werden User und bekommen zusätzlichen Rechte.
+1.Richtige Daten: Visitor werden User und bekommen zusätzlichen Rechte.
 2.Fehler: Anzeige der Fehlermitteilung.
 
 _Logout_:
 
 1. User klickt auf den "ausloggen".
-2. Benutzer kehren zur Startseite zurück und werden Vistor.
+2. Benutzer kehren zur Startseite zurück und werden Visitor.
 
 |Erweiterungen              |-
 |Funktionale Voraussetzungen|[F0003]
@@ -204,15 +204,15 @@ _Logout_:
 
 image:diagrams/seq_register_login_logout.svg[seq_register/login/logout]
 [cols="1h, 3"]
-[[UC0010]]
+[[UC0030]]
 |===
-|ID                         |**<<>>**
+|ID                         |**<<UC0030>>**
 |Name                       |showBets
 |Beschreibung               |
-Jeder Besucher (d.h. User und Vistor) sollte auf den Katalog zugreifen können,
+Jeder Besucher (d.h. User und Visitor) sollte auf den Katalog zugreifen können,
 in dem alle angebotenen Lotterien aufgeführt sind.
 Der Katalog muss eine Unterscheidung zwischen den verschiedenen Arten von Lotterien (Zahlenlotterien und Fußballlotterien) enthalten
-|Akteur                     |User/Vistor
+|Akteur                     |User/Visitor
 |Auslöser                   |Akteur klickt auf den Knopf "Zahlenlotterien" oder "Fußballlotterien".
 |Voraussetzungen           a|
 |Essenzielle Schritte      a|
@@ -223,9 +223,9 @@ Der Katalog muss eine Unterscheidung zwischen den verschiedenen Arten von Lotter
 |===
 
 [cols="1h, 3"]
-[[UC0010]]
+[[UC0040]]
 |===
-|ID                           |**<<>>**
+|ID                           |**<<UC0040>>**
 |Name                         |bet/bet change
 |Beschreibung                 |User können Wetten platzieren und die Anzahl der Wetten ändern.
 |Akteur                       |User
@@ -241,9 +241,9 @@ Der Katalog muss eine Unterscheidung zwischen den verschiedenen Arten von Lotter
 image:diagrams/seq_bet.svg[seq-bet]
 
 [cols="1h, 3"]
-[[UC0010]]
+[[UC0050]]
 |===
-|ID                         |**<<>>**
+|ID                         |**<<UC0050>>**
 |Name                       |checkBalance
 |Beschreibung               |Jeder User kann seinen Kontostand einsehen.
 |Akteur                     |User
@@ -257,9 +257,9 @@ image:diagrams/seq_bet.svg[seq-bet]
 |===
 
 [cols="1h, 3"]
-[[UC0010]]
+[[UC0060]]
 |===
-|ID                         |**<<>>**
+|ID                         |**<<UC0060>>**
 |Name                       |withdraw/deposit
 |Beschreibung               |User können ihr Guthaben abheben oder ihr Konto aufladen.
 |Akteur                     |User
@@ -279,9 +279,9 @@ _deposit_: Akteur klickt auf den Knopf "deposit".
 image:diagrams/seq_deposit-withdraw.svg[seq_deposit/withdraw]
 
 [cols="1h, 3"]
-[[UC0010]]
+[[UC0070]]
 |===
-|ID                           |**<<>>**
+|ID                           |**<<UC0070>>**
 |Name                         |show Results
 |Beschreibung                 |User können die Wettergebnisse prüfen
 |Akteur                       |User
@@ -293,9 +293,9 @@ image:diagrams/seq_deposit-withdraw.svg[seq_deposit/withdraw]
 |===
 
 [cols="1h, 3"]
-[[UC0010]]
+[[UC0080]]
 |===
-|ID                         |**<<>>**
+|ID                         |**<<UC0080>>**
 |Name                       |create
 |Beschreibung               |User kann eine Gemeinschaft erstellen, das Passwort der Gemeinschaft erhalten und das Passwort verwenden, um andere in die Gemeinschaft einzuladen.
 |Akteur                     |User
@@ -309,9 +309,9 @@ image:diagrams/seq_deposit-withdraw.svg[seq_deposit/withdraw]
 image:diagrams/seq_create.svg[seq_create]
 
 [cols="1h, 3"]
-[[UC0010]]
+[[UC0090]]
 |===
-|ID                         |**<<>>**
+|ID                         |**<<UC0090>>**
 |Name                       |join
 |Beschreibung               |User kann in einer Gemeinschaft beitreten.
 |Akteur                     |User
@@ -329,9 +329,9 @@ image:diagrams/seq_create.svg[seq_create]
 image:diagrams/seq_join.svg[seq_join]
 
 [cols="1h, 3"]
-[[UC0010]]
+[[UC0100]]
 |===
-|ID                         |**<<>>**
+|ID                         |**<<UC0100>>**
 |Name                       |delete
 |Beschreibung               |User kann aus einer Gemeinschaft austreten.
 |Akteur                     |User
@@ -345,9 +345,9 @@ image:diagrams/seq_join.svg[seq_join]
 |===
 
 [cols="1h, 3"]
-[[UC0010]]
+[[UC0110]]
 |===
-|ID                         |**<<>>**
+|ID                         |**<<UC0110>>**
 |Name                       |kick
 |Beschreibung               |Nach zehn erfolglosen Abbuchungsbenachrichtigungen wird der Nutzer vorübergehend aus der Community entfernt.
 |Akteur                     |Gemeinschaft
@@ -361,9 +361,9 @@ image:diagrams/seq_join.svg[seq_join]
 |===
 
 [cols="1h, 3"]
-[[UC0010]]
+[[UC0120]]
 |===
-|ID                           |**<<>>**
+|ID                           |**<<UC0120>>**
 |Name                         |message
 |Beschreibung                 |User können empfangene Nachrichten anzeigen.
 |Akteur                       |User
@@ -375,9 +375,9 @@ image:diagrams/seq_join.svg[seq_join]
 |===
 
 [cols="1h, 3"]
-[[UC0010]]
+[[UC0130]]
 |===
-|ID                         |**<<>>**
+|ID                         |**<<UC0130>>**
 |Name                       |show all bets
 |Beschreibung               |Der Administrator überprüft den Wettstatus jedes Benutzers
 |Akteur                     |Admin
@@ -392,9 +392,9 @@ image:diagrams/seq_join.svg[seq_join]
 |===
 
 [cols="1h, 3"]
-[[UC0010]]
+[[UC0140]]
 |===
-|ID                         |**<<>>**
+|ID                         |**<<UC0140>>**
 |Name                       |show all accounts
 |Beschreibung               |Der Administrator überprüft die Gewinne und Verluste des Benutzers nach dem Ziehungstag und nach dem Spieltag
 |Akteur                     |Admin
@@ -412,9 +412,9 @@ image:diagrams/seq_join.svg[seq_join]
 |===
 
 [cols="1h, 3"]
-[[UC0010]]
+[[UC0150]]
 |===
-|ID                         |**<<>>**
+|ID                         |**<<UC0150>>**
 |Name                       |Evaluation of lottery（Two lotteries）
 |Beschreibung               |Bestimmen Administratoren, ob das Guthaben auf dem Konto des Benutzers ausreicht, um die Lotterie zu bezahlen
 |Akteur                     |Admin
@@ -434,9 +434,9 @@ image:diagrams/seq_join.svg[seq_join]
 image:diagrams/seq_evaluation.svg[seq_evaluation]
 
 [cols="1h, 3"]
-[[UC0010]]
+[[UC0160]]
 |===
-|ID                         |**<<>>**
+|ID                         |**<<UC0160>>**
 |Name                       |Liste der Gewinner
 |Beschreibung               |Alle Gewinner-Benutzer werden dieser Liste hinzugefügt
 |Akteur                     |Admin
@@ -452,9 +452,9 @@ image:diagrams/seq_evaluation.svg[seq_evaluation]
 |===
 
 [cols="1h, 3"]
-[[UC0010]]
+[[UC0170]]
 |===
-|ID                         |**<<>>**
+|ID                         |**<<UC0170>>**
 |Name                       |Geld vergeben
 |Beschreibung               |Der Manager sendet Geld an das Konto des Gewinners
 |Akteur                     |Admin
