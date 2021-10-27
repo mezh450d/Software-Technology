@@ -1,5 +1,8 @@
 = Pflichtenheft
+:toc:
+:toc-title: Inhaltsverzeichnis
 :project_name: Lotterie
+
 == __{project_name}__
 
 [options="header"]
@@ -9,8 +12,8 @@
 |0.1     | In Arbeit   | 10.10.2021          | Hannes, Nick       | Initiale Version
 |===
 
-== Inhaltsverzeichnis
-Dieses Dokument benötigt ein Inhaltsverzeichnis. Es existieren mehrere Einbindungsmöglichkeiten.
+//== Inhaltsverzeichnis
+//Dieses Dokument benötigt ein Inhaltsverzeichnis. Es existieren mehrere Einbindungsmöglichkeiten.
 
 
 == Zusammenfassung
@@ -565,12 +568,9 @@ Nach Erwerb von Tippscheinen werden die Einsätze in Reihenfolge der Auslosungen
 |Tippschein ausfüllen
 a|Das System ermöglicht den Nutzenden die erworbenen Tippscheine nach den Regeln der jeweiligen Verlosung auszufüllen.
 
-- Tippscheine für die Lotterie können bis Samstag eingereicht werden
-- Tippscheine für das Fußballtoto können bis 24 Stunden vor dem Spieltag eingreicht werden.
-
 |[F0009]
 |Tippschein ändern
-a|Das System bietet den Nutzenden die Möglichkeit eine Änderung am Tippschein vorzunehmen. Diese wird bis 5 Minuten vor Beginn der Auslosung akzeptiert.
+a|Das System bietet den Nutzenden die Möglichkeit eine Änderung am Tippschein vorzunehmen.
 
 Folgende Informationen können verändert werden:
 
@@ -654,9 +654,6 @@ Anschließend werden die Gewinne auf die Konten der Gewinner überwiesen.
 |Überweisung Gewinne
 |Hat ein Nutzender eine Ziehung gewonnen, wird anschließend der Gewinnbetrag auf sein Konto übertragen
 
-|[F0026]
-|Mehrere Sprachen
-|Das System unterstützt mehrere Sprachen. Die angezeigte Sprache kann beliebig umgestellt werden.
 |===
 
 
@@ -674,6 +671,10 @@ Die Folgende Tabelle enthält:
 |===
 |ID |Name |Beschreibung
 
+|[F0026]
+|Mehrere Sprachen
+|Das System unterstützt mehrere Sprachen. Die angezeigte Sprache kann beliebig umgestellt werden.
+
 |[F0027]
 |Fußballtoto-Daten aus Internet
 |Das System bezieht alle Daten, welche für das Fußballtoto benötigt werden, direkt und aktuell aus dem Internet
@@ -686,6 +687,15 @@ Diese Nachricht ist nicht kostenpflichtig.
 |[F0029]
 |Gewinngemeinschaft Mitglieder einsehen
 |Das System ermöglicht den Nutzenden, welche in eine Gewinngemeinschaft eingetragen sind, dessen Mitglieder und deren Einsatz zu sehen.
+
+|[F0030]
+|Einhaltung Abgabezeit
+a|Das System prüft bei jeder Abgabe eines Tippscheines, ob der jeweilige Zeitramen eingehalten wurde:
+
+- Tippscheine für die Lotterie können bis Samstag eingereicht werden
+- Tippscheine für das Fußballtoto können bis 24 Stunden vor dem Spieltag eingreicht werden.
+
+Änderungen am Tipp können bis 5 Minuten vor Ziehung oder Spielbeginn vorgenommen werden.
 
 |===
 
@@ -707,15 +717,15 @@ Die Folgende Tabelle enthält:
 |Qualitätsziel |Priorität |Beschreibung
 
 |Sicherheit
-|5
-|Das System legt besonderen Wert auf die Sicherheit der Nutzerkonten, da hier primär transaktionen mit dem Geld der registrierten Nutzenden getätigt werden.
+|3
+|Das System legt Wert auf die Sicherheit der Nutzerkonten, da hier primär transaktionen mit dem Geld der registrierten Nutzenden getätigt werden.
 
 |Nutzerfreundlichkeit
-|4
+|5
 |Das System bietet eine benutzerfreundliche Oberfläche, die ein breites Spektrum von Personen- und Altersgruppen abdeckt.
 
 |Erreichbarkeit
-|3
+|4
 |Das System ist zu jeder Zeit von einem Rechner aus erreichbar.
 
 |Wartbarkeit
@@ -747,14 +757,10 @@ Die Folgende Tabelle enthält:
 |Die Passwörter der Nutzenden werden verschlüsselt gespeichert.
 
 |[NF0002]
-|Sicherheit -  2-Faktor-Authentifizierung
-|Für die erfolgreiche Anmeldung wird ein Code an die E-Mail-Adresse oder Telefonnummer geschickt, welchen der Nutzende eingeben muss.
-
-|[NF0003]
 |Nutzerfreundlichkeit - Barrierefreiheit
 |Um möglichst viele Personengruppen anzusprechen, hat der Text einen hohen Kontrast, um auch bei einer Sehschwäche gut erkannt zu werden.
 
-|[NF0004]
+|[NF0003]
 |Erreichbarkeit - Uptime
 |Das System soll eine Uptime von mindestens 99% erreichen.
 |===
@@ -803,3 +809,7 @@ Beispiel: Was bedeutet "Kunde"? Ein Nutzer des Systems? Der Kunde des Projektes 
 
 == Offene Punkte
 Offene Punkte werden entweder direkt in der Spezifikation notiert. Wenn das Pflichtenheft zum finalen Review vorgelegt wird, sollte es keine offenen Punkte mehr geben.
+
+|[F0031]
+|Sicherheit -  2-Faktor-Authentifizierung
+|Für die erfolgreiche Anmeldung wird ein Code an die E-Mail-Adresse oder Telefonnummer geschickt, welchen der Nutzende eingeben muss.
