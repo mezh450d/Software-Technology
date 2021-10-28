@@ -885,6 +885,32 @@ _deposit_: Ein authentifizierter Benutzer klickt auf den Knopf "deposit".
 - Ein authentifizierter Benutzer wählt den Betrag, den sie aufladen oder abheben möchten.
 |===
 
+[cols="1h, 3"]
+[[AT0080]]
+|===
+|ID                           |**<<AT0080>>**
+|Anwendungsfall               |**<<UC0080>>**
+|Voraussetzung                |User hat sich beim System authentifiziert.
+|Event                       a|
+User klickt auf der Community Webseite auf den Knopf "create".
+|Zu erwartendes Ergebnis     a|
+-Ein Gemeinschaft wird gegründet.
+-User erhält ein Gemeinschaftspasswort und kann mit diesem Passwort andere einladen, der Gemeinschaft beizutreten.
+|===
+
+[cols="1h, 3"]
+[[AT0090]]
+|===
+|ID                           |**<<AT0090>>**
+|Anwendungsfall               |**<<UC0090>>**
+|Voraussetzung                |User hat sich beim System authentifiziert.
+|Event                       a|
+1.User drückt auf der Community Website auf den Knopf "join".
+2.User gebt das Passwort ein.
+|Zu erwartendes Ergebnis     a|
+-Falls das Passwort gültig ist, ist der Vereinigung beigetreten.
+-Falls das Passwort ungültig ist, wird ein falsches Passwort angezeigt.
+|===
 
 [cols="1h, 4"]
 [[]]
@@ -895,6 +921,8 @@ _deposit_: Ein authentifizierter Benutzer klickt auf den Knopf "deposit".
 |Event                 a|
 |Zu erwartendes Ergebnis a|
 |===
+
+
 
 == Glossar
 Sämtliche Begriffe, die innerhalb des Projektes verwendet werden und deren gemeinsames Verständnis aller beteiligten Stakeholder essentiell ist, sollten hier aufgeführt werden.
