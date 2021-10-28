@@ -913,16 +913,64 @@ User klickt auf der Community Webseite auf den Knopf "create".
 |===
 
 [cols="1h, 4"]
-[[]]
+[[AT0040]]
 |===
-|ID                     |**<<>>**
-|Anwendungsfall         |**<<>>**
-|Voraussetzungen       a|
-|Event                 a|
+|ID                     |**<<AT0040>>**
+|Anwendungsfall         |**<<UC0040>>**
+|Voraussetzungen       a|Ein Benutzer hat sich angemeldet und ist in der Kontoverwaltung.
+|Event                 a|Der Nutzer drückt in der Navigationsleiste der Kontoverwaltung den Button „betting“.
 |Zu erwartendes Ergebnis a|
+- Der Benutzer betritt die "betting"-Schnittstelle.
+- Der Benutzer kann die Art des Lottoscheins auswählen, den er kaufen möchte.
 |===
 
+[cols="1h, 4"]
+[[AT0041]]
+|===
+|ID                     |**<<AT0041>>**
+|Anwendungsfall         |**<<UC0040>>**
+|Voraussetzungen       a|Der Benutzer hat die „betting“-Schnittstelle aufgerufen.
+|Event                 a|Der Benutzer klickt auf den Knopf "6-from-49".
+|Zu erwartendes Ergebnis a|
+- Der Benutzer kann 6 Ziffern aus 49 Ziffern auswählen.
+- Der Benutzer kann eine zusätzliche Nummer hinzufügen.
+- Der Nutzer kann die Art des „Dauertippscheins“ wählen.
+- Der Benutzer kann den Betrag eingeben und eine Wette platzieren.
+|===
 
+[cols="1h, 4"]
+[[AT0042]]
+|===
+|ID                     |**<<AT0042>>**
+|Anwendungsfall         |**<<UC0040>>**
+|Voraussetzungen       a|Der Benutzer hat die „betting“-Schnittstelle aufgerufen.
+|Event                 a|Der Benutzer klickt auf den Knopf "Fußballtoto".
+|Zu erwartendes Ergebnis a|
+- Der Benutzer kann die vorhergesagte Punktzahl des Spiels eingeben.
+- Der Benutzer kann den Betrag eingeben und eine Wette platzieren.
+|===
+
+[cols="1h, 4"]
+[[AT0070]]
+|===
+|ID                     |**<<AT0070>>**
+|Anwendungsfall         |**<<UC0070>>**
+|Voraussetzungen       a|Ein Benutzer hat sich angemeldet und ist in der Kontoverwaltung.
+|Event                 a|Der Nutzer drückt in der Navigationsleiste der Kontoverwaltung den Button „betting“.
+|Zu erwartendes Ergebnis a|
+Der Benutzer kann das ausgewertete Ergebnis der Lotterie einsehen.
+|===
+
+[cols="1h, 4"]
+[[AT0120]]
+|===
+|ID                     |**<<AT0120>>**
+|Anwendungsfall         |**<<UC0120>>**
+|Voraussetzungen       a|Ein Benutzer hat sich angemeldet und ist in der Kontoverwaltung.
+|Event                 a|Der Nutzer drückt in der Navigationsleiste der Kontoverwaltung den Button „message“.
+|Zu erwartendes Ergebnis a|
+Der Benutzer kann die empfangenen Nachrichten sehen.
+|===
 
 == Glossar
 Sämtliche Begriffe, die innerhalb des Projektes verwendet werden und deren gemeinsames Verständnis aller beteiligten Stakeholder essentiell ist, sollten hier aufgeführt werden.
