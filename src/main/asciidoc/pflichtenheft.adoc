@@ -142,7 +142,7 @@ image:diagrams/top-level-architecture.svg[top-level-architecture]
 |===
 
 === Überblick Anwendungsfalldiagramm
-image:diagrams/use-case-diagram.svg[use-case-diagram]
+image:diagrams/use-case-diagram2.svg[use-case-diagram]
 
 === Anwendungsfallbeschreibungen
 [cols="1h, 3"]
