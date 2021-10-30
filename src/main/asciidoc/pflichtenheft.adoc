@@ -17,7 +17,7 @@
 |1.4     | abgeschlossen   | 30.10.2021          | Hannes       | Verbesserungen
 |2.0     | abgeschlossen   | 30.10.2021          | Nick       | GUI
 |2.1     | offen   | 30.10.2021          | Hannes       | Klassendiagramm
-
+|2.2     | offen   | 30.10.2021          | Meng       | Enumeration des Klassendiagramm
 
 |===
 
