@@ -852,8 +852,20 @@ Dieser Abschnitt stellt eine Vereinigung von Glossar und der Beschreibung von Kl
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="header"]
 |===
-|Klasse/Enumeration |Beschreibung |
-|…                  |…            |
+|Klasse/Enumeration |Beschreibung
+|System             |Zentrale Klasse, die alle Daten von Nutzern, Communities und den gesamten Wettprozess repräsentiert.
+|Community          |Eine Gruppe von Benutzern.
+|BetManagement      |Der Administrator kann die Lotterie effektiv verwalten.
+|CommunityManagement  |Benutzer können selbst Communitys erstellen. Andere Benutzer können ebenfalls beitreten. Der Community-Verantwortliche kann Nutzer, die den Anforderungen der Community nicht entsprechen, rauswerfen und hat das Recht, die Community aufzulösen.
+|Admin              |Der Verantwortliche der Lotteriezentrale kann Benutzer und Lottoauswertungen verwalten.
+|User               |Benutzer, die sich erfolgreich auf der Website registriert haben.
+|Visitor            |Benutzer, die nicht auf der Website registriert sind.
+|Message            |Vom System gesendete Informationen, die vom Benutzer empfangen wurden.
+|LotteryCatalog     |Ein Katalog mit digitalen Lottoscheinen, Benutzer können ihre Lieblingszahlen wählen, um Wetten zu platzieren.
+|FootballPoolsCatalog  |Ein Verzeichnis von Fußballlotterien, mit dem Benutzer Ergebnisvorhersagen für ihre Lieblingsmannschaften machen können.
+|Lottery            |Bei Lottoscheinen mit 6 aus 49 Zahlen kann eine zusätzliche Zahl gewählt werden.
+|FootballPools      |Fußballlotterie, erraten Sie das Ergebnis.
+|Bet                |Benutzer können Wetten auf verschiedene Arten von Lottoscheinen platzieren.
 |===
 
 == Akzeptanztestfälle
