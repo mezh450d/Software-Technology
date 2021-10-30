@@ -1,7 +1,7 @@
 = Pflichtenheft
 :toc:
 :toc-title: Inhaltsverzeichnis
-:project_name: MDG 2000 - "Mach dein Glück" Online-Lotterie
+:project_name: Lotterie
 
 == __{project_name}__
 
@@ -9,7 +9,7 @@
 [cols="1, 1, 1, 1, 4"]
 |===
 |Version | Status      | Bearbeitungsdatum   | Autoren(en) |  Vermerk
-|0.1     | In Arbeit   | 10.10.2021          | alle      | Initiale Version
+|0.1     | In Arbeit   | 10.10.2021          | Hannes, Nick       | Initiale Version
 |===
 
 //== Inhaltsverzeichnis
@@ -39,7 +39,7 @@ Bei der Zahlenlotterie können derzeit neben Einzeltippscheinen auch Dauertippsc
 Tippscheine für das Fußballtoto können ab Veröffentlichung der Spielkalender beliebig im Voraus ausgefüllt und abgegeben werden.
 Nach Minister Lottermanns Plänen soll das Angebot künftig gemäß den neuen Medien flexibler gestaltet sein:
 
-
+* Sobald ein unregistrierter Besucher die virtuelle Lotterie aufruft, erhält dieser die Möglichkeit sich zu registrieren.
 * Jeder registrierte Kunde erhält ein Konto, welches ihm ermöglicht, per Überweisung, Tippscheine zu erwerben und Einblick in mögliche Gewinne oder Verluste bietet.
 Des Weiteren werden auf dem Konto alle Mitteilungen angezeigt, welche vom System an den Kunden verschickt werden.
 * Es werden Gewinngemeinschaften unterstützt. Beim Einrichten einer Gewinngemeinschaft wird von der Lotterie ein Gemeinschafts-Passwort vergeben.
@@ -52,11 +52,13 @@ Von diesem Konto werden (in der Reihenfolge der Auslosungen) Einsätze abgebucht
 Bei nicht ausreichender Deckung erhält der Kunde eine entsprechende Mitteilung und nimmt an dieser Verlosung nicht teil.
 Je Mitteilung wird eine Gebühr von 2 € erhoben; nach zehn Mitteilungen wird der Kunde vorläufig aus seinen Gewinngemeinschaften entfernt.
 Hat der Kunde eine Ziehung oder ein Fußballtoto gewonnen, kann er sich das gewonnene Geld auf sein Lotterie-Konto auszahlen lassen.
+* Die für das Fußballtoto benötigten Daten werden vom System direkt und aktuell aus dem Internet bezogen.
 * Administratoren der Lotterie sollen die Möglichkeit haben, jederzeit eine Übersicht über die abgegebenen Wetten der Kunden und die finanzielle Situation (Gewinne/Verluste) der Lotterie nach dem jeweiligen Ziehungstagen und Spieltagen zu bekommen.
 * Minister Lottermann hat unter dem Aktenzeichen "MDG 2000" eine Ausschreibung veröffentlicht, und um Einreichung geeigneter, künftig ausbaubarer Prototypen für ein solches System gebeten.
 
+Das Ziel des hier beschriebenen Projektes ist die Erstellung einer einfach zu bedienenden und für jedermann zugänglichen virtuellen Lotterie, welche die oben beschriebenen Aufgaben verlässlich und möglichst effizient erfüllen kann.
+Der Prototyp soll des Weiteren künftig ausbaubar und gut wartbar sein.
 
-//TODO: Ziele präzisieren, ergänzen
 
 == Produktnutzung
 Die Anwendung soll als Online-Variante der Lotterie "Mach Dein
@@ -250,7 +252,7 @@ image:diagrams/seq_bet.svg[seq-bet]
 |Auslöser                    |Akteur klickt auf den Knopf "Kontostand" .
 |Voraussetzungen           a|Akteur ist eingeloggt.
 |Essenzielle Schritte            a|
-1. Der Akteur klickt auf den Knopf "Zahlenlotterien" oder "Fußballlotterien".
+1. Der Akteur klickt auf den Knopf "Kontostand".
 2. Der Kontostand wird angezeigt.
 |Erweiterungen              |-
 |Funktionale Voraussetzungen|[F0012]
@@ -271,7 +273,7 @@ _deposit_: Akteur klickt auf den Knopf "deposit".
 |Essenzielle Schritte      a|
 1. Akteur klickt auf den Knopf "withdraw" oder "deposit".
 2. Akteur wird auf "withdraw.html"/"deposit.html" weitergeleitet.
-3. Akteur wählt den Betrag, den sie aufladen oder abheben möchten
+3. Akteur wählt den Betrag, den sie aufladen oder abheben möchten.
 |Erweiterungen              |-
 |Funktionale Voraussetzungen|[F0013][F0014]
 |===
@@ -355,7 +357,7 @@ image:diagrams/seq_join.svg[seq_join]
 |Essenzielle Schritte      a|
 1. Akteur ist in der Gemeinschaft.
 2. Akteur hat schon neu mal erfolglose Abbuchungsbenachrichtigungen erhalten.
-|Essential Steps           a|--
+|Essenzielle Schritte      a|--
 |Erweiterungen              |--
 |Funktionale Voraussetzungen|[F0018]
 |===
@@ -490,34 +492,32 @@ Die folgende Tabelle enthält:
 
 |[F0001]
 |Registrierung
-a|Das System stellt nicht registrierten Nutzenden die Möglichkeit zur Verfügung, einen Account zu erstellen.
+a|Das System stellt nicht registrierten Nutzern die Möglichkeit zur Verfügung, einen Account zu erstellen.
 Für eine Registrierung werden folgende Informationen benötigt:
 
 - Nutzername (Einzigartig)
 - Passwort
 - Wohnadresse
 - Lotteriebank-Adresse
-- E-Mail-Adresse (Optional)
 
-Das System prüft die angegeben Daten auf ihre Richtigkeit([F0002]). Nach erfolgreicher Überprüfung wird der Nutzende im System eingetragen([F0003]) und ist in der Lage sich Anzumelden.
+Das System prüft die angegeben Daten auf ihre Richtigkeit([F0002]). Nach erfolgreicher Überprüfung wird der Nutzer im System eingetragen([F0003]) und ist in der Lage sich Anzumelden.
 
 
 |[F0002]
 |Registrierung validieren
-a|Das System ist in der Lage, die Informationen eines nicht registrierten Nutzenden auf ihre Richtigkeit zu überprüfen.
+a|Das System ist in der Lage, die Informationen eines nicht registrierten Nutzers auf ihre Richtigkeit zu überprüfen.
 Folgende Daten werden überprüft:
 
 - Einzigartigkeit des Nutzernamens
 - Stimmigkeit der Wohnadresse
 - Stimmigkeit der Lotteriebank-Adresse
-- Stimmigkeit der E-Mail-Adresse (falls vorhanden)
 
-Bei Unstimmigkeiten wird der Nutzende umgehend informiert und kann die Daten gegebenenfalls Anpassen.
+Bei Unstimmigkeiten wird der Nutzer umgehend informiert und kann die Daten gegebenenfalls Anpassen.
 
 
 |[F0003]
 |Anmeldung
-a|Das System ist aufgeteilt in Bereiche, die jedem Nutzenden frei zur Verfügung stehen und Bereiche, welche nur durch Login benutzt werden können. Nutzer können durch folgende Informationen Identifiziert:
+a|Das System ist aufgeteilt in Bereiche, die jedem Nutzer frei zur Verfügung stehen und Bereiche, welche nur durch Login benutzt werden können. Nutzer können durch folgende Informationen Identifiziert:
 
 - Nutzername
 - Passwort
@@ -525,20 +525,18 @@ a|Das System ist aufgeteilt in Bereiche, die jedem Nutzenden frei zur Verfügung
 
 |[F0004]
 |Konto einsehen
-a|Das System ermöglicht den Nutzenden in ihr Konto einzusehen. Es können folgende Informationen eingesehen werden:
+a|Das System ermöglicht dem Nutzer in sein Konto einzusehen. Es können folgende Informationen eingesehen werden:
 
 - Nutzername
 - Wohnadresse
-- E-Mail-Adresse (falls vorhanden)
 
 |[F0005]
 |Konto bearbeiten
-a|Das System ermöglicht dem Nutzenden, bei Bedarf, Informationen zu bearbeiten oder hinzuzufügen. Folgende Informationen können bearbeitet werden:
+a|Das System ermöglicht dem Nutzer, bei Bedarf, Informationen zu bearbeiten oder hinzuzufügen. Folgende Informationen können bearbeitet werden:
 
 - Passwort
 - Wohnadresse
 - Lotteriebank-Adresse
-- E-Mail-Adresse
 
 Das System überprüft bei Änderung die neuen Daten auf ihre Richtigkeit.
 Folgende Daten werden überprüft:
@@ -546,31 +544,30 @@ Folgende Daten werden überprüft:
 - Passwort ist anders
 - Stimmigkeit der Wohnadresse
 - Stimmigkeit der Lotteriebank-Adresse
-- Stimmigkeit der E-Mail-Adresse (falls vorhanden)
 
-Bei Unstimmigkeiten wird der Nutzende umgehend informiert und kann die Daten gegebenenfalls Anpassen.
+Bei Unstimmigkeiten wird der Nutzer umgehend informiert und kann die Daten gegebenenfalls Anpassen.
 
-|[F0005]
+|[F0033]
 |Kontobearbeitung validieren
 |Das System ist in der Lage die geänderten Informationen auf ihre Richtigkeit zu überprüfen.
 
 |[F0006]
 |Verfügbare Tippscheine einsehen
-|Das System ermöglicht den Nutzenden die Einsicht in alle aktuellen Tippscheine, welche erworben werden können
+|Das System ermöglicht dem Nutzer die Einsicht in alle aktuellen Tippscheine, welche erworben werden können
 
 |[F0007]
 |Tippschein erwerben
-|Das System ermöglicht dem Nutzenden beliebig Tippscheine zu erwerben.
-Nach Erwerb von Tippscheinen werden die Einsätze in Reihenfolge der Auslosungen vom Lotteriekonto des Nutzenden abgebucht.
+|Das System ermöglicht dem Nutzer beliebig Tippscheine zu erwerben.
+Nach Erwerb von Tippscheinen werden die Einsätze in Reihenfolge der Auslosungen vom Lotteriekonto des Nutzers abgebucht.
 
 
 |[F0008]
 |Tippschein ausfüllen
-a|Das System ermöglicht den Nutzenden die erworbenen Tippscheine nach den Regeln der jeweiligen Verlosung auszufüllen.
+a|Das System ermöglicht dem Nutzer die erworbenen Tippscheine nach den Regeln der jeweiligen Verlosung auszufüllen.
 
 |[F0009]
 |Tippschein ändern
-a|Das System bietet den Nutzenden die Möglichkeit eine Änderung am Tippschein vorzunehmen.
+a|Das System bietet dem Nutzer die Möglichkeit eine Änderung am Tippschein vorzunehmen.
 
 Folgende Informationen können verändert werden:
 
@@ -579,39 +576,39 @@ Folgende Informationen können verändert werden:
 
 |[F0010]
 |Dauertippschein erwerben
-|Das System ermöglicht den Nutzenden Dauertippscheine für die Zahlenlotterie zu erwerben.
-Der Nutzende kann hier zwischen monatlicher, halbjähriger und ganzjähriger Dauer unterscheiden.
-Nach Erwerb des Dauertippscheins kann der Nutzende seinen Tipp abgeben.
+|Das System ermöglicht dem Nutzer Dauertippscheine für die Zahlenlotterie zu erwerben.
+Der Nutzer kann hier zwischen monatlicher, halbjähriger und ganzjähriger Dauer unterscheiden.
+Nach Erwerb des Dauertippscheins kann der Nutzer seinen Tipp abgeben.
 
 |[F0011]
 |Erworbene Tippscheine einsehen
-|Das System ermöglicht den Nutzenden ihre momentan abgegebenen Tippscheine einzusehen.
+|Das System ermöglicht dem Nutzer seine momentan abgegebenen Tippscheine einzusehen.
 
 |[F0012]
 |Finanzen einsehen
-|Das System ermöglicht den Nutzenden in die finanzielle Situation ihres Lotterie-Kontos einzusehen.
+|Das System ermöglicht dem Nutzer in die finanzielle Situation seines Lotterie-Kontos einzusehen.
 
 |[F0013]
 |Geld abbuchen
-|Das System bucht bei Erwerb von Tippscheinen den Einsatz vom Lotteriekonto des Nutzenden ab.
-Bei unzureichender Deckung erhält der Nutzende eine Mitteilung und wird von dieser Auslosung ausgeschlossen.
+|Das System bucht bei Erwerb von Tippscheinen den Einsatz vom Lotteriekonto des Nutzers ab.
+Bei unzureichender Deckung erhält der Nutzer eine Mitteilung und wird von dieser Auslosung ausgeschlossen.
 
 |[F0014]
 |Geld auszahlen
-|Das System ermöglicht den Nutzenden gewonnenes Geld auf ihr Lotteriekonto auszuzahlen.
+|Das System ermöglicht dem Nutzer gewonnenes Geld auf ihr Lotteriekonto auszuzahlen.
 
 |[F0015]
 |Gewinngemeinschaft gründen
-|Das System ermöglicht den Nutzenden eine Gewinngemeinschaft zu gründen.
-Bei der Gründung wird ein Mitglieder-Passwort festgelegt. Dieses Passwort kann weitergegeben werden. Kennt ein Nutzender dieses Passwort, kann er der Gemeinschaft beitreten.
+|Das System ermöglicht dem Nutzer eine Gewinngemeinschaft zu gründen.
+Bei der Gründung wird ein Mitglieder-Passwort festgelegt. Dieses Passwort kann weitergegeben werden. Kennt ein Nutzer dieses Passwort, kann er der Gemeinschaft beitreten.
 
 |[F0016]
 |Gewinngemeinschaft beitreten
-|Das System ermöglicht den Nutzenden einer Gewinngemeinschaft beizutreten. Mitglieder der Gemeinschaft können dieses Passwort an weiter Nutzende weitergeben und für die Gemeinschaft einen Tipp abgeben.
+|Das System ermöglicht dem Nutzer einer Gewinngemeinschaft beizutreten. Mitglieder der Gemeinschaft können dieses Passwort an weiter Nutzer weitergeben und für die Gemeinschaft einen Tipp abgeben.
 
 |[F0017]
 |Gewinngemeinschaft Tipp abgeben
-|Das System ermöglicht den Nutzenden für die Gemeinschaft einen Tipp abzugeben. Neben dem Tipp kann der Nutzende auch seinen Anteil erhöhen, verringern oder zeitweilig aussetzen. Der Anteil muss ein ganzzahliges Vielfaches des Grundeinsatzes sein.
+|Das System ermöglicht dem Nutzer für die Gemeinschaft einen Tipp abzugeben. Neben dem Tipp kann der Nutzer auch seinen Anteil erhöhen, verringern oder zeitweilig aussetzen. Der Anteil muss ein ganzzahliges Vielfaches des Grundeinsatzes sein.
 
 |[F0018]
 |Gewinngemeinschaft Mitglied entfernen
@@ -619,18 +616,18 @@ Bei der Gründung wird ein Mitglieder-Passwort festgelegt. Dieses Passwort kann 
 
 |[F0019]
 |Mitteilungen einsehen
-|Das System ermöglicht den Nutzenden die Einsicht in ihre erhaltenen Mitteilungen.
+|Das System ermöglicht dem Nutzer die Einsicht in seine erhaltenen Mitteilungen.
 
 |[F0020]
 |Mitteilung bei unzureichender Deckung
-a|Das System sendet bei unzureichender Deckung eine Mitteilung an das Nutzerkonto. Dabei wird eine Gebühr von 2 Euro vom Lotteriekonto des Nutzenden abgebucht.
+a|Das System sendet bei unzureichender Deckung eine Mitteilung an das Nutzerkonto. Dabei wird eine Gebühr von 2 Euro vom Lotteriekonto des Nutzers abgebucht.
 Die Mitteilung beinhaltet folgende Informationen:
 
 - Mitteilung der Nichtteilnahme an der Verlosung
 - Grund der Nichtteilnahme
 - Hinweis auf eine Gebühr von 2 Euro für diese Mitteilung
 
-Nach 10 Mitteilungen wird der Nutzende vorläufig aus all seinen Gemeinschaften entfernt.
+Nach 10 Mitteilungen wird der Nutzer vorläufig aus all seinen Gemeinschaften entfernt.
 
 |[F0021]
 |Admin Einsicht finanzieller Status
@@ -638,7 +635,7 @@ Nach 10 Mitteilungen wird der Nutzende vorläufig aus all seinen Gemeinschaften 
 
 |[F0022]
 |Admin Übersicht abgegebene Wetten
-|Das System ermöglicht einem Administrator jederzeit die Einsicht in alle abgegebenen Wetten der Nutzenden.
+|Das System ermöglicht einem Administrator jederzeit die Einsicht in alle abgegebenen Wetten der Nutzer.
 Dies beinhaltet den Nutzernamen und den abgegebenen Tipp.
 
 |[F0023]
@@ -652,7 +649,7 @@ Anschließend werden die Gewinne auf die Konten der Gewinner überwiesen.
 
 |[F0025]
 |Überweisung Gewinne
-|Hat ein Nutzender eine Ziehung gewonnen, wird anschließend der Gewinnbetrag auf sein Konto übertragen
+|Hat ein Nutzer eine Ziehung gewonnen, wird anschließend der Gewinnbetrag auf sein Konto übertragen
 
 |===
 
@@ -681,12 +678,12 @@ Die Folgende Tabelle enthält:
 
 |[F0028]
 |Mitteilung Gewinn/Verlust
-|Das System benachrichtigt die Nutzenden nach einer abgeschlossenen Ziehung/Spiel, ob diese Gewonnen oder Verloren haben.
+|Das System benachrichtigt den Nutzer nach einer abgeschlossenen Ziehung/Spiel, ob dieser Gewonnen oder Verloren haben.
 Diese Nachricht ist nicht kostenpflichtig.
 
 |[F0029]
 |Gewinngemeinschaft Mitglieder einsehen
-|Das System ermöglicht den Nutzenden, welche in eine Gewinngemeinschaft eingetragen sind, dessen Mitglieder und deren Einsatz zu sehen.
+|Das System ermöglicht dem Nutzer, welcher in eine Gewinngemeinschaft eingetragen ist, dessen Mitglieder und deren Einsatz zu sehen.
 
 |[F0030]
 |Einhaltung Abgabezeit
@@ -696,6 +693,12 @@ a|Das System prüft bei jeder Abgabe eines Tippscheines, ob der jeweilige Zeitra
 - Tippscheine für das Fußballtoto können bis 24 Stunden vor dem Spieltag eingreicht werden.
 
 Änderungen am Tipp können bis 5 Minuten vor Ziehung oder Spielbeginn vorgenommen werden.
+
+|[F0032]
+|Unterstützung E-Mail Adresse
+|Bei Registrierung kann der Kunde eine E-Mail-Adresse angeben, auf die Mitteilungen gesendet werden können.
+Die Unterstüzung einer solchen Adresse ermöglicht dem System ebenfalls eine 2-Faktor-Authentifizierung, welche der Kontosicherheit betragen kann.
+Die E-Mail-Adresse wird bei Registrierung und Änderung des Kontos validiert.
 
 |===
 
@@ -718,7 +721,7 @@ Die Folgende Tabelle enthält:
 
 |Sicherheit
 |3
-|Das System legt Wert auf die Sicherheit der Nutzerkonten, da hier primär transaktionen mit dem Geld der registrierten Nutzenden getätigt werden.
+|Das System legt Wert auf die Sicherheit der Nutzerkonten, da hier primär transaktionen mit dem Geld der registrierten Nutzer getätigt werden.
 
 |Nutzerfreundlichkeit
 |5
@@ -754,7 +757,7 @@ Die Folgende Tabelle enthält:
 
 |[NF0001]
 |Sicherheit -  Passwortspeicherung
-|Die Passwörter der Nutzenden werden verschlüsselt gespeichert.
+|Die Passwörter der Nutzer werden verschlüsselt gespeichert.
 
 |[NF0002]
 |Nutzerfreundlichkeit - Barrierefreiheit
@@ -854,8 +857,188 @@ Dieser Abschnitt stellt eine Vereinigung von Glossar und der Beschreibung von Kl
 |===
 
 == Akzeptanztestfälle
-Mithilfe von Akzeptanztests wird geprüft, ob die Software die funktionalen Erwartungen und Anforderungen im Gebrauch erfüllt. Diese sollen und können aus den Anwendungsfallbeschreibungen und den UML-Sequenzdiagrammen abgeleitet werden. D.h., pro (komplexen) Anwendungsfall gibt es typischerweise mindestens ein Sequenzdiagramm (welches ein Szenarium beschreibt). Für jedes Szenarium sollte es einen Akzeptanztestfall geben. Listen Sie alle Akzeptanztestfälle in tabellarischer Form auf.
-Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumenten (z.B. im Test-Plan) referenzieren zu können.
+
+[cols="1h, 4"]
+[[AT0010]]
+|===
+|ID                     |**<<AT0010>>**
+|Anwendungsfall         |**<<UC0010>>**
+|Voraussetzungen       a|Ein Benutzer ist nicht angemeldet und möchte einen Account erstellen.
+|Event                 a|Ein nicht authentifizierter Benutzer ruft den Anmeldebildschirm auf, gibt die Anmeldedaten eines bestehenden Benutzers des Systems ein und drückt auf "Anmelden".
+|Zu erwartendes Ergebnis a|
+- Falls Benutzer bereits existiert.
+
+Eine Fehlermeldung wird angezeigt, um den Benutzer über das Problem zu informieren.
+
+- Falls Benutzer existiert nicht.
+
+1. Ein neuer Kunde mit den angegebenen Daten wird erstellt
+2. Es ist möglich, sich mit den Anmeldedaten des angelegten Kunden zu authentifizieren.
+3. Der nicht authentifizierte Benutzer ist immer noch nicht authentifiziert und wird auf die Homepage umgeleitet.
+|===
+
+[cols="1h, 4"]
+[[AT0020]]
+|===
+|ID                     |**<<AT0020>>**
+|Anwendungsfall         |**<<UC0020>>**
+|Voraussetzungen       a|Ein Benutzer ist nicht angemeldet und besitzt einen Account.
+|Event                 a|Benutzer klickt auf "Registrieren" , füllt das Formular aus und schickt es über "Registrierung abschließen" ab.
+|Zu erwartendes Ergebnis a|
+- Der Benutzer wird zu einem Willkommenseite weitergeleitet, der eine personalisierte Willkommensnachricht anzeigt.
+- Der Benutzer hat nun Zugriff auf alle Funktionen, die für Benutzer mit der Rolle "Kunde" zugänglich sind.
+- Der Benutzer ist authentifiziert.
+|===
+
+
+[cols="1h, 4"]
+[[AT0021]]
+|===
+|ID                     |**<<AT0021>>**
+|Anwendungsfall         |**<<UC0020>>**
+|Voraussetzungen       a|Ein authentifizierter Benutzer verwendet das System.
+|Event                 a|Der authentifizierte Benutzer drückt auf "Ausloggen".
+|Zu erwartendes Ergebnis a|
+- Der Benutzer ist nun nicht authentifiziert.
+- Der Benutzer wird zu einer Homepage weitergeleitet.
+|===
+
+image:diagrams/seq_register_login_logout.svg[seq_register/login/logout]
+
+[cols="1h, 4"]
+[[AT0030]]
+|===
+|ID                     |**<<AT0030>>**
+|Anwendungsfall         |**<<UC0030>>**
+|Voraussetzungen       a|None
+|Event                 a|Ein authentifizierter Benutzer klickt auf den Knopf "Zahlenlotterien" oder "Fußballlotterien".
+|Zu erwartendes Ergebnis a|
+- Falls Knopf "Zahlenlotterien" geklickt wird.
+    Alle Zahlenlotterien werden angezeigt.
+
+- Falls Knopf "Fußballlotterien" geklickt wird.
+    Alle Fußballlotterien werden angezeigt.
+|===
+
+[cols="1h, 4"]
+[[AT0040]]
+|===
+|ID                     |**<<AT0040>>**
+|Anwendungsfall         |**<<UC0040>>**
+|Voraussetzungen       a|Ein Benutzer hat sich angemeldet und ist in der Kontoverwaltung.
+|Event                 a|Der Nutzer drückt in der Navigationsleiste der Kontoverwaltung den Button „betting“.
+|Zu erwartendes Ergebnis a|
+- Der Benutzer betritt die "betting"-Schnittstelle.
+- Der Benutzer kann die Art des Lottoscheins auswählen, den er kaufen möchte.
+|===
+
+[cols="1h, 4"]
+[[AT0041]]
+|===
+|ID                     |**<<AT0041>>**
+|Anwendungsfall         |**<<UC0040>>**
+|Voraussetzungen       a|Der Benutzer hat die „betting“-Schnittstelle aufgerufen.
+|Event                 a|Der Benutzer klickt auf den Knopf "6-from-49".
+|Zu erwartendes Ergebnis a|
+- Der Benutzer kann 6 Ziffern aus 49 Ziffern auswählen.
+- Der Benutzer kann eine zusätzliche Nummer hinzufügen.
+- Der Nutzer kann die Art des „Dauertippscheins“ wählen.
+- Der Benutzer kann den Betrag eingeben und eine Wette platzieren.
+|===
+
+[cols="1h, 4"]
+[[AT0042]]
+|===
+|ID                     |**<<AT0042>>**
+|Anwendungsfall         |**<<UC0040>>**
+|Voraussetzungen       a|Der Benutzer hat die „betting“-Schnittstelle aufgerufen.
+|Event                 a|Der Benutzer klickt auf den Knopf "Fußballtoto".
+|Zu erwartendes Ergebnis a|
+- Der Benutzer kann die vorhergesagte Punktzahl des Spiels eingeben.
+- Der Benutzer kann den Betrag eingeben und eine Wette platzieren.
+|===
+
+image:diagrams/seq_bet.svg[seq-bet]
+
+[cols="1h, 4"]
+[[AT0050]]
+|===
+|ID                     |**<<AT0050>>**
+|Anwendungsfall         |**<<UC0050>>**
+|Voraussetzungen       a|Der Benutzer ist authentifiziert.
+|Event                 a|Ein authentifizierter Benutzer klickt auf den Knopf "Kontostand".
+|Zu erwartendes Ergebnis a|Der Kontostand wird angezeigt.
+|===
+
+[cols="1h, 4"]
+[[AT0060]]
+|===
+|ID                     |**<<AT0060>>**
+|Anwendungsfall         |**<<UC0060>>**
+|Voraussetzungen       a|Der Benutzer ist authentifiziert.
+|Event                 a|
+_withdraw_: Ein authentifizierter Benutzer klickt auf den Knopf "withdraw".
+
+_deposit_: Ein authentifizierter Benutzer klickt auf den Knopf "deposit".
+|Zu erwartendes Ergebnis a|
+- Ein authentifizierter Benutzer wird auf "withdraw.html"/"deposit.html" weitergeleitet.
+- Ein authentifizierter Benutzer wählt den Betrag, den sie aufladen oder abheben möchten.
+|===
+
+image:diagrams/seq_deposit-withdraw.svg[seq_deposit/withdraw]
+
+[cols="1h, 4"]
+[[AT0070]]
+|===
+|ID                     |**<<AT0070>>**
+|Anwendungsfall         |**<<UC0070>>**
+|Voraussetzungen       a|Ein Benutzer hat sich angemeldet und ist in der Kontoverwaltung.
+|Event                 a|Der Nutzer drückt in der Navigationsleiste der Kontoverwaltung den Button „betting“.
+|Zu erwartendes Ergebnis a|
+Der Benutzer kann das ausgewertete Ergebnis der Lotterie einsehen.
+|===
+
+[cols="1h, 4"]
+[[AT0080]]
+|===
+|ID                           |**<<AT0080>>**
+|Anwendungsfall               |**<<UC0080>>**
+|Voraussetzung                |User hat sich beim System authentifiziert.
+|Event                       a|
+User klickt auf der Community Webseite auf den Knopf "create".
+|Zu erwartendes Ergebnis     a|
+-Ein Gemeinschaft wird gegründet.
+-User erhält ein Gemeinschaftspasswort und kann mit diesem Passwort andere einladen, der Gemeinschaft beizutreten.
+|===
+
+image:diagrams/seq_create.svg[seq_create]
+
+[cols="1h, 4"]
+[[AT0090]]
+|===
+|ID                           |**<<AT0090>>**
+|Anwendungsfall               |**<<UC0090>>**
+|Voraussetzung                |User hat sich beim System authentifiziert.
+|Event                       a|
+1.User drückt auf der Community Website auf den Knopf "join".
+2.User gebt das Passwort ein.
+|Zu erwartendes Ergebnis     a|
+-Falls das Passwort gültig ist, ist der Vereinigung beigetreten.
+-Falls das Passwort ungültig ist, wird ein falsches Passwort angezeigt.
+|===
+
+image:diagrams/seq_join.svg[seq_join]
+
+[cols="1h, 4"]
+[[AT0120]]
+|===
+|ID                     |**<<AT0120>>**
+|Anwendungsfall         |**<<UC0120>>**
+|Voraussetzungen       a|Ein Benutzer hat sich angemeldet und ist in der Kontoverwaltung.
+|Event                 a|Der Nutzer drückt in der Navigationsleiste der Kontoverwaltung den Button „message“.
+|Zu erwartendes Ergebnis a|
+Der Benutzer kann die empfangenen Nachrichten sehen.
+|===
 
 == Glossar
 Sämtliche Begriffe, die innerhalb des Projektes verwendet werden und deren gemeinsames Verständnis aller beteiligten Stakeholder essentiell ist, sollten hier aufgeführt werden.
@@ -867,4 +1050,4 @@ Offene Punkte werden entweder direkt in der Spezifikation notiert. Wenn das Pfli
 
 |[F0031]
 |Sicherheit -  2-Faktor-Authentifizierung
-|Für die erfolgreiche Anmeldung wird ein Code an die E-Mail-Adresse oder Telefonnummer geschickt, welchen der Nutzende eingeben muss.
+|Für die erfolgreiche Anmeldung wird ein Code an die E-Mail-Adresse oder Telefonnummer geschickt, welchen der Nutzer eingeben muss.
