@@ -39,7 +39,7 @@ Bei der Zahlenlotterie können derzeit neben Einzeltippscheinen auch Dauertippsc
 Tippscheine für das Fußballtoto können ab Veröffentlichung der Spielkalender beliebig im Voraus ausgefüllt und abgegeben werden.
 Nach Minister Lottermanns Plänen soll das Angebot künftig gemäß den neuen Medien flexibler gestaltet sein:
 
-
+* Sobald ein unregistrierter Besucher die virtuelle Lotterie aufruft, erhält dieser die Möglichkeit sich zu registrieren.
 * Jeder registrierte Kunde erhält ein Konto, welches ihm ermöglicht, per Überweisung, Tippscheine zu erwerben und Einblick in mögliche Gewinne oder Verluste bietet.
 Des Weiteren werden auf dem Konto alle Mitteilungen angezeigt, welche vom System an den Kunden verschickt werden.
 * Es werden Gewinngemeinschaften unterstützt. Beim Einrichten einer Gewinngemeinschaft wird von der Lotterie ein Gemeinschafts-Passwort vergeben.
@@ -52,11 +52,13 @@ Von diesem Konto werden (in der Reihenfolge der Auslosungen) Einsätze abgebucht
 Bei nicht ausreichender Deckung erhält der Kunde eine entsprechende Mitteilung und nimmt an dieser Verlosung nicht teil.
 Je Mitteilung wird eine Gebühr von 2 € erhoben; nach zehn Mitteilungen wird der Kunde vorläufig aus seinen Gewinngemeinschaften entfernt.
 Hat der Kunde eine Ziehung oder ein Fußballtoto gewonnen, kann er sich das gewonnene Geld auf sein Lotterie-Konto auszahlen lassen.
+* Die für das Fußballtoto benötigten Daten werden vom System direkt und aktuell aus dem Internet bezogen.
 * Administratoren der Lotterie sollen die Möglichkeit haben, jederzeit eine Übersicht über die abgegebenen Wetten der Kunden und die finanzielle Situation (Gewinne/Verluste) der Lotterie nach dem jeweiligen Ziehungstagen und Spieltagen zu bekommen.
 * Minister Lottermann hat unter dem Aktenzeichen "MDG 2000" eine Ausschreibung veröffentlicht, und um Einreichung geeigneter, künftig ausbaubarer Prototypen für ein solches System gebeten.
 
+Das Ziel des hier beschriebenen Projektes ist die Erstellung einer einfach zu bedienenden und für jedermann zugänglichen virtuellen Lotterie, welche die oben beschriebenen Aufgaben verlässlich und möglichst effizient erfüllen kann.
+Der Prototyp soll des Weiteren künftig ausbaubar und gut wartbar sein.
 
-//TODO: Ziele präzisieren, ergänzen
 
 == Produktnutzung
 Die Anwendung soll als Online-Variante der Lotterie "Mach Dein
@@ -490,34 +492,32 @@ Die folgende Tabelle enthält:
 
 |[F0001]
 |Registrierung
-a|Das System stellt nicht registrierten Nutzenden die Möglichkeit zur Verfügung, einen Account zu erstellen.
+a|Das System stellt nicht registrierten Nutzern die Möglichkeit zur Verfügung, einen Account zu erstellen.
 Für eine Registrierung werden folgende Informationen benötigt:
 
 - Nutzername (Einzigartig)
 - Passwort
 - Wohnadresse
 - Lotteriebank-Adresse
-- E-Mail-Adresse (Optional)
 
-Das System prüft die angegeben Daten auf ihre Richtigkeit([F0002]). Nach erfolgreicher Überprüfung wird der Nutzende im System eingetragen([F0003]) und ist in der Lage sich Anzumelden.
+Das System prüft die angegeben Daten auf ihre Richtigkeit([F0002]). Nach erfolgreicher Überprüfung wird der Nutzer im System eingetragen([F0003]) und ist in der Lage sich Anzumelden.
 
 
 |[F0002]
 |Registrierung validieren
-a|Das System ist in der Lage, die Informationen eines nicht registrierten Nutzenden auf ihre Richtigkeit zu überprüfen.
+a|Das System ist in der Lage, die Informationen eines nicht registrierten Nutzers auf ihre Richtigkeit zu überprüfen.
 Folgende Daten werden überprüft:
 
 - Einzigartigkeit des Nutzernamens
 - Stimmigkeit der Wohnadresse
 - Stimmigkeit der Lotteriebank-Adresse
-- Stimmigkeit der E-Mail-Adresse (falls vorhanden)
 
-Bei Unstimmigkeiten wird der Nutzende umgehend informiert und kann die Daten gegebenenfalls Anpassen.
+Bei Unstimmigkeiten wird der Nutzer umgehend informiert und kann die Daten gegebenenfalls Anpassen.
 
 
 |[F0003]
 |Anmeldung
-a|Das System ist aufgeteilt in Bereiche, die jedem Nutzenden frei zur Verfügung stehen und Bereiche, welche nur durch Login benutzt werden können. Nutzer können durch folgende Informationen Identifiziert:
+a|Das System ist aufgeteilt in Bereiche, die jedem Nutzer frei zur Verfügung stehen und Bereiche, welche nur durch Login benutzt werden können. Nutzer können durch folgende Informationen Identifiziert:
 
 - Nutzername
 - Passwort
@@ -525,20 +525,18 @@ a|Das System ist aufgeteilt in Bereiche, die jedem Nutzenden frei zur Verfügung
 
 |[F0004]
 |Konto einsehen
-a|Das System ermöglicht den Nutzenden in ihr Konto einzusehen. Es können folgende Informationen eingesehen werden:
+a|Das System ermöglicht dem Nutzer in sein Konto einzusehen. Es können folgende Informationen eingesehen werden:
 
 - Nutzername
 - Wohnadresse
-- E-Mail-Adresse (falls vorhanden)
 
 |[F0005]
 |Konto bearbeiten
-a|Das System ermöglicht dem Nutzenden, bei Bedarf, Informationen zu bearbeiten oder hinzuzufügen. Folgende Informationen können bearbeitet werden:
+a|Das System ermöglicht dem Nutzer, bei Bedarf, Informationen zu bearbeiten oder hinzuzufügen. Folgende Informationen können bearbeitet werden:
 
 - Passwort
 - Wohnadresse
 - Lotteriebank-Adresse
-- E-Mail-Adresse
 
 Das System überprüft bei Änderung die neuen Daten auf ihre Richtigkeit.
 Folgende Daten werden überprüft:
@@ -546,31 +544,30 @@ Folgende Daten werden überprüft:
 - Passwort ist anders
 - Stimmigkeit der Wohnadresse
 - Stimmigkeit der Lotteriebank-Adresse
-- Stimmigkeit der E-Mail-Adresse (falls vorhanden)
 
-Bei Unstimmigkeiten wird der Nutzende umgehend informiert und kann die Daten gegebenenfalls Anpassen.
+Bei Unstimmigkeiten wird der Nutzer umgehend informiert und kann die Daten gegebenenfalls Anpassen.
 
-|[F0005]
+|[F0033]
 |Kontobearbeitung validieren
 |Das System ist in der Lage die geänderten Informationen auf ihre Richtigkeit zu überprüfen.
 
 |[F0006]
 |Verfügbare Tippscheine einsehen
-|Das System ermöglicht den Nutzenden die Einsicht in alle aktuellen Tippscheine, welche erworben werden können
+|Das System ermöglicht dem Nutzer die Einsicht in alle aktuellen Tippscheine, welche erworben werden können
 
 |[F0007]
 |Tippschein erwerben
-|Das System ermöglicht dem Nutzenden beliebig Tippscheine zu erwerben.
-Nach Erwerb von Tippscheinen werden die Einsätze in Reihenfolge der Auslosungen vom Lotteriekonto des Nutzenden abgebucht.
+|Das System ermöglicht dem Nutzer beliebig Tippscheine zu erwerben.
+Nach Erwerb von Tippscheinen werden die Einsätze in Reihenfolge der Auslosungen vom Lotteriekonto des Nutzers abgebucht.
 
 
 |[F0008]
 |Tippschein ausfüllen
-a|Das System ermöglicht den Nutzenden die erworbenen Tippscheine nach den Regeln der jeweiligen Verlosung auszufüllen.
+a|Das System ermöglicht dem Nutzer die erworbenen Tippscheine nach den Regeln der jeweiligen Verlosung auszufüllen.
 
 |[F0009]
 |Tippschein ändern
-a|Das System bietet den Nutzenden die Möglichkeit eine Änderung am Tippschein vorzunehmen.
+a|Das System bietet dem Nutzer die Möglichkeit eine Änderung am Tippschein vorzunehmen.
 
 Folgende Informationen können verändert werden:
 
@@ -579,39 +576,39 @@ Folgende Informationen können verändert werden:
 
 |[F0010]
 |Dauertippschein erwerben
-|Das System ermöglicht den Nutzenden Dauertippscheine für die Zahlenlotterie zu erwerben.
-Der Nutzende kann hier zwischen monatlicher, halbjähriger und ganzjähriger Dauer unterscheiden.
-Nach Erwerb des Dauertippscheins kann der Nutzende seinen Tipp abgeben.
+|Das System ermöglicht dem Nutzer Dauertippscheine für die Zahlenlotterie zu erwerben.
+Der Nutzer kann hier zwischen monatlicher, halbjähriger und ganzjähriger Dauer unterscheiden.
+Nach Erwerb des Dauertippscheins kann der Nutzer seinen Tipp abgeben.
 
 |[F0011]
 |Erworbene Tippscheine einsehen
-|Das System ermöglicht den Nutzenden ihre momentan abgegebenen Tippscheine einzusehen.
+|Das System ermöglicht dem Nutzer seine momentan abgegebenen Tippscheine einzusehen.
 
 |[F0012]
 |Finanzen einsehen
-|Das System ermöglicht den Nutzenden in die finanzielle Situation ihres Lotterie-Kontos einzusehen.
+|Das System ermöglicht dem Nutzer in die finanzielle Situation seines Lotterie-Kontos einzusehen.
 
 |[F0013]
 |Geld abbuchen
-|Das System bucht bei Erwerb von Tippscheinen den Einsatz vom Lotteriekonto des Nutzenden ab.
-Bei unzureichender Deckung erhält der Nutzende eine Mitteilung und wird von dieser Auslosung ausgeschlossen.
+|Das System bucht bei Erwerb von Tippscheinen den Einsatz vom Lotteriekonto des Nutzers ab.
+Bei unzureichender Deckung erhält der Nutzer eine Mitteilung und wird von dieser Auslosung ausgeschlossen.
 
 |[F0014]
 |Geld auszahlen
-|Das System ermöglicht den Nutzenden gewonnenes Geld auf ihr Lotteriekonto auszuzahlen.
+|Das System ermöglicht dem Nutzer gewonnenes Geld auf ihr Lotteriekonto auszuzahlen.
 
 |[F0015]
 |Gewinngemeinschaft gründen
-|Das System ermöglicht den Nutzenden eine Gewinngemeinschaft zu gründen.
-Bei der Gründung wird ein Mitglieder-Passwort festgelegt. Dieses Passwort kann weitergegeben werden. Kennt ein Nutzender dieses Passwort, kann er der Gemeinschaft beitreten.
+|Das System ermöglicht dem Nutzer eine Gewinngemeinschaft zu gründen.
+Bei der Gründung wird ein Mitglieder-Passwort festgelegt. Dieses Passwort kann weitergegeben werden. Kennt ein Nutzer dieses Passwort, kann er der Gemeinschaft beitreten.
 
 |[F0016]
 |Gewinngemeinschaft beitreten
-|Das System ermöglicht den Nutzenden einer Gewinngemeinschaft beizutreten. Mitglieder der Gemeinschaft können dieses Passwort an weiter Nutzende weitergeben und für die Gemeinschaft einen Tipp abgeben.
+|Das System ermöglicht dem Nutzer einer Gewinngemeinschaft beizutreten. Mitglieder der Gemeinschaft können dieses Passwort an weiter Nutzer weitergeben und für die Gemeinschaft einen Tipp abgeben.
 
 |[F0017]
 |Gewinngemeinschaft Tipp abgeben
-|Das System ermöglicht den Nutzenden für die Gemeinschaft einen Tipp abzugeben. Neben dem Tipp kann der Nutzende auch seinen Anteil erhöhen, verringern oder zeitweilig aussetzen. Der Anteil muss ein ganzzahliges Vielfaches des Grundeinsatzes sein.
+|Das System ermöglicht dem Nutzer für die Gemeinschaft einen Tipp abzugeben. Neben dem Tipp kann der Nutzer auch seinen Anteil erhöhen, verringern oder zeitweilig aussetzen. Der Anteil muss ein ganzzahliges Vielfaches des Grundeinsatzes sein.
 
 |[F0018]
 |Gewinngemeinschaft Mitglied entfernen
@@ -619,18 +616,18 @@ Bei der Gründung wird ein Mitglieder-Passwort festgelegt. Dieses Passwort kann 
 
 |[F0019]
 |Mitteilungen einsehen
-|Das System ermöglicht den Nutzenden die Einsicht in ihre erhaltenen Mitteilungen.
+|Das System ermöglicht dem Nutzer die Einsicht in seine erhaltenen Mitteilungen.
 
 |[F0020]
 |Mitteilung bei unzureichender Deckung
-a|Das System sendet bei unzureichender Deckung eine Mitteilung an das Nutzerkonto. Dabei wird eine Gebühr von 2 Euro vom Lotteriekonto des Nutzenden abgebucht.
+a|Das System sendet bei unzureichender Deckung eine Mitteilung an das Nutzerkonto. Dabei wird eine Gebühr von 2 Euro vom Lotteriekonto des Nutzers abgebucht.
 Die Mitteilung beinhaltet folgende Informationen:
 
 - Mitteilung der Nichtteilnahme an der Verlosung
 - Grund der Nichtteilnahme
 - Hinweis auf eine Gebühr von 2 Euro für diese Mitteilung
 
-Nach 10 Mitteilungen wird der Nutzende vorläufig aus all seinen Gemeinschaften entfernt.
+Nach 10 Mitteilungen wird der Nutzer vorläufig aus all seinen Gemeinschaften entfernt.
 
 |[F0021]
 |Admin Einsicht finanzieller Status
@@ -638,7 +635,7 @@ Nach 10 Mitteilungen wird der Nutzende vorläufig aus all seinen Gemeinschaften 
 
 |[F0022]
 |Admin Übersicht abgegebene Wetten
-|Das System ermöglicht einem Administrator jederzeit die Einsicht in alle abgegebenen Wetten der Nutzenden.
+|Das System ermöglicht einem Administrator jederzeit die Einsicht in alle abgegebenen Wetten der Nutzer.
 Dies beinhaltet den Nutzernamen und den abgegebenen Tipp.
 
 |[F0023]
@@ -652,7 +649,7 @@ Anschließend werden die Gewinne auf die Konten der Gewinner überwiesen.
 
 |[F0025]
 |Überweisung Gewinne
-|Hat ein Nutzender eine Ziehung gewonnen, wird anschließend der Gewinnbetrag auf sein Konto übertragen
+|Hat ein Nutzer eine Ziehung gewonnen, wird anschließend der Gewinnbetrag auf sein Konto übertragen
 
 |===
 
@@ -681,12 +678,12 @@ Die Folgende Tabelle enthält:
 
 |[F0028]
 |Mitteilung Gewinn/Verlust
-|Das System benachrichtigt die Nutzenden nach einer abgeschlossenen Ziehung/Spiel, ob diese Gewonnen oder Verloren haben.
+|Das System benachrichtigt den Nutzer nach einer abgeschlossenen Ziehung/Spiel, ob dieser Gewonnen oder Verloren haben.
 Diese Nachricht ist nicht kostenpflichtig.
 
 |[F0029]
 |Gewinngemeinschaft Mitglieder einsehen
-|Das System ermöglicht den Nutzenden, welche in eine Gewinngemeinschaft eingetragen sind, dessen Mitglieder und deren Einsatz zu sehen.
+|Das System ermöglicht dem Nutzer, welcher in eine Gewinngemeinschaft eingetragen ist, dessen Mitglieder und deren Einsatz zu sehen.
 
 |[F0030]
 |Einhaltung Abgabezeit
@@ -696,6 +693,12 @@ a|Das System prüft bei jeder Abgabe eines Tippscheines, ob der jeweilige Zeitra
 - Tippscheine für das Fußballtoto können bis 24 Stunden vor dem Spieltag eingreicht werden.
 
 Änderungen am Tipp können bis 5 Minuten vor Ziehung oder Spielbeginn vorgenommen werden.
+
+|[F0032]
+|Unterstützung E-Mail Adresse
+|Bei Registrierung kann der Kunde eine E-Mail-Adresse angeben, auf die Mitteilungen gesendet werden können.
+Die Unterstüzung einer solchen Adresse ermöglicht dem System ebenfalls eine 2-Faktor-Authentifizierung, welche der Kontosicherheit betragen kann.
+Die E-Mail-Adresse wird bei Registrierung und Änderung des Kontos validiert.
 
 |===
 
@@ -718,7 +721,7 @@ Die Folgende Tabelle enthält:
 
 |Sicherheit
 |3
-|Das System legt Wert auf die Sicherheit der Nutzerkonten, da hier primär transaktionen mit dem Geld der registrierten Nutzenden getätigt werden.
+|Das System legt Wert auf die Sicherheit der Nutzerkonten, da hier primär transaktionen mit dem Geld der registrierten Nutzer getätigt werden.
 
 |Nutzerfreundlichkeit
 |5
@@ -754,7 +757,7 @@ Die Folgende Tabelle enthält:
 
 |[NF0001]
 |Sicherheit -  Passwortspeicherung
-|Die Passwörter der Nutzenden werden verschlüsselt gespeichert.
+|Die Passwörter der Nutzer werden verschlüsselt gespeichert.
 
 |[NF0002]
 |Nutzerfreundlichkeit - Barrierefreiheit
@@ -1037,4 +1040,4 @@ Offene Punkte werden entweder direkt in der Spezifikation notiert. Wenn das Pfli
 
 |[F0031]
 |Sicherheit -  2-Faktor-Authentifizierung
-|Für die erfolgreiche Anmeldung wird ein Code an die E-Mail-Adresse oder Telefonnummer geschickt, welchen der Nutzende eingeben muss.
+|Für die erfolgreiche Anmeldung wird ein Code an die E-Mail-Adresse oder Telefonnummer geschickt, welchen der Nutzer eingeben muss.
