@@ -357,7 +357,7 @@ image:diagrams/seq_join.svg[seq_join]
 |Essenzielle Schritte      a|
 1. Akteur ist in der Gemeinschaft.
 2. Akteur hat schon neu mal erfolglose Abbuchungsbenachrichtigungen erhalten.
-|Essential Steps           a|--
+|Essenzielle Schritte      a|--
 |Erweiterungen              |--
 |Funktionale Voraussetzungen|[F0018]
 |===
@@ -903,6 +903,8 @@ Eine Fehlermeldung wird angezeigt, um den Benutzer über das Problem zu informie
 - Der Benutzer wird zu einer Homepage weitergeleitet.
 |===
 
+image:diagrams/seq_register_login_logout.svg[seq_register/login/logout]
+
 [cols="1h, 4"]
 [[AT0030]]
 |===
@@ -916,58 +918,6 @@ Eine Fehlermeldung wird angezeigt, um den Benutzer über das Problem zu informie
 
 - Falls Knopf "Fußballlotterien" geklickt wird.
     Alle Fußballlotterien werden angezeigt.
-|===
-
-[cols="1h, 4"]
-[[AT0050]]
-|===
-|ID                     |**<<AT0050>>**
-|Anwendungsfall         |**<<UC0050>>**
-|Voraussetzungen       a|Der Benutzer ist authentifiziert.
-|Event                 a|Ein authentifizierter Benutzer klickt auf den Knopf "Kontostand".
-|Zu erwartendes Ergebnis a|Der Kontostand wird angezeigt.
-|===
-
-[cols="1h, 4"]
-[[AT0060]]
-|===
-|ID                     |**<<AT0060>>**
-|Anwendungsfall         |**<<UC0060>>**
-|Voraussetzungen       a|Der Benutzer ist authentifiziert.
-|Event                 a|
-_withdraw_: Ein authentifizierter Benutzer klickt auf den Knopf "withdraw".
-
-_deposit_: Ein authentifizierter Benutzer klickt auf den Knopf "deposit".
-|Zu erwartendes Ergebnis a|
-- Ein authentifizierter Benutzer wird auf "withdraw.html"/"deposit.html" weitergeleitet.
-- Ein authentifizierter Benutzer wählt den Betrag, den sie aufladen oder abheben möchten.
-|===
-
-[cols="1h, 3"]
-[[AT0080]]
-|===
-|ID                           |**<<AT0080>>**
-|Anwendungsfall               |**<<UC0080>>**
-|Voraussetzung                |User hat sich beim System authentifiziert.
-|Event                       a|
-User klickt auf der Community Webseite auf den Knopf "create".
-|Zu erwartendes Ergebnis     a|
--Ein Gemeinschaft wird gegründet.
--User erhält ein Gemeinschaftspasswort und kann mit diesem Passwort andere einladen, der Gemeinschaft beizutreten.
-|===
-
-[cols="1h, 3"]
-[[AT0090]]
-|===
-|ID                           |**<<AT0090>>**
-|Anwendungsfall               |**<<UC0090>>**
-|Voraussetzung                |User hat sich beim System authentifiziert.
-|Event                       a|
-1.User drückt auf der Community Website auf den Knopf "join".
-2.User gebt das Passwort ein.
-|Zu erwartendes Ergebnis     a|
--Falls das Passwort gültig ist, ist der Vereinigung beigetreten.
--Falls das Passwort ungültig ist, wird ein falsches Passwort angezeigt.
 |===
 
 [cols="1h, 4"]
@@ -1008,6 +958,35 @@ User klickt auf der Community Webseite auf den Knopf "create".
 - Der Benutzer kann den Betrag eingeben und eine Wette platzieren.
 |===
 
+image:diagrams/seq_bet.svg[seq-bet]
+
+[cols="1h, 4"]
+[[AT0050]]
+|===
+|ID                     |**<<AT0050>>**
+|Anwendungsfall         |**<<UC0050>>**
+|Voraussetzungen       a|Der Benutzer ist authentifiziert.
+|Event                 a|Ein authentifizierter Benutzer klickt auf den Knopf "Kontostand".
+|Zu erwartendes Ergebnis a|Der Kontostand wird angezeigt.
+|===
+
+[cols="1h, 4"]
+[[AT0060]]
+|===
+|ID                     |**<<AT0060>>**
+|Anwendungsfall         |**<<UC0060>>**
+|Voraussetzungen       a|Der Benutzer ist authentifiziert.
+|Event                 a|
+_withdraw_: Ein authentifizierter Benutzer klickt auf den Knopf "withdraw".
+
+_deposit_: Ein authentifizierter Benutzer klickt auf den Knopf "deposit".
+|Zu erwartendes Ergebnis a|
+- Ein authentifizierter Benutzer wird auf "withdraw.html"/"deposit.html" weitergeleitet.
+- Ein authentifizierter Benutzer wählt den Betrag, den sie aufladen oder abheben möchten.
+|===
+
+image:diagrams/seq_deposit-withdraw.svg[seq_deposit/withdraw]
+
 [cols="1h, 4"]
 [[AT0070]]
 |===
@@ -1018,6 +997,37 @@ User klickt auf der Community Webseite auf den Knopf "create".
 |Zu erwartendes Ergebnis a|
 Der Benutzer kann das ausgewertete Ergebnis der Lotterie einsehen.
 |===
+
+[cols="1h, 4"]
+[[AT0080]]
+|===
+|ID                           |**<<AT0080>>**
+|Anwendungsfall               |**<<UC0080>>**
+|Voraussetzung                |User hat sich beim System authentifiziert.
+|Event                       a|
+User klickt auf der Community Webseite auf den Knopf "create".
+|Zu erwartendes Ergebnis     a|
+-Ein Gemeinschaft wird gegründet.
+-User erhält ein Gemeinschaftspasswort und kann mit diesem Passwort andere einladen, der Gemeinschaft beizutreten.
+|===
+
+image:diagrams/seq_create.svg[seq_create]
+
+[cols="1h, 4"]
+[[AT0090]]
+|===
+|ID                           |**<<AT0090>>**
+|Anwendungsfall               |**<<UC0090>>**
+|Voraussetzung                |User hat sich beim System authentifiziert.
+|Event                       a|
+1.User drückt auf der Community Website auf den Knopf "join".
+2.User gebt das Passwort ein.
+|Zu erwartendes Ergebnis     a|
+-Falls das Passwort gültig ist, ist der Vereinigung beigetreten.
+-Falls das Passwort ungültig ist, wird ein falsches Passwort angezeigt.
+|===
+
+image:diagrams/seq_join.svg[seq_join]
 
 [cols="1h, 4"]
 [[AT0120]]
