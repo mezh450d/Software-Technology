@@ -9,7 +9,16 @@
 [cols="1, 1, 1, 1, 4"]
 |===
 |Version | Status      | Bearbeitungsdatum   | Autoren(en) |  Vermerk
-|0.1     | In Arbeit   | 10.10.2021          | Hannes, Nick       | Initiale Version
+|0.1     | abgeschlossen   | 23.10.2021          | Nick       | Interessengruppen
+|0.2     | abgeschlossen   | 24.10.2021          | Jing, Meng, Nick, Shiyue, Ziyi | Kontextdiagramm, Top-Level-Architektur, Anwendungsfälle
+|1.1    | abgeschlossen   | 25.10.2021          | Hannes       | Aufgabe & Zielstellung, Funktionale & Nicht-funktionale Kriterien
+|1.2     | abgeschlossen   | 27.10.2021          | Nick       | Verfeinerungen und Korrekturen
+|1.3     | abgeschlossen   | 27.10.2021          | Jing, Meng, Shiyue, Ziyi       | Akzeptanzfälle
+|1.4     | abgeschlossen   | 30.10.2021          | Hannes       | Verbesserungen
+|2.0     | abgeschlossen   | 30.10.2021          | Nick       | GUI
+|2.1     | offen   | 30.10.2021          | Hannes       | Klassendiagramm
+
+
 |===
 
 //== Inhaltsverzeichnis
@@ -142,7 +151,7 @@ image:diagrams/top-level-architecture.svg[top-level-architecture]
 |===
 
 === Überblick Anwendungsfalldiagramm
-image:diagrams/use-case-diagram.svg[use-case-diagram]
+image:diagrams/use-case-diagram2.svg[use-case-diagram]
 
 === Anwendungsfallbeschreibungen
 [cols="1h, 3"]
@@ -845,6 +854,10 @@ image:diagrams/gui/finance.jpg[finance]
 - Finanzübersicht mit aktuellem Saldo
 - Möglichkeit, Geld ein- und auszuzahlen (gebunden an angegebenes Konto)
 
+
+== Datenmodell
+
+=== Überblick: Klassendiagramm
 
 === Klassen und Enumerationen
 Dieser Abschnitt stellt eine Vereinigung von Glossar und der Beschreibung von Klassen/Enumerationen dar. Jede Klasse und Enumeration wird in Form eines Glossars textuell beschrieben. Zusätzlich werden eventuellen Konsistenz- und Formatierungsregeln aufgeführt.
