@@ -767,26 +767,81 @@ Die Folgende Tabelle enthält:
 
 == GUI Prototyp
 
-In diesem Kapitel soll ein Entwurf der Navigationsmöglichkeiten und Dialoge des Systems erstellt werden.
-Idealerweise entsteht auch ein grafischer Prototyp, welcher dem Kunden zeigt, wie sein System visuell umgesetzt werden soll.
-Konkrete Absprachen - beispielsweise ob der grafische Prototyp oder die Dialoglandkarte höhere Priorität hat - sind mit dem Kunden zu treffen.
+=== /login
+image:diagrams/gui/login.jpg[login]
 
-=== Überblick: Dialoglandkarte
-Erstellen Sie ein Übersichtsdiagramm, das das Zusammenspiel Ihrer Masken zur Laufzeit darstellt. Also mit welchen Aktionen zwischen den Masken navigiert wird.
-//Die nachfolgende Abbildung zeigt eine an die Pinnwand gezeichnete Dialoglandkarte. Ihre Karte sollte zusätzlich die Buttons/Funktionen darstellen, mit deren Hilfe Sie zwischen den Masken navigieren.
+- Startseite, bringt Besucher direkt zum Einloggen
+- Registrierungsmöglichkeit
 
-=== Dialogbeschreibung
-Für jeden Dialog:
+=== /register
+image:diagrams/gui/register.jpg[register]
 
-1. Kurze textuelle Dialogbeschreibung eingefügt: Was soll der jeweilige Dialog? Was kann man damit tun? Überblick?
-2. Maskenentwürfe (Screenshot, Mockup)
-3. Maskenelemente (Ein/Ausgabefelder, Aktionen wie Buttons, Listen, …)
-4. Evtl. Maskendetails, spezielle Widgets
+- Formular für Userdaten
+- durch Registrieren-Button werden Daten überprüfut und ggf. Nutzer erstellt
 
-== Datenmodell
+=== /overview
+image:diagrams/gui/overview.jpg[overview]
 
-=== Überblick: Klassendiagramm
-UML-Analyseklassendiagramm
+- Startseite nach erfolgreichem Login
+- linke Spalte als Navigationsleiste mit Verweisen zu den Teilbereichen
+- aktiver Nutzername und Logout-Funktion am oberen Rand platziert
+- eingeloggt: Naviagtionsleiste immer mit gleichen Funktionen
+- Hauptfeld mit aktiven Wetten gefüllt
+
+=== /betting
+image:diagrams/gui/betting.jpg[betting]
+
+- zeigt Auswahl vom Wettangebot (erweiterbar)
+
+=== /6-from-49
+image:diagrams/gui/6-from-49.jpg[6-from-49]
+
+- Schaltfläche zur Auswahl von sechs Zahlen
+- Menge angebbar (für Dauertippscheine)
+- Wetten-Button platziert ohne Komplikationen die geplante Wette, schickt den Nutzer zur Übersichtsseite
+
+=== /football
+image:diagrams/gui/football.jpg[football]
+
+- Auflistung der verfügbaren Spiele
+- Ergebnistipp möglich, Wahl des Wettbetrags variabel eingebbar
+- Wette durch einen Klick platziert
+
+=== /community
+image:diagrams/gui/community.jpg[community]
+
+- Auflistung aller genutzten Communities des Nutzerkontos
+- Möglichkeit, Community einzusehen, zu erstellen oder zu betreten
+
+=== /community/create
+image:diagrams/gui/community_create.jpg[community/create]
+
+- Formular zum Erstellen einer Community
+
+=== /community/join
+image:diagrams/gui/community_join.jpg[community/join]
+
+- Formular zum Beitreten einer Community
+
+=== /community/overview
+image:diagrams/gui/community_overview.jpg[community/overview]
+
+- Übersicht für einzelne Community
+- zeigt Namen des Users an und aktiviert Community-Wetten
+- oben links: Verdeutlichung, dass neue Wetten für Community platziert werden
+
+=== /community/betting
+image:diagrams/gui/community_betting.jpg[community/betting]
+
+- Community Wetten nutzen die gleiche Maske wie Einzelnutzerwetten
+- analog für Lotto und Fußballtoto
+
+=== /finance
+image:diagrams/gui/finance.jpg[finance]
+
+- Finanzübersicht mit aktuellem Saldo
+- Möglichkeit, Geld ein- und auszuzahlen (gebunden an angegebenes Konto)
+
 
 === Klassen und Enumerationen
 Dieser Abschnitt stellt eine Vereinigung von Glossar und der Beschreibung von Klassen/Enumerationen dar. Jede Klasse und Enumeration wird in Form eines Glossars textuell beschrieben. Zusätzlich werden eventuellen Konsistenz- und Formatierungsregeln aufgeführt.
