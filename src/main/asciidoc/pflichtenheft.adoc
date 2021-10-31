@@ -129,10 +129,10 @@ a|
 == Systemgrenze und Top-Level-Architektur
 
 === Kontextdiagramm
-image:diagrams/context-diagram.svg[context diagram]
+image::./diagrams/context-diagram.svg[context diagram, title= "Kontextdiagramm", align=center]
 
 === Top-Level-Architektur
-image:diagrams/top-level-architecture.svg[top-level-architecture]
+image::./diagrams/top-level-architecture.svg[top-level-architecture, title= "Top-Level-Architektur", align=center]
 
 == Anwendungsfälle
 
@@ -148,7 +148,9 @@ image:diagrams/top-level-architecture.svg[top-level-architecture]
 |===
 
 === Überblick Anwendungsfalldiagramm
-image:diagrams/use-case-diagram2.svg[use-case-diagram]
+
+[[use_case_diagram]]
+image::./diagrams/use-case-diagram2.svg[use-case-diagram, title= "Anwendungsfalldiagramm", align=center]
 
 === Anwendungsfallbeschreibungen
 [cols="1h, 3"]
@@ -210,7 +212,8 @@ _Logout_:
 |Funktionale Voraussetzungen|[F0003]
 |===
 
-image:diagrams/seq_register_login_logout.svg[seq_register/login/logout]
+image::../diagrams/seq_register_login_logout.svg[seq_register/login/logout, title= "Sequenzdiagramm : register/login/logout ", align=center]
+
 [cols="1h, 3"]
 [[UC0030]]
 |===
@@ -246,7 +249,7 @@ Der Katalog muss eine Unterscheidung zwischen den verschiedenen Arten von Lotter
 |Funktionale Voraussetzungen  |[F0006][F0007][F0008][F0009][F0010]
 |===
 
-image:diagrams/seq_bet.svg[seq-bet]
+image::../diagrams/seq_bet.svg[seq-bet, title= "Sequenzdiagramm : bet", align=center]
 
 [cols="1h, 3"]
 [[UC0050]]
@@ -283,7 +286,7 @@ _deposit_: Akteur klickt auf den Knopf "deposit".
 |Funktionale Voraussetzungen|[F0013][F0014]
 |===
 
-image:diagrams/seq_deposit-withdraw.svg[seq_deposit/withdraw]
+image:./diagrams/seq_deposit-withdraw.svg[seq_deposit/withdraw, title= "Sequenzdiagramm : deposit/withdral", align=center]
 
 [cols="1h, 3"]
 [[UC0080]]
@@ -299,7 +302,7 @@ image:diagrams/seq_deposit-withdraw.svg[seq_deposit/withdraw]
 |Funktionale Voraussetzungen|[F0015]
 |===
 
-image:diagrams/seq_create.svg[seq_create]
+image::./diagrams/seq_create.svg[seq_create, title= "Sequenzdiagramm : create", align=center]
 
 [cols="1h, 3"]
 [[UC0090]]
@@ -319,7 +322,7 @@ image:diagrams/seq_create.svg[seq_create]
 |Functional Requirements    |[F0016]
 |===
 
-image:diagrams/seq_join.svg[seq_join]
+image::./diagrams/seq_join.svg[seq_join, title= "Sequenzdiagramm : join", align=center]
 
 [cols="1h, 3"]
 [[UC0100]]
@@ -389,7 +392,7 @@ image:diagrams/seq_join.svg[seq_join]
 |Funktionale Voraussetzungen|
 |===
 
-image:diagrams/seq_evaluation.svg[seq_evaluation]
+image::./diagrams/seq_evaluation.svg[seq_evaluation, title= "Sequenzdiagramm : evaluation", align=center]
 
 [cols="1h, 3"]
 [[UC0170]]
@@ -410,7 +413,7 @@ image:diagrams/seq_evaluation.svg[seq_evaluation]
 |Funktionale Voraussetzungen|[F0023]
 |===
 
-image:diagrams/seq_money.svg[seq_geld-vergeben]
+image::./diagrams/seq_money.svg[seq_geld-vergeben, title= "Sequenzdiagramm : Geld vergeben", align=center]
 
 == Funktionale Anforderungen
 
@@ -857,7 +860,7 @@ Eine Fehlermeldung wird angezeigt, um den Benutzer über das Problem zu informie
 - Der Benutzer wird zu einer Homepage weitergeleitet.
 |===
 
-image:diagrams/seq_register_login_logout.svg[seq_register/login/logout]
+image::../diagrams/seq_register_login_logout.svg[seq_register/login/logout, title= "register/login/logout", align=center]
 
 [cols="1h, 4"]
 [[AT0030]]
@@ -912,7 +915,7 @@ image:diagrams/seq_register_login_logout.svg[seq_register/login/logout]
 - Der Benutzer kann den Betrag eingeben und eine Wette platzieren.
 |===
 
-image:diagrams/seq_bet.svg[seq-bet]
+image::../diagrams/seq_bet.svg[seq-bet, title= "bet", align=center]
 
 [cols="1h, 4"]
 [[AT0050]]
@@ -939,7 +942,7 @@ _deposit_: Ein authentifizierter Benutzer klickt auf den Knopf "deposit".
 - Ein authentifizierter Benutzer wählt den Betrag, den sie aufladen oder abheben möchten.
 |===
 
-image:diagrams/seq_deposit-withdraw.svg[seq_deposit/withdraw]
+image::../diagrams/seq_deposit-withdraw.svg[seq_deposit/withdraw, title= "deposit/withdraw", align=center]
 
 [cols="1h, 4"]
 [[AT0080]]
@@ -954,7 +957,7 @@ User klickt auf der Community Webseite auf den Knopf "create".
 -User erhält ein Gemeinschaftspasswort und kann mit diesem Passwort andere einladen, der Gemeinschaft beizutreten.
 |===
 
-image:diagrams/seq_create.svg[seq_create]
+image::../diagrams/seq_create.svg[seq_create, title= "create", align=center]
 
 [cols="1h, 4"]
 [[AT0090]]
@@ -970,7 +973,7 @@ image:diagrams/seq_create.svg[seq_create]
 -Falls das Passwort ungültig ist, wird ein falsches Passwort angezeigt.
 |===
 
-image:diagrams/seq_join.svg[seq_join]
+image::./diagrams/seq_join.svg[seq_join, title= "join", align=center]
 
 == Glossar
 [options="header", cols="2, 4"]
