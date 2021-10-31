@@ -1,9 +1,5 @@
-= Zeiterfassung für Gruppe XX
+= Zeiterfassung für Gruppe 08
 
-Notieren Sie die Zeit in Minuten für jeden Entwickler und – getrennt davon – für Team-Treffen pro Woche (Wochengranularität).
-Die individuell erfasste Zeit beinhaltet auch das Lesen von Dokumentationen, Besprechungen mit Teamkollegen und sonstige auf das Praktikum bezogene Aufgaben, jedoch *nicht* das Team-Treffen (= letzte Spalte).
-
-// See http://asciidoctor.org/docs/user-manual/#tables
 [option="headers"]
 |===
 |Woche |Hannes |Jing |Shiyue |Ziyi |Meng |Nick |Meeting
@@ -21,7 +17,6 @@ Die individuell erfasste Zeit beinhaltet auch das Lesen von Dokumentationen, Bes
 |12  |…   |…    |…    |…    |…    |…    |…    
 |===
 
-Bitte tragen Sie am Ende des Praktikums noch folgende weitere Werte ein:
 Summe der Arbeitsstunden pro Student:
 
 SUMME(SPALTE(DevX))
