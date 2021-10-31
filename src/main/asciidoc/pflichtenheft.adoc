@@ -16,8 +16,8 @@
 |1.3     | abgeschlossen   | 27.10.2021          | Jing, Meng, Shiyue, Ziyi       | Akzeptanzfälle
 |1.4     | abgeschlossen   | 30.10.2021          | Hannes       | Verbesserungen
 |2.0     | abgeschlossen   | 30.10.2021          | Nick       | GUI
-|2.1     | offen   | 30.10.2021          | Hannes       | Klassendiagramm
-|2.2     | offen   | 30.10.2021          | Meng       | Enumeration des Klassendiagramm
+|2.1     | abgeschlossen   | 30.10.2021          | Hannes       | Klassendiagramm
+|2.2     | abgeschlossen   | 30.10.2021          | Meng       | Enumeration des Klassendiagramm
 
 |===
 
@@ -790,7 +790,6 @@ image:diagrams/gui/finance.jpg[finance]
 image:diagrams/class-diagram.jpg[class-diagram]
 
 === Klassen und Enumerationen
-Dieser Abschnitt stellt eine Vereinigung von Glossar und der Beschreibung von Klassen/Enumerationen dar. Jede Klasse und Enumeration wird in Form eines Glossars textuell beschrieben. Zusätzlich werden eventuellen Konsistenz- und Formatierungsregeln aufgeführt.
 
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="header"]
@@ -804,8 +803,8 @@ Dieser Abschnitt stellt eine Vereinigung von Glossar und der Beschreibung von Kl
 |User               |Benutzer, die sich erfolgreich auf der Website registriert haben.
 |Visitor            |Benutzer, die nicht auf der Website registriert sind.
 |Message            |Vom System gesendete Informationen, die vom Benutzer empfangen wurden.
-|LotteryCatalog     |Ein Katalog mit digitalen Lottoscheinen, Benutzer können ihre Lieblingszahlen wählen, um Wetten zu platzieren.
-|FootballPoolsCatalog  |Ein Verzeichnis von Fußballlotterien, mit dem Benutzer Ergebnisvorhersagen für ihre Lieblingsmannschaften machen können.
+|BetCatalog         |Eine Seite, auf der ein Benutzer auswählen kann, an welcher Lotterie er teilnehmen möchte, um eine Wette zu platzieren.
+|Finances           |Der Administrator kann den Betrag verwalten, der bereits an der Wette teilgenommen hat.
 |Lottery            |Bei Lottoscheinen mit 6 aus 49 Zahlen kann eine zusätzliche Zahl gewählt werden.
 |FootballPools      |Fußballlotterie, erraten Sie das Ergebnis.
 |Bet                |Benutzer können Wetten auf verschiedene Arten von Lottoscheinen platzieren.
