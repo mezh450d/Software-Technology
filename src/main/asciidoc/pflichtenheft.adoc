@@ -1089,6 +1089,8 @@ Der Benutzer kann die empfangenen Nachrichten sehen.
 3. Bestimmen Sie, ob der Benutzer gewinnt oder verliert
 |===
 
+image:diagrams/seq_evaluation.svg[seq_evaluation]
+
 [cols="1h, 4"]
 [[AT0150]]
 |===
@@ -1099,7 +1101,7 @@ Der Benutzer kann die empfangenen Nachrichten sehen.
 |Event                 a|None
 |Zu erwartendes Ergebnis a|
 - Wenn das Guthaben des Benutzerkontos ausreichend ist:
-1. Abzug
+1. Abbuchung
 2. Benutzer zur Liste hinzufügen
 - Wenn das Guthaben des Benutzers nicht ausreicht:
 Sende Nachrichten
