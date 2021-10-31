@@ -1083,7 +1083,8 @@ Der Benutzer kann die empfangenen Nachrichten sehen.
 |Voraussetzungen       a|1. Benutzer hat Lotto gekauft
 2. Die Lotterie wurde gezogen oder das Ergebnis des Spiels wurde veröffentlicht
 |Event                 a|None
-|Zu erwartendes Ergebnis a|1. Gewinnzahlen oder Fußballspielergebnisse anzeigen
+|Zu erwartendes Ergebnis a|
+1. Gewinnzahlen oder Fußballspielergebnisse anzeigen
 2. Zeigen Sie die Wettsituation des Benutzers an
 3. Bestimmen Sie, ob der Benutzer gewinnt oder verliert
 |===
@@ -1096,10 +1097,11 @@ Der Benutzer kann die empfangenen Nachrichten sehen.
 |Voraussetzungen       a|1. Benutzer hat Lotto gekauft
 2. Die Lotterie wurde gezogen oder das Ergebnis des Spiels wurde veröffentlicht
 |Event                 a|None
-|Zu erwartendes Ergebnis a|Wenn das Guthaben des Benutzerkontos ausreichend ist:
+|Zu erwartendes Ergebnis a|
+- Wenn das Guthaben des Benutzerkontos ausreichend ist:
 1. Abzug
 2. Benutzer zur Liste hinzufügen
-Wenn das Guthaben des Benutzers nicht ausreicht:
+- Wenn das Guthaben des Benutzers nicht ausreicht:
 Sende Nachrichten
 |===
 
@@ -1111,9 +1113,10 @@ Sende Nachrichten
 |Voraussetzungen       a|1. Benutzerkonto wurde erfolgreich belastet
 2. Die Lotterie wurde gezogen oder das Ergebnis des Spiels wurde veröffentlicht
 |Event                 a|None
-|Zu erwartendes Ergebnis a|Wenn der Benutzer "gewinnt":
+|Zu erwartendes Ergebnis a|
+- Wenn der Benutzer "gewinnt":
 Benutzer zur Liste hinzufügen
-Wenn der Benutzer "eingibt":
+- Wenn der Benutzer "eingibt":
 nichts tun
 |===
 
