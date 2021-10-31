@@ -942,17 +942,6 @@ _deposit_: Ein authentifizierter Benutzer klickt auf den Knopf "deposit".
 image:diagrams/seq_deposit-withdraw.svg[seq_deposit/withdraw]
 
 [cols="1h, 4"]
-[[AT0070]]
-|===
-|ID                     |**<<AT0070>>**
-|Anwendungsfall         |**<<UC0070>>**
-|Voraussetzungen       a|Ein Benutzer hat sich angemeldet und ist in der Kontoverwaltung.
-|Event                 a|Der Nutzer drückt in der Navigationsleiste der Kontoverwaltung den Button „betting“.
-|Zu erwartendes Ergebnis a|
-Der Benutzer kann das ausgewertete Ergebnis der Lotterie einsehen.
-|===
-
-[cols="1h, 4"]
 [[AT0080]]
 |===
 |ID                           |**<<AT0080>>**
