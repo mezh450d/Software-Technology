@@ -915,7 +915,6 @@ Eine Fehlermeldung wird angezeigt, um den Benutzer über das Problem zu informie
 - Der Benutzer ist authentifiziert.
 |===
 
-
 [cols="1h, 4"]
 [[AT0021]]
 |===
@@ -1063,6 +1062,59 @@ image:diagrams/seq_join.svg[seq_join]
 |Event                 a|Der Nutzer drückt in der Navigationsleiste der Kontoverwaltung den Button „message“.
 |Zu erwartendes Ergebnis a|
 Der Benutzer kann die empfangenen Nachrichten sehen.
+|===
+
+[cols="1h, 4"]
+[[AT0130]]
+|===
+|ID                     |**<<AT0130>>**
+|Anwendungsfall         |**<<UC0130>>**
+|Voraussetzungen       a|Benutzer hat Lottoschein gekauft
+|Event                 a|Der Administrator drückt in der Navigationsleiste der Kontoverwaltung den Button „Überblick“.
+|Zu erwartendes Ergebnis a|1. Kauft der Nutzer einen Fußball-Lotterieschein, werden die Quoten und der Wettbetrag im „Fußball“ angezeigt.
+2. Kauft der Nutzer einen digitalen Lottoschein, wird die vom Nutzer gewählte Nummer und die Anzahl der gekauften Lottoscheine in „6 aus 49“ angezeigt.
+|===
+
+[cols="1h, 4"]
+[[AT0140]]
+|===
+|ID                     |**<<AT0140>>**
+|Anwendungsfall         |**<<UC0140>>**
+|Voraussetzungen       a|1. Benutzer hat Lotto gekauft
+2. Die Lotterie wurde gezogen oder das Ergebnis des Spiels wurde veröffentlicht
+|Event                 a|None
+|Zu erwartendes Ergebnis a|1. Gewinnzahlen oder Fußballspielergebnisse anzeigen
+2. Zeigen Sie die Wettsituation des Benutzers an
+3. Bestimmen Sie, ob der Benutzer gewinnt oder verliert
+|===
+
+[cols="1h, 4"]
+[[AT0150]]
+|===
+|ID                     |**<<AT0150>>**
+|Anwendungsfall         |**<<UC0150>>**
+|Voraussetzungen       a|1. Benutzer hat Lotto gekauft
+2. Die Lotterie wurde gezogen oder das Ergebnis des Spiels wurde veröffentlicht
+|Event                 a|None
+|Zu erwartendes Ergebnis a|Wenn das Guthaben des Benutzerkontos ausreichend ist:
+1. Abzug
+2. Benutzer zur Liste hinzufügen
+Wenn das Guthaben des Benutzers nicht ausreicht:
+Sende Nachrichten
+|===
+
+[cols="1h, 4"]
+[[AT0160]]
+|===
+|ID                     |**<<AT0160>>**
+|Anwendungsfall         |**<<UC0160>>**
+|Voraussetzungen       a|1. Benutzerkonto wurde erfolgreich belastet
+2. Die Lotterie wurde gezogen oder das Ergebnis des Spiels wurde veröffentlicht
+|Event                 a|None
+|Zu erwartendes Ergebnis a|Wenn der Benutzer "gewinnt":
+Benutzer zur Liste hinzufügen
+Wenn der Benutzer "eingibt":
+nichts tun
 |===
 
 == Glossar
