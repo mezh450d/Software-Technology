@@ -207,7 +207,7 @@ _Login_:
 _Logout_:
 
 1. User klickt auf den "ausloggen".
-2. Benutzer kehrt zurück zur Loginseite und wird Visitor.
+2. Nutzer kehrt zurück zur Loginseite und wird Visitor.
 
 |Erweiterungen              |-
 |Funktionale Voraussetzungen|[F0003]
@@ -365,7 +365,7 @@ image::./diagrams/seq_join.svg[seq_join, title= "Sequenzdiagramm : join", align=
 |Beschreibung               |Der Administrator überprüft den Wettstatus jedes Benutzers
 |Akteur                     |Admin
 |Auslöser                   |Klicken Administratoren auf "Wettstatus"
-|Voraussetzungen           a|Benutzer hat Lotto gekauft
+|Voraussetzungen           a|Nutzer hat Lotto gekauft
 |Essenzielle Schritte      a|
 1. Der Administrator klickt auf ""Lottoergebnisse anzeigen".
 2. Besuchen Sie jedes Benutzerkonto, um den Wettstatus zu erfahren.
@@ -383,7 +383,7 @@ image::./diagrams/seq_join.svg[seq_join, title= "Sequenzdiagramm : join", align=
 |Akteur                     |-
 |Auslöser                   |Klicken Administratoren auf "Ergebnisse zeichnen"
 |Voraussetzungen           a|
-1. Benutzer besitzt Lottotippschein
+1. Nutzer besitzt Lottotippschein
 |Essenzielle Schritte      a|
 1. Das System sendet einen Abzugsantrag an das Konto
 2. Das Konto beurteilt, ob das Guthaben ausreicht, um die Lottokaufkosten zu bezahlen
@@ -408,7 +408,7 @@ image::./diagrams/seq_evaluation.svg[seq_evaluation, title= "Sequenzdiagramm : e
 2. Der Nutzer ist der Gewinner
 |Essenzielle Schritte      a|
 1. Der Manager klickt auf "Auswerten"
-2. Berechnen Sie den Betrag, den jeder Benutzer erhält
+2. Berechnen Sie den Betrag, den jeder Nutzer erhält
 3. Geld auf das Benutzerkonto überweisen
 |Erweiterungen              |-
 |Funktionale Voraussetzungen|[F0023]
@@ -713,19 +713,19 @@ Die Folgende Tabelle enthält:
 == GUI Prototyp
 
 === /login
-image:diagrams/gui/login.jpg[login]
+image:diagrams/gui/login.jpg[login, title= "Login", align=center]
 
 - Startseite, bringt Besucher direkt zum Einloggen
-- Registrierübungsmöglichkeit
+- Registrierungsmöglichkeit
 
 === /register
-image:diagrams/gui/register.jpg[register]
+image:diagrams/gui/register.jpg[register, title= "Registrieren", align=center]
 
 - Formular für Userdaten
 - durch Registrieren-Button werden Daten überprüft und ggf. Nutzer erstellt
 
 === /overview
-image:diagrams/gui/overview.jpg[overview]
+image:diagrams/gui/overview.jpg[overview, title= "Übersicht", align=center]
 
 - Startseite nach erfolgreichem Login
 - linke Spalte als Navigationsleiste mit Verweisen zu den Teilbereichen
@@ -734,55 +734,55 @@ image:diagrams/gui/overview.jpg[overview]
 - Hauptfeld mit aktiven Wetten gefüllt
 
 === /betting
-image:diagrams/gui/betting.jpg[betting]
+image:diagrams/gui/betting.jpg[betting, title= "Wetten", align=center]
 
 - zeigt Auswahl vom Wettangebot (erweiterbar)
 
 === /6-from-49
-image:diagrams/gui/6-from-49.jpg[6-from-49]
+image:diagrams/gui/6-from-49.jpg[6-from-49, title= "Lotterie", align=center]
 
 - Schaltfläche zur Auswahl von sechs Zahlen
 - Menge angebbar (für Dauertippscheine)
 - Wetten-Button platziert ohne Komplikationen die geplante Wette, schickt den Nutzer zur Übersichtsseite
 
 === /football
-image:diagrams/gui/football.jpg[football]
+image:diagrams/gui/football.jpg[football, title= "Fußballtoto", align=center]
 
 - Auflistung der verfügbaren Spiele
 - Ergebnistipp möglich, Wahl des Wettbetrags variabel eingebbar
 - Wette durch einen Klick platziert
 
 === /community
-image:diagrams/gui/community.jpg[community]
+image:diagrams/gui/community.jpg[community, title= "Gewinngemeinschaft", align=center]
 
 - Auflistung aller genutzten Communities des Nutzerkontos
 - Möglichkeit, Community einzusehen, zu erstellen oder zu betreten
 
 === /community/create
-image:diagrams/gui/community_create.jpg[community/create]
+image:diagrams/gui/community_create.jpg[community/create, title= "Gewinngemeinschaft erstellen", align=center]
 
 - Formular zum Erstellen einer Community
 
 === /community/join
-image:diagrams/gui/community_join.jpg[community/join]
+image:diagrams/gui/community_join.jpg[community/join, title= "Gewinngemeinschaft beitreten", align=center]
 
 - Formular zum Beitreten einer Community
 
 === /community/overview
-image:diagrams/gui/community_overview.jpg[community/overview]
+image:diagrams/gui/community_overview.jpg[community/overview, title= "Gewinngemeinschaft Übersicht", align=center]
 
 - Übersicht für einzelne Community
 - zeigt Namen des Users an und aktiviert Community-Wetten
 - oben links: Verdeutlichung, dass neue Wetten für Community platziert werden
 
 === /community/betting
-image:diagrams/gui/community_betting.jpg[community/betting]
+image:diagrams/gui/community_betting.jpg[community/betting, title= "Gewinngemeinschaft Wette abgeben", align=center]
 
 - Community Wetten nutzen die gleiche Maske wie Einzelnutzerwetten
 - analog für Lotto und Fußballtoto
 
 === /finance
-image:diagrams/gui/finance.jpg[finance]
+image:diagrams/gui/finance.jpg[finance, title= "Übersicht Finanzen", align=center]
 
 - Finanzübersicht mit aktuellem Saldo
 - Möglichkeit, Geld ein- und auszuzahlen (gebunden an angegebenes Konto)
@@ -791,7 +791,7 @@ image:diagrams/gui/finance.jpg[finance]
 == Datenmodell
 
 === Überblick: Klassendiagramm
-image::./diagrams/class-diagram.jpg[class-diagram]
+image::./diagrams/class-diagram.jpg[class-diagram, title= "UML-Analyse-Klassendiagramm", align=center]
 
 === Klassen und Enumerationen
 
@@ -802,16 +802,16 @@ image::./diagrams/class-diagram.jpg[class-diagram]
 |System             |Zentrale Klasse, die alle Daten von Nutzern, Communities und den gesamten Wettprozess repräsentiert.
 |Community          |Eine Gruppe von Benutzern.
 |BetManagement      |Der Administrator kann die Lotterie effektiv verwalten.
-|CommunityManagement  |Benutzer können selbst Communitys erstellen. Andere Benutzer können ebenfalls beitreten. Der Community-Verantwortliche kann Nutzer, die den Anforderungen der Community nicht entsprechen, rauswerfen und hat das Recht, die Community aufzulösen.
-|Admin              |Der Verantwortliche der Lotteriezentrale kann Benutzer und Lottoauswertungen verwalten.
+|CommunityManagement  |Nutzer können selbst Communitys erstellen. Andere Nutzer können ebenfalls beitreten. Der Community-Verantwortliche kann Nutzer, die den Anforderungen der Community nicht entsprechen, rauswerfen und hat das Recht, die Community aufzulösen.
+|Admin              |Der Verantwortliche der Lotteriezentrale kann Nutzer und Lottoauswertungen verwalten.
 |User               |Benutzer, die sich erfolgreich auf der Website registriert haben.
 |Visitor            |Benutzer, die nicht auf der Website registriert sind.
-|Message            |Vom System gesendete Informationen, die vom Benutzer empfangen wurden.
-|BetCatalog         |Eine Seite, auf der ein Benutzer auswählen kann, an welcher Lotterie er teilnehmen möchte, um eine Wette zu platzieren.
+|Message            |Vom System gesendete Informationen, die vom Nutzer empfangen wurden.
+|BetCatalog         |Eine Seite, auf der ein Nutzer auswählen kann, an welcher Lotterie er teilnehmen möchte, um eine Wette zu platzieren.
 |Finances           |Der Administrator kann den Betrag verwalten, der bereits an der Wette teilgenommen hat.
 |Lottery            |Bei Lottoscheinen mit 6 aus 49 Zahlen kann eine zusätzliche Zahl gewählt werden.
 |FootballPools      |Fußballlotterie, erraten Sie das Ergebnis.
-|Bet                |Benutzer können Wetten auf verschiedene Arten von Lottoscheinen platzieren.
+|Bet                |Nutzer können Wetten auf verschiedene Arten von Lottoscheinen platzieren.
 |===
 
 == Akzeptanztestfälle
@@ -821,18 +821,10 @@ image::./diagrams/class-diagram.jpg[class-diagram]
 |===
 |ID                     |**<<AT0010>>**
 |Anwendungsfall         |**<<UC0010>>**
-|Voraussetzungen       a|Ein Benutzer ist nicht angemeldet und möchte einen Account erstellen.
-|Event                 a|Ein nicht authentifizierter Benutzer ruft den Anmeldebildschirm auf, gibt die Anmeldedaten eines bestehenden Benutzers des Systems ein und drückt auf "Anmelden".
+|Voraussetzungen       a|Ein Nutzer ist registriert und noch nicht angemeldet.
+|Event                 a|Der Nutzer ruft den Anmeldebildschirm auf, gibt seine Anmeldedaten ein und drückt auf "Anmelden".
 |Zu erwartendes Ergebnis a|
-- Falls Benutzer bereits existiert.
-
-Eine Fehlermeldung wird angezeigt, um den Benutzer über das Problem zu informieren.
-
-- Falls Benutzer existiert nicht.
-
-1. Ein neuer Kunde mit den angegebenen Daten wird erstellt
-2. Es ist möglich, sich mit den Anmeldedaten des angelegten Kunden zu authentifizieren.
-3. Der nicht authentifizierte Benutzer ist immer noch nicht authentifiziert und wird auf die Homepage umgeleitet.
+Der Nutzer wird, nach einer Validierung der Anmeldedaten, vom System angemeldet und auf die Startseite weitergeleitet.
 |===
 
 [cols="1h, 4"]
@@ -840,12 +832,12 @@ Eine Fehlermeldung wird angezeigt, um den Benutzer über das Problem zu informie
 |===
 |ID                     |**<<AT0020>>**
 |Anwendungsfall         |**<<UC0020>>**
-|Voraussetzungen       a|Ein Benutzer ist nicht angemeldet und besitzt einen Account.
-|Event                 a|Benutzer klickt auf "Registrieren", füllt das Formular aus und schickt es über "Registrierung abschließen" ab.
+|Voraussetzungen       a|Der Nutzer ist nicht registriert und möchte einen Account erstellen.
+|Event                 a|Der Nutzer klickt auf "Registrieren", füllt das Formular aus und schickt es über "Registrierung abschließen" ab.
 |Zu erwartendes Ergebnis a|
-- Der Benutzer wird zu einem Willkommenseite weitergeleitet, der eine personalisierte Willkommensnachricht anzeigt.
-- Der Benutzer hat nun Zugriff auf alle Funktionen, die für Benutzer mit der Rolle "Kunde" zugänglich sind.
-- Der Benutzer ist authentifiziert.
+- Der Nutzer wird zu einem Willkommensseite weitergeleitet, der eine personalisierte Willkommensnachricht anzeigt.
+- Der Nutzer hat nun Zugriff auf alle Funktionen, die für Nutzer mit der Rolle "Kunde" zugänglich sind.
+- Der Nutzer ist authentifiziert.
 |===
 
 
@@ -854,11 +846,11 @@ Eine Fehlermeldung wird angezeigt, um den Benutzer über das Problem zu informie
 |===
 |ID                     |**<<AT0021>>**
 |Anwendungsfall         |**<<UC0020>>**
-|Voraussetzungen       a|Ein authentifizierter Benutzer verwendet das System.
-|Event                 a|Der authentifizierte Benutzer drückt auf "Ausloggen".
+|Voraussetzungen       a|Der Nutzer ist angemeldet
+|Event                 a|Der Nutzer drückt auf "Ausloggen".
 |Zu erwartendes Ergebnis a|
-- Der Benutzer ist nun nicht authentifiziert.
-- Der Benutzer wird zu einer Homepage weitergeleitet.
+- Der Nutzer ist nun ausgeloggt.
+- Der Nutzer wird zur Login-Seite weitergeleitet.
 |===
 
 image::./diagrams/seq_register_login_logout.svg[seq_register/login/logout, title= "register/login/logout", align=center]
@@ -868,14 +860,14 @@ image::./diagrams/seq_register_login_logout.svg[seq_register/login/logout, title
 |===
 |ID                     |**<<AT0030>>**
 |Anwendungsfall         |**<<UC0030>>**
-|Voraussetzungen       a|None
-|Event                 a|Ein authentifizierter Benutzer klickt auf den Knopf "Zahlenlotterien" oder "Fußballlotterien".
+|Voraussetzungen       a|Der Nutzer ist angemeldet.
+|Event                 a|Ein authentifizierter Nutzer klickt auf den Knopf "Zahlenlotterie" oder "Fußballtoto".
 |Zu erwartendes Ergebnis a|
-- Falls Knopf "Zahlenlotterien" geklickt wird.
-    Alle Zahlenlotterien werden angezeigt.
+Falls Knopf "Zahlenlotterien" geklickt wird:
+- Die Schaltfläche zum Platzieren der Wette wird angezeigt.
 
-- Falls Knopf "Fußballlotterien" geklickt wird.
-    Alle Fußballlotterien werden angezeigt.
+Falls Knopf "Fußballtoto" geklickt wird:
+- Alle verfügbaren Fußballtotos werden angezeigt.
 |===
 
 [cols="1h, 4"]
@@ -883,11 +875,11 @@ image::./diagrams/seq_register_login_logout.svg[seq_register/login/logout, title
 |===
 |ID                     |**<<AT0040>>**
 |Anwendungsfall         |**<<UC0040>>**
-|Voraussetzungen       a|Ein Benutzer hat sich angemeldet und ist in der Kontoverwaltung.
-|Event                 a|Der Nutzer drückt in der Navigationsleiste der Kontoverwaltung den Button „betting“.
+|Voraussetzungen       a|Ein Nutzer hat sich angemeldet und ist in der Startseite.
+|Event                 a|Der Nutzer drückt in der Navigationsleiste auf den Button „betting“.
 |Zu erwartendes Ergebnis a|
-- Der Benutzer betritt die "betting"-Schnittstelle.
-- Der Benutzer kann die Art des Lottoscheins auswählen, den er kaufen möchte.
+- Der Nutzer betritt die "betting"-Schnittstelle.
+- Der Nutzer kann die Art des Lottoscheins auswählen, den er kaufen möchte.
 |===
 
 [cols="1h, 4"]
@@ -895,13 +887,13 @@ image::./diagrams/seq_register_login_logout.svg[seq_register/login/logout, title
 |===
 |ID                     |**<<AT0041>>**
 |Anwendungsfall         |**<<UC0040>>**
-|Voraussetzungen       a|Der Benutzer hat die „betting“-Schnittstelle aufgerufen.
-|Event                 a|Der Benutzer klickt auf den Knopf "6-from-49".
+|Voraussetzungen       a|Der Nutzer hat die „betting“-Schnittstelle aufgerufen.
+|Event                 a|Der Nutzer klickt auf den Knopf "6-from-49".
 |Zu erwartendes Ergebnis a|
-- Der Benutzer kann 6 Ziffern aus 49 Ziffern auswählen.
-- Der Benutzer kann eine zusätzliche Nummer hinzufügen.
+- Der Nutzer wählt 6 Ziffern aus den verfügbaren 49 Ziffern aus.
+- Der Nutzer fügt Superzahl hinzu.
 - Der Nutzer kann die Art des „Dauertippscheins“ wählen.
-- Der Benutzer kann den Betrag eingeben und eine Wette platzieren.
+- Der Nutzer platziert die Wette.
 |===
 
 [cols="1h, 4"]
@@ -909,22 +901,22 @@ image::./diagrams/seq_register_login_logout.svg[seq_register/login/logout, title
 |===
 |ID                     |**<<AT0042>>**
 |Anwendungsfall         |**<<UC0040>>**
-|Voraussetzungen       a|Der Benutzer hat die „betting“-Schnittstelle aufgerufen.
-|Event                 a|Der Benutzer klickt auf den Knopf "Fußballtoto".
+|Voraussetzungen       a|Der Nutzer hat die „betting“-Schnittstelle aufgerufen.
+|Event                 a|Der Nutzer klickt auf den Knopf "Fußballtoto".
 |Zu erwartendes Ergebnis a|
-- Der Benutzer kann die vorhergesagte Punktzahl des Spiels eingeben.
-- Der Benutzer kann den Betrag eingeben und eine Wette platzieren.
+- Der Nutzer kann die vorhergesagte Punktzahl des Spiels eingeben.
+- Der Nutzer kann den Betrag eingeben und eine Wette platzieren.
 |===
 
-image::./diagrams/seq_bet.svg[seq-bet, title= "bet", align=center]
+image::./diagrams/seq_bet.svg[seq_bet, title= "bet", align=center]
 
 [cols="1h, 4"]
 [[AT0050]]
 |===
 |ID                     |**<<AT0050>>**
 |Anwendungsfall         |**<<UC0050>>**
-|Voraussetzungen       a|Der Benutzer ist authentifiziert.
-|Event                 a|Ein authentifizierter Benutzer klickt auf den Knopf "Kontostand".
+|Voraussetzungen       a|Der Nutzer ist angemeldet.
+|Event                 a|Der Nutzer klickt auf den Knopf "Kontostand".
 |Zu erwartendes Ergebnis a|Der Kontostand wird angezeigt.
 |===
 
@@ -933,14 +925,14 @@ image::./diagrams/seq_bet.svg[seq-bet, title= "bet", align=center]
 |===
 |ID                     |**<<AT0060>>**
 |Anwendungsfall         |**<<UC0060>>**
-|Voraussetzungen       a|Der Benutzer ist authentifiziert.
+|Voraussetzungen       a|Der Nutzer ist angemeldet.
 |Event                 a|
-_withdraw_: Ein authentifizierter Benutzer klickt auf den Knopf "withdraw".
+_withdraw_: Der Nutzer klickt auf den Knopf "withdraw".
 
-_deposit_: Ein authentifizierter Benutzer klickt auf den Knopf "deposit".
+_deposit_: Der Nutzer klickt auf den Knopf "deposit".
 |Zu erwartendes Ergebnis a|
-- Ein authentifizierter Benutzer wird auf "withdraw.html"/"deposit.html" weitergeleitet.
-- Ein authentifizierter Benutzer wählt den Betrag, den sie aufladen oder abheben möchten.
+- Der Nutzer wird auf "withdraw.html"/"deposit.html" weitergeleitet.
+- Der Nutzer wählt den Betrag, den er aufladen oder abheben möchte.
 |===
 
 image::./diagrams/seq_deposit-withdraw.svg[seq_deposit/withdraw, title= "deposit/withdraw", align=center]
@@ -950,12 +942,12 @@ image::./diagrams/seq_deposit-withdraw.svg[seq_deposit/withdraw, title= "deposit
 |===
 |ID                           |**<<AT0080>>**
 |Anwendungsfall               |**<<UC0080>>**
-|Voraussetzung                |User hat sich beim System authentifiziert.
+|Voraussetzung                |Der Nutzer ist angemeldet.
 |Event                       a|
-User klickt auf der Community Webseite auf den Knopf "create".
+Der Nutzer klickt auf der Navigationsleiste unter "Community" auf den Knopf "create".
 |Zu erwartendes Ergebnis     a|
--Ein Gemeinschaft wird gegründet.
--User erhält ein Gemeinschaftspasswort und kann mit diesem Passwort andere einladen, der Gemeinschaft beizutreten.
+- Eine Gemeinschaft wird gegründet.
+- Der Nutzer erhält ein Gemeinschaftspasswort und kann mit diesem Passwort andere Nutzer einladen, der Gemeinschaft beizutreten.
 |===
 
 image::./diagrams/seq_create.svg[seq_create, title= "create", align=center]
@@ -965,13 +957,13 @@ image::./diagrams/seq_create.svg[seq_create, title= "create", align=center]
 |===
 |ID                           |**<<AT0090>>**
 |Anwendungsfall               |**<<UC0090>>**
-|Voraussetzung                |User hat sich beim System authentifiziert.
+|Voraussetzung                |Der Nutzer ist angemeldet.
 |Event                       a|
-1.User drückt auf der Community Website auf den Knopf "join".
-2.User gebt das Passwort ein.
+1. Der Nutzer drückt auf der Navigationsleiste unter "Community" auf den Knopf "join".
+2. Der Nutzer gibt das Gemeinschaftspasswort ein.
 |Zu erwartendes Ergebnis     a|
--Falls das Passwort gültig ist, ist der Vereinigung beigetreten.
--Falls das Passwort ungültig ist, wird ein falsches Passwort angezeigt.
+-Falls das Passwort gültig ist, tritt der Nutzer der Gemeinschaft bei.
+-Falls das Passwort ungültig ist, wird eine Fehlermeldung ausgegeben.
 |===
 
 image::./diagrams/seq_join.svg[seq_join, title= "join", align=center]
