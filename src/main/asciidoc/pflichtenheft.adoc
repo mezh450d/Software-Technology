@@ -1,7 +1,7 @@
 = Pflichtenheft
 :toc:
 :toc-title: Inhaltsverzeichnis
-:project_name: Lotterie
+:project_name: "MACH DEIN GLÜCK" - Onlinelotterie
 
 == __{project_name}__
 
@@ -20,9 +20,6 @@
 |2.2     | offen   | 30.10.2021          | Meng       | Enumeration des Klassendiagramm
 
 |===
-
-//== Inhaltsverzeichnis
-//Dieses Dokument benötigt ein Inhaltsverzeichnis. Es existieren mehrere Einbindungsmöglichkeiten.
 
 
 == Zusammenfassung
@@ -167,7 +164,7 @@ image:diagrams/use-case-diagram2.svg[use-case-diagram]
 1. Visitor klickt auf den "Registrieren"
 2. Visitor wird auf "register.html" weitergeleitet
 3. Visitor gibt Daten ein und klickt auf "Registrieren"
-4. System ein neues Konto erstellen
+4. System erstellt ein neues Konto
 |Erweiterungen              |-
 |Funktionale Voraussetzungen|[F0001][F0002]
 |===
@@ -201,13 +198,13 @@ _Login_:
 2. Visitor wird auf "login.html" weitergeleitet.
 3. Visitor gibt Daten ein und klickt auf "einloggen".
 4. System prüft die Korrektheit der eingegebenen Daten.
-1.Richtige Daten: Visitor werden User und bekommen zusätzlichen Rechte.
+1.Richtige Daten: Visitor wird User und erhält Zugang zur Hauptseite.
 2.Fehler: Anzeige der Fehlermitteilung.
 
 _Logout_:
 
 1. User klickt auf den "ausloggen".
-2. Benutzer kehren zur Startseite zurück und werden Visitor.
+2. Benutzer kehrt zurück zur Loginseite und wird Visitor.
 
 |Erweiterungen              |-
 |Funktionale Voraussetzungen|[F0003]
@@ -280,28 +277,13 @@ _withdraw_: Akteur klickt auf den Knopf "withdraw".
 _deposit_: Akteur klickt auf den Knopf "deposit".
 |Voraussetzungen           a|Akteur ist eingeloggt.
 |Essenzielle Schritte      a|
-1. Akteur klickt auf den Knopf "withdraw" oder "deposit".
-2. Akteur wird auf "withdraw.html"/"deposit.html" weitergeleitet.
-3. Akteur wählt den Betrag, den sie aufladen oder abheben möchten.
+1. Akteur wählt den Betrag, den er aufladen oder abheben möchte.
+2. Akteur klickt auf den Knopf "withdraw" oder "deposit".
 |Erweiterungen              |-
 |Funktionale Voraussetzungen|[F0013][F0014]
 |===
 
 image:diagrams/seq_deposit-withdraw.svg[seq_deposit/withdraw]
-
-[cols="1h, 3"]
-[[UC0070]]
-|===
-|ID                           |**<<UC0070>>**
-|Name                         |show Results
-|Beschreibung                 |User können die Wettergebnisse prüfen
-|Akteur                       |User
-|Auslöser                     |User klickt auf  den Knopf “show Results”.
-|Voraussetzungen             a|Der Benutzer hat erfolgreich gewettet und die Wette wurde bewertet.
-|Essenzielle Schritte        a|User klickt auf den Knopf “show Results”.
-|Erweiterungen                |-
-|Funktionale Voraussetzungen  |[F0023][F0024]
-|===
 
 [cols="1h, 3"]
 [[UC0080]]
@@ -332,7 +314,7 @@ image:diagrams/seq_create.svg[seq_create]
 2. User hat ein Passwort einer Gemeinschaft.
 |Essenzielle Schritte      a|
 1.User drückt auf der Website auf den Knopf "Gemeinschaft beitreten".
-2.User gebt das Passwort ein.
+2.User gibt das Passwort ein.
 |Erweiterungen              |-
 |Functional Requirements    |[F0016]
 |===
@@ -352,7 +334,7 @@ image:diagrams/seq_join.svg[seq_join]
 2. User ist ein Mitglied der Gemeinschaft.
 |Essenzielle Schritte      a|User drückt auf der Website die Schaltfläche "Gemeinschaft löschen".
 |Erweiterungen              |-
-|Funktionale Voraussetzungen|brauch noch
+|Funktionale Voraussetzungen|-
 |===
 
 [cols="1h, 3"]
@@ -365,31 +347,17 @@ image:diagrams/seq_join.svg[seq_join]
 |Auslöser                   |Ein Nutzer in einer Gemeinschaft hat eine erfolglose Abbuchungsbenachrichtigungen erhalten.
 |Essenzielle Schritte      a|
 1. Akteur ist in der Gemeinschaft.
-2. Akteur hat schon neu mal erfolglose Abbuchungsbenachrichtigungen erhalten.
+2. Akteur hat schon neun mal erfolglose Abbuchungsbenachrichtigungen erhalten.
 |Essenzielle Schritte      a|--
 |Erweiterungen              |--
 |Funktionale Voraussetzungen|[F0018]
 |===
 
 [cols="1h, 3"]
-[[UC0120]]
-|===
-|ID                           |**<<UC0120>>**
-|Name                         |message
-|Beschreibung                 |User können empfangene Nachrichten anzeigen.
-|Akteur                       |User
-|Auslöser                     |User klickt auf  den Knopf “message”.
-|Voraussetzungen             a|ist als User eingeloggt
-|Essenzielle Schritte        a|User klickt auf  den Knopf “message”.
-|Erweiterungen                |-
-|Funktionale Voraussetzungen  |[F0019][F0020]
-|===
-
-[cols="1h, 3"]
 [[UC0130]]
 |===
 |ID                         |**<<UC0130>>**
-|Name                       |show all bets
+|Name                       |showAllBets
 |Beschreibung               |Der Administrator überprüft den Wettstatus jedes Benutzers
 |Akteur                     |Admin
 |Auslöser                   |Klicken Administratoren auf "Wettstatus"
@@ -403,41 +371,20 @@ image:diagrams/seq_join.svg[seq_join]
 |===
 
 [cols="1h, 3"]
-[[UC0140]]
-|===
-|ID                         |**<<UC0140>>**
-|Name                       |show all accounts
-|Beschreibung               |Der Administrator überprüft die Gewinne und Verluste des Benutzers nach dem Ziehungstag und nach dem Spieltag
-|Akteur                     |Admin
-|Auslöser                   |Klicken Administratoren auf "finanzielle Situation"
-|Voraussetzungen           a|
-1.Benutzer hat Lotto gekauft
-2.Die Lotterie wurde gezogen oder das Ergebnis des Spiels wurde veröffentlicht
-|Essenzielle Schritte      a|
-1. Der Manager klickt auf "finanzielle Situation"
-2. Rufen Sie die Wettinformationen aller Benutzer ab
-3. Lesen Sie das Lotterieergebnis oder das Ergebnis des Spiels
-4. Beurteilen Sie den Gewinn oder Verlust jedes Benutzers
-|Erweiterungen              |-
-|Funktionale Voraussetzungen|-
-|===
-
-[cols="1h, 3"]
 [[UC0150]]
 |===
 |ID                         |**<<UC0150>>**
-|Name                       |Evaluation of lottery（Two lotteries）
-|Beschreibung               |Bestimmen Administratoren, ob das Guthaben auf dem Konto des Benutzers ausreicht, um die Lotterie zu bezahlen
-|Akteur                     |Admin
+|Name                       |Evaluation eines Tippscheins
+|Beschreibung               |System bestimmt, ob das Guthaben auf dem Konto des Benutzers ausreicht, um die Lotterie zu bezahlen
+|Akteur                     |-
 |Auslöser                   |Klicken Administratoren auf "Ergebnisse zeichnen"
 |Voraussetzungen           a|
-1. Lotto wurde gezogen
-2. Benutzer kauft Lotto
+1. Benutzer besitzt Lottotippschein
 |Essenzielle Schritte      a|
-1. Der Administrator sendet einen Abzugsantrag an die Konten aller Benutzer, die die Lotterie gekauft haben
+1. Das System sendet einen Abzugsantrag an das Konto
 2. Das Konto beurteilt, ob das Guthaben ausreicht, um die Lottokaufkosten zu bezahlen
-3. Wenn nicht genug, reichen Sie das Lotto des Benutzers ein, um es zu stornieren
-4. Falls ausreichend, Konto abziehen und Benutzer zur Liste hinzufügen
+3. Wenn nicht genug, Nachricht an User, Tippschein wird nicht eingetragen
+4. Falls ausreichend, Geld vom Konto abbuchen und Tippschein hinzufügen
 |Erweiterungen              |-
 |Funktionale Voraussetzungen|
 |===
@@ -445,38 +392,20 @@ image:diagrams/seq_join.svg[seq_join]
 image:diagrams/seq_evaluation.svg[seq_evaluation]
 
 [cols="1h, 3"]
-[[UC0160]]
-|===
-|ID                         |**<<UC0160>>**
-|Name                       |Liste der Gewinner
-|Beschreibung               |Alle Gewinner-Benutzer werden dieser Liste hinzugefügt
-|Akteur                     |Admin
-|Auslöser                   |Klicken Administratoren auf "Ergebnisse zeichnen"
-|Voraussetzungen           a|
-1. Lotterieergebnisse bekannt gegeben
-2. Benutzerkonto wurde erfolgreich belastet
-|Essenzielle Schritte      a|
-1. Lesen Sie die finanzielle Situation des Benutzerkontos (gewinnen oder verlieren)
-2. Fügen Sie Benutzer hinzu, deren Ergebnisse als ""Win"" angezeigt werden, zur Liste
-|Erweiterungen              |-
-|Funktionale Voraussetzungen|-
-|===
-
-[cols="1h, 3"]
 [[UC0170]]
 |===
 |ID                         |**<<UC0170>>**
 |Name                       |Geld vergeben
-|Beschreibung               |Der Manager sendet Geld an das Konto des Gewinners
+|Beschreibung               |Das System sendet Geld an das Konto des Gewinners
 |Akteur                     |Admin
 |Auslöser                   |Klicken Administratoren auf "Ergebnis Abrechnung"
 |Voraussetzungen           a|
 1. Lotterieergebnisse bekannt gegeben
 2. Der Nutzer ist der Gewinner
 |Essenzielle Schritte      a|
-1. Der Manager klickt auf "Geld vergeben"
+1. Der Manager klickt auf "Auswerten"
 2. Berechnen Sie den Betrag, den jeder Benutzer erhält
-3. Geld auf das Benutzerkonto vergeben
+3. Geld auf das Benutzerkonto überweisen
 |Erweiterungen              |-
 |Funktionale Voraussetzungen|[F0023]
 |===
@@ -908,12 +837,13 @@ Eine Fehlermeldung wird angezeigt, um den Benutzer über das Problem zu informie
 |ID                     |**<<AT0020>>**
 |Anwendungsfall         |**<<UC0020>>**
 |Voraussetzungen       a|Ein Benutzer ist nicht angemeldet und besitzt einen Account.
-|Event                 a|Benutzer klickt auf "Registrieren" , füllt das Formular aus und schickt es über "Registrierung abschließen" ab.
+|Event                 a|Benutzer klickt auf "Registrieren", füllt das Formular aus und schickt es über "Registrierung abschließen" ab.
 |Zu erwartendes Ergebnis a|
 - Der Benutzer wird zu einem Willkommenseite weitergeleitet, der eine personalisierte Willkommensnachricht anzeigt.
 - Der Benutzer hat nun Zugriff auf alle Funktionen, die für Benutzer mit der Rolle "Kunde" zugänglich sind.
 - Der Benutzer ist authentifiziert.
 |===
+
 
 [cols="1h, 4"]
 [[AT0021]]
@@ -1053,83 +983,16 @@ image:diagrams/seq_create.svg[seq_create]
 
 image:diagrams/seq_join.svg[seq_join]
 
-[cols="1h, 4"]
-[[AT0120]]
-|===
-|ID                     |**<<AT0120>>**
-|Anwendungsfall         |**<<UC0120>>**
-|Voraussetzungen       a|Ein Benutzer hat sich angemeldet und ist in der Kontoverwaltung.
-|Event                 a|Der Nutzer drückt in der Navigationsleiste der Kontoverwaltung den Button „message“.
-|Zu erwartendes Ergebnis a|
-Der Benutzer kann die empfangenen Nachrichten sehen.
-|===
-
-[cols="1h, 4"]
-[[AT0130]]
-|===
-|ID                     |**<<AT0130>>**
-|Anwendungsfall         |**<<UC0130>>**
-|Voraussetzungen       a|Benutzer hat Lottoschein gekauft
-|Event                 a|Der Administrator drückt in der Navigationsleiste der Kontoverwaltung den Button „Überblick“.
-|Zu erwartendes Ergebnis a|1. Kauft der Nutzer einen Fußball-Lotterieschein, werden die Quoten und der Wettbetrag im „Fußball“ angezeigt.
-2. Kauft der Nutzer einen digitalen Lottoschein, wird die vom Nutzer gewählte Nummer und die Anzahl der gekauften Lottoscheine in „6 aus 49“ angezeigt.
-|===
-
-[cols="1h, 4"]
-[[AT0140]]
-|===
-|ID                     |**<<AT0140>>**
-|Anwendungsfall         |**<<UC0140>>**
-|Voraussetzungen       a|1. Benutzer hat Lotto gekauft
-2. Die Lotterie wurde gezogen oder das Ergebnis des Spiels wurde veröffentlicht
-|Event                 a|None
-|Zu erwartendes Ergebnis a|
-1. Gewinnzahlen oder Fußballspielergebnisse anzeigen
-2. Zeigen Sie die Wettsituation des Benutzers an
-3. Bestimmen Sie, ob der Benutzer gewinnt oder verliert
-|===
-
-image:diagrams/seq_evaluation.svg[seq_evaluation]
-
-[cols="1h, 4"]
-[[AT0150]]
-|===
-|ID                     |**<<AT0150>>**
-|Anwendungsfall         |**<<UC0150>>**
-|Voraussetzungen       a|1. Benutzer hat Lotto gekauft
-2. Die Lotterie wurde gezogen oder das Ergebnis des Spiels wurde veröffentlicht
-|Event                 a|None
-|Zu erwartendes Ergebnis a|
-- Wenn das Guthaben des Benutzerkontos ausreichend ist:
-1. Abbuchung
-2. Benutzer zur Liste hinzufügen
-- Wenn das Guthaben des Benutzers nicht ausreicht:
-Sende Nachrichten
-|===
-
-[cols="1h, 4"]
-[[AT0160]]
-|===
-|ID                     |**<<AT0160>>**
-|Anwendungsfall         |**<<UC0160>>**
-|Voraussetzungen       a|1. Benutzerkonto wurde erfolgreich belastet
-2. Die Lotterie wurde gezogen oder das Ergebnis des Spiels wurde veröffentlicht
-|Event                 a|None
-|Zu erwartendes Ergebnis a|
-- Wenn der Benutzer "gewinnt":
-Benutzer zur Liste hinzufügen
-- Wenn der Benutzer "eingibt":
-nichts tun
-|===
-
 == Glossar
-Sämtliche Begriffe, die innerhalb des Projektes verwendet werden und deren gemeinsames Verständnis aller beteiligten Stakeholder essentiell ist, sollten hier aufgeführt werden.
-Insbesondere Begriffe der zu implementierenden Domäne wurden bereits beschrieben, jedoch gibt es meist mehr Begriffe, die einer Beschreibung bedürfen. +
-Beispiel: Was bedeutet "Kunde"? Ein Nutzer des Systems? Der Kunde des Projektes (Auftraggeber)?
-
-== Offene Punkte
-Offene Punkte werden entweder direkt in der Spezifikation notiert. Wenn das Pflichtenheft zum finalen Review vorgelegt wird, sollte es keine offenen Punkte mehr geben.
-
-|[F0031]
-|Sicherheit -  2-Faktor-Authentifizierung
-|Für die erfolgreiche Anmeldung wird ein Code an die E-Mail-Adresse oder Telefonnummer geschickt, welchen der Nutzer eingeben muss.
+[options="header", cols="2, 4"]
+|===
+|Administrator |Verwalter der Plattform mit besonderer Einsicht in alle Wetten und der Finanzsituation
+|Begriff |Beschreibung
+|Besucher (Visitor) |unregistrierte Person, die die Online-Lotterie besucht
+|Bundesliga |1. Fußballliga Deutschland
+|Gewinngemeinschaft |Gruppe von Nutzern, die gemeinsam Wetten und anteilsmäßige Gewinne erzielen
+|Konto |im System erfasster Datensatz, der personalisierte Online-Wetten ermöglicht
+|Nutzer (User) |registrierte Person mit gültigem Konto
+|Tippschein |abgeschlossene Wette mit gewünschtem Ergebnis
+|Zahlenlotterie |konventionelle Lotterie "6 aus 49" mit Superzahl
+|===
