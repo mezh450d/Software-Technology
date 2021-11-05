@@ -60,5 +60,10 @@ Jede testbezogene Aufgabe muss einem Ansprechpartner zugeordnet werden.
 |U-J-Communitytest-4 |createCommunityWithExistingPassword  |Das Passwort muss eindeutig sein. Der Ersteller muss ein Passwort verwenden, das noch nie benutzt wurde.   |User ist mit Rolle "ROLE_PRIVATEKUNDE". Ein Community mit eingegebene Password schon vorhanden ist. |GEMEINSCHAFTNAME, (existent)GEMEINSCHAFTPASSWORD    |…
 |U-J-Communitytest-5 |createCommunityWithExisitingName   |Der Name muss eindeutig sein. Der Ersteller muss einen Name verwenden, der noch nie benutzt wurde.   |User ist mit Rolle "ROLE_PRIVATEKUNDE". Ein Community mit eingegebenem Name schon vorhanden ist. |(existent)GEMEINSCHAFTNAME, GEMEINSCHAFTPASSWORD  |…
 |U-J-Communitytest-6 |kickoutFromCommunity   |User kann von einem Gemeinschaft entfernen werden.   |User ist Mitglieder von einem Gemeinschaft.     |USERACCOUNT   |User kann nicht mehr in der Mitgliederliste finden.
-|U-J-Communitytest-7 |getCommunityMitglieder   |Prüft ob der Benutzer mit Roller 'Admin' die Mitgliederliste ansehen kann.    |User ist mit Rolle "Admin"   |…    |LISTE VON GEMEINSCHAFTMITGLIEDER  |===
+|U-J-Communitytest-7 |getCommunityMitglieder   |Prüft ob der Benutzer mit Roller 'Admin' die Mitgliederliste ansehen kann.    |User ist mit Rolle "Admin"   |…    |LISTE VON GEMEINSCHAFTMITGLIEDER
+|U-Z-LotteryResultTest-1 |LotteryNotDrawn |Nachdem die Lotterieauslosung bekannt gegeben wurde, sollte der Administrator das Lotterieergebnis einsehen können |   |    |KEINE AUSLOSUNG
+|U-Z-EvaluateTest-1 |UserWinsLottery |Vergleichen Sie das Lotterieergebnis mit der Wettsituation des Benutzers, wenn es übereinstimmt, ist der Benutzer der Gewinner |Benutzer kauft Lottoschein |  |Gewinner
+|U-Z-EvaluateTest-2 |UserLosesLottery |Vergleichen Sie das Lotterieergebnis mit der Wettsituation des Benutzers, wenn es keine Übereinstimmung gibt, ist der Benutzer der Verlierer |Benutzer kauft Lottoschein |   |Verlierer
+|U-Z-WinnerList-1 |UserIsWinner |Finden Sie den Gewinner in der Gewinnerliste |  |die Nummer von Benutzer |Erfolg
+|U-Z-WinnerList-2 |UserIsLoser |Finden Sie den Verlierer in der Gewinnerliste|  |die Nummer von Benutzer |Benutzer existiert nicht
 |===
