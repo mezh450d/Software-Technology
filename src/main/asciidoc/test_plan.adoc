@@ -8,29 +8,36 @@ Wozu dient das Dokument? Zielgruppe?
 == Aufbau der Testbezeichner
 Nach welchem Schema sind die Tests benannt?
 
-*Bsp.*
-
-*U - Unit Test, I - Integrationstest*
-
-*U-1, U-2, I-1*
+* Testbezeichner:
+** U - Unit Test, I - Integrationstest
+* Verantwortlicher
+** J - Jing
+** M - Meng
+** S - Shiyue
+** Z - Ziyi
+* folgendes Schema wird benutzt
+** [Testbezeichner]-[Verantwortlicher]-[Klassenname]-[Methodennummer]
 
 == Test Gegenstände
 
 == Zu testende Funktionalitäten
 
+- Konstruktoren auf invalite Parameter testen
+
+- Funktionen auf invalite Parameter testen
+
 == Nicht zu testende Funktionalitäten
 z.B. Bibliotheken von Drittanbietern (eigene Tests beschränken sich auf Schnittstelle, bzw. Zusammenspiel).
 
 == Herangehensweise
-*Bsp.:*
 
-*Klassen werden mit JUnit getestet.*
-
-*Integrationstest nach Bottom-Up Prinzip*
+- Klassen werden mit JUnit getestet.
 
 == Umgebungsvoraussetzungen
 * Wird spezielle Hardware benötigt?
+- PC mit Tastatur und Maus oder Laptop benötigt
 * Welche Daten müssen bereitgestellt werden? Wie werden die Daten bereitgestellt?
+-
 * Wird zusätzliche Software für das Testen benötigt?
 * Wie kommuniziert die Software während des Testens? Internet? Netzwerk?
 
@@ -40,6 +47,12 @@ Jede testbezogene Aufgabe muss einem Ansprechpartner zugeordnet werden.
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
-|ID |Anwendungsfall |Vorbedingungen |Eingabe |Ausgabe
-|…  |…              |…              |…       |…
+|ID |Methodenname |Anwendungsfall |Vorbedingungen |Eingabe |Ausgabe
+|U-S-LoginTest-1|loginWithFalsePassword     |Vistor sollten das richtige und gültige Passwort eingeben, wenn sie sich einloggen möchten.   |      |        |FALSCHE ODER NICHT EXIST USERNAME/PASSWORD
+|U-S-RegistrationFormTest-1|registerWithInvalidEntry     |Vistor sollten das validierte Eingabe eingeben, wenn sie sich registrieren möchten.   |            |       |INVALIDIERTE EINGABE
+|U-S-RegistrationFormTest-2|createUserAccountWhenRegister |Testen ob auch ein Useraccount erstellt wird, wenn sie erfolg registriert.   |           |       |REGISTER ERFOLG
+|U-S-FinanzenTest-1 |DepositOrWithdrawWithInvalidEntry|Der Benutzer sollte einen validierte Betrag eingeben.|User ist mit Rolle "ROLE_PRIVATEKUNDE"||INVALIDIERTE EINGABE
+|U-S-FinanzenTest-2 |WithdrawOverBalance    |Der Benutzer sollte einen Auszahlungsbetrag eingeben, der dem Saldo nicht übersteigt.|User ist mit Rolle "ROLE_PRIVATEKUNDE"||AUSZAHLUNGSBETRAG ÜBER DEM SALDO
+|U-S-FinanzenTest-3 |BalanceChangeWithDepositOrWithdraw|Der Saldo sollte nach einer Abbuchung oder Aufladung den richtigen Wert anzeigen  |User ist mit Rolle "ROLE_PRIVATEKUNDE"||
+|
 |===
