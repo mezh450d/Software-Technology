@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+    <h1>Hier könnte ihre Werbung stehen</h1>
+    <p sec:authorize="isAuthenticated()" th:text="${'Hi ' + #authentication?.name + ', gimme yur MONEY'}"></p>
+    <form class="item" sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+        <button type="submit" class="ui button" th:text="Logout">Logout</button>
+    </form>
+</body>
+</html>
