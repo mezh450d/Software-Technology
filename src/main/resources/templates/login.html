@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
+		<title>Login</title>
+	</head>
+	<body>
+		<h1>Login:</h1>
+			<form class="ui form" role="form" th:action="@{/login}" method="post">
+
+				<div class="field">
+					<label th:text="Nutzername" for="username">Username</label>
+					<input type="text" id="username" name="username" autofocus="autofocus"/> <br/>
+				</div>
+
+				<div class="field">
+					<label th:text="Passwort" for="password">Password</label>
+					<input type="password" id="password" name="password"/> <br/>
+				</div>
+
+				<button type="submit" th:text="Login" class="ui button">Log in</button>
+			</form>
+		<p>noch kein Konto? hier </p>
+		<a class="item" href="register.html" th:href="@{/register}">registrieren</a>
+	</body>
+</html>

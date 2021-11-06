@@ -23,6 +23,17 @@ public class WelcomeController {
 
 	@GetMapping("/")
 	public String index() {
-		return "welcome";
+		return "index";
 	}
+
+	@GetMapping("/login")
+	public String login() {
+		return "login";
+	}
+
+	@GetMapping("/home")
+	public String home() {
+		return "home";
+	}
+
 }
