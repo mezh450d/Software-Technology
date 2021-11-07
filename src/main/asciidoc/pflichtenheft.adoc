@@ -791,7 +791,7 @@ image:diagrams/gui/finance.jpg[finance, title= "Übersicht Finanzen", align=cent
 == Datenmodell
 
 === Überblick: Klassendiagramm
-image::./diagrams/class-diagram.jpg[class-diagram, title= "UML-Analyse-Klassendiagramm", align=center]
+image::./diagrams/uml-class-diagram.jpg[uml-class-diagram, title= "UML-Analyse-Klassendiagramm", align=center]
 
 === Klassen und Enumerationen
 
