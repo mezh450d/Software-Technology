@@ -23,7 +23,7 @@ public class WelcomeController {
 
 	@GetMapping("/")
 	public String index() {
-		return "index";
+		return "login";
 	}
 
 	@GetMapping("/login")
@@ -35,5 +35,21 @@ public class WelcomeController {
 	public String home() {
 		return "home";
 	}
+
+	@GetMapping("/betting")
+	public String betting() {
+		return "betting";
+	}
+
+	@GetMapping("/community")
+	public String community() {
+		return "community";
+	}
+
+	@GetMapping("/finances")
+	public String finances() {
+		return "finances";
+	}
+
 
 }

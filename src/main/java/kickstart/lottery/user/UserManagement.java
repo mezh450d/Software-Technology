@@ -17,13 +17,6 @@ public class UserManagement {
 	private final UserRepository users;
 	private final UserAccountManagement userAccounts;
 
-	/**
-	 * Creates a new {@link UserManagement} with the given {@link UserRepository} and
-	 * {@link UserAccountManagement}.
-	 *
-	 * @param users must not be {@literal null}.
-	 * @param userAccounts must not be {@literal null}.
-	 */
 	UserManagement(UserRepository users, UserAccountManagement userAccounts) {
 
 		Assert.notNull(users, "UserRepository must not be null!");
@@ -33,12 +26,8 @@ public class UserManagement {
 		this.userAccounts = userAccounts;
 	}
 
-	/**
-	 * Creates a new {@link User} using the information given in the {@link RegistrationForm}.
-	 *
-	 * @param form must not be {@literal null}.
-	 * @return the new {@link User} instance.
-	 */
+
+	//erstellt einen neuen User mit den übergebenen Daten
 	public User createUser(RegistrationForm form) {
 
 		Assert.notNull(form, "Registration form must not be null!");
@@ -49,11 +38,8 @@ public class UserManagement {
 		return users.save(new User(userAccount));
 	}
 
-	/**
-	 * Returns all {@link User}s currently available in the system.
-	 *
-	 * @return all {@link User} entities.
-	 */
+
+	//Übergibt alle abgespeicherten Nutzer
 	public Streamable<User> findAll() {
 		return users.findAll();
 	}

@@ -4,10 +4,12 @@ import javax.validation.constraints.NotEmpty;
 
 public class RegistrationForm {
 
-	@NotEmpty(message = "{RegistrationForm.name.NotEmpty}") //
+	//falls mehr Eingabedaten gewünscht werden, dann hier eintragen
+
+	@NotEmpty(message = "{RegistrationForm.name.NotEmpty}")
 	private final String name;
 
-	@NotEmpty(message = "{RegistrationForm.password.NotEmpty}") //
+	@NotEmpty(message = "{RegistrationForm.password.NotEmpty}")
 	private final String password;
 
 
