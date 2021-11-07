@@ -21,13 +21,7 @@ public class UserDataInitializer implements DataInitializer {
 	private final UserAccountManagement userAccountManagement;
 	private final UserManagement userManagement;
 
-	/**
-	 * Creates a new {@link UserDataInitializer} with the given {@link UserAccountManagement} and
-	 * {@link UserRepository}.
-	 *
-	 * @param userAccountManagement must not be {@literal null}.
-	 * @param userManagement must not be {@literal null}.
-	 */
+
 	UserDataInitializer(UserAccountManagement userAccountManagement, UserManagement userManagement) {
 
 		Assert.notNull(userAccountManagement, "UserAccountManagement must not be null!");
@@ -40,7 +34,7 @@ public class UserDataInitializer implements DataInitializer {
 	@Override
 	public void initialize() {
 
-		// Skip creation if database was already populated
+		// Falls die Datenbank schon Einträge enthält, überspringe die Initialisierung
 		if (userAccountManagement.findByUsername("boss").isPresent()) {
 			return;
 		}
