@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <link th:href="@{/resources/css/style.css}" rel="stylesheet"
           href="../static/resources/css/style.css" type="text/css"/>
-    <title>Welcome</title>
+    <title>Finanzen</title>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 <body>
@@ -33,11 +33,11 @@
 </div>
 
 <section class="main_content">
-    <h1>Überblick</h1>
-    <p sec:authorize="isAuthenticated()" th:text="${'Hi ' + #authentication?.name + ', hier hast du einen Überblick deines Kontos'}"></p>
+    <h1>Finanzen</h1>
+    <p sec:authorize="isAuthenticated()" th:text="${'Hi ' + #authentication?.name + ', hier ist dein Geld zu sehen.'}"></p>
 
 
-    <!-- Hier kommt Alles für den Überblick rein -->
+    <!-- Hier kommt Alles für die Finanzen rein -->
 </section>
 </body>
 </html>

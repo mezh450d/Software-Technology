@@ -1,6 +1,6 @@
 package kickstart.lottery.user;
 
-import javax.validation.Valid;
+import  javax.validation.Valid;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
@@ -25,13 +25,12 @@ public class UserController {
 	@PostMapping("/register")
 	String registerNew(@Valid RegistrationForm form, Errors result) {
 
-
+		//Übergebene Daten werden auf Richtigkeit überprüft
 		if (result.hasErrors()) {
 			return "register";
 		}
 
-		// (｡◕‿◕｡)
-		// Falles alles in Ordnung ist legen wir einen Customer an
+		//Falls keine Fehler bei der Validierung aufgetreten sind, wird ein User mit den angegebenen Daten erstellt
 		userManagement.createUser(form);
 
 		return "redirect:/login";
@@ -42,12 +41,4 @@ public class UserController {
 		return "register";
 	}
 
-	@GetMapping("/users")
-	@PreAuthorize("hasRole('BOSS')")
-	String users(Model model) {
-
-		model.addAttribute("userList", userManagement.findAll());
-
-		return "users";
-	}
 }
