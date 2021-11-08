@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2021 the original author or authors.
+ * Copyright 2013-2020 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,43 +13,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package kickstart.authentication;
+package kickstart.football;
 
+import org.salespointframework.quantity.Quantity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+;
 
 @Controller
-public class WelcomeController {
+class FootballCatalogController {
 
-	@GetMapping("/")
-	public String index() {
-		return "login";
+	private static final Quantity NONE = Quantity.of(0);
+
+	private final FootballCatalog footballCatalog;
+
+	FootballCatalogController(FootballCatalog footballCatalog) {
+
+		this.footballCatalog = footballCatalog;
 	}
 
-	@GetMapping("/login")
-	public String login() {
-		return "login";
+	@GetMapping("/football")
+	String football(Model model) {
+
+		model.addAttribute("catalog", footballCatalog.findByCategory(Category.BUNDESLIGA));
+		model.addAttribute("title", "catalog.dvd.title");
+
+		return "catalog";
 	}
-
-	@GetMapping("/home")
-	public String home() {
-		return "home";
-	}
-
-	@GetMapping("/betting")
-	public String betting() {
-		return "betting";
-	}
-
-	@GetMapping("/community")
-	public String community() {
-		return "community";
-	}
-
-//	@GetMapping("/finances")
-//	public String finances() {
-//		return "finances";
-//	}
-
-
 }
