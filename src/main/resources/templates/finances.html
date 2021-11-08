@@ -36,8 +36,24 @@
     <h1>Finanzen</h1>
     <p sec:authorize="isAuthenticated()" th:text="${'Hi ' + #authentication?.name + ', hier ist dein Geld zu sehen.'}"></p>
 
+        <h2 align="center">Ihr Saldo:<p th:text="${balance}"></p></h2>
 
-    <!-- Hier kommt Alles für die Finanzen rein -->
+        <form name ="finances" role="form" th:object="${form}" th:action="@{/finances}" method="post">
+            <div class="field">
+                <label th:text="Geldbetrag">Geldbetrag</label>
+                <input id="amount" name="amount" type="number" th:field="*{amount}"/> <br/>
+                <label th:text="Note">Note</label>
+                <input id="note" name="note" type="text"  th:field="*{note}"/> <br/>
+            </div>
+            <button type="submit" name="action" value="deposit">Einzahlung</button>
+            <button type="submit" name="action" value="withdraw">Auszahlung</button>
+        </form>
+        <h3>Transaktion</h3>
+        <div th:each="entry, it : ${entries}"  th:with="index = ${it.count}">
+            <div th:text="${index} + '.AMOUNT:' + ${entry.amount}+ '         Note:  ' + ${entry.note} +
+            '            Time:' +${#temporals.format(entry.date,'yyyy-MM-dd hh:mm:ss')}  "></div>
+        </div>
+
 </section>
 </body>
 </html>
