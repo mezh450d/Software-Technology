@@ -35,8 +35,8 @@
 <section class="main_content">
     <h1>Wetten</h1>
     <p sec:authorize="isAuthenticated()" th:text="${'Hi ' + #authentication?.name + ', hier kannst du Wetten abschließen!'}"></p>
-    <li><a href="/football"><i class="fas fa-football"></i>Fußball</a></li>
-
+    <p><a href="6-from-49.html" th:href="@{/6-from-49}" >Lotto</a></p>
+    <p><a href="football.html" th:href="@{/football}" >Fußball</a></p>
 
     <!-- Hier kommt Alles für die Wetten rein -->
 </section>
