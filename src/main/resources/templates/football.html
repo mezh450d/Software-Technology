@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en"  dir="ltr" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <script src="https://kit.fontawesome.com/63a2b78b2b.js" crossorigin="anonymous"></script>
@@ -35,7 +35,9 @@
 <section class="main_content">
     <h1>Wetten</h1>
     <p sec:authorize="isAuthenticated()" th:text="${'Hi ' + #authentication?.name + ', hier kannst du Wetten abschließen!'}"></p>
-    <li><a href="/football"><i class="fas fa-football"></i>Fußball</a></li>
+    <form class="item" sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+        <button type="submit" class="ui button" th:text="Logout">Logout</button>
+    </form>
 
 
     <!-- Hier kommt Alles für die Wetten rein -->
