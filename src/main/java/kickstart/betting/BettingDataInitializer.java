@@ -8,18 +8,18 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
-import java.nio.file.Path;
 import java.time.LocalDateTime;
 
 import static org.salespointframework.core.Currencies.EURO;
 
 @Component
-//@Order(20)
+@Order(3)
 public class BettingDataInitializer implements DataInitializer{
 
 	private static final Logger LOG = LoggerFactory.getLogger(BettingDataInitializer.class);
 
 	private final BettingCatalog bettingCatalog;
+
 
 	BettingDataInitializer(BettingCatalog bettingCatalog) {
 

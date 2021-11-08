@@ -1,8 +1,7 @@
 package kickstart.football;
 
-public class Score implements Result{
-	private final int home;
-	private final int guest;
+public class Score {
+	private final int home, guest;
 
 	public Score(int home, int guest){
 		this.home = home;
@@ -17,13 +16,8 @@ public class Score implements Result{
 		return guest;
 	}
 
-	@Override
-	public String toString(){
-		return "Score: "+home+" : "+guest;
+	public boolean compareScore(Score score){
+		return score.getHome() == home && score.getGuest() == guest;
 	}
 
-	public boolean compare(Data<Score> data) {
-		Score actualScore = data.getResult();
-		return actualScore.getHome() == home && actualScore.getGuest() == getGuest();
-	}
 }
