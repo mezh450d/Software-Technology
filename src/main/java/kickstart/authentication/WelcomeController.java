@@ -46,10 +46,10 @@ public class WelcomeController {
 		return "community";
 	}
 
-	@GetMapping("/finances")
-	public String finances() {
-		return "finances";
-	}
+//	@GetMapping("/finances")
+//	public String finances() {
+//		return "finances";
+//	}
 
 
 }
