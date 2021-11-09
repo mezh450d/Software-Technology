@@ -131,6 +131,9 @@ image::./diagrams/context-diagram.svg[context diagram, title= "Kontextdiagramm",
 === Softwarearchitektur
 * Beschreibung der Architektur anhand der Top-Level-Architektur oder eines Client-Server-Diagramms
 
+=== Benutzeroberfläche
+image::./diagrams/user_interface.svg[user-interface, title= "Benutzeroberfläche", align=center]
+
 === Entwurfsentscheidungen
 * Verwendete Muster
 * Persistenz
@@ -144,13 +147,33 @@ image::./diagrams/context-diagram.svg[context diagram, title= "Kontextdiagramm",
 |===
 
 == Bausteinsicht
-* Entwurfsklassendiagramme der einzelnen Packages
+=== User
+image::./diagrams/class_user.svg[user, title= "User", align=center]
 
 [options="header"]
 |=== 
 |Klasse/Enumeration |Description
 |...|...
 |===
+
+=== Community
+image::./diagrams/class_community.svg[community, title= "Community", align=center]
+
+[options="header"]
+|===
+|Klasse/Enumeration |Description
+|...|...
+|===
+
+=== Betting
+image::./diagrams/class_betting.svg[betting, title= "Betting", align=center]
+
+[options="header"]
+|===
+|Klasse/Enumeration |Description
+|...|...
+|===
+
 
 === Rückverfolgbarkeit zwischen Analyse- und Entwurfsmodell
 _Die folgende Tabelle zeigt die Rückverfolgbarkeit zwischen Entwurfs- und Analysemodell. Falls eine Klasse aus einem externen Framework im Entwurfsmodell eine Klasse des Analysemodells ersetzt,
