@@ -9,6 +9,8 @@
 |===
 |Version | Bearbeitungsdatum   | Autor 
 |0.1	| 04.11.2021 | Nick
+|0.2    | 09.11.2021 | Nick
+|0.3    | 10.11.2021 | Hannes, Nick
 |===
 
 == Einführung und Ziele
@@ -131,19 +133,37 @@ image::./diagrams/context-diagram.svg[context diagram, title= "Kontextdiagramm",
 === Softwarearchitektur
 * Beschreibung der Architektur anhand der Top-Level-Architektur oder eines Client-Server-Diagramms
 
-=== Benutzeroberfläche
+=== Entwurfsentscheidungen
+==== Verwendete Muster
+
+- Spring MVC
+
+==== Persistenz
+
+Die Anwendung verwendet Hibernate Annotation um die Java-Klassen in einer Datenbank zu hinterlegen. Als Datenbank wird H2 benutzt. Im Normalzustand ist die Funktion aktiviert. In der Datei _application.properties_ kann die automatische Speicherung deaktiviert werden.
+
+==== Benutzeroberfläche
 image::./diagrams/user_interface.svg[user-interface, title= "Benutzeroberfläche", align=center]
 
-=== Entwurfsentscheidungen
-* Verwendete Muster
-* Persistenz
-* Benutzeroberfläche
-* Verwendung externer Frameworks
+=== Verwendung externer Frameworks
 
 [options="header", cols="1,2"]
 |===
 |Externes Package |Verwendet von (Klasse der eigenen Anwendung)
-|... |... 
+|salespointframework.catalog |...
+|salespointframework.core |...
+|salespointframework.inventory |...
+|salespointframework.order |...
+|salespointframework.payment |...
+|salespointframework.SalespointSecurityConfiguration |lottery.WebSecurityConfiguration
+|salespointframework.userAccount |
+|springframework.boot |lottery.Application
+|springframework.data |
+|springframework.security |
+|springframework.ui |
+|springframework.util |
+|springframework.validation |
+|springframework.web |lottery.LotterywebConfiguration
 |===
 
 == Bausteinsicht
@@ -171,7 +191,17 @@ image::./diagrams/class_betting.svg[betting, title= "Betting", align=center]
 [options="header"]
 |===
 |Klasse/Enumeration |Description
-|...|...
+|BettingController |SpringMVC Controller welcher mögliche Wetten anzeigt
+|BettingDataInitializer |Eine Implementierung des DataInitializer um Standard-Daten zu generieren
+|BettingCatalog |Eine Erweiterung von Catalog, um bestimmte Datensätze zu erhalten
+|Bet |eine gesetzte Wette welche durch Formulare erstellt wird
+|Category |Enumeration um Wetten einfach zu unterscheiden
+|Data |Überklasse für alle abschließbaren Wetten
+|Result |Interface für alle Ergebnisarten
+|Lottery |eine Lotterieziehung, auf das eine Wette abgeschlossen wird
+|FootballMatch |ein Fußballspiel, auf das eine Wette abgeschlossen wird
+|Draw |ein Lotterieziehungsergebnis
+|Score |ein Fußballergebnis
 |===
 
 
