@@ -41,10 +41,10 @@ public class WelcomeController {
 		return "betting";
 	}
 
-	@GetMapping("/community")
-	public String community() {
-		return "community";
-	}
+	//@GetMapping("/community")
+	//public String community() {
+//		return "community";
+//	}
 
 //	@GetMapping("/finances")
 //	public String finances() {

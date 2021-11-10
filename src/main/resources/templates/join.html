@@ -33,37 +33,29 @@
 </div>
 
 <section class="main_content">
-    <h1>Gemeinschaft</h1>
-    <p sec:authorize="isAuthenticated()" th:text="${'Hi ' + #authentication?.name + ', hier stehen deine Gemeinschaften'}"></p>
+
+    <form method="post" role="form" class="ui form" id="form" th:action="@{/join}" th:object="${registrationForm}">
 
 
-    <!-- Hier kommt Alles für die Gemeinschaften rein -->
-    <!-- Hier ist nicht alles Korrekt, weil wir noch kein html(ueberblick und wetten) fuer Jede Community-->
+        <div class="field">
+            <label for="name">Name</label>
+            <input id="name" name="name" th:field="*{name}" th:errorclass="fieldError" type="text" required="required"/><br/>
+            <div class="ui negative message" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">
+                <p>Der Name darf nicht leer sein.</p>
+            </div>
+        </div>
 
-    <table>
-        <thead>
-        <tr th:each="community : ${communityList} ">
-            <td th:text="${community.name}">CommunityName</td>
-            <td>
-                <a href="/home">
-                    <button>Überblick</button>
-                </a>
-            </td>
-            <td>
-                <a href="/betting">
-                    <button>Wetten</button>
-                </a>
-            </td>
-        </tr>
-        </thead>
-    </table>
+        <div class="field">
+            <label th:text="#{password}" for="password">Passwort</label>
+            <input id="password" name="password" th:field="*{password}" th:errorclass="fieldError" type="password"
+                   required="required"/><br/>
+            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Das Passwort darf
+                nicht leer sein.</p>
+        </div>
 
-    <a href="/create">
-        <button>erstellen</button>
-    </a>
-    <a href="/join">
-        <button>beitreten</button>
-    </a>
+
+        <button type="submit" class="ui button" th:text="#{community.submit}">JoinCommunity</button>
+    </form>
 </section>
 </body>
 </html>
