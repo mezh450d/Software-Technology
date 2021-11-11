@@ -1,19 +1,22 @@
 package kickstart.community;
 
-import kickstart.lottery.user.User;
-import kickstart.lottery.user.UserManagement;
 import org.salespointframework.useraccount.Password;
 import org.salespointframework.useraccount.UserAccountManagement;
 import org.springframework.data.util.Streamable;
+import org.springframework.security.core.parameters.P;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+@Service
+@Transactional
 public class CommunityManagement {
 
 	private final UserAccountManagement communityAccounts;
 
 	private final CommunityRepository communities;
 
-	CommunityManagement(UserAccountManagement communityAccounts, CommunityRepository communities){
+	public CommunityManagement(UserAccountManagement communityAccounts, CommunityRepository communities){
 
 		Assert.notNull(communities, "CommunityRepository must not be null!");
 		Assert.notNull(communityAccounts, "CommunityAccountManagement must not be null!");
@@ -22,7 +25,7 @@ public class CommunityManagement {
 		this.communityAccounts=communityAccounts;
 	}
 
-	public Community createCommunity(RegistrationForm form){
+	public Community createCommunity(CreateForm form){
 		Assert.notNull(form, "Registration form must not be null!");
 
 		var password = Password.UnencryptedPassword.of(form.getPassword());
@@ -32,12 +35,13 @@ public class CommunityManagement {
 
 	}
 
-	public Community findCommunity(RegistrationForm form){
+	public Community findCommunity(CreateForm form){
 
 		Streamable<Community>communityliste=communities.findAll();
+		var password = Password.UnencryptedPassword.of(form.getPassword());
 		for(Community community:communityliste){
-			if(community.getName()==form.getName()) {
-				if (community.getPassword().toString() == form.getPassword()) {
+			if(community.getName().equals(form.getName())) {
+				if (community.getPassword().equals(password) ) {
 					return community;
 				}
 			}

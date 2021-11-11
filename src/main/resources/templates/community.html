@@ -39,10 +39,13 @@
 
     <!-- Hier kommt Alles für die Gemeinschaften rein -->
     <!-- Hier ist nicht alles Korrekt, weil wir noch kein html(ueberblick und wetten) fuer Jede Community-->
+    <!-- Hier wird statt nur Communities fuer loginuser alle communities angezeigt, weil es noch ein Problem ueber join gibt-->
 
-    <table>
+    <h2 align="center">Ihre Gemeinschäfte:</h2>
+        <h3 align="center">Jetzt aber alle Gemeinschäfte</h3>
+    <table align="center " class="table">
         <thead>
-        <tr th:each="community : ${communityList} ">
+        <tr th:each="community : ${communitiesall} ">
             <td th:text="${community.name}">CommunityName</td>
             <td>
                 <a href="/home">
@@ -58,11 +61,11 @@
         </thead>
     </table>
 
-    <a href="/create">
-        <button>erstellen</button>
+    <a  href="/create">
+        <button  class="button_slide slide_right">erstellen</button>
     </a>
-    <a href="/join">
-        <button>beitreten</button>
+    <a  href="/join">
+        <button  class="button_slide slide_right">beitreten</button>
     </a>
 </section>
 </body>
