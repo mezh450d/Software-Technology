@@ -1,19 +1,23 @@
 package kickstart.finance;
 
+import com.mysema.commons.lang.Assert;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class FinanceForm {
 	public  @Id
 	@GeneratedValue
 	long id;
 	private LocalDateTime date;
-	public   Double amount, balance;
+	@NotNull(message = "amount cannot be null.")
+	@Min(value = 0)
+	public  Double amount;
 	public  String note;
 	public static Map<Long, FinanceEntry> ALL_AMOUNT=new HashMap<Long, FinanceEntry>();
 	public static List<Double> amounts = new ArrayList<>();
@@ -49,6 +53,24 @@ public class FinanceForm {
 
 	public String getNote(){
 		return note;
+	}
+
+	public Double calculateBalance(){
+		FinanceEntry ff = FinanceForm.ALL_AMOUNT.get(getId());
+
+		if (ff == null) {
+			ff = new FinanceEntry();
+			FinanceForm.ALL_AMOUNT.put(getId(), ff);
+		}
+		ff.setBalance(0.0);
+		Iterable<Double> amountsWithoutSign = getAmounts();
+		Iterator<Double> iterator = amountsWithoutSign.iterator() ;
+		System.out.println(amountsWithoutSign);
+		while (iterator.hasNext() ) {
+			ff.setBalance(ff.balance + iterator.next());
+		}
+//		System.out.println(ff.balance);
+		return ff.balance;
 	}
 
 
