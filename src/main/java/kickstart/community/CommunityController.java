@@ -3,28 +3,28 @@ package kickstart.community;
 import kickstart.lottery.user.User;
 import org.salespointframework.useraccount.web.LoggedIn;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.Assert;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
-import java.util.List;
 
+@Controller
 public class CommunityController {
 
 	private final CommunityManagement communityManagement;
 
-	public CommunityController(CommunityManagement communityManagement){
+	CommunityController(CommunityManagement communityManagement){
 
-		Assert.notNull(communityManagement, "CommunityManagement must not be null!");
+//		Assert.notNull(communityManagement, "CommunityManagement must not be null!");
 		this.communityManagement=communityManagement;
 
 	}
 
 	@PostMapping("/create")
-	String createNew(@Valid RegistrationForm form, Errors result) {
+	String createNew(@Valid CreateForm form, @LoggedIn User user, Errors result) {
 
 
 		if (result.hasErrors()) {
@@ -37,7 +37,7 @@ public class CommunityController {
 	}
 
 	@GetMapping("/create")
-	String create(Model model, RegistrationForm form) {
+	String create(Model model, CreateForm form) {
 		return "create";
 	}
 
@@ -52,12 +52,13 @@ public class CommunityController {
 
 	@GetMapping("/community")
 	public String community(@LoggedIn User user, Model model) {
+		model.addAttribute("communitiesall",communityManagement.findAll());
 		model.addAttribute("communityList",user.getCommunityList());
 		return "community";
 	}
 
 	@PostMapping("/join")
-	String join(@Valid RegistrationForm form, @LoggedIn User user, Errors result){
+	String join(@Valid CreateForm form, @LoggedIn User user, Errors result){
 		if(result.hasErrors()){
 			return "join";
 		}
@@ -71,7 +72,7 @@ public class CommunityController {
 	}
 
 	@GetMapping("/join")
-	String join(Model model, RegistrationForm form) {
+	String join(Model model, CreateForm form) {
 		return "join";
 	}
 }

@@ -15,7 +15,10 @@
  */
 package kickstart.authentication;
 
+import kickstart.lottery.user.User;
+import org.salespointframework.useraccount.web.LoggedIn;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
@@ -41,10 +44,6 @@ public class WelcomeController {
 		return "betting";
 	}
 
-	//@GetMapping("/community")
-	//public String community() {
-//		return "community";
-//	}
 
 //	@GetMapping("/finances")
 //	public String finances() {

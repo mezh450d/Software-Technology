@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 @Entity
-@Table(name= "Community")
+//@Table(name= "Community")
 public class Community {
 
 	private @Id @GeneratedValue long id;
@@ -20,6 +20,8 @@ public class Community {
 
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<User>users =new ArrayList<>();
+
+	public Community(){}
 
 	public Community(String name, org.salespointframework.useraccount.Password.EncryptedPassword password){
 		this.name=name;
