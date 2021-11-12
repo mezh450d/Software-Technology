@@ -27,8 +27,8 @@ class FootballCatalogController {
 
 	@GetMapping("/football")
 	String football(FootballCatalog catalog, Model model) {
-		//model.addAttribute("matches", catalog.findByCategory(Category.BUNDESLIGA));
-		model.addAttribute("matches", Arrays.asList(
+		model.addAttribute("matches", catalog.findByCategory(Category.BUNDESLIGA));
+		/* model.addAttribute("matches", Arrays.asList(
 				new FootballMatch("FCB-SCF", Money.of(1, EURO),
 						LocalDateTime.of(2021, 11, 7, 15, 30),
 						Category.BUNDESLIGA, "FC Bayern", "SC Freiburg"),
@@ -38,7 +38,7 @@ class FootballCatalogController {
 				new FootballMatch("RBL-BVB", Money.of(1, EURO),
 						LocalDateTime.of(2021, 11, 7, 18, 30),
 						Category.BUNDESLIGA,"RB Leipzig", "Borussia Dortmund")
-				));
+				)); */
 		return "football";
 	}
 
