@@ -45,18 +45,33 @@
             <th scope="col"></th>
             <th scope="col"></th>
             <th scope="col">Gast</th>
+            <th scope="col">Wettbetrag</th>
             <th scope="col">Button</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="match : ${matches}">
-            <th th:text="${match.getDate().toString()}"> </th>
-            <th th:text="${match.getHome()}"> </th>
-            <th> </th>
-            <th> </th>
-            <th th:text="${match.getGuest()}"> </th>
-            <th> </th>
-        </tr>
+        <form method="post" th:action="@{/home}">
+            <tr th:each="match : ${matches}">
+                <input type="hidden" name="id" value="0" th:value="${match.getId()}"/>
+                <th th:text="${match.getDate().toString()}"> </th>
+                <th th:text="${match.getHome()}"> </th>
+                <th>
+                    <input id="home_score" type="number" name="home_score" min="0" max="20" step="1" value="0"/>
+                </th>
+                <th>
+                    <input id="guest_score" type="number" name="guest_score" min="0" max="20" step="1" value="0"/>
+                </th>
+                <th th:text="${match.getGuest()}"> </th>
+                <th>
+                    <input id="amount" type="number" name="amount" min="0" step="1" value="1"/>
+                </th>
+                <th>
+                    <button type="submit"><span> Wetten!</span></button>
+                </th>
+            </tr>
+
+        </form>
+
         </tbody>
     </table>
 </section>
