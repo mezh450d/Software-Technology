@@ -66,6 +66,10 @@ public class Application {
 			http.authorizeRequests().antMatchers("/**").permitAll().and().//
 					formLogin().loginPage(LOGIN_ROUTE).defaultSuccessUrl("/home").loginProcessingUrl(LOGIN_ROUTE).and(). //
 					logout().logoutUrl("/logout").logoutSuccessUrl("/");
+			http
+					.headers()
+					.frameOptions().sameOrigin()
+					.httpStrictTransportSecurity().disable();
 		}
 	}
 }

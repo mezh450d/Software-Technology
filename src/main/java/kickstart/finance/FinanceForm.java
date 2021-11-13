@@ -57,7 +57,7 @@ public class FinanceForm {
 
 	public Double calculateBalance(){
 		FinanceEntry ff = FinanceForm.ALL_AMOUNT.get(getId());
-
+		double tmpBalance;
 		if (ff == null) {
 			ff = new FinanceEntry();
 			FinanceForm.ALL_AMOUNT.put(getId(), ff);
@@ -66,13 +66,14 @@ public class FinanceForm {
 		Iterable<Double> amountsWithoutSign = getAmounts();
 		Iterator<Double> iterator = amountsWithoutSign.iterator() ;
 		System.out.println(amountsWithoutSign);
-		while (iterator.hasNext() ) {
+		while (iterator.hasNext()) {
 			ff.setBalance(ff.balance + iterator.next());
+//				if(ff.balance < 0){
+//					ff.setBalance(ff.balance + iterator.next());
+//				}
 		}
-//		System.out.println(ff.balance);
 		return ff.balance;
 	}
-
 
 	@Override
 	public String toString(){

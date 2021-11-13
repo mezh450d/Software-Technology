@@ -24,7 +24,7 @@ public class FinanceController {
 	}
 
 	@GetMapping(path = "/finances")
- 	String finances(Model model, FinanceForm form) {
+	String finances(Model model, FinanceForm form) {
 
 		FinanceEntry ff = FinanceForm.ALL_AMOUNT.get(form.getId());
 		Double balance = 0.0;
@@ -37,12 +37,12 @@ public class FinanceController {
 		model.addAttribute("balance", balance);
 
 		return "finances";
-		}
+	}
 
 	@PostMapping(path = "/finances")
 	String finance(@Valid @ModelAttribute("form") FinanceForm form, Errors errors, Model model,
 				   @RequestParam(value="action", required=true) String action, BindingResult result) {
-
+		FinanceEntry ff = FinanceForm.ALL_AMOUNT.get(form.getId());
 		if (errors.hasErrors() ) {
 			return finances(model, form);
 		}
@@ -52,16 +52,18 @@ public class FinanceController {
 			finance.save(form.toNewEntry());
 		}
 		if (action.equals("withdraw")) {
+
+			if (form.getAmount() <= ff.getBalance()){
+
 			form.addAmount(-(form.getAmount()));
-			finance.save(form.toNewEntry1());
+			System.out.println(form.calculateBalance());
+			if (form.calculateBalance()>=0){
+				finance.save(form.toNewEntry1());
+			}}
 		}
 
-		if(form.calculateBalance() < 0){
-			errors.addAllErrors(errors);
-			return finances(model, form);
-		}
-		System.out.println(form.calculateBalance());
-			form.calculateBalance();
+		form.calculateBalance();
+
 
 		return "redirect:/finances";
 	}
