@@ -111,7 +111,7 @@ Der Hauptnutzer der Anwendung sollen jegliche Menschen aus dem In- und Ausland s
 == Kontextabgrenzung
 
 === Kontextdiagramm
-image::./diagrams/context-diagram.svg[context diagram, title= "Kontextdiagramm", align=center]
+image::./diagrams/developer_docu/context-diagram.svg[context diagram, title= "Kontextdiagramm", align=center]
 
 
 == Lösungsstrategie
@@ -143,7 +143,7 @@ image::./diagrams/context-diagram.svg[context diagram, title= "Kontextdiagramm",
 Die Anwendung verwendet Hibernate Annotation um die Java-Klassen in einer Datenbank zu hinterlegen. Als Datenbank wird H2 benutzt. Im Normalzustand ist die Funktion aktiviert. In der Datei _application.properties_ kann die automatische Speicherung deaktiviert werden.
 
 ==== Benutzeroberfläche
-image::./diagrams/user_interface.svg[user-interface, title= "Benutzeroberfläche", align=center]
+image::./diagrams/developer_docu/user_interface.svg[user-interface, title= "Benutzeroberfläche", align=center]
 
 === Verwendung externer Frameworks
 
@@ -167,8 +167,17 @@ image::./diagrams/user_interface.svg[user-interface, title= "Benutzeroberfläche
 |===
 
 == Bausteinsicht
+=== Lottery
+image::./diagrams/developer_docu/class_lottery.svg[class_lottery, title= "Lottery", align=center]
+
+[options="header"]
+|===
+|Klasse/Enumeration |Description
+|...|...
+|===
+
 === User
-image::./diagrams/class_user.svg[user, title= "User", align=center]
+image::./diagrams/developer_docu/class_user.svg[class_user, title= "User", align=center]
 
 [options="header"]
 |=== 
@@ -177,7 +186,7 @@ image::./diagrams/class_user.svg[user, title= "User", align=center]
 |===
 
 === Community
-image::./diagrams/class_community.svg[community, title= "Community", align=center]
+image::./diagrams/developer_docu/class_community.svg[class_community, title= "Community", align=center]
 
 [options="header"]
 |===
@@ -186,7 +195,7 @@ image::./diagrams/class_community.svg[community, title= "Community", align=cente
 |===
 
 === Betting
-image::./diagrams/class_betting.svg[betting, title= "Betting", align=center]
+image::./diagrams/developer_docu/class_betting.svg[class_betting, title= "Betting", align=center]
 
 [options="header"]
 |===
@@ -202,6 +211,15 @@ image::./diagrams/class_betting.svg[betting, title= "Betting", align=center]
 |FootballMatch |ein Fußballspiel, auf das eine Wette abgeschlossen wird
 |Draw |ein Lotterieziehungsergebnis
 |Score |ein Fußballergebnis
+|===
+
+=== Finance
+image::./diagrams/developer_docu/class_finance.svg[class_finance, title= "Finance", align=center]
+
+[options="header"]
+|===
+|Klasse/Enumeration |Description
+|...|...
 |===
 
 
@@ -220,7 +238,16 @@ wird die Art der Verwendung dieser externen Klasse in der Spalte *Art der Verwen
 |===
 
 == Laufzeitsicht
-* Darstellung der Komponenteninteraktion anhand eines Sequenzdiagramms, welches die relevantesten Interaktionen darstellt.
+=== User
+
+=== Community
+image::./diagrams/developer_docu/seq_community.svg[seq_community, title= "Community-Ablauf", align=center]
+
+=== Betting
+image::./diagrams/developer_docu/seq_betting.svg[seq_betting, title= "Betting-Ablauf", align=center]
+
+=== Finance
+
 
 == Technische Schulden
 * Auflistung der nicht erreichten Quality Gates und der zugehörigen SonarQube Issues zum Zeitpunkt der Abgabe
