@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en"  dir="ltr" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <script src="https://kit.fontawesome.com/63a2b78b2b.js" crossorigin="anonymous"></script>
@@ -35,12 +35,30 @@
 <section class="main_content">
     <h1>Wetten</h1>
     <p sec:authorize="isAuthenticated()" th:text="${'Hi ' + #authentication?.name + ', hier kannst du Wetten abschließen!'}"></p>
-    <form class="item" sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
-        <button type="submit" class="ui button" th:text="Logout">Logout</button>
-    </form>
 
 
-    <!-- Hier kommt Alles für die Wetten rein -->
+    <table>
+        <thead>
+        <tr>
+            <th scope="col">Datum</th>
+            <th scope="col">Heim</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col">Gast</th>
+            <th scope="col">Button</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="match : ${matches}">
+            <th th:text="${match.getDate().toString()}"> </th>
+            <th th:text="${match.getHome()}"> </th>
+            <th> </th>
+            <th> </th>
+            <th th:text="${match.getGuest()}"> </th>
+            <th> </th>
+        </tr>
+        </tbody>
+    </table>
 </section>
 </body>
 </html>

@@ -15,30 +15,39 @@
  */
 package kickstart.football;
 
+import org.javamoney.moneta.Money;
 import org.salespointframework.quantity.Quantity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-;
+;import java.time.LocalDateTime;
+import java.util.Arrays;
+
+import static org.salespointframework.core.Currencies.EURO;
 
 @Controller
 class FootballCatalogController {
 
-	private static final Quantity NONE = Quantity.of(0);
-
 	private final FootballCatalog footballCatalog;
 
 	FootballCatalogController(FootballCatalog footballCatalog) {
-
 		this.footballCatalog = footballCatalog;
 	}
 
 	@GetMapping("/football")
-	String football(Model model) {
-
-		model.addAttribute("catalog", footballCatalog.findByCategory(Category.BUNDESLIGA));
-		model.addAttribute("title", "catalog.dvd.title");
-
-		return "catalog";
+	String football(FootballCatalog catalog, Model model) {
+		//model.addAttribute("matches", catalog.findByCategory(Category.BUNDESLIGA));
+		model.addAttribute("matches", Arrays.asList(
+				new FootballMatch("FCB-SCF", Money.of(1, EURO),
+						LocalDateTime.of(2021, 11, 7, 15, 30),
+						Category.BUNDESLIGA, "FC Bayern", "SC Freiburg"),
+				new FootballMatch("Wol-FCA", Money.of(1, EURO),
+						LocalDateTime.of(2021, 11, 7, 15, 30),
+						Category.BUNDESLIGA,"Wolfsburg", "FC Augsburg"),
+				new FootballMatch("RBL-BVB", Money.of(1, EURO),
+						LocalDateTime.of(2021, 11, 7, 18, 30),
+						Category.BUNDESLIGA,"RB Leipzig", "Borussia Dortmund")
+				));
+		return "football";
 	}
 }
