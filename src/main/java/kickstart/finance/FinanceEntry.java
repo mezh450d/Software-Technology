@@ -18,6 +18,7 @@ public class FinanceEntry {
 	public   Double balance;
 	public  String note;
 	private LocalDateTime date;
+
 	@SuppressWarnings("unused")
 	FinanceEntry() {
 		this.amount = null;
