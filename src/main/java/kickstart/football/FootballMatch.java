@@ -17,6 +17,7 @@ package kickstart.football;
 
 import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.Product;
+import org.salespointframework.catalog.ProductIdentifier;
 
 import javax.persistence.Entity;
 import java.time.LocalDateTime;
@@ -29,6 +30,7 @@ public class FootballMatch extends Product {
 	private LocalDateTime date;
 	private Category category;
 	private int homeScore, guestScore;
+	private Boolean set = false;
 
 	@SuppressWarnings({ "unused", "deprecation" })
 	private FootballMatch() {}
@@ -42,7 +44,6 @@ public class FootballMatch extends Product {
 		this.home = home;
 		this.guest = guest;
 	}
-
 	public LocalDateTime getDate() {
 		return date;
 	}
@@ -52,8 +53,10 @@ public class FootballMatch extends Product {
 	}
 
 	public void setResult(Score result) {
+		if (set) return;
 		this.homeScore = result.getHome();
 		this.guestScore = result.getGuest();
+		set = true;
 	}
 
 	public String getHome() {
@@ -63,6 +66,8 @@ public class FootballMatch extends Product {
 	public String getGuest() {
 		return guest;
 	}
+
+	public Boolean isSet() { return set; }
 
 	@Override
 	public String toString(){

@@ -20,4 +20,8 @@ public class Score {
 		return score.getHome() == home && score.getGuest() == guest;
 	}
 
+	@Override
+	public String toString(){
+		return home + " : " + guest;
+	}
 }

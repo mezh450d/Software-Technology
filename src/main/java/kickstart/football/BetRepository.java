@@ -5,11 +5,11 @@ import org.springframework.data.util.Streamable;
 
 import java.util.Optional;
 
-interface FootballMatchRepository extends CrudRepository<FootballMatch, Long> {
+interface BetRepository extends CrudRepository<FootballBet, Long> {
 
 	@Override
-	Optional<FootballMatch> findById(Long aLong);
+	Optional<FootballBet> findById(Long aLong);
 
 	@Override
-	Streamable<FootballMatch> findAll();
+	Streamable<FootballBet> findAll();
 }
