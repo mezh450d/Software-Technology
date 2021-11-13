@@ -1,8 +1,10 @@
 package kickstart.finance;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
 import java.time.LocalDateTime;
 
 
@@ -11,9 +13,12 @@ import java.time.LocalDateTime;
 public class FinanceEntry {
 
 	public  @Id @GeneratedValue long id;
-	public   Double amount, balance;
+	public   Double amount;
+	@Min(value = 0)
+	public   Double balance;
 	public  String note;
 	private LocalDateTime date;
+
 	@SuppressWarnings("unused")
 	FinanceEntry() {
 		this.amount = null;

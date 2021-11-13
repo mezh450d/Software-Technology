@@ -46,6 +46,11 @@ public class WelcomeController {
 		return "community";
 	}
 
+	@GetMapping("/number")
+	public String number() {
+		return "number";
+	}
+
 //	@GetMapping("/finances")
 //	public String finances() {
 //		return "finances";

@@ -7,7 +7,9 @@ import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,26 +24,26 @@ public class FinanceController {
 	}
 
 	@GetMapping(path = "/finances")
- 	String finances(Model model, FinanceForm form) {
+	String finances(Model model, FinanceForm form) {
 
 		FinanceEntry ff = FinanceForm.ALL_AMOUNT.get(form.getId());
 		Double balance = 0.0;
 		if(ff != null) {
 			balance = ff.getBalance();
 		}
+
 		model.addAttribute("entries", finance.findAll());
 		model.addAttribute("form", form);
 		model.addAttribute("balance", balance);
 
-
 		return "finances";
-		}
+	}
 
 	@PostMapping(path = "/finances")
 	String finance(@Valid @ModelAttribute("form") FinanceForm form, Errors errors, Model model,
-				   @RequestParam(value="action", required=true) String action) {
-
-		if (errors.hasErrors()) {
+				   @RequestParam(value="action", required=true) String action, BindingResult result) {
+		FinanceEntry ff = FinanceForm.ALL_AMOUNT.get(form.getId());
+		if (errors.hasErrors() ) {
 			return finances(model, form);
 		}
 
@@ -50,23 +52,19 @@ public class FinanceController {
 			finance.save(form.toNewEntry());
 		}
 		if (action.equals("withdraw")) {
+
+			if (form.getAmount() <= ff.getBalance()){
+
 			form.addAmount(-(form.getAmount()));
-			finance.save(form.toNewEntry1());
-
+			System.out.println(form.calculateBalance());
+			if (form.calculateBalance()>=0){
+				finance.save(form.toNewEntry1());
+			}}
 		}
 
-		FinanceEntry ff = FinanceForm.ALL_AMOUNT.get(form.getId());
-		if (ff == null) {
-			ff = new FinanceEntry();
-			FinanceForm.ALL_AMOUNT.put(form.getId(), ff);
-		}
-		ff.setBalance(0.0);
-		Iterable<Double> amountsWithoutSign = form.getAmounts();
-		Iterator<Double> iterator = amountsWithoutSign.iterator() ;
-		System.out.println(amountsWithoutSign);
-		while (iterator.hasNext()) {
-			ff.setBalance(ff.balance + iterator.next());
-		}
+		form.calculateBalance();
+
+
 		return "redirect:/finances";
 	}
 
@@ -75,7 +73,6 @@ public class FinanceController {
 
 		model.addAttribute("entry", finance.save(form.toNewEntry()));
 		model.addAttribute("index", finance.count());
-
 		return "finances :: entry";
 	}
 
