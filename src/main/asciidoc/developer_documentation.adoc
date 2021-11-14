@@ -133,7 +133,7 @@ image::./diagrams/developer_docu/context-diagram.svg[context diagram, title= "Ko
 |===
 
 === Softwarearchitektur
-image::./diagrams/developer_docu/top-level-archtiektur.svg[top-level-architecture, title= "Top-Level-Architektur", align=center]
+image::./diagrams/developer_docu/top-level-architecture.svg[top-level-architecture, title= "Top-Level-Architektur", align=center]
 === Entwurfsentscheidungen
 ==== Verwendete Muster
 
@@ -151,30 +151,30 @@ image::./diagrams/developer_docu/user_interface.svg[user-interface, title= "Benu
 [options="header", cols="1,2"]
 |===
 |Externes Package |Verwendet von (Klasse der eigenen Anwendung)
-|salespointframework.catalog |lottery.Betting
+|salespointframework.catalog |betting.Betting
 |salespointframework.core a|
-- lottery.UserDataInitializer
-- lottery.BetDataInitializer
-|salespointframework.payment |lottery.Finance
+- user.UserDataInitializer
+- betting.BetDataInitializer
+|salespointframework.payment |finance.Finance
 |salespointframework.SalespointSecurityConfiguration |lottery.WebSecurityConfiguration
-|salespointframework.userAccount |lottery.User
+|salespointframework.userAccount |user.User
 |springframework.boot |lottery.Application
 |springframework.data a|
-- lottery.BetRepository
-- lottery.CommunityRepository
-- lottery.FinanceRepository
-- lottery.FootballBetCatalog
-- lottery.NumberLotteryRepository
-- lottery.UserRepository
+- betting.BetRepository
+- community.CommunityRepository
+- finance.FinanceRepository
+- football.FootballBetCatalog
+- numberLottery.NumberLotteryRepository
+- user.UserRepository
 |springframework.security |lottery.WebSecurityConfiguration
 |springframework.ui a|
-- lottery.BetController
-- lottery.CommunityController
-- lottery.FinanceController
-- lottery.UserController
+- betting.BetController
+- community.CommunityController
+- finance.FinanceController
+- user.UserController
 |springframework.validation a|
-- lottery.CommunityController
-- lottery.UserController
+- community.CommunityController
+- user.UserController
 |springframework.web |lottery.LotterywebConfiguration
 |===
 
@@ -182,7 +182,7 @@ image::./diagrams/developer_docu/user_interface.svg[user-interface, title= "Benu
 === Lottery
 image::./diagrams/developer_docu/class_lottery.svg[class_lottery, title= "Lottery", align=center]
 
-[options="header"]
+[options="header", cols="1,2"]
 |===
 |Klasse/Enumeration |Description
 |Lottery|zentrale Anwendungsklasse um die Anwendung zu starten
@@ -193,7 +193,7 @@ image::./diagrams/developer_docu/class_lottery.svg[class_lottery, title= "Lotter
 === User
 image::./diagrams/developer_docu/class_user.svg[class_user, title= "User", align=center]
 
-[options="header"]
+[options="header", cols="1,2"]
 |=== 
 |Klasse/Enumeration |Description
 |...|...
@@ -202,7 +202,7 @@ image::./diagrams/developer_docu/class_user.svg[class_user, title= "User", align
 === Community
 image::./diagrams/developer_docu/class_community.svg[class_community, title= "Community", align=center]
 
-[options="header"]
+[options="header", cols="1,2"]
 |===
 |Klasse/Enumeration |Description
 |...|...
@@ -211,7 +211,7 @@ image::./diagrams/developer_docu/class_community.svg[class_community, title= "Co
 === Betting
 image::./diagrams/developer_docu/class_betting.svg[class_betting, title= "Betting", align=center]
 
-[options="header"]
+[options="header", cols="1,2"]
 |===
 |Klasse/Enumeration |Description
 |BettingController |SpringMVC Controller welcher mögliche Wetten anzeigt
@@ -230,7 +230,7 @@ image::./diagrams/developer_docu/class_betting.svg[class_betting, title= "Bettin
 === Finance
 image::./diagrams/developer_docu/class_finance.svg[class_finance, title= "Finance", align=center]
 
-[options="header"]
+[options="header", cols="1,2"]
 |===
 |Klasse/Enumeration |Description
 |FinanceController|SpringMVC Controller welcher Finanztransaktionen anzeigt
@@ -242,10 +242,55 @@ image::./diagrams/developer_docu/class_finance.svg[class_finance, title= "Financ
 
 === Rückverfolgbarkeit zwischen Analyse- und Entwurfsmodell
 
-[options="header"]
+[options="header", cols="1,2,2"]
 |===
 |Klasse/Enumeration (Analysemodell) |Klasse/Enumeration (Entwurfsmodell) |Art der Verwendung
-|...|...|...
+|User a|
+- Salespoint.UserAccount
+- user.User a|
+- Klassenattribut
+- Methodenparameter
+|Community a|
+- Salespoint.UserAccount
+- community.Community a|
+- Klassenattribut
+- Methodenparameter
+|CommunityManagement a|
+- CommunityController
+- CommunityManagement |
+|Message|management.Message |
+|Bet|betting.Bet|
+|Lottery |betting.BettingController |
+|FootballPools |betting.BettingController |
+|LotteryBet a|
+- lottery.Lottery
+- Salespoint.Product |Vererbung/Implementierung
+|FootballPoolsBet a|
+- football.Match
+- Salespoint.Product |Vererbung/Implementierung
+|BetCatalog a|
+- betting.Catalog
+- Salespoint.Catalog
+- betting.BettingDataInitializer a|
+- Vererbung/Implementierung
+- Klassenattribut
+|System a|
+- betting.BetController
+- community.CommunityController
+- finance.FinanceController
+- user.UserController
+- betting.BetRepository
+- community.CommunityRepository
+- finance.FinanceRepository
+- football.FootballBetCatalog
+- numberLottery.NumberLotteryRepository
+- user.UserRepository|
+|Finances a|
+- finance.FinanceController
+- finance.FinanceEntry
+- finance.FinanceRepository
+|
+|BetManagement|management.ManagementController|
 |===
 
 == Laufzeitsicht
