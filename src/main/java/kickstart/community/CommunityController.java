@@ -63,7 +63,7 @@ public class CommunityController {
 	public String community(@LoggedIn User user, Model model) {
 		model.addAttribute("communitiesall",communityManagement.findAll());
 		model.addAttribute("communityList",user.getCommunityList());
-		System.out.println(user.getId());
+		System.out.println("_" + user.getId());
 		if(user.getCommunityList().isEmpty())System.out.println("hier ist empty");
 		return "community";
 	}
@@ -81,6 +81,7 @@ public class CommunityController {
 		}
 			community.addUsers(user);
 			user.addCommunity(community);
+
 			List<User>users=community.getUsers();
 			if(users.isEmpty())  System.out.println("usersemp");
 			List<Community>communitya=user.getCommunityList();

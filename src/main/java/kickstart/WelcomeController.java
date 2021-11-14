@@ -13,13 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package kickstart.authentication;
+package kickstart;
 
 import kickstart.lottery.user.User;
 import org.salespointframework.useraccount.web.LoggedIn;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.sql.SQLOutput;
 
 @Controller
 public class WelcomeController {
@@ -32,11 +34,6 @@ public class WelcomeController {
 	@GetMapping("/login")
 	public String login() {
 		return "login";
-	}
-
-	@GetMapping("/home")
-	public String home() {
-		return "home";
 	}
 
 	@GetMapping("/betting")

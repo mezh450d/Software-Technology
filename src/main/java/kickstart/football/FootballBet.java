@@ -3,6 +3,7 @@ package kickstart.football;
 import kickstart.lottery.user.User;
 import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.ProductIdentifier;
+import org.salespointframework.useraccount.UserAccount;
 
 import javax.persistence.*;
 
@@ -11,12 +12,8 @@ public class FootballBet {
 
 	private  @Id @GeneratedValue long id;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	private User user;
-
-	@OneToOne(cascade = CascadeType.ALL)
-	private FootballMatch match;
-
+	private String user;
+	private String match;
 	private int homeScore;
 	private int guestScore;
 	private Money returnValue;
@@ -26,10 +23,10 @@ public class FootballBet {
 	@SuppressWarnings({ "unused", "deprecation" })
 	private FootballBet() {}
 
-	public FootballBet(User user, FootballMatch match, Score prediction, Money bettingAmount){
+	public FootballBet(UserAccount user, FootballMatch match, Score prediction, Money bettingAmount){
 
-		this.user = user;
-		this.match = match;
+		this.user = user.getUsername();
+		this.match = match.toString();
 		this.homeScore = prediction.getHome();
 		this.guestScore = prediction.getGuest();
 		this.returnValue = bettingAmount.add(bettingAmount.multiply(3));
@@ -39,12 +36,12 @@ public class FootballBet {
 		return id;
 	}
 
-	public long getUser() {
-		return user.getId();
+	public String getUser() {
+		return user;
 	}
 
-	public ProductIdentifier getMatchID() {
-		return match.getId();
+	public String getMatchID() {
+		return match;
 	}
 
 	public Score getScore(){

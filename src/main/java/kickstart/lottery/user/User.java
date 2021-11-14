@@ -3,6 +3,7 @@ package kickstart.lottery.user;
 import javax.persistence.*;
 
 import kickstart.community.Community;
+import kickstart.football.FootballBet;
 import org.salespointframework.useraccount.UserAccount;
 import org.springframework.util.Assert;
 
@@ -19,6 +20,9 @@ public class User {
 
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Community> communityList=new ArrayList<>();
+
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<FootballBet> betList=new ArrayList<>();
 
 	public User(UserAccount userAccount) {
 		this.userAccount = userAccount;
@@ -37,7 +41,11 @@ public class User {
 		communityList.add(community);
 	}
 
+	public void addBet(FootballBet bet){ betList.add(bet); }
+
 	public List<Community> getCommunityList(){
 		return communityList;
 	}
+
+	public List<FootballBet> getBetList() { return betList; }
 }

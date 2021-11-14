@@ -35,13 +35,17 @@
 <section class="main_content">
     <h1>Überblick</h1>
     <p sec:authorize="isAuthenticated()" th:text="${'Hi ' + #authentication?.name + ', hier hast du einen Überblick deines Kontos'}"></p>
-    <table id="show-table">
+    <table id="show-table" class="table">
+        <thead>
         <tr>
-            <td>numberListStr</td>
-            <td>superzahl</td>
-            <td>menge</td>
-            <td>result</td>
+            <td>Nummern</td>
+            <td>Superzahl</td>
+            <td>Menge</td>
+            <td>Ergebnis</td>
         </tr>
+        </thead>
+        <tbody>
+        </tbody>
     </table>
 <script>
     $.get("/number/findNumberRecordList", function(data){
@@ -55,7 +59,28 @@
         }
     })
 </script>
-    <!-- Hier kommt Alles für den Überblick rein -->
+
+    <br>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Wette</th>
+            <th scope="col">Betrag</th>
+            <th scope="col">Ergebnis</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="bet : ${bets}">
+            <th th:text="${bet.getMatchID()}"> </th>
+            <th th:text="${bet.getReturnValue()}"> </th>
+            <th th:text="${bet.getScore()}"> </th>
+        </tr>
+
+        </form>
+
+        </tbody>
+    </table>
+
 </section>
 </body>
 </html>
