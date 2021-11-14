@@ -37,7 +37,7 @@
     <p sec:authorize="isAuthenticated()" th:text="${'Hi ' + #authentication?.name + ', hier kannst du Wetten abschließen!'}"></p>
 
 
-    <table>
+    <table class="table">
         <thead>
         <tr>
             <th scope="col">Datum</th>
@@ -50,9 +50,9 @@
         </tr>
         </thead>
         <tbody>
-        <form method="post" role="form" class="ui form" id="form" th:action="@{/football}">
-            <tr th:each="match : ${matches}">
-                <input type="hidden" name="mid" value="0" th:value="${match.id}"/>
+        <tr th:each="match : ${matches}">
+            <form method="post" role="form" class="ui form" id="form" th:action="@{/football}">
+                <input type="hidden" name="match" value="0" th:value="${match.id}"/>
                 <th th:text="${match.getDate().toString()}"> </th>
                 <th th:text="${match.getHome()}"> </th>
                 <th>
@@ -68,9 +68,8 @@
                 <th>
                     <button type="submit"><span> Wetten!</span></button>
                 </th>
-            </tr>
-
-        </form>
+            </form>
+        </tr>
 
         </tbody>
     </table>

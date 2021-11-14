@@ -21,7 +21,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface FootballCatalog extends Catalog<FootballMatch> {
 
-	Sort DEFAULT_SORT = Sort.by("productIdentifier").descending();
+	Sort DEFAULT_SORT = Sort.by("date").ascending();
 
 	@Query
 	Iterable<FootballMatch> findByCategory(Category category, Sort sort);
