@@ -35,8 +35,26 @@
 <section class="main_content">
     <h1>Überblick</h1>
     <p sec:authorize="isAuthenticated()" th:text="${'Hi ' + #authentication?.name + ', hier hast du einen Überblick deines Kontos'}"></p>
+    <table id="show-table">
+        <tr>
+            <td>numberListStr</td>
+            <td>superzahl</td>
+            <td>menge</td>
+            <td>result</td>
+        </tr>
+    </table>
+<script>
+    $.get("/number/findNumberRecordList", function(data){
+        var list = data.data;
+        var table = $("#show-table");
+        for(var i = 0; i < list.length; i++) {
+            var item = list[i];
+            var tr = '<tr><td>' + item.numberListStr + '</td><td>' + item.superzahl + '</td><td>' + item.menge + '</td><td>' + item.result + '</td></tr>';
+            table.append(tr);
 
-
+        }
+    })
+</script>
     <!-- Hier kommt Alles für den Überblick rein -->
 </section>
 </body>
