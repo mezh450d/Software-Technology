@@ -169,7 +169,7 @@ Erlernbarkeit:
 
 3. *Konsistenz* Die Benutzeroberfläche besitzt einen durchgehend gleichen strukturellen Aufbau.
 |Erreichbarkeit a|
-//TODO
+Durch einen stabilen Server wird eine Uptime von 99% erreicht.
 |Wartbarkeit a|
 Wiederverwendbarkeit:
 
