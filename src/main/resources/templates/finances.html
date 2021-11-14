@@ -37,9 +37,11 @@
         <p sec:authorize="isAuthenticated()" th:text="${'Hi ' + #authentication?.name + ', hier ist dein Geld zu sehen.'}">
         <h2 align="center">Ihr Saldo:
         <p id=balance th:field="*{balance}" th:text="${balance}"></p>
-        </h2><br/><br/>
 
-        <form onsubmit="return checkBalance()" align="center" name ="finances" role="form"  th:object="${form}" th:action="@{/finances}" method="post">
+    </h2><br/><br/>
+
+<!--        <form onsubmit="return checkBalance()" align="center" name ="finances" role="form"  th:object="${form}" th:action="@{/finances}" method="post">-->
+        <form  onsubmit="return checkBalance()" align="center" name ="finances" role="form"  th:object="${form}" th:action="@{/finances}" method="post">
             <div class="field">
                 <label th:text="Geldbetrag">Geldbetrag</label>
                 <input class="input"  th:field="*{amount}" th:errorclass="is-invalid" required="required" min="0"/> <br/> <br/>
@@ -48,7 +50,6 @@
                     ╮(๑•́ ₃•̀๑)╭Geldbeitrag kann nicht kleiner als 0</p>
                 <label th:text="Note">Note</label>
                 <input class="input" th:field="*{note}" type="text" />
-<!--                <div th:if="${balance} lt 0" class="invalid-feedback">Bitte geben Sie einen Geldbetrag</div>-->
                 <br/> <br/>
             </div><br/>
             <button class="button_slide slide_left"  type="submit" name="action" value="deposit">Einzahlung</button>
@@ -56,17 +57,22 @@
         </form>
 
     <script src="jquery-1.12.4.min.js"></script>
+
     <script type="text/javascript">
- function checkBalance() {
-        var balance= $('#balance').val()
-        if (balance < 0){
-            alert('u r broken╮(๑•́ ₃•̀๑)╭')
-            return false;
-        }
-        else{
-            return true;
-        }
-    }
+<!-- function checkBalance() {-->
+
+<!--        var balance= [[${balance}]];-->
+<!--        var amount= $('#amount').val();-->
+
+<!--        if (balance < amount){-->
+<!--            alert('Are you sure you want to continue?(°ー°〃)');-->
+<!--            return false;-->
+<!--        }-->
+<!--        else{-->
+<!--            return true;-->
+<!--        }-->
+<!--    }-->
+
 </script>
     <h2>Transaktion</h2>
     <table class="table">

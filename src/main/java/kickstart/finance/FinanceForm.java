@@ -18,6 +18,8 @@ public class FinanceForm {
 	@NotNull(message = "amount cannot be null.")
 	@Min(value = 0)
 	public  Double amount;
+	@Min(value = 0)
+	public  Double balance;
 	public  String note;
 	public static Map<Long, FinanceEntry> ALL_AMOUNT=new HashMap<Long, FinanceEntry>();
 	public static List<Double> amounts = new ArrayList<>();
@@ -57,7 +59,7 @@ public class FinanceForm {
 
 	public Double calculateBalance(){
 		FinanceEntry ff = FinanceForm.ALL_AMOUNT.get(getId());
-
+		double tmpBalance;
 		if (ff == null) {
 			ff = new FinanceEntry();
 			FinanceForm.ALL_AMOUNT.put(getId(), ff);
@@ -66,14 +68,25 @@ public class FinanceForm {
 		Iterable<Double> amountsWithoutSign = getAmounts();
 		Iterator<Double> iterator = amountsWithoutSign.iterator() ;
 		System.out.println(amountsWithoutSign);
-		while (iterator.hasNext() ) {
-			ff.setBalance(ff.balance + iterator.next());
-		}
-//		System.out.println(ff.balance);
+		while (iterator.hasNext()) {
+			double temp = iterator.next();
+				ff.setBalance(ff.balance + temp);
+//			System.out.println("------------"+ balance);
+//			System.out.println("------------"+ temp);
+//				if(ff.balance < 0){
+//					ff.setBalance(ff.balance - temp);
+//				}
+			}
 		return ff.balance;
 	}
 
+	public void setBalance(Double balance){
+		this.balance = balance;
+	}
 
+	public Double getBalance(){
+		return balance;
+	}
 	@Override
 	public String toString(){
 		return note;

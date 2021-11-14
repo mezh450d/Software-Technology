@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,29 +41,23 @@ public class FinanceController {
 		}
 
 	@PostMapping(path = "/finances")
-	String finance(@Valid @ModelAttribute("form") FinanceForm form, Errors errors, Model model,
-				   @RequestParam(value="action", required=true) String action, BindingResult result) {
+	String depositAndWithdraw(@Valid @ModelAttribute("form") FinanceForm form, Errors errors, Model model,
+							  @RequestParam(value = "action") String action) {
 
 		if (errors.hasErrors() ) {
 			return finances(model, form);
 		}
-
 		if (action.equals("deposit")) {
 			form.addAmount(form.getAmount());
 			finance.save(form.toNewEntry());
 		}
 		if (action.equals("withdraw")) {
-			form.addAmount(-(form.getAmount()));
-			finance.save(form.toNewEntry1());
+			if (form.calculateBalance() >= form.getAmount()){
+				form.addAmount(-(form.getAmount()));
+				finance.save(form.toNewEntry1());
+			}
 		}
-
-		if(form.calculateBalance() < 0){
-			errors.addAllErrors(errors);
-			return finances(model, form);
-		}
-		System.out.println(form.calculateBalance());
-			form.calculateBalance();
-
+		form.calculateBalance();
 		return "redirect:/finances";
 	}
 
@@ -71,6 +66,12 @@ public class FinanceController {
 
 		model.addAttribute("entry", finance.save(form.toNewEntry()));
 		model.addAttribute("index", finance.count());
+		FinanceEntry ff = FinanceForm.ALL_AMOUNT.get(form.getId());
+		Double balance = 0.0;
+		if(ff != null) {
+			balance = ff.getBalance();
+		}
+		model.addAttribute("balance", balance);
 		return "finances :: entry";
 	}
 
