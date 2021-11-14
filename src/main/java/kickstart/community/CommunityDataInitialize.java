@@ -17,6 +17,10 @@ public class CommunityDataInitialize implements DataInitializer  {
 
 	private final CommunityRepository communityRepository;
 
+//	private CommunityDataInitialize(){
+//		this.communityManagement=null;
+//		this.communityRepository=null;
+//	}
 	CommunityDataInitialize(UserAccountManagement communityManagement, CommunityRepository communityRepository){
 
 		this.communityRepository=communityRepository;
