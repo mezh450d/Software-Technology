@@ -8,5 +8,6 @@ import org.springframework.data.util.Streamable;
 @EntityScan("bean.FinanceRepository")
 interface FinanceRepository extends CrudRepository<FinanceEntry, Long> {
 
+
 	Streamable<FinanceEntry> findByAmount(Double amount, Sort sort);
 }

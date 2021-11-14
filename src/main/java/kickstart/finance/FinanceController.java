@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +25,7 @@ public class FinanceController {
 	}
 
 	@GetMapping(path = "/finances")
-	String finances(Model model, FinanceForm form) {
+ 	String finances(Model model, FinanceForm form) {
 
 		FinanceEntry ff = FinanceForm.ALL_AMOUNT.get(form.getId());
 		Double balance = 0.0;
@@ -37,34 +38,26 @@ public class FinanceController {
 		model.addAttribute("balance", balance);
 
 		return "finances";
-	}
+		}
 
 	@PostMapping(path = "/finances")
-	String finance(@Valid @ModelAttribute("form") FinanceForm form, Errors errors, Model model,
-				   @RequestParam(value="action", required=true) String action, BindingResult result) {
-		FinanceEntry ff = FinanceForm.ALL_AMOUNT.get(form.getId());
+	String depositAndWithdraw(@Valid @ModelAttribute("form") FinanceForm form, Errors errors, Model model,
+							  @RequestParam(value = "action") String action) {
+
 		if (errors.hasErrors() ) {
 			return finances(model, form);
 		}
-
 		if (action.equals("deposit")) {
 			form.addAmount(form.getAmount());
 			finance.save(form.toNewEntry());
 		}
 		if (action.equals("withdraw")) {
-
-			if (form.getAmount() <= ff.getBalance()){
-
-			form.addAmount(-(form.getAmount()));
-			System.out.println(form.calculateBalance());
-			if (form.calculateBalance()>=0){
+			if (form.calculateBalance() >= form.getAmount()){
+				form.addAmount(-(form.getAmount()));
 				finance.save(form.toNewEntry1());
-			}}
+			}
 		}
-
 		form.calculateBalance();
-
-
 		return "redirect:/finances";
 	}
 
@@ -73,6 +66,12 @@ public class FinanceController {
 
 		model.addAttribute("entry", finance.save(form.toNewEntry()));
 		model.addAttribute("index", finance.count());
+		FinanceEntry ff = FinanceForm.ALL_AMOUNT.get(form.getId());
+		Double balance = 0.0;
+		if(ff != null) {
+			balance = ff.getBalance();
+		}
+		model.addAttribute("balance", balance);
 		return "finances :: entry";
 	}
 

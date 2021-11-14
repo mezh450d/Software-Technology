@@ -56,6 +56,7 @@ public class FinanceEntry {
 	public Double getBalance(){
 		return balance;
 	}
+
 	@Override
 	public String toString(){
 		return note;
