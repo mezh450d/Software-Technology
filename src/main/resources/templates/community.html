@@ -61,6 +61,25 @@
         </thead>
     </table>
 
+    <h3 align="center">Jetzt aber alle Gemeinschäfte</h3>
+    <table align="center " class="table">
+        <thead>
+        <tr th:each="community : ${communityList} ">
+            <td th:text="${community.name}">CommunityName</td>
+            <td>
+                <a href="/home">
+                    <button>Überblick</button>
+                </a>
+            </td>
+            <td>
+                <a href="/betting">
+                    <button>Wetten</button>
+                </a>
+            </td>
+        </tr>
+        </thead>
+    </table>
+
     <a  href="/create">
         <button  class="button_slide slide_right">erstellen</button>
     </a>
