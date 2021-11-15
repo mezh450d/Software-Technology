@@ -1,4 +1,3 @@
-= Entwicklerdokumentation
 :toc:
 :toc-title: Inhaltsverzeichnis
 :numbered:
@@ -7,8 +6,12 @@
 [options="header"]
 [cols="1, 3, 3"]
 |===
-|Version | Bearbeitungsdatum   | Autor 
-|0.1	| 04.11.2021 | Nick
+|Version | Bearbeitungsdatum   | Autor
+|0.1   | 04.11.2021 | Nick
+|0.2    | 09.11.2021 | Nick
+|0.3    | 10.11.2021 | Hannes, Nick
+|0.4    | 13.11.2021 | Nick
+|1.0    | 14.11.2021 | Hannes, Nick
 |===
 
 == Einführung und Ziele
@@ -51,19 +54,30 @@ Der Prototyp soll des Weiteren künftig ausbaubar und gut wartbar sein.
 === Qualitätsziele
 
 Sicherheit::
-Beschreibung folgt ...
+Das System legt Wert auf die Sicherheit der Nutzerkonten,
+besonders auf Integrität und einen vertraulichen Umgang der Daten, da
+hier primär Transaktionen mit dem Geld der registrierten
+Nutzer getätigt werden.
+Nutzer können nur auf bestimmte Daten zugreifen, wenn sie die notwendige Autorisierung besitzen.
 
 Nutzerfreundlichkeit::
-Beschreibung folgt ...
+Das System bietet eine einfach und gut zu bedienende Benutzeroberfläche, welche optisch ansprechend ist und
+ein breites Spektrum von Personen- und Altersgruppen
+abdeckt.
 
 Erreichbarkeit::
-Beschreibung folgt ...
+Das System ist zu jeder Zeit von einem Rechner mit Internetverbindung aus
+erreichbar.
 
 Wartbarkeit::
-Beschreibung folgt ...
+Das System ist schnell und einfach zu warten. Das dient
+dazu, die Systemsicherheit und die Funktionsfähigkeit zu
+erhalten.
 
 Ausbaubarkeit::
-Beschreibung folgt ...
+Das System ermöglicht, falls gewünscht, neue Funktionen
+und Inhalte schnell und einfach hinzuzufügen.
+
 
 [options="header"]
 [cols="3,1,1,1,1,1"]
@@ -109,7 +123,7 @@ Der Hauptnutzer der Anwendung sollen jegliche Menschen aus dem In- und Ausland s
 == Kontextabgrenzung
 
 === Kontextdiagramm
-image::./diagrams/context-diagram.svg[context diagram, title= "Kontextdiagramm", align=center]
+image::./diagrams/developer_docu/context-diagram.svg[context diagram, title= "Kontextdiagramm", align=center]
 
 
 == Lösungsstrategie
@@ -118,57 +132,255 @@ image::./diagrams/context-diagram.svg[context diagram, title= "Kontextdiagramm",
 
 [options="header"]
 [cols="1, 2"]
-|=== 
+|===
 |Qualitätsziel |Lösungsansatz
-|Qualitätsziel |
-|Sicherheit |
-|Nutzerfreundlichkeit |
-|Erreichbarkeit |
-|Wartbarkeit |
-|Ausbaubarkeit |
+|Sicherheit a|
+Vertraulicher Umgang mit Daten:
+
+* Das System stellt sicher, dass auf Daten nur von autorisierten Nutzern zugegriffen werden kann. Dies wird mit Spring Security und dem Thymeleaf (sec:authorize-tag) gewährleistet.
+
+Integrität:
+
+* Das System verhindert die unautorisierte Veränderung der Daten. Dies wird mit Spring Security (@PreAuthorize) gewährleistet.
+
+Anwenderzuordnung:
+
+* Das System stellt sicher, dass Aktivitäten der Nutzer gespeichert werden. In diesem Fall verbindet das System eine abgeschlossene Wette mit dem Nutzer.
+|Nutzerfreundlichkeit a|
+Barrierefreiheit:
+
+* Es wird sichergestellt, dass die Anwendung durch ein breites Spektrum von Menschen einfach bedient und schnell werden kann. Dies wird durch gut leserliche Schrift und Farbkontraste gewährleistet.
+
+Grafische Oberfläche:
+
+* Die Anwendung besitzt eine übersichtliche und gut zu bedienende Grafische Oberfläche.
+
+Fehlererkennung und Fehlerbehebung:
+
+* Das System schützt den Nutzer vor Fehlerhaften Eingaben, indem es diese prüft und angemessen darauf antwortet.
+
+Erlernbarkeit:
+
+* Die Anwendung kann von Nutzern einfach verstanden und bedient werden. Dies wird gewährleistet durch:
+
+1. *Vorhersagbarkeit* Anzeige von verfügbaren Operationen, die der Nutzer als Nächstes ausführen kann.
+
+2. *Vertrautheit* Bei Bedienung der Anwendung kann der Nutzer auf Erfahrungen zurückgreifen. Dies wird durch sinnvolle Symbole, die ihren Inhalt einfach widerspiegeln können. Zum Beispiel deutet das Symbol eines Geldscheins auf eine Übersicht der Finanzen hin.
+
+3. *Konsistenz* Die Benutzeroberfläche besitzt einen durchgehend gleichen strukturellen Aufbau.
+|Erreichbarkeit a|
+Durch einen stabilen Server wird eine Uptime von 99% erreicht.
+|Wartbarkeit a|
+Wiederverwendbarkeit:
+
+* Es wird sichergestellt, dass die Komponenten des Systems in anderen Komponenten wiederverwendet werden kann.
+
+Modularität:
+
+* Die Anwendung besteht aus einzelnen Komponenten, damit die Änderung an einem Komponenten wenig Einfluss auf andere Komponenten hat.
+|Ausbaubarkeit a|
+Modifizierbarkeit:
+
+* Die Anwendung kann modifiziert oder erweitert werden, ohne dass es zu Fehlern kommt oder die Produktqualität sinkt
 |===
 
-=== Softwarearchitektur
-* Beschreibung der Architektur anhand der Top-Level-Architektur oder eines Client-Server-Diagramms
 
+=== Softwarearchitektur
+image::./diagrams/developer_docu/top-level-architecture.svg[top-level-architecture, title= "Top-Level-Architektur", align=center]
 === Entwurfsentscheidungen
-* Verwendete Muster
-* Persistenz
-* Benutzeroberfläche
-* Verwendung externer Frameworks
+==== Verwendete Muster
+
+- Spring MVC
+
+==== Persistenz
+
+Die Anwendung verwendet Hibernate Annotation um die Java-Klassen in einer Datenbank zu hinterlegen. Als Datenbank wird H2 benutzt. Im Normalzustand ist die Funktion aktiviert. In der Datei _application.properties_ kann die automatische Speicherung deaktiviert werden.
+
+==== Benutzeroberfläche
+image::./diagrams/developer_docu/user_interface.svg[user-interface, title= "Benutzeroberfläche", align=center]
+
+=== Verwendung externer Frameworks
 
 [options="header", cols="1,2"]
 |===
 |Externes Package |Verwendet von (Klasse der eigenen Anwendung)
-|... |... 
+|salespointframework.catalog |betting.Betting
+|salespointframework.core a|
+- user.UserDataInitializer
+- betting.BetDataInitializer
+|salespointframework.payment |finance.Finance
+|salespointframework.SalespointSecurityConfiguration |lottery.WebSecurityConfiguration
+|salespointframework.userAccount |user.User
+|springframework.boot |lottery.Application
+|springframework.data a|
+- betting.BetRepository
+- community.CommunityRepository
+- finance.FinanceRepository
+- football.FootballBetCatalog
+- numberLottery.NumberLotteryRepository
+- user.UserRepository
+|springframework.security |lottery.WebSecurityConfiguration
+|springframework.ui a|
+- betting.BetController
+- community.CommunityController
+- finance.FinanceController
+- user.UserController
+|springframework.validation a|
+- community.CommunityController
+- user.UserController
+|springframework.web |lottery.LotterywebConfiguration
 |===
 
 == Bausteinsicht
-* Entwurfsklassendiagramme der einzelnen Packages
+=== Lottery
+image::./diagrams/developer_docu/class_lottery.svg[class_lottery, title= "Lottery", align=center]
+
+[options="header", cols="1,2"]
+|===
+|Klasse/Enumeration |Description
+|Lottery|zentrale Anwendungsklasse um die Anwendung zu starten
+|LotteryWebConfiguration |Konfigurationsklasse um _/login_ zu login.html zu binden
+|WebSecurityConfiguration |Konfigurationsklasse um grundlegende Sicherheit einzustellen
+|===
+
+=== User
+image::./diagrams/developer_docu/class_user.svg[class_user, title= "User", align=center]
 
 [options="header"]
-|=== 
-|Klasse/Enumeration |Description
-|...|...
 |===
+|Klasse/Enumeration |Description
+|User| Eine Klasse, welche den Salespoint-UserAccount um eine Email-Adresse erweitert.
+|UserController | SpringMVC Controller, welcher Anfragen für die Registrierung und Anzeige von Nutzern verwaltet.
+|UserDataInitializer | Eine Implementierung des DataInitializer um Standard-Nutzerkonten zu generieren.
+|UserManagement | Eine Klasse, welche für die Nutzerverwaltung zuständig ist.
+|UserRepository | Ein Interface für die Speicherung von Nutzerkonten, welches Instanzen von Nutzern verwaltet.
+|ReistrationForm | Ein Interface, welches die Eingaben des Nutzers bei einer Registrierung auf ihre Richtigkeit prüft.
+|===
+
+
+=== Community
+image::./diagrams/developer_docu/class_community.svg[class_community, title= "Community", align=center]
+
+[options="header"]
+|===
+|Klasse/Enumeration |Description
+|Community| Eine Klasse, welche den Salespoint-UserAccount um eine Liste der Mitglieder (userID) erweitert.
+|CummunityController| SpringMVC Controller, welcher Anfragen für die Erstellung, Anzeige und Beitreten/Verlassen von Gemeinschaften verwaltet.
+|CommunityDataInitializer| Eine Implementierung des DataInitializer um Standard-Gemeinschaften zu generieren.
+|CommunityManagement| Eine Klasse, welche für die Verwaltung der Gemeinschaften zuständig ist.
+|CommunityRepository| Ein Interface für die Speicherung von Gemeinschaften, welches Instanzen von Gemeinschaften verwaltet.
+|RegistrationForm| Ein Interface, welches die Eingaben des Nutzers bei einer Erstellung einer Gemeinschaft auf ihre Richtigkeit prüft.
+|===
+
+
+=== Betting
+image::./diagrams/developer_docu/class_betting.svg[class_betting, title= "Betting", align=center]
+
+[options="header", cols="1,2"]
+|===
+|Klasse/Enumeration |Description
+|BettingController |SpringMVC Controller, welcher mögliche Wetten anzeigt
+|BettingDataInitializer |Eine Implementierung des DataInitializer um Standard-Daten zu generieren
+|BettingCatalog |Eine Erweiterung von Catalog, um bestimmte Datensätze zu erhalten
+|Bet |Eine gesetzte Wette welche durch Formulare erstellt wird
+|Category |Enumeration um Wetten einfach zu unterscheiden
+|Data |Überklasse für alle abschließbaren Wetten
+|Result |Interface für alle Ergebnisarten
+|Lottery |Eine Lotterieziehung, auf das eine Wette abgeschlossen wird
+|FootballMatch |Ein Fußballspiel, auf das eine Wette abgeschlossen wird
+|Draw |Ein Lotterieziehungsergebnis
+|Score |Ein Fußballergebnis
+|===
+
+=== Finance
+image::./diagrams/developer_docu/class_finance.svg[class_finance, title= "Finance", align=center]
+
+[options="header", cols="1,2"]
+|===
+|Klasse/Enumeration |Description
+|FinanceController|SpringMVC Controller welcher Finanztransaktionen anzeigt
+|FinanceEntry|Ein Finanzeintrag, der gespeichert werden soll
+|FinanceForm|Eine Klasse um die Eingaben einer Finanztransaktion zu verarbeiten
+|FinanceRepository|Ein Finanzrepository um Finanzeinträge zu speichern
+|===
+
 
 === Rückverfolgbarkeit zwischen Analyse- und Entwurfsmodell
-_Die folgende Tabelle zeigt die Rückverfolgbarkeit zwischen Entwurfs- und Analysemodell. Falls eine Klasse aus einem externen Framework im Entwurfsmodell eine Klasse des Analysemodells ersetzt,
-wird die Art der Verwendung dieser externen Klasse in der Spalte *Art der Verwendung* mithilfe der folgenden Begriffe definiert:_
 
-* Inheritance/Interface-Implementation
-* Class Attribute
-* Method Parameter
-
-[options="header"]
+[options="header", cols="1,2,2"]
 |===
 |Klasse/Enumeration (Analysemodell) |Klasse/Enumeration (Entwurfsmodell) |Art der Verwendung
-|...|...|...
+|User a|
+- Salespoint.UserAccount
+- user.User a|
+- Klassenattribut
+- Methodenparameter
+|Community a|
+- Salespoint.UserAccount
+- community.Community a|
+- Klassenattribut
+- Methodenparameter
+|CommunityManagement a|
+- CommunityController
+- CommunityManagement |
+|Message|management.Message |
+|Bet|betting.Bet|
+|Lottery |betting.BettingController |
+|FootballPools |betting.BettingController |
+|LotteryBet a|
+- lottery.Lottery
+- Salespoint.Product |Vererbung/Implementierung
+|FootballPoolsBet a|
+- football.Match
+- Salespoint.Product |Vererbung/Implementierung
+|BetCatalog a|
+- betting.Catalog
+- Salespoint.Catalog
+- betting.BettingDataInitializer a|
+- Vererbung/Implementierung
+- Klassenattribut
+|System a|
+- betting.BetController
+- community.CommunityController
+- finance.FinanceController
+- user.UserController
+- betting.BetRepository
+- community.CommunityRepository
+- finance.FinanceRepository
+- football.FootballBetCatalog
+- numberLottery.NumberLotteryRepository
+- user.UserRepository|
+|Finances a|
+- finance.FinanceController
+- finance.FinanceEntry
+- finance.FinanceRepository
+|
+|BetManagement|management.ManagementController|
 |===
 
 == Laufzeitsicht
-* Darstellung der Komponenteninteraktion anhand eines Sequenzdiagramms, welches die relevantesten Interaktionen darstellt.
+=== User
+image::./diagrams/developer_docu/seq_user.svg[seq_community, title= "Community-Ablauf", align=center]
+=== Community
+image::./diagrams/developer_docu/seq_community.svg[seq_community, title= "Community-Ablauf", align=center]
+
+=== Betting
+image::./diagrams/developer_docu/seq_betting.svg[seq_betting, title= "Betting-Ablauf", align=center]
+
 
 == Technische Schulden
-* Auflistung der nicht erreichten Quality Gates und der zugehörigen SonarQube Issues zum Zeitpunkt der Abgabe
+=== Quality Gate
+[options="header"]
+|===
+|Quality Gate |aktueller Wert |Ziel
+|...|...|...
+|===
+
+=== Probleme
+[options="header", cols="1,4,3,2"]
+|===
+|Priorität |Beschreibung |Stelle |entsprechendes Quality Gate
+|... |...|... |...
+|===
+
 
