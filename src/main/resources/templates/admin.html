@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en"  dir="ltr" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <script src="https://kit.fontawesome.com/63a2b78b2b.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <link th:href="@{/resources/css/style.css}" rel="stylesheet"
+          href="../static/resources/css/style.css" type="text/css"/>
+    <title>Admin</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+<div class="wrapper">
+    <div class="sidebar">
+        <div class="profile">
+            <div class="profile_details">
+                <div class="name_status">
+                    <div class="name" sec:authorize="isAuthenticated()" th:text="${#authentication?.name}"></div>
+                    <div class="status" sec:authorize="isAuthenticated()" th:text="${'Role'}"></div>
+                </div>
+            </div>
+            <form class="item" sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+                <button type="submit" class="ui button" th:text="Logout">Logout</button>
+            </form>
+        </div>
+
+        <ul class="nav-list">
+            <li><a href="/home"><i class="fas fa-home"></i>Überblick</a></li>
+            <li><a href="/betting"><i class="fas fa-money-check-alt"></i>Wetten</a></li>
+            <li><a href="/community"><i class="fas fa-users"></i>Gemeinschaft</a></li>
+            <li><a href="/finances"><i class="fas fa-coins"></i>Finanzen</a></li>
+            <li><a href="/admin" sec:authorize="hasRole('BOSS')"><i class="fas fa-management"></i>Admin</a></li>
+        </ul>
+    </div>
+</div>
+
+<section class="main_content">
+    <h1>Admin</h1>
+    <p sec:authorize="isAuthenticated()" th:text="${'Hi ' + #authentication?.name + ', hier kannst du alle Benutzerinformationen sehen!'}"></p>
+    <div class="input_number">
+        <h1>Community-ID eingeben</h1>
+        <form class="ui form" role="form" th:action="@{/admin}" method="post">
+            <label th:text="Community-ID">Community-ID</label><br>
+            <input id="cid" name="cid" type="number"><br>
+            <!--            <input type="submit" class="ui button" value="Eintreten" >-->
+        </form>
+        <div class="column">
+            <form class="ui form" method="post" th:action="@{/list}">
+                <button type="submit" class="ui button" th:text="Eintreten">Eintreten</button>
+            </form>
+        </div>
+        <a href="allusers.html" th:href="@{/allusers}">Show all users?</a><br>
+    </div>
+    <!--    <h2>Aktuelle Community-Benutzerinformationen:</h2>-->
+    <!--    <h3>Community-ID:<p th:text="${cid}"></p></h3>-->
+
+
+    <!--    <table class="ui celled table">-->
+    <!--        <thread>-->
+    <!--            <tr>-->
+    <!--                <th th:text="UserId">UserId</th>-->
+    <!--                <th th:text="UserName">UserName</th>-->
+    <!--                <th th:text="FootballBetting">FootballBetting</th>-->
+    <!--                <th th:text="NumbersLotteryBetting">NumbersLotteryBetting</th>-->
+    <!--                <th th:text="FootballResults">FootballResults</th>-->
+    <!--                <th th:text="NumbersLotteryResults">NumbersLotteryResults</th>-->
+    <!--                <th th:text="FootballFinancialSituation">FootballFinancialSituation</th>-->
+    <!--                <th th:text="NumbersLotteryFinancialSituation">NumbersLotteryFinancialSituation</th>-->
+    <!--            </tr>-->
+    <!--        </thread>-->
+    <!--        <tbody>-->
+    <!--        <tr th:each="users : ${useraccount}}">-->
+    <!--            <td th:text="${users.username}}"></td>-->
+    <!--        </tr>-->
+    <!--        </tbody>-->
+    <!--    </table>-->
+
+
+    <!--    &lt;!&ndash; Hier kommt Alles für die Wetten rein &ndash;&gt;-->
+</section>
+</body>
+</html>
