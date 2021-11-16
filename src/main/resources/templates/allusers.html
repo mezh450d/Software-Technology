@@ -69,15 +69,31 @@
          </tr>
          </tbody>
      </table>-->
-    <table>
+    <table class="table">
+        <thead>
         <tr>
-            <th>NAME</th>
-            <th>ID</th>
+            <th>Community ID</th>
+            <th>User Name</th>
+            <th>User ID</th>
+            <th>Football Wetten Betrag</th>
+            <th>Lotto Wetten Betrag</th>
+            <th>Football Match Result</th>
+            <th>Lotto Result</th>
+            <th>Win/Lose(football)</th>
+            <th>Win/Lose(Lotto)</th>
         </tr>
-        <tr th:each="prod : ${userinfo}">
-            <td th:text="${prod.name}">Onions</td>
-            <td th:text="${prod.id}">2.41</td>
-        </tr>
+        </thead>
+<!--        <tr>-->
+<!--            <th>NAME</th>-->
+<!--            <th>ID</th>-->
+<!--        </tr>-->
+<!--        <tr th:each="prod : ${userinfo}">-->
+<!--            <td th:text="${prod.name}">Onions</td>-->
+<!--            <td th:text="${prod.id}">2.41</td>-->
+<!--        </tr>-->
+        <tbody>
+
+        </tbody>
     </table>
 </section>
 </body>

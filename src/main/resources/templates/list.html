@@ -36,6 +36,22 @@
 <section class="main_content">
   <h1>Benutzer Informationen</h1>
   <p sec:authorize="isAuthenticated()" th:text="${'Hi, hier ist Community.' + cid}"></p>
+  <table class="table">
+    <thead>
+    <tr>
+      <td>User Name</td>
+      <td>User ID</td>
+      <td>Football Wetten Betrag</td>
+      <td>Lotto Wetten Betrag</td>
+      <td>Football Match Result</td>
+      <td>Lotto Result</td>
+      <td>Win/Lose(football)</td>
+      <td>Win/Lose(Lotto)</td>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
 
 
 </section>
