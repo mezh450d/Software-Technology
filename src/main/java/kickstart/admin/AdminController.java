@@ -4,6 +4,7 @@ import org.salespointframework.useraccount.UserAccountManagement;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -22,6 +23,15 @@ public class AdminController {
 
 		return  "list";
 	}
+
+//	@PostMapping("/admin")
+//	String conmmunityid(Model model, Errors errors){
+//		if(errors.hasErrors()){
+//			return "redirect:/admin";
+//		}
+//		return "list";
+//	}
+
 	@GetMapping("/admin")
 	String admin(Model model){return "admin";}
 
@@ -32,13 +42,13 @@ public class AdminController {
 	@GetMapping("/allusers")
 	@PreAuthorize("hasRole('BOSS')")
 	String alluser(Model model){
-		LinkedList<Users> list = new LinkedList<>();
-		for(int i = 1; i <= 10; i++) {
-			Users entity = new Users(i, "user"+i);
-			list.add(entity);
-		}
-		System.out.println("I'm alluser.");
-		model.addAttribute("userinfo", list);
+//		LinkedList<Users> list = new LinkedList<>();
+//		for(int i = 1; i <= 10; i++) {
+//			Users entity = new Users(i, "user"+i);
+//			list.add(entity);
+//		}
+//		System.out.println("I'm alluser.");
+//		model.addAttribute("userinfo", list);
 		return "allusers";
 	}
 
