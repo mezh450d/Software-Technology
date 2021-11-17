@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <link th:href="@{/resources/css/style.css}" rel="stylesheet"
           href="../static/resources/css/style.css" type="text/css"/>
-    <title>Wetten</title>
+    <title>Admin</title>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 <body>
@@ -34,46 +34,27 @@
 </div>
 
 <section class="main_content">
-    <h1>Wetten</h1>
-    <p sec:authorize="isAuthenticated()" th:text="${'Hi ' + #authentication?.name + ', hier kannst du Wetten abschließen!'}"></p>
+    <h1>Admin</h1>
+    <p sec:authorize="isAuthenticated()" th:text="${'Hi ' + #authentication?.name + ', hier kannst du alle Benutzerinformationen sehen!'}"></p>
+    <h1>Community-ID eingeben</h1>
+    <div class="input-form">
+        <form class="ui form" role="form" th:action="@{/admin}" method="post">
+            <div class="field">
+            <label th:text="Community-ID">Community-ID</label><br>
+            <input id="cid" name="cid" type="number"><br>
+<!--            <input class="cid"  th:field="*{cid}" th:errorclass="is-invalid" required="required" min="0"/> <br/> <br/>-->
 
-
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">Datum</th>
-            <th scope="col">Heim</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="col">Gast</th>
-            <th scope="col">Wettbetrag</th>
-            <th scope="col">Button</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="match : ${matches}">
-            <form method="post" role="form" class="ui form" id="form" th:action="@{/football}">
-                <input type="hidden" name="match" value="0" th:value="${match.id}"/>
-                <th th:text="${match.getDate().toString()}"> </th>
-                <th th:text="${match.getHome()}"> </th>
-                <th>
-                    <input id="home_score" type="number" name="home_score" min="0" max="20" step="1" value="0"/>
-                </th>
-                <th>
-                    <input id="guest_score" type="number" name="guest_score" min="0" max="20" step="1" value="0"/>
-                </th>
-                <th th:text="${match.getGuest()}"> </th>
-                <th>
-                    <input id="amount" type="number" name="amount" min="0" step="1" value="1"/>
-                </th>
-                <th>
-                    <button type="submit"><span> Wetten!</span></button>
-                </th>
+<!--            <p  th:if="${#fields.hasErrors('cid')}" th:class="${#fields.hasErrors('cid')}? error">-->
+<!--                ╮(๑•́ ₃•̀๑)╭Geldbeitrag kann nicht kleiner als 0</p>-->
+            </div>
+        </form>
+        <div class="column">
+            <form class="ui form" method="post" th:action="@{/list}">
+                <button type="submit" class="ui button" th:text="Eintreten">Eintreten</button>
             </form>
-        </tr>
-
-        </tbody>
-    </table>
+        </div>
+        <a href="allusers.html" th:href="@{/allusers}">Show all users?</a><br>
+    </div>
 </section>
 </body>
 </html>

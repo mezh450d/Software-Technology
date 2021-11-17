@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en"  dir="ltr" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <script src="https://kit.fontawesome.com/63a2b78b2b.js" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <link th:href="@{/resources/css/style.css}" rel="stylesheet"
+        href="../static/resources/css/style.css" type="text/css"/>
+  <title>Wetten</title>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+<div class="wrapper">
+  <div class="sidebar">
+    <div class="profile">
+      <div class="profile_details">
+        <div class="name_status">
+          <div class="name" sec:authorize="isAuthenticated()" th:text="${#authentication?.name}"></div>
+          <div class="status" sec:authorize="isAuthenticated()" th:text="${'Role'}"></div>
+        </div>
+      </div>
+      <form class="item" sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+        <button type="submit" class="ui button" th:text="Logout">Logout</button>
+      </form>
+    </div>
+
+    <ul class="nav-list">
+      <li><a href="/home"><i class="fas fa-home"></i>Überblick</a></li>
+      <li><a href="/betting"><i class="fas fa-money-check-alt"></i>Wetten</a></li>
+      <li><a href="/community"><i class="fas fa-users"></i>Gemeinschaft</a></li>
+      <li><a href="/finances"><i class="fas fa-coins"></i>Finanzen</a></li>
+      <li><a href="/admin" sec:authorize="hasRole('BOSS')"><i class="fas fa-management"></i>Admin</a></li>
+    </ul>
+  </div>
+</div>
+<style>
+    .box {
+        width: 530px; height: 530px; margin: 0 auto; background-color: #ffffff;
+        padding-left: 6px;padding-top: 6px;
+    }
+    .box-item {
+        width: 70px; height: 70px; text-align: center;font-size: 40px;
+        line-height: 70px; border: 1px solid #3906ff; display: inline-block;float: left;
+        margin: 2px; cursor: pointer;
+    }
+    .box-item-selected {
+        background-color: #ff180a;
+    }
+    .box-input-div {
+        width: 530px; margin: 20px auto; height: 40px; font-size: 20px;
+    }
+    .box-input-div > span {
+        display: inline-block; width: 120px;
+    }
+    .box-input-div > input {
+        height: 40px;
+        padding-left: 10px;
+    }
+    .box-input-div > button {
+        text-align: center;
+        height: 40px;
+        width: 100px;
+        line-height: 40px;
+        cursor: pointer;
+    }
+
+</style>
+<section class="main_content">
+  <h1>Wetten</h1>
+  <p sec:authorize="isAuthenticated()" th:text="${'Hi ' + #authentication?.name + ', hier kannst du Wetten abschließen!'}"></p>
+  <div class="box" style="">
+    <div class="box-item" style="">1</div>
+    <div class="box-item" style="">2</div>
+    <div class="box-item" style="">3</div>
+    <div class="box-item" style="">4</div>
+    <div class="box-item" style="">5</div>
+    <div class="box-item" style="">6</div>
+    <div class="box-item" style="">7</div>
+    <div class="box-item" style="">8</div>
+    <div class="box-item" style="">9</div>
+    <div class="box-item" style="">10</div>
+    <div class="box-item" style="">11</div>
+    <div class="box-item" style="">12</div>
+    <div class="box-item" style="">13</div>
+    <div class="box-item" style="">14</div>
+    <div class="box-item" style="">15</div>
+    <div class="box-item" style="">16</div>
+    <div class="box-item" style="">17</div>
+    <div class="box-item" style="">18</div>
+    <div class="box-item" style="">19</div>
+    <div class="box-item" style="">20</div>
+    <div class="box-item" style="">21</div>
+    <div class="box-item" style="">22</div>
+    <div class="box-item" style="">23</div>
+    <div class="box-item" style="">24</div>
+    <div class="box-item" style="">25</div>
+    <div class="box-item" style="">26</div>
+    <div class="box-item" style="">27</div>
+    <div class="box-item" style="">28</div>
+    <div class="box-item" style="">29</div>
+    <div class="box-item" style="">30</div>
+    <div class="box-item" style="">31</div>
+    <div class="box-item" style="">32</div>
+    <div class="box-item" style="">33</div>
+    <div class="box-item" style="">34</div>
+    <div class="box-item" style="">35</div>
+    <div class="box-item" style="">36</div>
+    <div class="box-item" style="">37</div>
+    <div class="box-item" style="">38</div>
+    <div class="box-item" style="">39</div>
+    <div class="box-item" style="">40</div>
+    <div class="box-item" style="">41</div>
+    <div class="box-item" style="">42</div>
+    <div class="box-item" style="">43</div>
+    <div class="box-item" style="">44</div>
+    <div class="box-item" style="">45</div>
+    <div class="box-item" style="">46</div>
+    <div class="box-item" style="">47</div>
+    <div class="box-item" style="">48</div>
+    <div class="box-item" style="">49</div>
+  </div>
+  <div class="box-input-div"><span>Superzahl:</span><input type="text" name="superzahl"></div>
+  <div class="box-input-div"><span>Menge:</span><input type="text" name="menge"></div>
+  <div class="box-input-div"><button id="wetten-button">WETTEN!</button></div>
+  <script>
+        $(function () {
+            // 颜色搭配可以自己修改 ！
+            $(".box").on("click", ".box-item", function () {
+                if ($(this).hasClass("box-item-selected")) {
+                    $(this).removeClass("box-item-selected");
+                } else {
+                    var count = $(".box-item-selected");
+                    if (count.length === 6) {
+                        // 超过6个就不让选了
+                        return false;
+                    }
+                    $(this).addClass("box-item-selected");
+                }
+            });
+
+            $("#wetten-button").on("click", function () {
+                // 获取选择的6个数
+                var numberList = [];
+                var boxItemSelected = $(".box-item-selected");
+                boxItemSelected.each(function () {
+                    numberList.push($(this).text());
+                });
+                if(numberList.length !== 6) {
+                    alert("xxx");
+                    return false;
+                }
+                // 获取superzahl
+                var superzahl = $("input[name=superzahl]").val();
+                var menge = $("input[name=menge]").val();
+                var data = {};
+                data.numberList = numberList;
+                data.superzahl = superzahl;
+                data.menge = menge;
+                $.ajax({
+                   type: "POST",
+                   url: "/number/buy",
+                   data: JSON.stringify(data),
+                   contentType: "application/json",
+                   success: function(data){
+                       if(data.code === 0 ) {
+                           window.location.href = "/home";
+                       } else {
+                           alert(data.msg);
+                       }
+                   }
+                });
+
+
+            })
+
+        })
+    </script>
+
+  <!-- Hier kommt Alles für die Wetten rein -->
+</section>
+</body>
+</html>

@@ -28,6 +28,7 @@
             <li><a href="/betting"><i class="fas fa-money-check-alt"></i>Wetten</a></li>
             <li><a href="/community"><i class="fas fa-users"></i>Gemeinschaft</a></li>
             <li><a href="/finances"><i class="fas fa-coins"></i>Finanzen</a></li>
+            <li><a href="/admin" sec:authorize="hasRole('BOSS')"><i class="fas fa-management"></i>Admin</a></li>
         </ul>
     </div>
 </div>
@@ -35,9 +36,52 @@
 <section class="main_content">
     <h1>Überblick</h1>
     <p sec:authorize="isAuthenticated()" th:text="${'Hi ' + #authentication?.name + ', hier hast du einen Überblick deines Kontos'}"></p>
+    <table id="show-table" class="table">
+        <thead>
+        <tr>
+            <td>Nummern</td>
+            <td>Superzahl</td>
+            <td>Menge</td>
+            <td>Ergebnis</td>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+<script>
+    $.get("/number/findNumberRecordList", function(data){
+        var list = data.data;
+        var table = $("#show-table");
+        for(var i = 0; i < list.length; i++) {
+            var item = list[i];
+            var tr = '<tr><td>' + item.numberListStr + '</td><td>' + item.superzahl + '</td><td>' + item.menge + '</td><td>' + item.result + '</td></tr>';
+            table.append(tr);
 
+        }
+    })
+</script>
 
-    <!-- Hier kommt Alles für den Überblick rein -->
+    <br>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Wette</th>
+            <th scope="col">Betrag</th>
+            <th scope="col">Ergebnis</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="bet : ${bets}">
+            <th th:text="${bet.getMatchID()}"> </th>
+            <th th:text="${bet.getReturnValue()}"> </th>
+            <th th:text="${bet.getScore()}"> </th>
+        </tr>
+
+        </form>
+
+        </tbody>
+    </table>
+
 </section>
 </body>
 </html>

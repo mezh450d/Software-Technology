@@ -28,6 +28,7 @@
             <li><a href="/betting"><i class="fas fa-money-check-alt"></i>Wetten</a></li>
             <li><a href="/community"><i class="fas fa-users"></i>Gemeinschaft</a></li>
             <li><a href="/finances"><i class="fas fa-coins"></i>Finanzen</a></li>
+            <li><a href="/admin" sec:authorize="hasRole('BOSS')"><i class="fas fa-management"></i>Admin</a></li>
         </ul>
     </div>
 </div>
@@ -35,10 +36,8 @@
 <section class="main_content">
     <h1>Wetten</h1>
     <p sec:authorize="isAuthenticated()" th:text="${'Hi ' + #authentication?.name + ', hier kannst du Wetten abschließen!'}"></p>
-    <li><a href="/football"><i class="fas fa-football"></i>Fußball</a></li>
-
-
-    <!-- Hier kommt Alles für die Wetten rein -->
+    <li><a href="/number">Lotto</a></li>
+    <li><a href="/football">Fußball</a></li>
 </section>
 </body>
 </html>
