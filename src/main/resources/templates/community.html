@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"  dir="ltr" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <script src="https://kit.fontawesome.com/63a2b78b2b.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <link th:href="@{/resources/css/style.css}" rel="stylesheet"
+          href="../static/resources/css/style.css" type="text/css"/>
+    <title>Gemeinschaften</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+<div class="wrapper">
+    <div class="sidebar">
+        <div class="profile">
+            <div class="profile_details">
+                <div class="name_status">
+                    <div class="name" sec:authorize="isAuthenticated()" th:text="${#authentication?.name}"></div>
+                    <div class="status" sec:authorize="isAuthenticated()" th:text="${'Role'}"></div>
+                </div>
+            </div>
+            <form class="item" sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+                <button type="submit" class="ui button" th:text="Logout">Logout</button>
+            </form>
+        </div>
+
+        <ul class="nav-list">
+            <li><a href="/home"><i class="fas fa-home"></i>Überblick</a></li>
+            <li><a href="/betting"><i class="fas fa-money-check-alt"></i>Wetten</a></li>
+            <li><a href="/community"><i class="fas fa-users"></i>Gemeinschaft</a></li>
+            <li><a href="/finances"><i class="fas fa-coins"></i>Finanzen</a></li>
+        </ul>
+    </div>
+</div>
+
+<section class="main_content">
+    <h1>Gemeinschaft</h1>
+    <p sec:authorize="isAuthenticated()" th:text="${'Hi ' + #authentication?.name + ', hier stehen deine Gemeinschaften'}"></p>
+
+
+    <!-- Hier kommt Alles für die Gemeinschaften rein -->
+</section>
+</body>
+</html>
