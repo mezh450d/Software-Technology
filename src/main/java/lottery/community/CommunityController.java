@@ -59,8 +59,6 @@ public class CommunityController {
 	public String community(@LoggedIn User user, Model model) {
 		model.addAttribute("communitiesall",communityManagement.findAll());
 		model.addAttribute("communityList",user.getCommunityList());
-		System.out.println("_" + user.getId());
-		if(user.getCommunityList().isEmpty())System.out.println("hier ist empty");
 		return "community";
 	}
 
@@ -70,7 +68,6 @@ public class CommunityController {
 			return "join";
 		}
 		Community community=communityManagement.findCommunity(form);
-		System.out.println(user.getId());
 
 		if(community==null){
 			return "join";
@@ -79,9 +76,7 @@ public class CommunityController {
 			user.addCommunity(community);
 
 			List<User>users=community.getUsers();
-			if(users.isEmpty())  System.out.println("usersemp");
 			List<Community>communitya=user.getCommunityList();
-		    if(communitya.isEmpty())  System.out.println("communityemp");
 
 
 		return "redirect:/community";

@@ -1,5 +1,6 @@
-package lottery.betting.football;
+package lottery.betting;
 
+import lottery.betting.football.*;
 import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
@@ -15,29 +16,14 @@ import java.util.List;
 import static org.salespointframework.core.Currencies.EURO;
 
 @Controller
-class FootballCatalogController {
+class BettingController {
 
 	private FootballCatalog footballCatalog;
 	private BetRepository bets;
 
-	FootballCatalogController(FootballCatalog footballCatalog, BetRepository bets) {
+	BettingController(FootballCatalog footballCatalog, BetRepository bets) {
 		this.footballCatalog = footballCatalog;
 		this.bets = bets;
-	}
-
-	@GetMapping("/football")
-	String football(Model model) {
-		model.addAttribute("matches", footballCatalog.findByCategory(Category.BUNDESLIGA));
-		System.out.println(bets.count());
-		return "football";
-	}
-
-	@PostMapping("/football")
-	String addBet(@LoggedIn UserAccount user, @RequestParam("match") FootballMatch match, @RequestParam("home_score") int homeScore,
-				  @RequestParam("guest_score") int guestScore, @RequestParam("amount") int amount) {
-		FootballBet bet = new FootballBet(user, match, new Score(homeScore, guestScore), Money.of(amount, EURO));
-		bets.save(bet);
-		return "redirect:/home";
 	}
 
 	@GetMapping("/home")
@@ -54,5 +40,29 @@ class FootballCatalogController {
 			model.addAttribute("bets", personalBets);
 		}
 		return "home";
+	}
+
+	@GetMapping("/betting")
+	public String betting() {
+		return "betting";
+	}
+
+	@GetMapping("/number")
+	public String number() {
+		return "number";
+	}
+
+	@GetMapping("/football")
+	String football(Model model) {
+		model.addAttribute("matches", footballCatalog.findByCategory(Category.BUNDESLIGA));
+		return "football";
+	}
+
+	@PostMapping("/football")
+	String addBet(@LoggedIn UserAccount user, @RequestParam("match") FootballMatch match, @RequestParam("home_score") int homeScore,
+				  @RequestParam("guest_score") int guestScore, @RequestParam("amount") int amount) {
+		FootballBet bet = new FootballBet(user, match, new Score(homeScore, guestScore), Money.of(amount, EURO));
+		bets.save(bet);
+		return "redirect:/home";
 	}
 }

@@ -64,12 +64,9 @@ public class FinanceForm {
 		ff.setBalance(0.0);
 		Iterable<Double> amountsWithoutSign = getAmounts();
 		Iterator<Double> iterator = amountsWithoutSign.iterator() ;
-		System.out.println(amountsWithoutSign);
 		while (iterator.hasNext()) {
 			double temp = iterator.next();
 				ff.setBalance(ff.balance + temp);
-//			System.out.println("------------"+ balance);
-//			System.out.println("------------"+ temp);
 //				if(ff.balance < 0){
 //					ff.setBalance(ff.balance - temp);
 //				}
