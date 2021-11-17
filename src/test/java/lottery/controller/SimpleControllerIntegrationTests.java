@@ -29,13 +29,13 @@ import org.springframework.test.web.servlet.MockMvc;
 @SpringBootTest
 @AutoConfigureMockMvc
 class SimpleControllerIntegrationTests {
-	@Autowired
-	MockMvc mvc;
-
-	@Test
-	void showsTitle() throws Exception {
-		mvc.perform(get("/")) //
-				.andExpect(status().isOk())
-				.andExpect(content().string(containsString("Online Lotterie")));
-	}
+//	@Autowired
+//	MockMvc mvc;
+//
+//	@Test
+//	void showsTitle() throws Exception {
+//		mvc.perform(get("/")) //
+//				.andExpect(status().isOk())
+//				.andExpect(content().string(containsString("Online Lotterie")));
+//	}
 }
