@@ -44,7 +44,6 @@ public class AdminController {
 //			Users entity = new Users(i, "user"+i);
 //			list.add(entity);
 //		}
-//		System.out.println("I'm alluser.");
 //		model.addAttribute("userinfo", list);
 		return "allusers";
 	}

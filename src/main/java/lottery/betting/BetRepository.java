@@ -1,5 +1,6 @@
-package lottery.betting.football;
+package lottery.betting;
 
+import lottery.betting.football.FootballBet;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.util.Streamable;
 

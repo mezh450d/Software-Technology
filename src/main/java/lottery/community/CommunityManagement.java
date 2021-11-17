@@ -51,7 +51,6 @@ public class CommunityManagement {
 //		Community communityFind=new Community(userAccount);
 //		List<Community>communityList=communities.findAll().toList();
 //		for(Community community:communityList){
-//			System.out.println(communityFind.getPassword());
 //
 //			if(community.getName()==form.getName()&&community.getPassword()==communityFind.getPassword()){
 //				communityAccounts.delete(userAccount);
@@ -68,9 +67,7 @@ public class CommunityManagement {
 		for(Community community:communityList){
 
 			if(community.getName().equals(form.getName())){
-				System.out.println("yes");
 				if(community.getPassword().equals(form.getPassword())){
-					System.out.println("yes");
 					return community;
 				}
 			}
