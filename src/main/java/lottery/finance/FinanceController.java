@@ -2,7 +2,6 @@ package lottery.finance;
 
 import javax.validation.Valid;
 
-import kickstart.football.FootballBet;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
 import org.springframework.stereotype.Controller;
@@ -13,6 +12,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 @Controller
 public class FinanceController {
 
@@ -22,7 +25,7 @@ public class FinanceController {
 	}
 	private Double balance;
 	@GetMapping(path = "/finances")
-	String financesOverview(@LoggedIn UserAccount user, Model model, FinanceForm form) {
+	String financesOverview(@LoggedIn UserAccount user, Model model, kickstart.finance.FinanceForm form) {
 		model.addAttribute("balance",0.0);
 		String userName = user.getUsername();
 		if(finances.count() > 0){
@@ -55,7 +58,7 @@ public class FinanceController {
 
 
 	@PostMapping(path = "/finances")
-	String depositAndWithdraw(@Valid @ModelAttribute("form") FinanceForm form, Errors errors, Model model,
+	String depositAndWithdraw(@Valid @ModelAttribute("form") kickstart.finance.FinanceForm form, Errors errors, Model model,
 							  @RequestParam(value = "action") String action, @LoggedIn UserAccount user) {
 		String userName = user.getUsername();
 		if (errors.hasErrors() ) {
@@ -80,7 +83,7 @@ public class FinanceController {
 	}
 
 	@PostMapping(path = "/finances", headers = "X-Requested-With=XMLHttpRequest")
-	String finance(@LoggedIn UserAccount user, @Valid FinanceForm form, Model model) {
+	String finance(@LoggedIn UserAccount user, @Valid kickstart.finance.FinanceForm form, Model model) {
 
 		FinanceEntry entry = new FinanceEntry(user, form.getAmount(),form.getNote(), form.getDate(), form.getBalance());
 		finances.save(entry);

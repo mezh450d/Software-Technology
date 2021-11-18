@@ -1,6 +1,5 @@
 package lottery.finance;
 
-import kickstart.football.FootballBet;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.CrudRepository;
