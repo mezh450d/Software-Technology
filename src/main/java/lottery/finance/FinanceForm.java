@@ -1,9 +1,7 @@
-package kickstart.finance;
+package lottery.finance;
 
-import lottery.finance.FinanceEntry;
-import org.salespointframework.useraccount.UserAccount;
+import org.javamoney.moneta.Money;
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.Min;
@@ -21,9 +19,8 @@ public class FinanceForm {
 	@Min(value = 0)
 	public  Double amount;
 	@Min(value = 0)
-	public  Double balance;
+	public Money balance;
 	public  String note;
-	public static Map<Long, FinanceEntry> ALL_AMOUNT=new HashMap<Long, FinanceEntry>();
 	public static List<Double> amounts = new ArrayList<>();
 
 	@SuppressWarnings("unused")
@@ -58,27 +55,11 @@ public class FinanceForm {
 		return note;
 	}
 
-	public Double calculateBalance(){
-		FinanceEntry ff = FinanceForm.ALL_AMOUNT.get(getId());
-		if (ff == null) {
-			ff = new FinanceEntry();
-			FinanceForm.ALL_AMOUNT.put(getId(), ff);
-		}
-		ff.setBalance(0.0);
-		Iterable<Double> amountsWithoutSign = getAmounts();
-		Iterator<Double> iterator = amountsWithoutSign.iterator() ;
-		while (iterator.hasNext()) {
-			double temp = iterator.next();
-			ff.setBalance(ff.balance + temp);
-		}
-		return ff.balance;
-	}
-
-	public void setBalance(Double balance){
+	public void setBalance(Money balance){
 		this.balance = balance;
 	}
 
-	public Double getBalance(){
+	public Money getBalance(){
 		return balance;
 	}
 	@Override

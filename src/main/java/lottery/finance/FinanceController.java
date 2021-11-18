@@ -17,17 +17,22 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import lottery.betting.football.*;
+
 @Controller
 public class FinanceController {
 
 	private final FinanceRepository finances;
+
+
 	FinanceController(FinanceRepository finances) {
 		this.finances = finances;
 	}
-	private Double balance;
+	public static Money balance;
+	private FootballBet footballBet;
 	@GetMapping(path = "/finances")
-	String financesOverview(@LoggedIn UserAccount user, Model model, kickstart.finance.FinanceForm form) {
-		model.addAttribute("balance",0.0);
+	String financesOverview(@LoggedIn UserAccount user, Model model, FinanceForm form) {
+		model.addAttribute("balance",Money.of(0.0,"EUR"));
 		String userName = user.getUsername();
 		if(finances.count() > 0){
 			List<FinanceEntry> allFinance = finances.findAll().toList();
@@ -37,28 +42,25 @@ public class FinanceController {
 				if(finance.getUser().equals(userName)) {
 					personalFinances.add(finance);
 					personalAmounts.add(finance.getAmount());
-					finance.setBalance(0.0);
+					finance.setBalance(Money.of(0.0,"EUR"));
 					Iterable<Double> amountsWithoutSign = personalAmounts;
 					Iterator<Double> iterator = amountsWithoutSign.iterator() ;
 					while (iterator.hasNext()) {
 						double temp = iterator.next();
-						finance.setBalance(finance.getBalance() + temp);
+						finance.setBalance(finance.getBalance().add(Money.of(temp,"EUR")));
 					}
 					balance = finance.getBalance();
 					model.addAttribute("entries", personalFinances);
-					model.addAttribute("balance", Money.of(balance, "EUR"));
+					model.addAttribute("balance", balance);
 				}
 			}
 		}
 		model.addAttribute("form", form);
-
 		return "finances";
-
 	}
 
-
 	@PostMapping(path = "/finances")
-	String depositAndWithdraw(@Valid @ModelAttribute("form") kickstart.finance.FinanceForm form, Errors errors, Model model,
+	String depositAndWithdraw(@Valid @ModelAttribute("form") FinanceForm form, Errors errors, Model model,
 							  @RequestParam(value = "action") String action, @LoggedIn UserAccount user) {
 		String userName = user.getUsername();
 		if (errors.hasErrors() ) {
@@ -71,19 +73,18 @@ public class FinanceController {
 			model.addAttribute("entry", entry);
 		}
 		if (action.equals("withdraw")) {
-			if (balance >= form.getAmount()){
+			if (balance.isGreaterThan(Money.of( form.getAmount(),"EUR"))){
 				form.addAmount(-(form.getAmount()));
 				FinanceEntry entry = new FinanceEntry(user, -(form.getAmount()),form.getNote(), form.getDate(),form.getBalance());
 				finances.save(entry);
 				model.addAttribute("entry", entry);
 			}
 		}
-
 		return "redirect:/finances";
 	}
 
 	@PostMapping(path = "/finances", headers = "X-Requested-With=XMLHttpRequest")
-	String finance(@LoggedIn UserAccount user, @Valid kickstart.finance.FinanceForm form, Model model) {
+	String finance(@LoggedIn UserAccount user, @Valid FinanceForm form, Model model) {
 
 		FinanceEntry entry = new FinanceEntry(user, form.getAmount(),form.getNote(), form.getDate(), form.getBalance());
 		finances.save(entry);
