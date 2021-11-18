@@ -2,6 +2,7 @@ package lottery.finance;
 
 import javax.validation.Valid;
 
+import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
 import org.springframework.stereotype.Controller;
@@ -45,8 +46,7 @@ public class FinanceController {
 					}
 					balance = finance.getBalance();
 					model.addAttribute("entries", personalFinances);
-					model.addAttribute("balance", balance);
-
+					model.addAttribute("balance", Money.of(balance, "EUR"));
 				}
 			}
 		}
