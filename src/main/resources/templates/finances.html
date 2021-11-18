@@ -37,7 +37,7 @@
 
         <p sec:authorize="isAuthenticated()" th:text="${'Hi ' + #authentication?.name + ', hier ist dein Geld zu sehen.'}">
         <h2 align="center">Ihr Saldo:
-        <p id=balance th:field="*{balance}" th:text="${balance}"></p>
+        <p id=balance th:field="*{balance}" th:text="${balance}">0.0 EURO</p>
 
     </h2><br/><br/>
 
@@ -57,24 +57,6 @@
             <button class="button_slide slide_left" type="submit" name="action" value="withdraw">Auszahlung</button>
         </form>
 
-    <script src="jquery-1.12.4.min.js"></script>
-
-    <script type="text/javascript">
-<!-- function checkBalance() {-->
-
-<!--        var balance= [[${balance}]];-->
-<!--        var amount= $('#amount').val();-->
-
-<!--        if (balance < amount){-->
-<!--            alert('Are you sure you want to continue?(°ー°〃)');-->
-<!--            return false;-->
-<!--        }-->
-<!--        else{-->
-<!--            return true;-->
-<!--        }-->
-<!--    }-->
-
-</script>
     <h2>Transaktion</h2>
     <table class="table">
         <thead>
