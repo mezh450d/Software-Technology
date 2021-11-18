@@ -25,7 +25,7 @@ public class FinanceEntry {
 	public static List<Double> amounts = new ArrayList<>();
 
 	@SuppressWarnings("unused")
-	FinanceEntry() {
+	public FinanceEntry() {
 
 	}
 

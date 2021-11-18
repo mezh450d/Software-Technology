@@ -1,5 +1,6 @@
 package kickstart.finance;
 
+import lottery.finance.FinanceEntry;
 import org.salespointframework.useraccount.UserAccount;
 
 import javax.persistence.Entity;
