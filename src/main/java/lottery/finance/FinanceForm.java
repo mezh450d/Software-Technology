@@ -1,11 +1,15 @@
-package lottery.finance;
+package kickstart.finance;
 
+import org.salespointframework.useraccount.UserAccount;
+
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.*;
+
 
 public class FinanceForm {
 	public  @Id
@@ -26,7 +30,6 @@ public class FinanceForm {
 	}
 
 	public FinanceForm( Double amount, String note){
-//		Assert.notNull(amount,"Amount must not to be null!");
 		this.amount = amount;
 		this.date = LocalDateTime.now();
 		this.note = note;
@@ -40,7 +43,7 @@ public class FinanceForm {
 		return amount;
 	}
 
-	private LocalDateTime getDate() { return date; }
+	public LocalDateTime getDate() { return date; }
 
 	public void addAmount(Double amount) {
 		amounts.add(amount);
@@ -56,7 +59,6 @@ public class FinanceForm {
 
 	public Double calculateBalance(){
 		FinanceEntry ff = FinanceForm.ALL_AMOUNT.get(getId());
-		double tmpBalance;
 		if (ff == null) {
 			ff = new FinanceEntry();
 			FinanceForm.ALL_AMOUNT.put(getId(), ff);
@@ -66,11 +68,8 @@ public class FinanceForm {
 		Iterator<Double> iterator = amountsWithoutSign.iterator() ;
 		while (iterator.hasNext()) {
 			double temp = iterator.next();
-				ff.setBalance(ff.balance + temp);
-//				if(ff.balance < 0){
-//					ff.setBalance(ff.balance - temp);
-//				}
-			}
+			ff.setBalance(ff.balance + temp);
+		}
 		return ff.balance;
 	}
 
@@ -86,12 +85,5 @@ public class FinanceForm {
 		return note;
 	}
 
-
-	FinanceEntry toNewEntry() {
-		return new FinanceEntry( getAmount(), getNote(), getDate() );
-	}
-	FinanceEntry toNewEntry1() {
-		return new FinanceEntry( -(getAmount()), getNote(), getDate() );
-	}
 
 }
