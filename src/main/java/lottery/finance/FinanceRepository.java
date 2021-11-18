@@ -5,9 +5,14 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.util.Streamable;
 
+import java.util.Optional;
+
 @EntityScan("bean.FinanceRepository")
 interface FinanceRepository extends CrudRepository<FinanceEntry, Long> {
 
+	@Override
+	Optional<FinanceEntry> findById(Long aLong);
 
-	Streamable<FinanceEntry> findByAmount(Double amount, Sort sort);
+	@Override
+	Streamable<FinanceEntry> findAll();
 }
