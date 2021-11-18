@@ -1,5 +1,4 @@
 package lottery.betting;
-
 import lottery.betting.football.*;
 import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.UserAccount;

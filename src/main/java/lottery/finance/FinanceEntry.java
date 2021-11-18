@@ -1,6 +1,7 @@
 package lottery.finance;
 
 
+import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.UserAccount;
 
 import javax.persistence.Entity;
@@ -16,12 +17,11 @@ public class FinanceEntry {
 
 	private String user;
 	public  @Id @GeneratedValue long id;
-	public   Double amount;
+	public  Double amount;
 	@Min(value = 0)
-	public   Double balance;
+	public  Money balance;
 	public  String note;
 	private LocalDateTime date;
-	public static Map<Long, FinanceEntry> ALL_AMOUNT=new HashMap<Long, FinanceEntry>();
 	public static List<Double> amounts = new ArrayList<>();
 
 	@SuppressWarnings("unused")
@@ -29,7 +29,7 @@ public class FinanceEntry {
 
 	}
 
-	public FinanceEntry(UserAccount user, Double amount, String note, LocalDateTime date, Double balance){
+	public FinanceEntry(UserAccount user, Double amount, String note, LocalDateTime date, Money balance){
 		this.user = user.getUsername();
 		this.amount = amount;
 		this.balance = balance;
@@ -57,32 +57,16 @@ public class FinanceEntry {
 		return date;
 	}
 
-	public void setBalance(Double balance){
+	public void setBalance(Money balance){
 		this.balance = balance;
 	}
 
-	public Double getBalance(){
+	public Money getBalance(){
 		return balance;
 	}
 
 	public void addAmount(Double amount) {
 		amounts.add(amount);
-	}
-
-	public Double calculateBalance(){
-		FinanceEntry ff = FinanceEntry.ALL_AMOUNT.get(getId());
-		if (ff == null) {
-			ff = new FinanceEntry();
-			FinanceEntry.ALL_AMOUNT.put(getId(), ff);
-		}
-		ff.setBalance(0.0);
-		Iterable<Double> amountsWithoutSign = getAmounts();
-		Iterator<Double> iterator = amountsWithoutSign.iterator() ;
-		while (iterator.hasNext()) {
-			double temp = iterator.next();
-			ff.setBalance(ff.balance + temp);
-		}
-		return ff.balance;
 	}
 
 	public static Iterable<Double> getAmounts() {
