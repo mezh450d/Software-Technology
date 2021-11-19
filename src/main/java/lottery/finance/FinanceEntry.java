@@ -17,11 +17,12 @@ public class FinanceEntry {
 
 	private String user;
 	public  @Id @GeneratedValue long id;
-	public  Double amount;
+	public   Double amount;
 	@Min(value = 0)
-	public  Money balance;
+	public Money balance;
 	public  String note;
 	private LocalDateTime date;
+	public static Map<Long, FinanceEntry> ALL_AMOUNT=new HashMap<Long, FinanceEntry>();
 	public static List<Double> amounts = new ArrayList<>();
 
 	@SuppressWarnings("unused")
@@ -67,6 +68,22 @@ public class FinanceEntry {
 
 	public void addAmount(Double amount) {
 		amounts.add(amount);
+	}
+
+	public Money calculateBalance(){
+		FinanceEntry ff = FinanceEntry.ALL_AMOUNT.get(getId());
+		if (ff == null) {
+			ff = new FinanceEntry();
+			FinanceEntry.ALL_AMOUNT.put(getId(), ff);
+		}
+		ff.setBalance(Money.of(0.0,"EUR"));
+		Iterable<Double> amountsWithoutSign = getAmounts();
+		Iterator<Double> iterator = amountsWithoutSign.iterator() ;
+		while (iterator.hasNext()) {
+			double temp = iterator.next();
+			ff.setBalance(ff.balance.add(Money.of(temp,"EUR")));
+		}
+		return ff.balance;
 	}
 
 	public static Iterable<Double> getAmounts() {
