@@ -1,11 +1,10 @@
 package lottery.betting;
 
-import lottery.betting.football.Score;
 import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.Product;
 
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.Transient;
 import java.time.LocalDateTime;
 
 @Entity
@@ -15,7 +14,7 @@ public abstract class Data extends Product {
 
 	private Category category;
 
-	@Embedded
+	@Transient
 	private Result result;
 
 	private Boolean set = false;

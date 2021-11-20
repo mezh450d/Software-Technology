@@ -17,19 +17,18 @@ import static org.salespointframework.core.Currencies.EURO;
 @Controller
 class BettingController {
 
-	private DataCatalog footballCatalog;
+	private DataCatalog dataCatalog;
 	private BetRepository bets;
 
-	BettingController(DataCatalog footballCatalog, BetRepository bets) {
-		this.footballCatalog = footballCatalog;
+	BettingController(DataCatalog dataCatalog, BetRepository bets) {
+		this.dataCatalog = dataCatalog;
 		this.bets = bets;
 	}
 
 	@GetMapping("/home")
 	String home(@LoggedIn UserAccount user, Model model) {
 		String userName = user.getUsername();
-		List<Bet> personalBets = bets.findByUser(userName).toList();
-		model.addAttribute("bets", personalBets);
+		model.addAttribute("bets", bets.findByUser(userName));
 		return "home";
 	}
 
@@ -45,7 +44,7 @@ class BettingController {
 
 	@GetMapping("/football")
 	String football(Model model) {
-		model.addAttribute("matches", footballCatalog.findByCategory(Category.FOOTBALL));
+		model.addAttribute("matches", dataCatalog.findByCategory(Category.FOOTBALL));
 		return "football";
 	}
 

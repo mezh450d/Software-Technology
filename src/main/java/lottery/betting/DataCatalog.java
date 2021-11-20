@@ -15,27 +15,23 @@
  */
 package lottery.betting;
 
-import lottery.betting.Category;
-import lottery.betting.football.FootballMatch;
 import org.salespointframework.catalog.Catalog;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.util.Streamable;
 
-import java.util.Optional;
-
-public interface DataCatalog extends Catalog<FootballMatch> {
+public interface DataCatalog extends Catalog<Data> {
 
 	Sort DEFAULT_SORT = Sort.by("date").ascending();
 
 	@Override
-	Streamable<FootballMatch> findAll();
+	Streamable<Data> findAll();
 
 	@Query
-	Iterable<FootballMatch> findByCategory(Category category, Sort sort);
+	Iterable<Data> findByCategory(Category category, Sort sort);
 
 	@Query
-	default Iterable<FootballMatch> findByCategory(Category category) {
+	default Iterable<Data> findByCategory(Category category) {
 		return findByCategory(category, DEFAULT_SORT);
 	}
 }

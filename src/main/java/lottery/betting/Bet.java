@@ -17,7 +17,7 @@ public class Bet {
 	@OneToOne(cascade = CascadeType.ALL)
 	private Data reference;
 
-	@Embedded
+
 	private Result value;
 
 	private Money bettingAmount;
