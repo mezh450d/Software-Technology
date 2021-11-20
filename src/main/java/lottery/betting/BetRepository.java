@@ -1,16 +1,17 @@
 package lottery.betting;
 
-import lottery.betting.football.FootballBet;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.util.Streamable;
 
-import java.util.Optional;
+interface BetRepository extends CrudRepository<Bet, Long> {
 
-interface BetRepository extends CrudRepository<FootballBet, Long> {
+	@Query("SELECT u FROM Bet u WHERE u.user = ?1")
+	Streamable<Bet> findByUser(String user);
+
+	@Query("SELECT u FROM Bet u WHERE u.evaluate = false")
+	Streamable<Bet> findNotEvaluatedBets();
 
 	@Override
-	Optional<FootballBet> findById(Long aLong);
-
-	@Override
-	Streamable<FootballBet> findAll();
+	Streamable<Bet> findAll();
 }

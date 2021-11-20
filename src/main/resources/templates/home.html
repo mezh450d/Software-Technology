@@ -72,13 +72,10 @@
         </thead>
         <tbody>
         <tr th:each="bet : ${bets}">
-            <th th:text="${bet.getMatchID()}"> </th>
-            <th th:text="${bet.getReturnValue()}"> </th>
-            <th th:text="${bet.getScore()}"> </th>
+            <th th:text="${bet.reference}"> </th>
+            <th th:text="${bet.bettingAmount}"> </th>
+            <th th:text="${bet.value}"> </th>
         </tr>
-
-        </form>
-
         </tbody>
     </table>
 

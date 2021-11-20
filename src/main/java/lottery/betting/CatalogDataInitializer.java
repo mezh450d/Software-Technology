@@ -13,8 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lottery.betting.football;
+package lottery.betting;
 
+import lottery.betting.football.FootballMatch;
 import org.javamoney.moneta.Money;
 import org.salespointframework.core.DataInitializer;
 import org.slf4j.Logger;
@@ -30,13 +31,13 @@ import static org.salespointframework.core.Currencies.EURO;
 
 @Component
 @Order(20)
-class FootballCatalogDataInitializer implements DataInitializer {
+class CatalogDataInitializer implements DataInitializer {
 
-	private static final Logger LOG = LoggerFactory.getLogger(FootballCatalogDataInitializer.class);
+	private static final Logger LOG = LoggerFactory.getLogger(CatalogDataInitializer.class);
 
-	private final FootballCatalog catalog;
+	private final DataCatalog catalog;
 
-	FootballCatalogDataInitializer(FootballCatalog catalog) {
+	CatalogDataInitializer(DataCatalog catalog) {
 
 		Assert.notNull(catalog, "FootballCatalog must not be null!");
 
@@ -54,12 +55,12 @@ class FootballCatalogDataInitializer implements DataInitializer {
 
 		catalog.save(new FootballMatch("FCB-SCF", Money.of(1, EURO),
 				LocalDateTime.of(2021, 11, 7, 15, 30),
-				Category.BUNDESLIGA, "FC Bayern", "SC Freiburg"));
+				Category.FOOTBALL, "FC Bayern", "SC Freiburg"));
 		catalog.save(new FootballMatch("Wol-FCA", Money.of(1, EURO),
 				LocalDateTime.of(2021, 11, 7, 15, 30),
-				Category.BUNDESLIGA,"Wolfsburg", "FC Augsburg"));
+				Category.FOOTBALL,"Wolfsburg", "FC Augsburg"));
 		catalog.save(new FootballMatch("RBL-BVB", Money.of(1, EURO),
 				LocalDateTime.of(2021, 11, 7, 18, 30),
-				Category.BUNDESLIGA,"RB Leipzig", "Borussia Dortmund"));
+				Category.FOOTBALL,"RB Leipzig", "Borussia Dortmund"));
 	}
 }
