@@ -1,8 +1,8 @@
 package lottery.betting;
 
-import javax.persistence.Embeddable;
+import java.io.Serializable;
 
-@Embeddable
-public interface Result<T extends Result> extends Comparable<T>{
+public interface Result<T> extends Comparable<T>, Serializable {
+//	static final long serialVersionUID = -7565813772046251748L;
 	String toString();
 }
