@@ -3,7 +3,7 @@ package lottery.user;
 import javax.persistence.*;
 
 import lottery.community.Community;
-import lottery.betting.football.FootballBet;
+import lottery.betting.Bet;
 import org.salespointframework.useraccount.UserAccount;
 import org.springframework.util.Assert;
 
@@ -22,7 +22,7 @@ public class User {
 	private List<Community> communityList=new ArrayList<>();
 
 	@OneToMany(cascade = CascadeType.ALL)
-	private List<FootballBet> betList=new ArrayList<>();
+	private List<Bet> betList=new ArrayList<>();
 
 	public User(UserAccount userAccount) {
 		this.userAccount = userAccount;
@@ -41,11 +41,11 @@ public class User {
 		communityList.add(community);
 	}
 
-	public void addBet(FootballBet bet){ betList.add(bet); }
+	public void addBet(Bet bet){ betList.add(bet); }
 
 	public List<Community> getCommunityList(){
 		return communityList;
 	}
 
-	public List<FootballBet> getBetList() { return betList; }
+	public List<Bet> getBetList() { return betList; }
 }

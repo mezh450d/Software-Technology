@@ -13,15 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lottery.betting.football;
+package lottery.betting;
 
+import lottery.betting.Category;
+import lottery.betting.football.FootballMatch;
 import org.salespointframework.catalog.Catalog;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.util.Streamable;
 
-public interface FootballCatalog extends Catalog<FootballMatch> {
+import java.util.Optional;
+
+public interface DataCatalog extends Catalog<FootballMatch> {
 
 	Sort DEFAULT_SORT = Sort.by("date").ascending();
+
+	@Override
+	Streamable<FootballMatch> findAll();
 
 	@Query
 	Iterable<FootballMatch> findByCategory(Category category, Sort sort);

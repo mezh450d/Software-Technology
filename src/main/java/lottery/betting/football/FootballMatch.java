@@ -15,6 +15,9 @@
  */
 package lottery.betting.football;
 
+import lottery.betting.Category;
+import lottery.betting.Data;
+import lottery.betting.Result;
 import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.Product;
 
@@ -23,39 +26,27 @@ import java.time.LocalDateTime;
 
 
 @Entity
-public class FootballMatch extends Product {
+public class FootballMatch extends Data {
 
 	private String home, guest;
-	private LocalDateTime date;
-	private Category category;
-	private int homeScore, guestScore;
-	private Boolean set = false;
 
 	@SuppressWarnings({ "unused", "deprecation" })
-	private FootballMatch() {}
+	protected FootballMatch() {
+		super();
+	}
 
 	public FootballMatch(String name, Money price, LocalDateTime date, Category category, String home, String guest) {
 
-		super(name, price);
+		super(name, price, date, category);
 
-		this.date = date;
-		this.category = category;
 		this.home = home;
 		this.guest = guest;
 	}
-	public LocalDateTime getDate() {
-		return date;
-	}
 
-	public Score getResult() {
-		return new Score(homeScore, guestScore);
-	}
-
-	public void setResult(Score result) {
-		if (set) return;
-		this.homeScore = result.getHome();
-		this.guestScore = result.getGuest();
-		set = true;
+	public void setScore(int homeScore, int guestScore) {
+		if (isSet()) return;
+		setResult(new Score(homeScore, guestScore));
+		set();
 	}
 
 	public String getHome() {
@@ -66,11 +57,9 @@ public class FootballMatch extends Product {
 		return guest;
 	}
 
-	public Boolean isSet() { return set; }
-
 	@Override
 	public String toString(){
-		return guest+" @ "+home+" on "+date.toString();
+		return guest+" @ "+home+" on "+ getDate();
 	}
 
 }
