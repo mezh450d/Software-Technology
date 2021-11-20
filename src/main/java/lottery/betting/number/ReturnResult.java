@@ -1,6 +1,6 @@
 package lottery.betting.number;
 
-public class Result {
+public class ReturnResult {
 
 	private int code = 0;
 	private String msg = "success";
