@@ -14,20 +14,19 @@ import java.time.LocalDateTime;
 public class LotteryEntity extends Data {
 
 	private String numStr;
-	private String superZahl;
+	private String superNumber;
 
 	public LotteryEntity(){super();}
 
-	public LotteryEntity(String name, Money price, LocalDateTime date, Category category, String numStr, String superZahl) {
-
+	public LotteryEntity(String name, Money price, LocalDateTime date, Category category, String numStr, String superNumber) {
 		super(name, price, date, category);
 		this.numStr = numStr;
-		this.superZahl = superZahl;
+		this.superNumber = superNumber;
 	}
 
 
 	@Override
 	public String toString() {
-		return "Lotto " + this.getName() + " on " + getDate();
+		return "Lotto " + this.getName() + " am " + getDate();
 	}
 }
