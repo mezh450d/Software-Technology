@@ -34,7 +34,7 @@ public class AdminController {
 
 //	@GetMapping("/list")
 ////	@PreAuthorize("hasRole('BOSS')")
-//	String communityid(Model model){return "list";}
+//	String community(Model model){return "list";}
 
 	@GetMapping("/allusers")
 	@PreAuthorize("hasRole('BOSS')")
@@ -45,6 +45,7 @@ public class AdminController {
 //			list.add(entity);
 //		}
 //		model.addAttribute("userinfo", list);
+		model.addAttribute("userList", userAccountManagement.findAll());
 		return "allusers";
 	}
 
