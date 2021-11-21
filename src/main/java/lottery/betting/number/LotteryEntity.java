@@ -5,28 +5,29 @@ import lottery.betting.Data;
 import org.javamoney.moneta.Money;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import java.time.LocalDateTime;
 
 
 @Entity
 public class LotteryEntity extends Data {
 
-	private String numStr;
-	private String superNumber;
+	private String lotteryName;
 
-	public LotteryEntity(){super();}
+	public LotteryEntity(){ super(); }
 
-	public LotteryEntity(String name, Money price, LocalDateTime date, Category category, String numStr, String superNumber) {
+	public LotteryEntity(String name, Money price, LocalDateTime date, Category category, String lotteryName) {
+
 		super(name, price, date, category);
-		this.numStr = numStr;
-		this.superNumber = superNumber;
+
+		this.lotteryName = lotteryName;
 	}
 
+	public String getLotteryName() {
+		return lotteryName;
+	}
 
 	@Override
 	public String toString() {
-		return "Lotto " + this.getName() + " am " + getDate();
+		return lotteryName + " am " + getDate();
 	}
 }

@@ -1,10 +1,7 @@
 package lottery.betting.number;
 
-import lottery.betting.Data;
 import lottery.betting.Result;
-import lottery.betting.football.Score;
 
-import javax.persistence.Entity;
 import java.util.Arrays;
 import java.util.List;
 
