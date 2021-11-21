@@ -61,13 +61,13 @@ class CatalogDataInitializer implements DataInitializer {
 
 			catalog.save(new LotteryEntity("one", Money.of(1, EURO),
 					LocalDateTime.of(2021, 12, 12, 10, 28),
-					Category.LOTTERY, "1,2,3,4,5,6", "5"));
+					Category.LOTTERY, "Lotto 6 aus 49"));
 			catalog.save(new LotteryEntity("two", Money.of(1, EURO),
 					LocalDateTime.of(2021, 12, 19, 13, 10),
-					Category.LOTTERY,"22,23,24,25,26,27", "1"));
+					Category.LOTTERY,"Lotto 6 aus 49"));
 			catalog.save(new LotteryEntity("three", Money.of(1, EURO),
 					LocalDateTime.of(2021, 12, 26, 15, 25),
-					Category.LOTTERY,"31,32,33,34,35,36", "2"));
+					Category.LOTTERY,"Lotto 6 aus 49"));
 		}
 	}
 }

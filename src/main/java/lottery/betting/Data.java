@@ -4,7 +4,6 @@ import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.Product;
 
 import javax.persistence.Entity;
-import javax.persistence.Transient;
 import java.time.LocalDateTime;
 
 @Entity
@@ -14,7 +13,6 @@ public abstract class Data extends Product {
 
 	private Category category;
 
-	@Transient
 	private Result result;
 
 	private Boolean set = false;
@@ -22,15 +20,19 @@ public abstract class Data extends Product {
 	@SuppressWarnings({ "unused", "deprecation" })
 	protected Data() {}
 
-	public Data(String name, Money price, LocalDateTime date, Category category) {
+	public Data(String id, Money price, LocalDateTime date, Category category) {
 
-		super(name, price);
+		super(id, price);
 
 		this.date = date;
 		this.category = category;
 	}
 
 	public String getDate() {
+		return date.getDayOfMonth() + "." + date.getMonthValue() + "." + date.getYear();
+	}
+
+	public String getDateWithTime() {
 		return date.getDayOfMonth() + "." + date.getMonthValue() + "." + date.getYear()
 				+ ", " + date.getHour() + ":" + date.getMinute();
 	}
@@ -44,7 +46,9 @@ public abstract class Data extends Product {
 	}
 
 	public void setResult(Result result) {
+		if (isSet()) return;
 		this.result = result;
+		set();
 	}
 
 	public Boolean isSet() {

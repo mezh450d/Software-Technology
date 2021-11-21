@@ -12,10 +12,7 @@ public class FootballMatch extends Data {
 
 	private String home, guest;
 
-	@SuppressWarnings({ "unused", "deprecation" })
-	protected FootballMatch() {
-		super();
-	}
+	protected FootballMatch() { super(); }
 
 	public FootballMatch(String name, Money price, LocalDateTime date, Category category, String home, String guest) {
 
@@ -23,12 +20,6 @@ public class FootballMatch extends Data {
 
 		this.home = home;
 		this.guest = guest;
-	}
-
-	public void setScore(int homeScore, int guestScore) {
-		if (isSet()) return;
-		setResult(new Score(homeScore, guestScore));
-		set();
 	}
 
 	public String getHome() {
@@ -41,7 +32,7 @@ public class FootballMatch extends Data {
 
 	@Override
 	public String toString(){
-		return guest+" @ "+home+" am "+ getDate();
+		return guest+" @ "+home+" am "+ getDateWithTime();
 	}
 
 }

@@ -48,8 +48,8 @@
         </thead>
         <tbody>
         <tr th:each="lottery : ${lotteryList}">
-            <th th:text="${lottery.getName()}"> </th>
-            <th th:text="${lottery.getDate().toString()}"> </th>
+            <th th:text="${lottery.lotteryName}"> </th>
+            <th th:text="${lottery.date}"> </th>
             <th>
                 <button th:data-id="${lottery.id}" th:onclick="enterWettenLottery(this.getAttribute('data-id'))"><span> Wetten!</span></button>
             </th>
