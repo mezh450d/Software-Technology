@@ -158,17 +158,10 @@
                    url: "/lottery",
                    data: str,
                    success: function(data){
-                       if(data.code === 0 ) {
-                           window.location.href = "/home";
-                       } else {
-                           alert(data.msg);
-                       }
+                       window.location.href = "/home";
                    }
                 });
-
-
             })
-
         })
     </script>
 
