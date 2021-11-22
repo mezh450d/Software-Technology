@@ -19,7 +19,6 @@ public class FinanceForm {
 	long id;
 	private LocalDateTime date;
 	@NotNull(message = "amount cannot be null.")
-	@Min(value = 0)
 	public  Double amount;
 	@Min(value = 0)
 	public Money balance;

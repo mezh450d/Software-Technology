@@ -9,7 +9,7 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.ui.ExtendedModelMap;
 
 
-class AdminControllerIntegrationTests extends AbstractIntegrationTests {
+class AdminControllerIntergrationTests extends AbstractIntegrationTests {
 	@Autowired AdminController controller;
 
 	/**

@@ -1,8 +1,8 @@
 package lottery.finance;
 
-
 import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.UserAccount;
+import org.springframework.util.Assert;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +13,7 @@ import java.util.*;
 
 
 @Entity
+
 public class FinanceEntry {
 
 	private String user;
@@ -30,10 +31,11 @@ public class FinanceEntry {
 
 	}
 
-	public FinanceEntry(UserAccount user, Double amount, String note, LocalDateTime date, Money balance){
+	public FinanceEntry(UserAccount user, Double amount, String note, LocalDateTime date){
+		Assert.notNull(user, "user must not be null!");
+		Assert.notNull(amount, "amount must not be null!");
 		this.user = user.getUsername();
 		this.amount = amount;
-		this.balance = balance;
 		this.note = note;
 		this.date = date;
 	}
