@@ -10,33 +10,11 @@
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 <body>
-<div class="wrapper">
-    <div class="sidebar">
-        <div class="profile">
-            <div class="profile_details">
-                <div class="name_status">
-                    <div class="name" sec:authorize="isAuthenticated()" th:text="${#authentication?.name}"></div>
-                    <div class="status" sec:authorize="isAuthenticated()" th:text="${'Role'}"></div>
-                </div>
-            </div>
-            <form class="item" sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
-                <button type="submit" class="ui button" th:text="Logout">Logout</button>
-            </form>
-        </div>
+<nav th:include="navigation :: navigation"></nav>
 
-        <ul class="nav-list">
-            <li><a href="/home"><i class="fas fa-home"></i>Überblick</a></li>
-            <li><a href="/betting"><i class="fas fa-money-check-alt"></i>Wetten</a></li>
-            <li><a href="/community"><i class="fas fa-users"></i>Gemeinschaft</a></li>
-            <li><a href="/finances"><i class="fas fa-coins"></i>Finanzen</a></li>
-            <li><a href="/admin" sec:authorize="hasRole('BOSS')"><i class="fas fa-management"></i>Admin</a></li>
-        </ul>
-    </div>
-</div>
-
-<h1>Benutzer Informationen</h1>
-<h2>Hier sind die Informationen für alle Benutzer</h2>
 <section class="main_content">
+    <h1>Benutzer Informationen</h1>
+    <h2>Hier sind die Informationen für alle Benutzer</h2>
 
     <!--    <table class="ui celled table">-->
     <!--        <thead>-->
