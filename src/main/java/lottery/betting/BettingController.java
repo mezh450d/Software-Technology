@@ -17,8 +17,8 @@ import static org.salespointframework.core.Currencies.EURO;
 @Controller
 class BettingController {
 
-	private DataCatalog dataCatalog;
-	private BetRepository bets;
+	private final DataCatalog dataCatalog;
+	private final BetRepository bets;
 
 	BettingController(DataCatalog dataCatalog, BetRepository bets) {
 		this.dataCatalog = dataCatalog;
@@ -47,7 +47,6 @@ class BettingController {
 		model.addAttribute("matches", dataCatalog.findByCategory(Category.FOOTBALL));
 		return "football";
 	}
-
 
 	@GetMapping("/lotteryList")
 	String lotteryList(Model model) {

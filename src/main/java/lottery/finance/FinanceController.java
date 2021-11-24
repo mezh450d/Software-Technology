@@ -2,6 +2,7 @@ package lottery.finance;
 
 import javax.validation.Valid;
 
+import lottery.betting.Bet;
 import lottery.betting.BetRepository;
 import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.UserAccount;
@@ -54,10 +55,10 @@ public class FinanceController {
 					balance = finance.getBalance();
 					// Dieser Abschnitt ermöglicht Abzüge nach dem Wetten
 					if(bets.count() > 0){
-						List<FootballBet> allBets = bets.findAll().toList();
-						for(FootballBet bet : allBets){
+						List<Bet> allBets = bets.findAll().toList();
+						for(Bet bet : allBets){
 							if(bet.getUser().equals(userName)){
-								balance = balance.subtract(bet.getReturnValue());
+								balance = balance.subtract(bet.getBettingAmount());
 							}
 						}
 					}
