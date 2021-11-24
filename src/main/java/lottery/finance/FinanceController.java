@@ -2,6 +2,7 @@ package lottery.finance;
 
 import javax.validation.Valid;
 
+import lottery.betting.BetRepository;
 import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
@@ -17,16 +18,22 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import lottery.betting.football.*;
+
 @Controller
 public class FinanceController {
 
 	private final FinanceRepository finances;
-	FinanceController(FinanceRepository finances) {
+	public static Money balance;
+	private BetRepository bets;
+
+	FinanceController(FinanceRepository finances, BetRepository bets) {
 		this.finances = finances;
+		this.bets = bets;
 	}
-	private Money balance;
+
 	@GetMapping(path = "/finances")
-	String financesOverview(@LoggedIn UserAccount user, Model model,FinanceForm form) {
+	String financesOverview(@LoggedIn UserAccount user, Model model, FinanceForm form) {
 		model.addAttribute("balance",Money.of(0.0,"EUR"));
 		String userName = user.getUsername();
 		if(finances.count() > 0){
@@ -37,7 +44,7 @@ public class FinanceController {
 				if(finance.getUser().equals(userName)) {
 					personalFinances.add(finance);
 					personalAmounts.add(finance.getAmount());
-					finance.setBalance(Money.of(0.0, "EUR"));
+					finance.setBalance(Money.of(0.0,"EUR"));
 					Iterable<Double> amountsWithoutSign = personalAmounts;
 					Iterator<Double> iterator = amountsWithoutSign.iterator() ;
 					while (iterator.hasNext()) {
@@ -45,35 +52,40 @@ public class FinanceController {
 						finance.setBalance(finance.getBalance().add(Money.of(temp,"EUR")));
 					}
 					balance = finance.getBalance();
+					// Dieser Abschnitt ermöglicht Abzüge nach dem Wetten
+					if(bets.count() > 0){
+						List<FootballBet> allBets = bets.findAll().toList();
+						for(FootballBet bet : allBets){
+							if(bet.getUser().equals(userName)){
+								balance = balance.subtract(bet.getReturnValue());
+							}
+						}
+					}
 					model.addAttribute("entries", personalFinances);
 					model.addAttribute("balance", balance);
 				}
 			}
 		}
 		model.addAttribute("form", form);
-
 		return "finances";
-
 	}
-
 
 	@PostMapping(path = "/finances")
 	String depositAndWithdraw(@Valid @ModelAttribute("form") FinanceForm form, Errors errors, Model model,
 							  @RequestParam(value = "action") String action, @LoggedIn UserAccount user) {
-		String userName = user.getUsername();
 		if (errors.hasErrors() ) {
 			return financesOverview(user, model, form);
 		}
 		if (action.equals("deposit")) {
 			form.addAmount(form.getAmount());
-			FinanceEntry entry = new FinanceEntry(user, form.getAmount(),form.getNote(), form.getDate(), form.getBalance());
+			FinanceEntry entry = new FinanceEntry(user, form.getAmount(),form.getNote(), form.getDate());
 			finances.save(entry);
 			model.addAttribute("entry", entry);
 		}
 		if (action.equals("withdraw")) {
-			if (balance.isGreaterThanOrEqualTo(Money.of(form.getAmount(),"EUR"))){
+			if (balance.isGreaterThanOrEqualTo(Money.of( form.getAmount(),"EUR"))){
 				form.addAmount(-(form.getAmount()));
-				FinanceEntry entry = new FinanceEntry(user, -(form.getAmount()),form.getNote(), form.getDate(),form.getBalance());
+				FinanceEntry entry = new FinanceEntry(user, -(form.getAmount()),form.getNote(), form.getDate());
 				finances.save(entry);
 				model.addAttribute("entry", entry);
 			}
@@ -85,7 +97,7 @@ public class FinanceController {
 	@PostMapping(path = "/finances", headers = "X-Requested-With=XMLHttpRequest")
 	String finance(@LoggedIn UserAccount user, @Valid FinanceForm form, Model model) {
 
-		FinanceEntry entry = new FinanceEntry(user, form.getAmount(),form.getNote(), form.getDate(), form.getBalance());
+		FinanceEntry entry = new FinanceEntry(user, form.getAmount(),form.getNote(), form.getDate());
 		finances.save(entry);
 		model.addAttribute("entry", entry);
 		model.addAttribute("index", finances.count());
