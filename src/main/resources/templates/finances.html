@@ -8,29 +8,7 @@
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 <body>
-<div class="wrapper">
-    <div class="sidebar">
-        <div class="profile">
-            <div class="profile_details">
-                <div class="name_status">
-                    <div class="name" sec:authorize="isAuthenticated()" th:text="${#authentication?.name}"></div>
-                    <div class="status" sec:authorize="isAuthenticated()" th:text="${'Role'}"></div>
-                </div>
-            </div>
-            <form class="item" sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
-                <button type="submit"  th:text="Logout">Logout</button>
-            </form>
-        </div>
-
-        <ul class="nav-list">
-            <li><a href="/home"><i class="fas fa-home"></i>Überblick</a></li>
-            <li><a href="/betting"><i class="fas fa-money-check-alt"></i>Wetten</a></li>
-            <li><a href="/community"><i class="fas fa-users"></i>Gemeinschaft</a></li>
-            <li><a href="/finances"><i class="fas fa-coins"></i>Finanzen</a></li>
-            <li><a href="/admin" sec:authorize="hasRole('BOSS')"><i class="fas fa-management"></i>Admin</a></li>
-        </ul>
-    </div>
-</div>
+<nav th:include="navigation :: navigation"></nav>
 
 <section class="main_content">
     <h1>Finanzen</h1>
@@ -41,12 +19,10 @@
 
     </h2><br/><br/>
 
-<!--        <form onsubmit="return checkBalance()" align="center" name ="finances" role="form"  th:object="${form}" th:action="@{/finances}" method="post">-->
         <form  onsubmit="return checkBalance()" align="center" name ="finances" role="form"  th:object="${form}" th:action="@{/finances}" method="post">
             <div class="field">
                 <label th:text="Geldbetrag">Geldbetrag</label>
                 <input class="input"  th:field="*{amount}" th:errorclass="is-invalid" required="required" min="0"/> <br/> <br/>
-
                 <p  th:if="${#fields.hasErrors('amount')}" th:class="${#fields.hasErrors('amount')}? error">
                     ╮(๑•́ ₃•̀๑)╭Geldbeitrag kann nicht kleiner als 0</p>
                 <label th:text="Note">Note</label>

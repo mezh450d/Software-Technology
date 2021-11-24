@@ -17,8 +17,8 @@ import static org.salespointframework.core.Currencies.EURO;
 @Controller
 class BettingController {
 
-	private DataCatalog dataCatalog;
-	private BetRepository bets;
+	private final DataCatalog dataCatalog;
+	private final BetRepository bets;
 
 	BettingController(DataCatalog dataCatalog, BetRepository bets) {
 		this.dataCatalog = dataCatalog;
@@ -48,7 +48,6 @@ class BettingController {
 		return "football";
 	}
 
-
 	@GetMapping("/lotteryList")
 	String lotteryList(Model model) {
 		model.addAttribute("lotteryList", dataCatalog.findByCategory(Category.LOTTERY));
@@ -71,16 +70,14 @@ class BettingController {
 	@PostMapping("/football")
 	String addBet(@LoggedIn UserAccount user, @RequestParam("match") FootballMatch match, @RequestParam("home_score") int homeScore,
 				  @RequestParam("guest_score") int guestScore, @RequestParam("amount") int amount) {
-		Bet bet = new Bet(user, match, new Score(homeScore, guestScore), Money.of(amount, EURO));
-		bets.save(bet);
+		bets.save(new Bet(user, match, new Score(homeScore, guestScore), Money.of(amount, EURO)));
 		return "redirect:/home";
 	}
 
 	@PostMapping("/lottery")
 	String addBet(@LoggedIn UserAccount user, @RequestParam("lottery") LotteryEntity lottery, @RequestParam("numStr") String numStr
-			, @RequestParam("superzahl") int superNumber, @RequestParam("menge") int menge) {
-		Bet bet = new Bet(user, lottery, new SelectNumber(numStr,superNumber), Money.of(menge, EURO));
-		bets.save(bet);
+				  , @RequestParam("superzahl") int superNumber, @RequestParam("menge") int menge) {
+		bets.save(new Bet(user, lottery, new SelectNumber(numStr,superNumber), Money.of(menge, EURO)));
 		return "redirect:/home";
 	}
 }
