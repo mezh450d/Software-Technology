@@ -10,25 +10,27 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import java.net.PasswordAuthentication;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+
 @Entity
-//@Table(name= "Community")
+@Table(name= "Communities")
 public class Community {
 
-	private @Id @GeneratedValue long id;
+	private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name="community_id") long id;
 
+	@Column(name="community_name")
 	private String name;
 
+	@Column(name="community_password")
 	private String password;
 
 	//private Password.EncryptedPassword password;
 
 	//private UserAccount communityAccount;
 
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<User>users =new ArrayList<>();
+	@ManyToMany(targetEntity = User.class,cascade = CascadeType.ALL)
+	@JoinTable(name="Community_User",joinColumns = {@JoinColumn(name="Community_ID",referencedColumnName = "community_id")},inverseJoinColumns = {@JoinColumn(name="userID",referencedColumnName = "user_id")})
+	private Set<User> users =new HashSet<>();
 
 	@SuppressWarnings("unused")
 	public Community(){}
@@ -48,9 +50,13 @@ public class Community {
 		return id;
 	}
 
+	public void setId(Long id){
+		this.id=id;
+	}
+
 	//public UserAccount getCommunityAccount(){return communityAccount;}
 
-	public List<User> getUsers() {
+	public Set<User> getUsers() {
 		return users;
 	}
 
@@ -59,10 +65,16 @@ public class Community {
 		return password;
 	}
 
+	public void setName(String name){
+		this.name=name;
+	}
 	public String getName(){
 		return name;
 	}
 
+	public void setUsers(Set<User>users){
+		this.users=users;
+	}
 	public void addUsers(User user){
 
 		if(user!=null){

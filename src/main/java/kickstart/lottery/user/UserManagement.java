@@ -2,11 +2,14 @@ package kickstart.lottery.user;
 
 import org.salespointframework.useraccount.Password.UnencryptedPassword;
 import org.salespointframework.useraccount.Role;
+import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.UserAccountManagement;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+
+import java.util.List;
 
 @Service
 @Transactional
@@ -36,6 +39,17 @@ public class UserManagement {
 		var userAccount = userAccounts.create(form.getName(), password, USER_ROLE);
 
 		return users.save(new User(userAccount));
+	}
+
+	public User findByUserAccount(UserAccount userAccount){
+		System.out.println("NEED TO FIND USER WITH ID"+userAccount.getId());
+		List<User> allUsers=users.findAll().toList();
+		if(allUsers.isEmpty())System.out.println("userRepository ist empty!");
+		for(User user:allUsers){
+			System.out.println("this user'id ist"+user.getUserAccount().getId());
+			if(user.getUserAccount().getId()==userAccount.getId())return user;
+		}
+		return null;
 	}
 
 

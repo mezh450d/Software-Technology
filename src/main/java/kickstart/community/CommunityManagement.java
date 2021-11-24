@@ -47,6 +47,8 @@ public class CommunityManagement {
 
 	}
 
+	//public Community joinCommunity()
+
 	public void deleteCommunity(){
 		communities.deleteAll();
 	}
