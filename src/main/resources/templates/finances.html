@@ -8,44 +8,21 @@
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 <body>
-<div class="wrapper">
-    <div class="sidebar">
-        <div class="profile">
-            <div class="profile_details">
-                <div class="name_status">
-                    <div class="name" sec:authorize="isAuthenticated()" th:text="${#authentication?.name}"></div>
-                    <div class="status" sec:authorize="isAuthenticated()" th:text="${'Role'}"></div>
-                </div>
-            </div>
-            <form class="item" sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
-                <button type="submit"  th:text="Logout">Logout</button>
-            </form>
-        </div>
-
-        <ul class="nav-list">
-            <li><a href="/home"><i class="fas fa-home"></i>Überblick</a></li>
-            <li><a href="/betting"><i class="fas fa-money-check-alt"></i>Wetten</a></li>
-            <li><a href="/community"><i class="fas fa-users"></i>Gemeinschaft</a></li>
-            <li><a href="/finances"><i class="fas fa-coins"></i>Finanzen</a></li>
-        </ul>
-    </div>
-</div>
+<nav th:include="navigation :: navigation"></nav>
 
 <section class="main_content">
     <h1>Finanzen</h1>
 
         <p sec:authorize="isAuthenticated()" th:text="${'Hi ' + #authentication?.name + ', hier ist dein Geld zu sehen.'}">
         <h2 align="center">Ihr Saldo:
-        <p id=balance th:field="*{balance}" th:text="${balance}"></p>
+        <p id=balance th:field="*{balance}" th:text="${balance}">0.0 EURO</p>
 
     </h2><br/><br/>
 
-<!--        <form onsubmit="return checkBalance()" align="center" name ="finances" role="form"  th:object="${form}" th:action="@{/finances}" method="post">-->
         <form  onsubmit="return checkBalance()" align="center" name ="finances" role="form"  th:object="${form}" th:action="@{/finances}" method="post">
             <div class="field">
                 <label th:text="Geldbetrag">Geldbetrag</label>
                 <input class="input"  th:field="*{amount}" th:errorclass="is-invalid" required="required" min="0"/> <br/> <br/>
-
                 <p  th:if="${#fields.hasErrors('amount')}" th:class="${#fields.hasErrors('amount')}? error">
                     ╮(๑•́ ₃•̀๑)╭Geldbeitrag kann nicht kleiner als 0</p>
                 <label th:text="Note">Note</label>
@@ -56,24 +33,6 @@
             <button class="button_slide slide_left" type="submit" name="action" value="withdraw">Auszahlung</button>
         </form>
 
-    <script src="jquery-1.12.4.min.js"></script>
-
-    <script type="text/javascript">
-<!-- function checkBalance() {-->
-
-<!--        var balance= [[${balance}]];-->
-<!--        var amount= $('#amount').val();-->
-
-<!--        if (balance < amount){-->
-<!--            alert('Are you sure you want to continue?(°ー°〃)');-->
-<!--            return false;-->
-<!--        }-->
-<!--        else{-->
-<!--            return true;-->
-<!--        }-->
-<!--    }-->
-
-</script>
     <h2>Transaktion</h2>
     <table class="table">
         <thead>

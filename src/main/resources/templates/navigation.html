@@ -1,30 +1,32 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en"  dir="ltr" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-  <meta charset="UTF-8">
-
-  <script src="https://kit.fontawesome.com/63a2b78b2b.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<div class="wrapper">
-  <div class="sidebar">
-    <div class="profile">
-      <div class="profile_details">
-        <div class="name_status">
-          <div class="name">Hannes Reinhold</div>
-          <div class="status">Administrator</div>
+  <nav th:fragment="navigation">
+    <div class="wrapper">
+      <div class="sidebar">
+        <div class="profile">
+          <div class="profile_details">
+            <div class="name_status">
+              <div class="name" sec:authorize="isAuthenticated()" th:text="${#authentication?.name}"></div>
+              <div class="status" sec:authorize="isAuthenticated()" th:text="${'Role'}"></div>
+            </div>
+          </div>
+          <form class="item" sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+            <button type="submit" class="ui button" th:text="Logout">Logout</button>
+          </form>
         </div>
-      </div>
-      <i class="fas fa-sign-out-alt" id="log_out"></i>
-    </div>
 
-    <ul class="nav-list">
-      <li><a href="/home"><i class="fas fa-home"></i>Overview</a></li>
-      <li><a href="/betting"><i class="fas fa-money-check-alt"></i>Bets</a></li>
-      <li><a href="/community"><i class="fas fa-users"></i>Community</a></li>
-      <li><a href="/finances"><i class="fas fa-coins"></i>Finances</a></li>
-    </ul>
-  </div>
-</div>
+        <ul class="nav-list">
+          <li><a href="/home"><i class="fas fa-home"></i>Überblick</a></li>
+          <li><a href="/betting"><i class="fas fa-money-check-alt"></i>Wetten</a></li>
+          <li><a href="/community"><i class="fas fa-users"></i>Gemeinschaft</a></li>
+          <li><a href="/finances"><i class="fas fa-coins"></i>Finanzen</a></li>
+          <li><a href="/admin" sec:authorize="hasRole('BOSS')"><i class="fas fa-user-tie"></i>Admin</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 </body>
 </html>

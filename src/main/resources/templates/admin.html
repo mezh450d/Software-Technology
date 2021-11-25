@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"  dir="ltr" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <script src="https://kit.fontawesome.com/63a2b78b2b.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <link th:href="@{/resources/css/style.css}" rel="stylesheet"
+          href="../static/resources/css/style.css" type="text/css"/>
+    <title>Admin</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+<nav th:include="navigation :: navigation"></nav>
+
+<section class="main_content">
+    <h1>Admin</h1>
+    <p sec:authorize="isAuthenticated()" th:text="${'Hi ' + #authentication?.name + ', hier kannst du alle Benutzerinformationen sehen!'}"></p>
+    <h1>Community-ID eingeben</h1>
+    <div class="input-form">
+        <form class="ui form" role="form" th:action="@{/admin}" method="post">
+            <div class="field">
+            <label th:text="Community-ID">Community-ID</label><br>
+            <input id="cid" name="cid" type="number"><br>
+<!--            <input class="cid"  th:field="*{cid}" th:errorclass="is-invalid" required="required" min="0"/> <br/> <br/>-->
+
+<!--            <p  th:if="${#fields.hasErrors('cid')}" th:class="${#fields.hasErrors('cid')}? error">-->
+<!--                ╮(๑•́ ₃•̀๑)╭Geldbeitrag kann nicht kleiner als 0</p>-->
+            </div>
+        </form>
+        <div class="column">
+            <form class="ui form" method="post" th:action="@{/list}">
+                <button type="submit" class="ui button" th:text="Eintreten">Eintreten</button>
+            </form>
+        </div>
+        <a href="allusers.html" th:href="@{/allusers}">Show all users?</a><br>
+    </div>
+</section>
+</body>
+</html>

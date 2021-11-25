@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en"  dir="ltr" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <script src="https://kit.fontawesome.com/63a2b78b2b.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <link th:href="@{/resources/css/style.css}" rel="stylesheet"
+          href="../static/resources/css/style.css" type="text/css"/>
+    <title>Finanzen</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+<nav th:include="navigation :: navigation"></nav>
+
+<section class="main_content">
+    <h1>Benutzer Informationen</h1>
+    <h2>Hier sind die Informationen für alle Benutzer</h2>
+
+    <!--    <table class="ui celled table">-->
+    <!--        <thead>-->
+    <!--        <tr>-->
+    <!--            <th th:text="User ID">User ID</th>-->
+    <!--            <th th:text="User Name">User Name</th>-->
+    <!--&lt;!&ndash;            <th th:text="Football Betting">Football Betting</th>&ndash;&gt;-->
+    <!--        </tr>-->
+    <!--        </thead>-->
+    <!--        <tbody th:remove="all-but-first">-->
+    <!--        <tr th:each="item : ${userinfo}">-->
+    <!--            <td th:text="${item.userAccountIdentifier}">468567</td>-->
+    <!--            <td th:text="${item.firstname}">Tommy</td>-->
+    <!--        </tr>-->
+    <!--        </tbody>-->
+    <!--    </table>-->
+
+
+    <!-- <table>
+         <thead>
+         <tr>
+             <th>User name</th>
+             <th>User ID</th>
+         </tr>
+         </thead>
+         <tbody th:remove="all-but-first">
+         <tr th:each="item : ${userinfo}">
+             <td th:text="${item.name}">468567</td>
+             <td th:text="${item.id}">468567</td>
+         </tr>
+         </tbody>
+     </table>-->
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Community ID</th>
+            <th>User Name</th>
+            <th>User ID</th>
+            <th>Football Wetten Betrag</th>
+            <th>Lotto Wetten Betrag</th>
+            <th>Football Match Result</th>
+            <th>Lotto Result</th>
+            <th>Win/Lose(football)</th>
+            <th>Win/Lose(Lotto)</th>
+        </tr>
+        </thead>
+<!--        <tr>-->
+<!--            <th>NAME</th>-->
+<!--            <th>ID</th>-->
+<!--        </tr>-->
+<!--        <tr th:each="prod : ${userinfo}">-->
+<!--            <td th:text="${prod.name}">Onions</td>-->
+<!--            <td th:text="${prod.id}">2.41</td>-->
+<!--        </tr>-->
+        <tbody>
+
+        </tbody>
+    </table>
+</section>
+</body>
+</html>

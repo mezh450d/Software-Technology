@@ -9,28 +9,8 @@
   <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 <body>
-<div class="wrapper">
-  <div class="sidebar">
-    <div class="profile">
-      <div class="profile_details">
-        <div class="name_status">
-          <div class="name" sec:authorize="isAuthenticated()" th:text="${#authentication?.name}"></div>
-          <div class="status" sec:authorize="isAuthenticated()" th:text="${'Role'}"></div>
-        </div>
-      </div>
-      <form class="item" sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
-        <button type="submit" class="ui button" th:text="Logout">Logout</button>
-      </form>
-    </div>
+<nav th:include="navigation :: navigation"></nav>
 
-    <ul class="nav-list">
-      <li><a href="/home"><i class="fas fa-home"></i>Überblick</a></li>
-      <li><a href="/betting"><i class="fas fa-money-check-alt"></i>Wetten</a></li>
-      <li><a href="/community"><i class="fas fa-users"></i>Gemeinschaft</a></li>
-      <li><a href="/finances"><i class="fas fa-coins"></i>Finanzen</a></li>
-    </ul>
-  </div>
-</div>
 <style>
     .box {
         width: 530px; height: 530px; margin: 0 auto; background-color: #ffffff;
@@ -67,6 +47,7 @@
   <h1>Wetten</h1>
   <p sec:authorize="isAuthenticated()" th:text="${'Hi ' + #authentication?.name + ', hier kannst du Wetten abschließen!'}"></p>
   <div class="box" style="">
+    <input type="hidden" name="lottery" th:value="${productId}">
     <div class="box-item" style="">1</div>
     <div class="box-item" style="">2</div>
     <div class="box-item" style="">3</div>
@@ -150,27 +131,16 @@
                 // 获取superzahl
                 var superzahl = $("input[name=superzahl]").val();
                 var menge = $("input[name=menge]").val();
-                var data = {};
-                data.numberList = numberList;
-                data.superzahl = superzahl;
-                data.menge = menge;
+                var str = "numStr=" + numberList.toString() + "&lottery=" + $("input[name=lottery]").val() + "&superzahl=" + superzahl + "&menge=" + menge;
                 $.ajax({
                    type: "POST",
-                   url: "/number/buy",
-                   data: JSON.stringify(data),
-                   contentType: "application/json",
+                   url: "/lottery",
+                   data: str,
                    success: function(data){
-                       if(data.code === 0 ) {
-                           window.location.href = "/home";
-                       } else {
-                           alert(data.msg);
-                       }
+                       window.location.href = "/home";
                    }
                 });
-
-
             })
-
         })
     </script>
 

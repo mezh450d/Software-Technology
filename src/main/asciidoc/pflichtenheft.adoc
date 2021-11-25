@@ -130,10 +130,10 @@ a|
 == Systemgrenze und Top-Level-Architektur
 
 === Kontextdiagramm
-image::./diagrams/context-diagram.svg[context diagram, title= "Kontextdiagramm", align=center]
+image::./diagrams/pflichtenheft/context-diagram.svg[context diagram, title= "Kontextdiagramm", align=center]
 
 === Top-Level-Architektur
-image::./diagrams/top-level-architecture.svg[top-level-architecture, title= "Top-Level-Architektur", align=center]
+image::./diagrams/pflichtenheft/top-level-architecture.svg[top-level-architecture, title= "Top-Level-Architektur", align=center]
 
 == Anwendungsfälle
 
@@ -151,7 +151,7 @@ image::./diagrams/top-level-architecture.svg[top-level-architecture, title= "Top
 === Überblick Anwendungsfalldiagramm
 
 [[use_case_diagram]]
-image::./diagrams/use-case-diagram2.svg[use-case-diagram, title= "Anwendungsfalldiagramm", align=center]
+image::./diagrams/pflichtenheft/use-case-diagram2.svg[use-case-diagram, title= "Anwendungsfalldiagramm", align=center]
 
 === Anwendungsfallbeschreibungen
 [cols="1h, 3"]
@@ -213,7 +213,7 @@ _Logout_:
 |Funktionale Voraussetzungen|[F0003]
 |===
 
-image::./diagrams/seq_register_login_logout.svg[seq_register/login/logout, title= "Sequenzdiagramm : register/login/logout ", align=center]
+image::./diagrams/pflichtenheft/seq_register_login_logout.svg[seq_register/login/logout, title= "Sequenzdiagramm : register/login/logout ", align=center]
 
 [cols="1h, 3"]
 [[UC0030]]
@@ -250,7 +250,7 @@ Der Katalog muss eine Unterscheidung zwischen den verschiedenen Arten von Lotter
 |Funktionale Voraussetzungen  |[F0006][F0007][F0008][F0009][F0010]
 |===
 
-image::./diagrams/seq_bet.svg[seq-bet, title= "Sequenzdiagramm : bet", align=center]
+image::./diagrams/pflichtenheft/seq_bet.svg[seq-bet, title= "Sequenzdiagramm : bet", align=center]
 
 [cols="1h, 3"]
 [[UC0050]]
@@ -287,7 +287,7 @@ _deposit_: Akteur klickt auf den Knopf "deposit".
 |Funktionale Voraussetzungen|[F0013][F0014]
 |===
 
-image::./diagrams/seq_deposit-withdraw.svg[seq_deposit/withdraw, title= "Sequenzdiagramm : deposit/withdral", align=center]
+image::./diagrams/pflichtenheft/seq_deposit-withdraw.svg[seq_deposit/withdraw, title= "Sequenzdiagramm : deposit/withdral", align=center]
 
 [cols="1h, 3"]
 [[UC0080]]
@@ -303,7 +303,7 @@ image::./diagrams/seq_deposit-withdraw.svg[seq_deposit/withdraw, title= "Sequenz
 |Funktionale Voraussetzungen|[F0015]
 |===
 
-image::./diagrams/seq_create.svg[seq_create, title= "Sequenzdiagramm : create", align=center]
+image::./diagrams/pflichtenheft/seq_create.svg[seq_create, title= "Sequenzdiagramm : create", align=center]
 
 [cols="1h, 3"]
 [[UC0090]]
@@ -323,7 +323,7 @@ image::./diagrams/seq_create.svg[seq_create, title= "Sequenzdiagramm : create", 
 |Functional Requirements    |[F0016]
 |===
 
-image::./diagrams/seq_join.svg[seq_join, title= "Sequenzdiagramm : join", align=center]
+image::./diagrams/pflichtenheft/seq_join.svg[seq_join, title= "Sequenzdiagramm : join", align=center]
 
 [cols="1h, 3"]
 [[UC0100]]
@@ -393,7 +393,7 @@ image::./diagrams/seq_join.svg[seq_join, title= "Sequenzdiagramm : join", align=
 |Funktionale Voraussetzungen|
 |===
 
-image::./diagrams/seq_evaluation.svg[seq_evaluation, title= "Sequenzdiagramm : evaluation", align=center]
+image::./diagrams/pflichtenheft/seq_evaluation.svg[seq_evaluation, title= "Sequenzdiagramm : evaluation", align=center]
 
 [cols="1h, 3"]
 [[UC0170]]
@@ -414,7 +414,7 @@ image::./diagrams/seq_evaluation.svg[seq_evaluation, title= "Sequenzdiagramm : e
 |Funktionale Voraussetzungen|[F0023]
 |===
 
-image::./diagrams/seq_money.svg[seq_geld-vergeben, title= "Sequenzdiagramm : Geld vergeben", align=center]
+image::./diagrams/pflichtenheft/seq_money.svg[seq_geld-vergeben, title= "Sequenzdiagramm : Geld vergeben", align=center]
 
 == Funktionale Anforderungen
 
@@ -791,7 +791,7 @@ image:diagrams/gui/finance.jpg[finance, title= "Übersicht Finanzen", align=cent
 == Datenmodell
 
 === Überblick: Klassendiagramm
-image::./diagrams/class-diagram.jpg[class-diagram, title= "UML-Analyse-Klassendiagramm", align=center]
+image::./diagrams/pflichtenheft/uml-class-diagram.jpg[uml-class-diagram, title= "UML-Analyse-Klassendiagramm", align=center]
 
 === Klassen und Enumerationen
 
@@ -853,7 +853,7 @@ Der Nutzer wird, nach einer Validierung der Anmeldedaten, vom System angemeldet 
 - Der Nutzer wird zur Login-Seite weitergeleitet.
 |===
 
-image::./diagrams/seq_register_login_logout.svg[seq_register/login/logout, title= "register/login/logout", align=center]
+image::./diagrams/pflichtenheft/seq_register_login_logout.svg[seq_register/login/logout, title= "register/login/logout", align=center]
 
 [cols="1h, 4"]
 [[AT0030]]
@@ -908,7 +908,7 @@ Falls Knopf "Fußballtoto" geklickt wird:
 - Der Nutzer kann den Betrag eingeben und eine Wette platzieren.
 |===
 
-image::./diagrams/seq_bet.svg[seq_bet, title= "bet", align=center]
+image::./diagrams/pflichtenheft/seq_bet.svg[seq_bet, title= "bet", align=center]
 
 [cols="1h, 4"]
 [[AT0050]]
@@ -935,7 +935,7 @@ _deposit_: Der Nutzer klickt auf den Knopf "deposit".
 - Der Nutzer wählt den Betrag, den er aufladen oder abheben möchte.
 |===
 
-image::./diagrams/seq_deposit-withdraw.svg[seq_deposit/withdraw, title= "deposit/withdraw", align=center]
+image::./diagrams/pflichtenheft/seq_deposit-withdraw.svg[seq_deposit/withdraw, title= "deposit/withdraw", align=center]
 
 [cols="1h, 4"]
 [[AT0080]]
@@ -950,7 +950,7 @@ Der Nutzer klickt auf der Navigationsleiste unter "Community" auf den Knopf "cre
 - Der Nutzer erhält ein Gemeinschaftspasswort und kann mit diesem Passwort andere Nutzer einladen, der Gemeinschaft beizutreten.
 |===
 
-image::./diagrams/seq_create.svg[seq_create, title= "create", align=center]
+image::./diagrams/pflichtenheft/seq_create.svg[seq_create, title= "create", align=center]
 
 [cols="1h, 4"]
 [[AT0090]]
@@ -966,7 +966,7 @@ image::./diagrams/seq_create.svg[seq_create, title= "create", align=center]
 -Falls das Passwort ungültig ist, wird eine Fehlermeldung ausgegeben.
 |===
 
-image::./diagrams/seq_join.svg[seq_join, title= "join", align=center]
+image::./diagrams/pflichtenheft/seq_join.svg[seq_join, title= "join", align=center]
 
 == Glossar
 [options="header", cols="2, 4"]
