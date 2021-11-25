@@ -47,9 +47,12 @@ public class UserDataInitializer implements DataInitializer {
 
 		List.of(//
 				new RegistrationForm("hans", password),
-				new RegistrationForm("dextermorgan", password),
-				new RegistrationForm("earlhickey", password),
-				new RegistrationForm("mclovinfogell", password)
+				new RegistrationForm("nick", password),
+				new RegistrationForm("jing", password),
+				new RegistrationForm("hannes", password),
+				new RegistrationForm("ziyi", password),
+				new RegistrationForm("meng", password),
+				new RegistrationForm("shiyue", password)
 		).forEach(userManagement::createUser);
 	}
 }
