@@ -40,4 +40,14 @@ public class UserController {
 		return "register";
 	}
 
+	@GetMapping("/")
+	public String index() {
+		return "redirect:login";
+	}
+
+	@GetMapping("/login")
+	public String login() {
+		return "login";
+	}
+
 }
