@@ -1,6 +1,7 @@
 package lottery.finance;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 
 import lottery.betting.Bet;
 import lottery.betting.BetRepository;
@@ -26,7 +27,7 @@ public class FinanceController {
 
 	private final FinanceRepository finances;
 	public static Money balance;
-	private BetRepository bets;
+	private final BetRepository bets;
 
 	FinanceController(FinanceRepository finances, BetRepository bets) {
 		this.finances = finances;
@@ -35,38 +36,23 @@ public class FinanceController {
 
 	@GetMapping(path = "/finances")
 	String financesOverview(@LoggedIn UserAccount user, Model model, FinanceForm form) {
-		model.addAttribute("balance",Money.of(0.0,"EUR"));
 		String userName = user.getUsername();
-		if(finances.count() > 0){
-			List<FinanceEntry> allFinance = finances.findAll().toList();
-			List<FinanceEntry> personalFinances = new ArrayList<>();
-			List<Double> personalAmounts = new ArrayList<>();
-			for(FinanceEntry finance : allFinance){
-				if(finance.getUser().equals(userName)) {
-					personalFinances.add(finance);
-					personalAmounts.add(finance.getAmount());
-					finance.setBalance(Money.of(0.0,"EUR"));
-					Iterable<Double> amountsWithoutSign = personalAmounts;
-					Iterator<Double> iterator = amountsWithoutSign.iterator() ;
-					while (iterator.hasNext()) {
-						double temp = iterator.next();
-						finance.setBalance(finance.getBalance().add(Money.of(temp,"EUR")));
-					}
-					balance = finance.getBalance();
-					// Dieser Abschnitt ermöglicht Abzüge nach dem Wetten
-					if(bets.count() > 0){
-						List<Bet> allBets = bets.findAll().toList();
-						for(Bet bet : allBets){
-							if(bet.getUser().equals(userName)){
-								balance = balance.subtract(bet.getBettingAmount());
-							}
-						}
-					}
-					model.addAttribute("entries", personalFinances);
-					model.addAttribute("balance", balance);
+		model.addAttribute("entries", finances.findByUser(userName));
+		form.calculateBalance();
+		FinanceEntry financeEntry = FinanceForm.ALL_AMOUNT.get(form.getId());
+		balance = financeEntry.getBalance();
+
+		// Dieser Abschnitt ermöglicht Abzüge nach dem Wetten
+		if(bets.count() > 0){
+			List<Bet> allBets = bets.findAll().toList();
+			for(Bet bet : allBets){
+				if(bet.getUser().equals(userName)){
+					balance = balance.subtract(bet.getBettingAmount());
 				}
 			}
 		}
+		model.addAttribute("bets", bets.findByUser(userName));
+		model.addAttribute("balance", balance);
 		model.addAttribute("form", form);
 		return "finances";
 	}
@@ -74,6 +60,7 @@ public class FinanceController {
 	@PostMapping(path = "/finances")
 	String depositAndWithdraw(@Valid @ModelAttribute("form") FinanceForm form, Errors errors, Model model,
 							  @RequestParam(value = "action") String action, @LoggedIn UserAccount user) {
+
 		if (errors.hasErrors() ) {
 			return financesOverview(user, model, form);
 		}

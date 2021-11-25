@@ -40,7 +40,7 @@ public class FinanceControllerUnitTests {
 
 
 	UserAccount user1, user2;
-	FinanceRepository financeRepository;
+
 
 	@BeforeAll
 	void before() {
@@ -51,10 +51,11 @@ public class FinanceControllerUnitTests {
 		user1 = userList.get(0).getUserAccount();
 		user2 = userList.get(1).getUserAccount();
 	}
-		@Mock
-		FinanceRepository finances;
-		@Mock
-		BetRepository bets;
+
+	@Mock
+	FinanceRepository finances;
+	@Mock
+	BetRepository bets;
 
 	@Test
 	void populatesModelForFinance() {
@@ -64,21 +65,11 @@ public class FinanceControllerUnitTests {
 		FinanceEntry entry = new FinanceEntry(user1, 100.0, "", LocalDateTime.now());
 		finances.save(entry);
 		FinanceController controller = new FinanceController(finances, bets);
-		String viewName = controller.financesOverview(user1, model,new FinanceForm(100.0, null));
-
+		String viewName = controller.financesOverview(user1, model, new FinanceForm(100.0, null));
 		assertThat(viewName).isEqualTo("finances");
-//			assertEquals(model.asMap().get("balance"), Money.of(100.0,"EUR"));
-//			assertThat(model.asMap().get("entries")).isInstanceOf(Iterable.class);
-//			assertThat(model.asMap().get("form")).isNotNull();
-
+//		assertThat(model.asMap().get("entries")).isInstanceOf(Iterable.class);
+		assertThat(model.asMap().get("form")).isNotNull();
+//		assertThat(model.getAttribute("balance")).isEqualTo(Money.of(100,"EUR"));
 	}
-//	@Test
-//	void testBalance() {
-//		Model model = new ExtendedModelMap();
-//		FinanceEntry entry = new FinanceEntry(user1.getUserAccount(), 100.0 ,"EUR", LocalDateTime.now());
-//		finance.save(entry);
-//		String financeOverview = financeController.financesOverview(user1.getUserAccount(), model, new FinanceForm(100.0, null));
-//		assertEquals(model.getAttribute("balance"), Money.of(100.0,"EUR"));
-//	}
-	}
+}
 

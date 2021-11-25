@@ -19,6 +19,7 @@ public class FinanceForm {
 	long id;
 	private LocalDateTime date;
 	@NotNull(message = "amount cannot be null.")
+	@Min(value = 0)
 	public  Double amount;
 	@Min(value = 0)
 	public Money balance;
@@ -59,19 +60,19 @@ public class FinanceForm {
 	}
 
 	public Money calculateBalance(){
-		FinanceEntry ff = FinanceForm.ALL_AMOUNT.get(getId());
-		if (ff == null) {
-			ff = new FinanceEntry();
-			FinanceForm.ALL_AMOUNT.put(getId(), ff);
+		FinanceEntry entry = FinanceForm.ALL_AMOUNT.get(getId());
+		if (entry == null) {
+			entry = new FinanceEntry();
+			FinanceForm.ALL_AMOUNT.put(getId(), entry);
 		}
-		ff.setBalance(Money.of(0.0,"EUR"));
+		entry.setBalance(Money.of(0.0,"EUR"));
 		Iterable<Double> amountsWithoutSign = getAmounts();
 		Iterator<Double> iterator = amountsWithoutSign.iterator() ;
 		while (iterator.hasNext()) {
 			double temp = iterator.next();
-			ff.setBalance(ff.balance.add(Money.of(temp,"EUR")));
+			entry.setBalance(entry.balance.add(Money.of(temp,"EUR")));
 		}
-		return ff.balance;
+		return entry.balance;
 	}
 
 	public void setBalance(Money balance){
@@ -81,6 +82,7 @@ public class FinanceForm {
 	public Money getBalance(){
 		return balance;
 	}
+
 	@Override
 	public String toString(){
 		return note;
