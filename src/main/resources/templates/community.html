@@ -13,19 +13,19 @@
 
 <section class="main_content">
     <h1>Gemeinschaft</h1>
-    <p sec:authorize="isAuthenticated()" th:text="${'Hi ' + #authentication?.name + ', hier stehen deine Gemeinschaften'}"></p>
 
-
-    <!-- Hier kommt Alles für die Gemeinschaften rein -->
-    <!-- Hier ist nicht alles Korrekt, weil wir noch kein html(ueberblick und wetten) fuer Jede Community-->
-    <!-- Hier wird statt nur Communities fuer loginuser alle communities angezeigt, weil es noch ein Problem ueber join gibt-->
-
-    <h2 align="center">Ihre Gemeinschäfte:</h2>
-        <h3 align="center">Jetzt aber alle Gemeinschäfte</h3>
-    <table align="center " class="table">
+    <h3>Ihre Gemeinschaften:</h3>
+    <table class="table">
         <thead>
-        <tr th:each="community : ${communitiesall} ">
-            <td th:text="${community.name}">CommunityName</td>
+        <tr>
+            <th scope="col">Gemeinschaftsname</th>
+            <th scope="col">Überblick</th>
+            <th scope="col">Wetten</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="community : ${personalCommunities} ">
+            <td th:text="${community.name}"></td>
             <td>
                 <a href="/home">
                     <button>Überblick</button>
@@ -37,13 +37,20 @@
                 </a>
             </td>
         </tr>
-        </thead>
+        </tbody>
     </table>
 
-    <h3 align="center">Jetzt aber alle Gemeinschäfte</h3>
-    <table align="center " class="table">
+    <h3>Diesen Gemeinschaften können Sie beitreten:</h3>
+    <table class="table">
         <thead>
-        <tr th:each="community : ${communityList} ">
+        <tr>
+            <th scope="col">Gemeinschaftsname</th>
+            <th scope="col">Überblick</th>
+            <th scope="col">Beitreten</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="community : ${joinableCommunities} ">
             <td th:text="${community.name}">CommunityName</td>
             <td>
                 <a href="/home">
@@ -51,20 +58,21 @@
                 </a>
             </td>
             <td>
-                <a href="/betting">
-                    <button>Wetten</button>
+                <a href="/community/join">
+                    <button>Beitreten</button>
                 </a>
             </td>
         </tr>
-        </thead>
+        </tbody>
     </table>
 
-    <a  href="/create">
+    <a  href="/community/create">
         <button  class="button_slide slide_right">erstellen</button>
     </a>
-    <a  href="/join">
+    <a  href="/community/join">
         <button  class="button_slide slide_right">beitreten</button>
     </a>
 </section>
+
 </body>
 </html>

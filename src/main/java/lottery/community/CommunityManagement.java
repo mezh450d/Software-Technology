@@ -1,87 +1,75 @@
 package lottery.community;
 
-import org.salespointframework.useraccount.UserAccountManagement;
+import org.salespointframework.useraccount.UserAccount;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Service
 @Transactional
 public class CommunityManagement {
 
-	//private final UserAccountManagement communityAccounts;
-
 	private final CommunityRepository communities;
 
-//	private CommunityManagement(){
-//		this.communityAccounts=null;
-//		this.communities=null;
-//	}
-
-	public CommunityManagement(UserAccountManagement communityAccounts, CommunityRepository communities){
+	public CommunityManagement(CommunityRepository communities){
 
 		Assert.notNull(communities, "CommunityRepository must not be null!");
-		Assert.notNull(communityAccounts, "CommunityAccountManagement must not be null!");
 
 		this.communities=communities;
-		//this.communityAccounts=communityAccounts;
 	}
 
-	public Community createCommunity(CreateForm form){
+	public void createCommunity(CreateForm form){
+
 		Assert.notNull(form, "Registration form must not be null!");
 
-		//var password = Password.UnencryptedPassword.of(form.getPassword());
-		//var userAccount = communityAccounts.create(form.getName(),password);
-
-		return communities.save(new Community(form.getName(), form.getPassword()));
+		communities.save(new Community(form.getName(), form.getPassword()));
 
 	}
 
-	//public Community joinCommunity()
+	public void joinCommunity(Community community, UserAccount user){
 
-	public void deleteCommunity(){
-		communities.deleteAll();
+		Assert.notNull(community, "community must not be null!");
+		Assert.notNull(user, "user must not be null!");
+
+		community.addUser(user);
 	}
 
-	public Community findCommunity(CreateForm form){
+//	public void deleteCommunity(){
+//		communities.deleteAll();
+//	}
 
-//		var password = Password.UnencryptedPassword.of(form.getPassword());
-//		var userAccount = communityAccounts.create("123", password);
-//		Community communityFind=new Community(userAccount);
-//		List<Community>communityList=communities.findAll().toList();
-//		for(Community community:communityList){
-//
-//			if(community.getName()==form.getName()&&community.getPassword()==communityFind.getPassword()){
-//				communityAccounts.delete(userAccount);
-//				return community;
-//			}
-//
-//		}
-//		communityAccounts.delete(userAccount);
-//		return null;
+	public Community findCommunityByForm(CreateForm form){
 
+		Community community = communities.findByName(form.getName());
+		if(community.getPassword().equals(form.getPassword())) return community;
 
-		List<Community> communityList=communities.findAll().toList();
-
-		for(Community community:communityList){
-
-			if(community.getName().equals(form.getName())){
-				if(community.getPassword().equals(form.getPassword())){
-					return community;
-				}
-			}
-
-		}return null;
-
+		return null;
 	}
-
-//	public Streamable<Community> findByCreateForm(CreateForm createForm, Sort sort){return communities.findByCreateForm(createForm,sort);}
 
 	public Streamable<Community> findAll() {
 		return communities.findAll();
+	}
+
+	public Set<Community> findPersonalCommunities(UserAccount user) {
+		Streamable<Community> allCommunities = communities.findAll();
+		Set<Community> personalCommunities = new HashSet<>();
+		for (Community community : allCommunities){
+			if(community.userInCommunity(user)) personalCommunities.add(community);
+		}
+		return personalCommunities;
+	}
+
+	public Set<Community> findJoinableCommunities(UserAccount user) {
+		Streamable<Community> allCommunities = communities.findAll();
+		Set<Community> personalCommunities = new HashSet<>();
+		for (Community community : allCommunities){
+			if(!community.userInCommunity(user)) personalCommunities.add(community);
+		}
+		return personalCommunities;
 	}
 }
 

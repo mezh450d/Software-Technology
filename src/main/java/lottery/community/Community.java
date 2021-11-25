@@ -1,13 +1,12 @@
 package lottery.community;
 
-import lottery.user.User;
+import org.salespointframework.useraccount.UserAccount;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-//@Table(name= "Community")
 public class Community {
 
 	private @Id @GeneratedValue long id;
@@ -16,12 +15,8 @@ public class Community {
 
 	private String password;
 
-	//private Password.EncryptedPassword password;
-
-	//private UserAccount communityAccount;
-
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<User>users =new ArrayList<>();
+	@ManyToMany(cascade = CascadeType.ALL)
+	private final Set<UserAccount> users = new HashSet<>();
 
 	@SuppressWarnings("unused")
 	public Community(){}
@@ -31,37 +26,24 @@ public class Community {
 		this.password=password;
 	}
 
-//	public Community(UserAccount communityAccount) {
-//		this.name=communityAccount.getUsername();
-//		this.password=communityAccount.getPassword();
-//
-//	}
+	public long getId() { return id; }
 
-	public long getId() {
-		return id;
-	}
+	public String getName(){ return name; }
 
-	//public UserAccount getCommunityAccount(){return communityAccount;}
+	public String getPassword(){ return password; }
 
-	public List<User> getUsers() {
-		return users;
-	}
+	public Set<UserAccount> getUsers() { return users; }
 
 
-	public String getPassword(){
-		return password;
-	}
-
-	public String getName(){
-		return name;
-	}
-
-	public void addUsers(User user){
-
+	public void addUser(UserAccount user){
 		if(user!=null){
 			users.add(user);
 		}
+	}
 
+	public boolean userInCommunity(UserAccount user){
+		if(user!=null) return users.contains(user);
+		return false;
 	}
 
 

@@ -18,7 +18,7 @@ User -> CommunityController : 3: createNew()
 activate User
 alt Errors in RegistrationForm
     activate CommunityController
-    User <- - CommunityController : 4: community-create.html
+    User <- - CommunityController : 4: community-community_create.html
     deactivate CommunityController
 else Else
     CommunityController -> CommunityManagement : 5: createCommunity()
@@ -40,7 +40,7 @@ CommunityController -> Spring : 12: add RegistrationForm to Model
 activate Spring
 CommunityController <- - Spring : 13:
 deactivate Spring
-User <- - CommunityController : 14: Template: community-create.html
+User <- - CommunityController : 14: Template: community-community_create.html
 deactivate CommunityController
 
 User -> CommunityController : join()
