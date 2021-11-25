@@ -3,6 +3,8 @@ package lottery.betting;
 import lottery.betting.football.*;
 import lottery.betting.number.LotteryEntity;
 import lottery.betting.number.SelectNumber;
+import lottery.finance.FinanceEntry;
+import lottery.finance.FinanceForm;
 import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
@@ -62,15 +64,23 @@ class BettingController {
 
 	@PostMapping("/football")
 	String addBet(@LoggedIn UserAccount user, @RequestParam("match") FootballMatch match, @RequestParam("home_score") int homeScore,
-				  @RequestParam("guest_score") int guestScore, @RequestParam("amount") int amount) {
-		bets.save(new Bet(user, match, new Score(homeScore, guestScore), Money.of(amount, EURO)));
-		return "redirect:/home";
+				  @RequestParam("guest_score") int guestScore, @RequestParam("amount") int amount, FinanceForm form) {
+		FinanceEntry financeEntry = FinanceForm.ALL_AMOUNT.get(form.getId());
+		if(Money.of(amount, EURO).isLessThanOrEqualTo(financeEntry.getBalance())){
+			bets.save(new Bet(user, match, new Score(homeScore, guestScore), Money.of(amount, EURO)));
+			return "redirect:/home";
+		}
+		else return "redirect:/football";
 	}
 
 	@PostMapping("/lottery")
 	String addBet(@LoggedIn UserAccount user, @RequestParam("lottery") LotteryEntity lottery, @RequestParam("numStr") String numStr
-				  , @RequestParam("superzahl") int superNumber, @RequestParam("menge") int menge) {
-		bets.save(new Bet(user, lottery, new SelectNumber(numStr,superNumber), Money.of(menge, EURO)));
-		return "redirect:/home";
+				  , @RequestParam("superzahl") int superNumber, @RequestParam("menge") int menge, FinanceForm form) {
+		FinanceEntry financeEntry = FinanceForm.ALL_AMOUNT.get(form.getId());
+		if(Money.of(menge, EURO).isLessThanOrEqualTo(financeEntry.getBalance())){
+			bets.save(new Bet(user, lottery, new SelectNumber(numStr,superNumber), Money.of(menge, EURO)));
+			return "redirect:/home";
+		}
+		else return "redirect:/lottery";
 	}
 }

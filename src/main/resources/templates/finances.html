@@ -34,6 +34,7 @@
         </form>
 
     <h2>Transaktion</h2>
+    <h3>Einzahlung und Auszahlung</h3>
     <table class="table">
         <thead>
         <tr>
@@ -47,9 +48,30 @@
 
         <tr th:each="entry, it : ${entries}"  th:with="index = ${it.count}">
             <td th:text="${index}"></td>
-            <td th:text="${entry.amount}"></td>
+            <td th:text="EUR+${entry.amount}"></td>
             <td th:text="${entry.note}"></td>
             <td th:text="${#temporals.format(entry.date,'yyyy-MM-dd hh:mm:ss')}"></td>
+        </tr>
+
+        </tbody>
+    </table>
+    <h3>Andere</h3>
+    <table class="table">
+        <thead>
+        <tr>
+            <th th:text="index"></th>
+            <th th:text="Amount"></th>
+            <th th:text="Note"></th>
+            <th th:text="Time"></th>
+        </tr>
+        </thead>
+        <tbody th:remove="all-but-first">
+
+        <tr th:each="bet, it : ${bets}"  th:with="index = ${it.count}">
+            <td th:text="${index}"></td>
+            <td th:text="${bet.bettingAmount}"></td>
+            <td>Automatische Abbuchung</td>
+            <td th:text></td>
         </tr>
         </tbody>
     </table>
