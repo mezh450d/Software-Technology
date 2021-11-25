@@ -13,6 +13,9 @@ import java.util.List;
 @Entity
 public class User {
 
+public User(){
+
+}
 	private @Id @GeneratedValue long id;
 
 	@OneToOne
