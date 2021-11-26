@@ -46,5 +46,4 @@ public class Community {
 		return false;
 	}
 
-
 }
