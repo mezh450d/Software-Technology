@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -47,11 +48,20 @@ public class UserManagement {
 		if(allUsers.isEmpty())System.out.println("userRepository ist empty!");
 		for(User user:allUsers){
 			System.out.println("this user'id ist"+user.getUserAccount().getId());
-			if(user.getUserAccount().getId()==userAccount.getId())return user;
+			if(user.getUserAccount().getId()==userAccount.getId()) return user;
 		}
 		return null;
 	}
 
+	public User findByUsername(String name){
+		List<User> allUsers= users.findAll().toList();
+		for(User user : allUsers){
+			if(user.getUserAccount().getUsername().equals(name)) return user;
+		}
+		return null;
+	}
+
+	public void deleteUser(User user){ users.delete(user); }
 
 	//Übergibt alle abgespeicherten Nutzer
 	public Streamable<User> findAll() {
