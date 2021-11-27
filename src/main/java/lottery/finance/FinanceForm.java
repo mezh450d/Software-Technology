@@ -9,20 +9,27 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.time.Clock;
+import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.*;
 
 
 public class FinanceForm {
-	public  @Id
+	@Id
 	@GeneratedValue
-	long id;
+	public long id;
+
 	private LocalDateTime date;
+
 	@NotNull(message = "amount cannot be null.")
 	@Min(value = 0)
 	public  Double amount;
+
 	@Min(value = 0)
 	public Money balance;
+
 	public  String note;
 	public static Map<Long, FinanceEntry> ALL_AMOUNT=new HashMap<Long, FinanceEntry>();
 	public static List<Double> amounts = new ArrayList<>();
@@ -33,13 +40,11 @@ public class FinanceForm {
 
 	public FinanceForm( Double amount, String note){
 		this.amount = amount;
-		this.date = LocalDateTime.now();
+		this.date = LocalDateTime.now(Clock.offset(Clock.systemUTC(), Duration.ofHours(1)));
 		this.note = note;
 	}
 
-	public long getId(){
-		return  id;
-	}
+	public long getId(){ return  id; }
 
 	public Double getAmount(){
 		return amount;

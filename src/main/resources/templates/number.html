@@ -98,8 +98,8 @@
     <div class="box-item" style="">48</div>
     <div class="box-item" style="">49</div>
   </div>
-  <div class="box-input-div"><span>Superzahl:</span><input type="text" name="superzahl"></div>
-  <div class="box-input-div"><span>Menge:</span><input type="text" name="menge"></div>
+  <div class="box-input-div"><span>Superzahl:</span><input type="text" name="superNumber"></div>
+  <div class="box-input-div"><span>Menge:</span><input type="text" name="amount"></div>
   <div class="box-input-div"><button id="wetten-button">WETTEN!</button></div>
   <script>
         $(function () {
@@ -128,10 +128,10 @@
                     alert("xxx");
                     return false;
                 }
-                // 获取superzahl
-                var superzahl = $("input[name=superzahl]").val();
-                var menge = $("input[name=menge]").val();
-                var str = "numStr=" + numberList.toString() + "&lottery=" + $("input[name=lottery]").val() + "&superzahl=" + superzahl + "&menge=" + menge;
+                // superNumber
+                var superNumber = $("input[name=superNumber]").val();
+                var amount = $("input[name=amount]").val();
+                var str = "numStr=" + numberList.toString() + "&lottery=" + $("input[name=lottery]").val() + "&superNumber=" + superNumber + "&amount=" + amount;
                 $.ajax({
                    type: "POST",
                    url: "/lottery",

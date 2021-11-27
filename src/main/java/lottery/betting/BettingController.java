@@ -75,10 +75,11 @@ class BettingController {
 
 	@PostMapping("/lottery")
 	String addBet(@LoggedIn UserAccount user, @RequestParam("lottery") LotteryEntity lottery, @RequestParam("numStr") String numStr
-				  , @RequestParam("superzahl") int superNumber, @RequestParam("menge") int menge, FinanceForm form) {
+				  , @RequestParam("superNumber") int superNumber, @RequestParam("amount") int amount, FinanceForm form) {
+		amount = 10;
 		FinanceEntry financeEntry = FinanceForm.ALL_AMOUNT.get(form.getId());
-		if(Money.of(menge, EURO).isLessThanOrEqualTo(financeEntry.getBalance())){
-			bets.save(new Bet(user, lottery, new SelectNumber(numStr,superNumber), Money.of(menge, EURO)));
+		if(Money.of(amount, EURO).isLessThanOrEqualTo(financeEntry.getBalance())){
+			bets.save(new Bet(user, lottery, new SelectNumber(numStr,superNumber), Money.of(amount, EURO)));
 			return "redirect:/home";
 		}
 		else return "redirect:/lottery";
