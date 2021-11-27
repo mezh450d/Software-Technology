@@ -8,30 +8,32 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-
+import static org.salespointframework.core.Currencies.EURO;
 
 @Entity
 public class FinanceEntry {
 
 	private String user;
 
-	@Id @GeneratedValue
-	public long id;
+	@Id
+	@GeneratedValue
+	private long id;
 
-	public Double amount;
-	public Money balance;
-	public String note;
+	private Money amount;
+	private String note;
 	private LocalDateTime date;
+	private static DateTimeFormatter dateTime = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
 	@SuppressWarnings("unused")
 	protected FinanceEntry() {}
 
-	public FinanceEntry(UserAccount user, Double amount, String note, LocalDateTime date){
+	public FinanceEntry(UserAccount user, Number amount, String note, LocalDateTime date){
 		Assert.notNull(user, "user must not be null!");
 		Assert.notNull(amount, "amount must not be null!");
 		this.user = user.getUsername();
-		this.amount = amount;
+		this.amount = Money.of(amount, EURO);
 		this.note = note;
 		this.date = date;
 	}
@@ -40,7 +42,7 @@ public class FinanceEntry {
 		return  id;
 	}
 
-	public Double getAmount(){
+	public Money getAmount(){
 		return amount;
 	}
 
@@ -52,22 +54,7 @@ public class FinanceEntry {
 		return note;
 	}
 
-	public String getDate() {
-		return date.getDayOfMonth() + "." + date.getMonthValue() + "." + date.getYear();
-	}
-
-	public String getDateWithTime() {
-		return date.getDayOfMonth() + "." + date.getMonthValue() + "." + date.getYear()
-				+ ", " + date.getHour() + ":" + date.getMinute();
-	}
-
-	public Money getBalance(){
-		return balance;
-	}
-
-	public void setBalance(Money balance){
-		this.balance = balance;
-	}
+	public String getDate() { return date.format(dateTime); }
 
 	@Override
 	public String toString(){

@@ -11,70 +11,47 @@
 <nav th:include="navigation :: navigation"></nav>
 
 <section class="main_content">
+
     <h1>Finanzen</h1>
+    <h2 >Ihr Saldo:
+    <p id=balance th:field="*{balance}" th:text="${balance}">0.00 EURO</p>
+    </h2>
+    <br/><br/>
 
-        <h2 align="center">Ihr Saldo:
-        <p id=balance th:field="*{balance}" th:text="${balance}">0.0 EURO</p>
-
-    </h2><br/><br/>
-
-        <form  onsubmit="return checkBalance()" align="center" name ="finances" role="form"  th:object="${form}" th:action="@{/finances}" method="post">
-            <div class="field">
-                <label th:text="Geldbetrag">Geldbetrag</label>
-                <input class="input"  th:field="*{amount}" th:errorclass="is-invalid" required="required" min="0"/> <br/> <br/>
-                <p  th:if="${#fields.hasErrors('amount')}" th:class="${#fields.hasErrors('amount')}? error">
-                    ╮(๑•́ ₃•̀๑)╭Geldbeitrag kann nicht kleiner als 0</p>
-                <label th:text="Beschreibung">Beschreibung</label>
-                <input class="input" th:field="*{note}" type="text" />
-                <br/> <br/>
-            </div><br/>
-            <button class="button_slide slide_left"  type="submit" name="action" value="deposit">Einzahlung</button>
-            <button class="button_slide slide_left" type="submit" name="action" value="withdraw">Auszahlung</button>
-        </form>
+    <form  onsubmit="return checkBalance()" align="center" name ="finances" role="form"  th:object="${form}" th:action="@{/finances}" method="post">
+        <div class="field">
+            <label th:text="Geldbetrag">Geldbetrag</label>
+            <input class="input"  th:field="*{amount}" th:errorclass="is-invalid" required="required" min="0"/> <br/> <br/>
+            <p  th:if="${#fields.hasErrors('amount')}" th:class="${#fields.hasErrors('amount')}? error">
+                ╮(๑•́ ₃•̀๑)╭Geldbeitrag kann nicht kleiner als 0</p>
+            <label th:text="Beschreibung">Beschreibung</label>
+            <input class="input" th:field="*{note}" type="text" />
+            <br/> <br/>
+        </div><br/>
+        <button class="button_slide slide_left"  type="submit" name="action" value="deposit">Einzahlung</button>
+        <button class="button_slide slide_left" type="submit" name="action" value="withdraw">Auszahlung</button>
+    </form>
 
     <h2>Transaktion</h2>
     <h3>Einzahlung und Auszahlung</h3>
     <table class="table">
         <thead>
         <tr>
-            <th th:text="Index"></th>
-            <th th:text="Geldbetrag"></th>
             <th th:text="Beschreibung"></th>
+            <th th:text="Geldbetrag"></th>
             <th th:text="Transaktionsdatum"></th>
         </tr>
         </thead>
-        <tbody th:remove="all-but-first">
-
-        <tr th:each="entry, it : ${entries}"  th:with="index = ${it.count}">
-            <td th:text="${index}"></td>
-            <td th:text="EUR+${entry.amount}"></td>
+        <tbody>
+        <tr th:each="entry: ${entries}">
             <td th:text="${entry.note}"></td>
-            <td th:text="${entry.getDateWithTime()}"></td>
+            <td th:text="${entry.amount}"></td>
+            <td th:text="${entry.date}"></td>
         </tr>
 
         </tbody>
     </table>
-    <h3>Wettabbuchungen</h3>
-    <table class="table">
-        <thead>
-        <tr>
-            <th th:text="Index"></th>
-            <th th:text="Geldbetrag"></th>
-            <th th:text="Beschreibung"></th>
-            <th th:text="Transaktionsdatum"></th>
-        </tr>
-        </thead>
-        <tbody th:remove="all-but-first">
 
-        <tr th:each="bet, it : ${bets}"  th:with="index = ${it.count}">
-            <td th:text="${index}"></td>
-            <td th:text="${bet.bettingAmount}"></td>
-            <td>Automatische Abbuchung</td>
-            <td th:text></td>
-        </tr>
-        </tbody>
-    </table>
-    </p>
 </section>
 </body>
 </html>

@@ -3,8 +3,8 @@ package lottery.betting;
 import lottery.betting.football.*;
 import lottery.betting.number.LotteryEntity;
 import lottery.betting.number.SelectNumber;
-import lottery.finance.FinanceEntry;
 import lottery.finance.FinanceForm;
+import lottery.finance.FinanceManagement;
 import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
@@ -21,10 +21,12 @@ class BettingController {
 
 	private final DataCatalog dataCatalog;
 	private final BetRepository bets;
+	private final FinanceManagement financeManagement;
 
-	BettingController(DataCatalog dataCatalog, BetRepository bets) {
+	BettingController(DataCatalog dataCatalog, BetRepository bets, FinanceManagement financeManagement) {
 		this.dataCatalog = dataCatalog;
 		this.bets = bets;
+		this.financeManagement = financeManagement;
 	}
 
 	@GetMapping("/home")
@@ -64,9 +66,11 @@ class BettingController {
 
 	@PostMapping("/football")
 	String addBet(@LoggedIn UserAccount user, @RequestParam("match") FootballMatch match, @RequestParam("home_score") int homeScore,
-				  @RequestParam("guest_score") int guestScore, @RequestParam("amount") int amount, FinanceForm form) {
-		FinanceEntry financeEntry = FinanceForm.ALL_AMOUNT.get(form.getId());
-		if(Money.of(amount, EURO).isLessThanOrEqualTo(financeEntry.getBalance())){
+				  @RequestParam("guest_score") int guestScore, @RequestParam("amount") int amount) {
+
+		FinanceForm financeForm = new FinanceForm((double)amount, "Wettplatzierung zu "+match.toString());
+
+		if(financeManagement.withdraw(financeForm, user)){
 			bets.save(new Bet(user, match, new Score(homeScore, guestScore), Money.of(amount, EURO)));
 			return "redirect:/home";
 		}
@@ -75,10 +79,12 @@ class BettingController {
 
 	@PostMapping("/lottery")
 	String addBet(@LoggedIn UserAccount user, @RequestParam("lottery") LotteryEntity lottery, @RequestParam("numStr") String numStr
-				  , @RequestParam("superNumber") int superNumber, @RequestParam("amount") int amount, FinanceForm form) {
+				  , @RequestParam("superNumber") int superNumber, @RequestParam("amount") int amount) {
 		int provisionalAmount = 10;
-		FinanceEntry financeEntry = FinanceForm.ALL_AMOUNT.get(form.getId());
-		if(Money.of(provisionalAmount, EURO).isLessThanOrEqualTo(financeEntry.getBalance())){
+
+		FinanceForm financeForm = new FinanceForm((double)provisionalAmount, "Wettplatzierung zu "+lottery.toString());
+
+		if(financeManagement.withdraw(financeForm, user)){
 			bets.save(new Bet(user, lottery, new SelectNumber(numStr,superNumber), Money.of(provisionalAmount, EURO)));
 			return "redirect:/home";
 		}

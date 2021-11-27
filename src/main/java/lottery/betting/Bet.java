@@ -23,7 +23,7 @@ public class Bet {
 
 	private boolean evaluate = false;
 
-	@SuppressWarnings({ "unused", "deprecation" })
+	@SuppressWarnings("unused")
 	protected Bet() {}
 
 	public Bet(UserAccount user, Data reference, Result value, Money bettingAmount){
