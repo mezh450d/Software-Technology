@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"  dir="ltr" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
+    <script src="https://kit.fontawesome.com/63a2b78b2b.js" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <link th:href="@{/resources/css/style.css}" rel="stylesheet"
           href="../static/resources/css/style.css" type="text/css"/>
@@ -11,13 +12,12 @@
 <nav th:include="navigation :: navigation"></nav>
 
 <section class="main_content">
+
     <h1>Finanzen</h1>
-
-    <p sec:authorize="isAuthenticated()" th:text="${'Hi ' + #authentication?.name + ', hier ist dein Geld zu sehen.'}">
-        <h2 align="center">Ihr Saldo:
-    <p id=balance th:field="*{balance}" th:text="${balance}">0.0 EURO</p>
-
-    </h2><br/><br/>
+    <h2 >Ihr Saldo:
+    <p id=balance th:field="*{balance}" th:text="${balance}">0.00 EURO</p>
+    </h2>
+    <br/><br/>
 
     <form  onsubmit="return checkBalance()" align="center" name ="finances" role="form"  th:object="${form}" th:action="@{/finances}" method="post">
         <div class="field">
@@ -25,7 +25,7 @@
             <input class="input"  th:field="*{amount}" th:errorclass="is-invalid" required="required" min="0"/> <br/> <br/>
             <p  th:if="${#fields.hasErrors('amount')}" th:class="${#fields.hasErrors('amount')}? error">
                 ╮(๑•́ ₃•̀๑)╭Geldbeitrag kann nicht kleiner als 0</p>
-            <label th:text="Note">Note</label>
+            <label th:text="Beschreibung">Beschreibung</label>
             <input class="input" th:field="*{note}" type="text" />
             <br/> <br/>
         </div><br/>
@@ -38,24 +38,21 @@
     <table class="table">
         <thead>
         <tr>
-            <th th:text="index"></th>
-            <th th:text="Amount"></th>
-            <th th:text="Note"></th>
-            <th th:text="Time"></th>
+            <th th:text="Beschreibung"></th>
+            <th th:text="Geldbetrag"></th>
+            <th th:text="Transaktionsdatum"></th>
         </tr>
         </thead>
-        <tbody th:remove="all-but-first">
-
-        <tr th:each="entry, it : ${entries}"  th:with="index = ${it.count}">
-            <td th:text="${index}"></td>
-            <td th:text="EUR+${entry.amount}"></td>
+        <tbody>
+        <tr th:each="entry: ${entries}">
             <td th:text="${entry.note}"></td>
-            <td th:text="${#temporals.format(entry.date,'yyyy-MM-dd hh:mm:ss')}"></td>
+            <td th:text="${entry.amount}"></td>
+            <td th:text="${entry.date}"></td>
         </tr>
 
         </tbody>
     </table>
-    </p>
+
 </section>
 </body>
 </html>
