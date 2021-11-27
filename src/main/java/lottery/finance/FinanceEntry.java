@@ -26,13 +26,14 @@ public class FinanceEntry {
 
 	}
 
-	public FinanceEntry(UserAccount user, Double amount, String note, LocalDateTime date){
+	public FinanceEntry(UserAccount user, Double amount, String note, LocalDateTime date, Money balance){
 		Assert.notNull(user, "user must not be null!");
 		Assert.notNull(amount, "amount must not be null!");
 		this.user = user.getUsername();
 		this.amount = amount;
 		this.note = note;
 		this.date = date;
+		this.balance = balance;
 	}
 
 	public long getId(){

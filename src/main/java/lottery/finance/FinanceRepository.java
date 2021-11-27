@@ -10,7 +10,7 @@ import org.springframework.data.util.Streamable;
 import java.util.Optional;
 
 @EntityScan("bean.FinanceRepository")
-interface FinanceRepository extends CrudRepository<FinanceEntry, Long> {
+public interface FinanceRepository extends CrudRepository<FinanceEntry, Long> {
 
 	@Override
 	Optional<FinanceEntry> findById(Long aLong);

@@ -3,6 +3,7 @@ package lottery.finance;
 import lottery.finance.FinanceEntry;
 import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.UserAccount;
+import org.salespointframework.useraccount.web.LoggedIn;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,7 +19,6 @@ public class FinanceForm {
 	@GeneratedValue
 	long id;
 	private LocalDateTime date;
-	@NotNull(message = "amount cannot be null.")
 	@Min(value = 0)
 	public  Double amount;
 	@Min(value = 0)
@@ -26,7 +26,7 @@ public class FinanceForm {
 	public  String note;
 	public static Map<Long, FinanceEntry> ALL_AMOUNT=new HashMap<Long, FinanceEntry>();
 	public static List<Double> amounts = new ArrayList<>();
-
+	List<Double> personalAmounts = new ArrayList<>();
 	@SuppressWarnings("unused")
 	FinanceForm(){
 	}
@@ -59,20 +59,13 @@ public class FinanceForm {
 		return note;
 	}
 
-	public Money calculateBalance(){
-		FinanceEntry entry = FinanceForm.ALL_AMOUNT.get(getId());
-		if (entry == null) {
-			entry = new FinanceEntry();
-			FinanceForm.ALL_AMOUNT.put(getId(), entry);
+	public Money calculateBalance(List<Double> list) {
+		balance = Money.of(0.0,"EUR");
+		for (double temp : list) {
+			balance = balance.add(Money.of(temp, "EUR"));
 		}
-		entry.setBalance(Money.of(0.0,"EUR"));
-		Iterable<Double> amountsWithoutSign = getAmounts();
-		Iterator<Double> iterator = amountsWithoutSign.iterator() ;
-		while (iterator.hasNext()) {
-			double temp = iterator.next();
-			entry.setBalance(entry.balance.add(Money.of(temp,"EUR")));
-		}
-		return entry.balance;
+		setBalance(balance);
+		return balance;
 	}
 
 	public void setBalance(Money balance){
