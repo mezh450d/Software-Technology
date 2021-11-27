@@ -5,11 +5,14 @@ import org.salespointframework.catalog.Product;
 
 import javax.persistence.Entity;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 public abstract class Data extends Product {
 
 	private LocalDateTime date;
+	private static DateTimeFormatter formatDateTime = DateTimeFormatter.ofPattern("dd. MM. yyyy, HH:mm");
+	private static DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("dd. MM. yyyy");
 
 	private Category category;
 
@@ -28,14 +31,9 @@ public abstract class Data extends Product {
 		this.category = category;
 	}
 
-	public String getDate() {
-		return date.getDayOfMonth() + "." + date.getMonthValue() + "." + date.getYear();
-	}
+	public String getDate() { return date.format(formatDate); }
 
-	public String getDateWithTime() {
-		return date.getDayOfMonth() + "." + date.getMonthValue() + "." + date.getYear()
-				+ ", " + date.getHour() + ":" + date.getMinute();
-	}
+	public String getDateWithTime() { return date.format(formatDateTime); }
 
 	public Category getCategory() {
 		return category;
