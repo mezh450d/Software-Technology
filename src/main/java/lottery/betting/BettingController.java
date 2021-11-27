@@ -65,21 +65,24 @@ class BettingController {
 	}
 
 	@PostMapping("/football")
-	String addBet(@LoggedIn UserAccount user, @RequestParam("match") FootballMatch match, @RequestParam("home_score") int homeScore,
-				  @RequestParam("guest_score") int guestScore, @RequestParam("amount") int amount) {
+	String addBet(@LoggedIn UserAccount user, @RequestParam("match") FootballMatch match,
+				  @RequestParam("home_score") int homeScore, @RequestParam("guest_score") int guestScore,
+				  @RequestParam("amount") int amount) {
 
 		FinanceForm financeForm = new FinanceForm((double)amount, "Wettplatzierung zu "+match.toString());
 
 		if(financeManagement.withdraw(financeForm, user)){
 			bets.save(new Bet(user, match, new Score(homeScore, guestScore), Money.of(amount, EURO)));
 			return "redirect:/home";
+		} else {
+			return "redirect:/football";
 		}
-		else return "redirect:/football";
 	}
 
 	@PostMapping("/lottery")
-	String addBet(@LoggedIn UserAccount user, @RequestParam("lottery") LotteryEntity lottery, @RequestParam("numStr") String numStr
-				  , @RequestParam("superNumber") int superNumber, @RequestParam("amount") int amount) {
+	String addBet(@LoggedIn UserAccount user, @RequestParam("lottery") LotteryEntity lottery,
+				  @RequestParam("numStr") String numStr, @RequestParam("superNumber") int superNumber,
+				  @RequestParam("amount") int amount) {
 		int provisionalAmount = 10;
 
 		FinanceForm financeForm = new FinanceForm((double)provisionalAmount, "Wettplatzierung zu "+lottery.toString());
@@ -87,7 +90,8 @@ class BettingController {
 		if(financeManagement.withdraw(financeForm, user)){
 			bets.save(new Bet(user, lottery, new SelectNumber(numStr,superNumber), Money.of(provisionalAmount, EURO)));
 			return "redirect:/home";
+		} else {
+			return "redirect:/lottery";
 		}
-		else return "redirect:/lottery";
 	}
 }

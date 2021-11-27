@@ -44,9 +44,10 @@ public abstract class Data extends Product {
 	}
 
 	public void setResult(Result result) {
-		if (isSet()) return;
-		this.result = result;
-		set();
+		if (!isSet()) {
+			this.result = result;
+			set();
+		}
 	}
 
 	public Boolean isSet() {

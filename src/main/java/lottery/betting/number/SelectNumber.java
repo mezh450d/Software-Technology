@@ -47,17 +47,17 @@ public class SelectNumber implements Result<SelectNumber> {
 			return 100000;
 		} else if (equalCount == 6 && superNum != selectNum) {
 			return 3000;
-		}else if (equalCount == 5 && superNum == selectNum) {
+		} else if (equalCount == 5 && superNum == selectNum) {
 			return 675;
-		}else if (equalCount == 5 && superNum != selectNum) {
+		} else if (equalCount == 5 && superNum != selectNum) {
 			return 225;
-		}else if (equalCount == 4 && superNum == selectNum) {
+		} else if (equalCount == 4 && superNum == selectNum) {
 			return 12;
-		}else if (equalCount == 4 && superNum != selectNum) {
+		} else if (equalCount == 4 && superNum != selectNum) {
 			return 4;
-		}else if (equalCount == 3 && superNum == selectNum) {
+		} else if (equalCount == 3 && superNum == selectNum) {
 			return 2;
-		}else if (equalCount == 3 && superNum != selectNum) {
+		} else if (equalCount == 3 && superNum != selectNum) {
 			return 1;
 		}
 		return 0;

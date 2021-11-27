@@ -45,20 +45,21 @@ public class CommunityManagement {
 	public Community findCommunityByForm(CreateForm form){
 
 		Community community = communities.findByName(form.getName());
-		if(community.getPassword().equals(form.getPassword())) return community;
-
+		if(community.getPassword().equals(form.getPassword())) {
+			return community;
+		}
 		return null;
 	}
 
-	public Streamable<Community> findAll() {
-		return communities.findAll();
-	}
+	public Streamable<Community> findAll() { return communities.findAll(); }
 
 	public Set<Community> findPersonalCommunities(UserAccount user) {
 		Streamable<Community> allCommunities = communities.findAll();
 		Set<Community> personalCommunities = new HashSet<>();
 		for (Community community : allCommunities){
-			if(community.userInCommunity(user)) personalCommunities.add(community);
+			if(community.userInCommunity(user)) {
+				personalCommunities.add(community);
+			}
 		}
 		return personalCommunities;
 	}
@@ -67,7 +68,9 @@ public class CommunityManagement {
 		Streamable<Community> allCommunities = communities.findAll();
 		Set<Community> personalCommunities = new HashSet<>();
 		for (Community community : allCommunities){
-			if(!community.userInCommunity(user)) personalCommunities.add(community);
+			if(!community.userInCommunity(user)) {
+				personalCommunities.add(community);
+			}
 		}
 		return personalCommunities;
 	}

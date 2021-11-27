@@ -38,10 +38,10 @@ public class FinanceController {
 		if (errors.hasErrors() ) {
 			return finances(user, model, form);
 		}
+
 		if (action.equals("deposit")) {
 			management.deposit(form, user);
-		}
-		else if (action.equals("withdraw")) {
+		} else if (action.equals("withdraw")) {
 			management.withdraw(form, user);
 		}
 
