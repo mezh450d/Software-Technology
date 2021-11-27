@@ -25,7 +25,7 @@ public class SelectNumber implements Result<SelectNumber> {
 
 	@Override
 	public String toString(){
-		return "SelectNumber: "+numStr +"  SuperNumber: "+ superNumber;
+		return numStr + " // "+ superNumber;
 	}
 
 	@Override
@@ -44,23 +44,21 @@ public class SelectNumber implements Result<SelectNumber> {
 			}
 		}
 		if (equalCount == 6 && superNum == selectNum) {
-			return 1000;
+			return 100000;
 		} else if (equalCount == 6 && superNum != selectNum) {
-			return 900;
+			return 3000;
 		}else if (equalCount == 5 && superNum == selectNum) {
-			return 800;
+			return 675;
 		}else if (equalCount == 5 && superNum != selectNum) {
-			return 700;
+			return 225;
 		}else if (equalCount == 4 && superNum == selectNum) {
-			return 600;
+			return 12;
 		}else if (equalCount == 4 && superNum != selectNum) {
-			return 300;
+			return 4;
 		}else if (equalCount == 3 && superNum == selectNum) {
-			return 200;
+			return 2;
 		}else if (equalCount == 3 && superNum != selectNum) {
-			return 100;
-		}else if (equalCount == 2 && superNum == selectNum) {
-			return 6;
+			return 1;
 		}
 		return 0;
 	}

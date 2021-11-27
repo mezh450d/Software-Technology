@@ -37,10 +37,15 @@ public class UserManagement {
 		Assert.notNull(form, "Registration form must not be null!");
 
 		var password = UnencryptedPassword.of(form.getPassword());
+		var emailAddress = form.getEmailAddress();
 		var userAccount = userAccounts.create(form.getName(), password, USER_ROLE);
+		userAccount.setEmail(emailAddress);
 
-		return users.save(new User(userAccount));
+		var lotteryAddress = form.getLotteryAddress();
+
+		return users.save(new User(userAccount, lotteryAddress));
 	}
+
 
 	public User findByUserAccount(UserAccount userAccount){
 		System.out.println("NEED TO FIND USER WITH ID"+userAccount.getId());

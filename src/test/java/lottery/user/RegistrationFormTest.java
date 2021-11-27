@@ -11,13 +11,13 @@ public class RegistrationFormTest {
 
 		@Test
 		void testUsername() {
-			RegistrationForm form = new RegistrationForm("Anna", "123123");
+			RegistrationForm form = new RegistrationForm("Anna", "anna.1@gmail.com", "000000010", "123123");
 			assertEquals(form.getName(), "Anna");
 		}
 
 		@Test
 		void testPassword() {
-			RegistrationForm form = new RegistrationForm("Anna", "123123");
+			RegistrationForm form = new RegistrationForm("Anna", "anna.1@gmail.com", "000000010", "123123");
 			assertEquals(form.getPassword(), "123123");
 		}
 }

@@ -27,6 +27,10 @@ h2{
   color: #e6e6e6;
 }
 
+a{
+text-decoration: none;
+}
+
 
 .wrapper{
   display: flex;
@@ -40,10 +44,13 @@ h2{
   position: fixed;
   background: #2c2c2c;
   border-right: 1px solid #2c2c2c;
+  line-height: normal;
+  text-decoration: none;
 }
 
 .wrapper .sidebar ul{
   position: relative;
+  padding-left: 0;
 }
 
 .wrapper .sidebar ul li{

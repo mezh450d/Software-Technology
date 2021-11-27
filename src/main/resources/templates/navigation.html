@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"  dir="ltr" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
+  <script src="https://kit.fontawesome.com/63a2b78b2b.js" crossorigin="anonymous"></script>
 </head>
 <body>
   <nav th:fragment="navigation">
@@ -10,7 +11,6 @@
           <div class="profile_details">
             <div class="name_status">
               <div class="name" sec:authorize="isAuthenticated()" th:text="${#authentication?.name}"></div>
-              <div class="status" sec:authorize="isAuthenticated()" th:text="${'Role'}"></div>
             </div>
           </div>
           <form class="item" sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">

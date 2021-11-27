@@ -46,14 +46,14 @@ public class UserDataInitializer implements DataInitializer {
 		var password = "123";
 
 		List.of(//
-				new RegistrationForm("hans", password),
-				new RegistrationForm("nick", password),
-				new RegistrationForm("jing", password),
-				new RegistrationForm("hannes", password),
-				new RegistrationForm("ziyi", password),
-				new RegistrationForm("meng", password),
-				new RegistrationForm("shiyue", password),
-				new RegistrationForm("testUser", password)
+				new RegistrationForm("hans", "hans@gmail.com", "0000000001", password),
+				new RegistrationForm("nick", "nick@gmail.com", "0000000002", password),
+				new RegistrationForm("jing", "jing@gmail.com", "0000000003", password),
+				new RegistrationForm("hannes", "hannes@gmail.com", "0000000004", password),
+				new RegistrationForm("ziyi", "ziyi@gmail.com", "0000000005", password),
+				new RegistrationForm("meng", "meng@gmail.com", "0000000006", password),
+				new RegistrationForm("shiyue", "shiyue@gmail.com", "0000000007", password),
+				new RegistrationForm("testUser", "testUser@gmail.com", "0000000008", password)
 		).forEach(userManagement::createUser);
 	}
 }

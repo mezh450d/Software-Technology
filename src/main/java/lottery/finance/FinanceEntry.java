@@ -15,16 +15,17 @@ import java.time.LocalDateTime;
 public class FinanceEntry {
 
 	private String user;
-	public  @Id @GeneratedValue long id;
-	public   Double amount;
+
+	@Id @GeneratedValue
+	public long id;
+
+	public Double amount;
 	public Money balance;
-	public  String note;
+	public String note;
 	private LocalDateTime date;
 
 	@SuppressWarnings("unused")
-	public FinanceEntry() {
-
-	}
+	protected FinanceEntry() {}
 
 	public FinanceEntry(UserAccount user, Double amount, String note, LocalDateTime date, Money balance){
 		Assert.notNull(user, "user must not be null!");
@@ -52,8 +53,13 @@ public class FinanceEntry {
 		return note;
 	}
 
-	public LocalDateTime getDate() {
-		return date;
+	public String getDate() {
+		return date.getDayOfMonth() + "." + date.getMonthValue() + "." + date.getYear();
+	}
+
+	public String getDateWithTime() {
+		return date.getDayOfMonth() + "." + date.getMonthValue() + "." + date.getYear()
+				+ ", " + date.getHour() + ":" + date.getMinute();
 	}
 
 	public Money getBalance(){

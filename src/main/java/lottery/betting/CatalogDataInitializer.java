@@ -17,7 +17,6 @@ package lottery.betting;
 
 import lottery.betting.football.FootballMatch;
 import lottery.betting.number.LotteryEntity;
-import org.apache.tomcat.jni.Local;
 import org.javamoney.moneta.Money;
 import org.salespointframework.core.DataInitializer;
 import org.slf4j.Logger;
@@ -61,10 +60,9 @@ class CatalogDataInitializer implements DataInitializer {
 					Category.FOOTBALL,"RB Leipzig", "Borussia Dortmund"));
 
 			LocalDateTime date = LocalDateTime.of(2021, 11, 28,0,0);
-			for(int i = 0; i < 10; i++){
+			for(long i = 0; i < 10; i++){
 				catalog.save(new LotteryEntity("Tippschein", Money.of(10, EURO),
-						date.plusDays(i * 7),
-						Category.LOTTERY, "Lotto 6 aus 49"));
+						date.plusWeeks(i), Category.LOTTERY, "Lotto 6 aus 49"));
 			}
 		}
 	}
