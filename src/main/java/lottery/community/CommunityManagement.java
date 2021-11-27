@@ -38,10 +38,6 @@ public class CommunityManagement {
 		community.addUser(user);
 	}
 
-//	public void deleteCommunity(){
-//		communities.deleteAll();
-//	}
-
 	public Community findCommunityByForm(CreateForm form){
 
 		Community community = communities.findByName(form.getName());

@@ -24,7 +24,7 @@ public class FinanceEntry {
 	private Money amount;
 	private String note;
 	private LocalDateTime date;
-	private static DateTimeFormatter formatDateTime = DateTimeFormatter.ofPattern("dd. MM. yyyy, HH:mm");
+	private static DateTimeFormatter formatDateTime = DateTimeFormatter.ofPattern("dd.MM.yyyy, HH:mm");
 
 	@SuppressWarnings("unused")
 	protected FinanceEntry() {}

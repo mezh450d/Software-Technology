@@ -11,8 +11,7 @@ import java.time.format.DateTimeFormatter;
 public abstract class Data extends Product {
 
 	private LocalDateTime date;
-	private static DateTimeFormatter formatDateTime = DateTimeFormatter.ofPattern("dd. MM. yyyy, HH:mm");
-	private static DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("dd. MM. yyyy");
+	private static DateTimeFormatter formatDateTime = DateTimeFormatter.ofPattern("dd.MM.yyyy, HH:mm");
 
 	private Category category;
 
@@ -31,9 +30,7 @@ public abstract class Data extends Product {
 		this.category = category;
 	}
 
-	public String getDate() { return date.format(formatDate); }
-
-	public String getDateWithTime() { return date.format(formatDateTime); }
+	public String getDate() { return date.format(formatDateTime); }
 
 	public Category getCategory() {
 		return category;

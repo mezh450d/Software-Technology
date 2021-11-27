@@ -59,7 +59,7 @@ class CatalogDataInitializer implements DataInitializer {
 					LocalDateTime.of(2021, 11, 7, 18, 30),
 					Category.FOOTBALL,"RB Leipzig", "Borussia Dortmund"));
 
-			LocalDateTime date = LocalDateTime.of(2021, 11, 28,0,0);
+			LocalDateTime date = LocalDateTime.of(2021, 11, 28,20,0);
 			for(long i = 0; i < 10; i++){
 				catalog.save(new LotteryEntity("Tippschein", Money.of(10, EURO),
 						date.plusWeeks(i), Category.LOTTERY, "Lotto 6 aus 49"));
