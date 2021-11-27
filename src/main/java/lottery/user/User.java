@@ -13,16 +13,21 @@ public class User {
 	@OneToOne
 	private UserAccount userAccount;
 
+	private String lotteryAddress;
+
 	@SuppressWarnings("unused")
 	public User(){}
 
-	public User(UserAccount userAccount) {
+	public User(UserAccount userAccount, String lotteryAddress) {
 		this.userAccount = userAccount;
+		this.lotteryAddress = lotteryAddress;
 	}
 
 	public long getId() {
 		return id;
 	}
+
+	public String getLotteryAddress(){ return lotteryAddress; }
 
 	public UserAccount getUserAccount() {
 		return userAccount;
