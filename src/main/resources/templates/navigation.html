@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"  dir="ltr" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+</head>
+<body>
+  <nav th:fragment="navigation">
+    <div class="wrapper">
+      <div class="sidebar">
+        <div class="profile">
+          <div class="profile_details">
+            <div class="name_status">
+              <div class="name" sec:authorize="isAuthenticated()" th:text="${#authentication?.name}"></div>
+              <div class="status" sec:authorize="isAuthenticated()" th:text="${'Role'}"></div>
+            </div>
+          </div>
+          <form class="item" sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+            <button type="submit" class="ui button" th:text="Logout">Logout</button>
+          </form>
+        </div>
+
+        <ul class="nav-list">
+          <li><a href="/home"><i class="fas fa-home"></i>Überblick</a></li>
+          <li><a href="/betting"><i class="fas fa-money-check-alt"></i>Wetten</a></li>
+          <li><a href="/community"><i class="fas fa-users"></i>Gemeinschaft</a></li>
+          <li><a href="/finances"><i class="fas fa-coins"></i>Finanzen</a></li>
+          <li><a href="/admin" sec:authorize="hasRole('BOSS')"><i class="fas fa-user-tie"></i>Admin</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</body>
+</html>

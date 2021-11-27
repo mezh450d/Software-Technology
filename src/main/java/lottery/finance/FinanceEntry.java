@@ -1,0 +1,71 @@
+package lottery.finance;
+
+import org.javamoney.moneta.Money;
+import org.salespointframework.useraccount.UserAccount;
+import org.springframework.util.Assert;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import java.time.LocalDateTime;
+
+
+
+@Entity
+public class FinanceEntry {
+
+	private String user;
+	public  @Id @GeneratedValue long id;
+	public   Double amount;
+	public Money balance;
+	public  String note;
+	private LocalDateTime date;
+
+	@SuppressWarnings("unused")
+	public FinanceEntry() {
+
+	}
+
+	public FinanceEntry(UserAccount user, Double amount, String note, LocalDateTime date){
+		Assert.notNull(user, "user must not be null!");
+		Assert.notNull(amount, "amount must not be null!");
+		this.user = user.getUsername();
+		this.amount = amount;
+		this.note = note;
+		this.date = date;
+	}
+
+	public long getId(){
+		return  id;
+	}
+
+	public Double getAmount(){
+		return amount;
+	}
+
+	public String getUser(){
+		return user;
+	}
+
+	public String getNote(){
+		return note;
+	}
+
+	public LocalDateTime getDate() {
+		return date;
+	}
+
+	public Money getBalance(){
+		return balance;
+	}
+
+	public void setBalance(Money balance){
+		this.balance = balance;
+	}
+
+	@Override
+	public String toString(){
+		return note;
+	}
+
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en"  dir="ltr" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <script src="https://kit.fontawesome.com/63a2b78b2b.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <link th:href="@{/resources/css/style.css}" rel="stylesheet"
+          href="../static/resources/css/style.css" type="text/css"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style_login.css}" />
+    <title>Gemeinschaften</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+<nav th:include="navigation :: navigation"></nav>
+
+<section class="main_content">
+
+
+    <div class="login_box">
+        <h1>Gemeinschaft erstellen</h1>
+
+        <form method="post" role="form"  class="ui form" id="form" th:action="@{/community/create}" th:object="${createForm}">
+
+
+            <div class="field">
+                <label for="name">Name</label>
+                <input id="name" name="name" th:field="*{name}" th:errorclass="fieldError" type="text" required="required" placeholder="Gruppenname"/><br/>
+                <div class="ui negative message" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">
+                    <p>Der Name darf nicht leer sein.</p>
+                </div>
+            </div>
+
+
+            <div class="field">
+                <p>Passwort</p>
+                <input  id="password" th:field="*{password}" th:errorclass="fieldError" type="password"
+                    required="required" name="password" placeholder="Passwort eingeben">
+                <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Das Passwort darf
+                    nicht leer sein.</p>
+            </div>
+
+
+            <button type="submit"  th:text="CreateCommunity">CreateCommunity</button>
+        </form>
+    </div>
+</section>
+</body>
+</html>

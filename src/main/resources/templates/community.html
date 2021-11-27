@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en"  dir="ltr" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <script src="https://kit.fontawesome.com/63a2b78b2b.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <link th:href="@{/resources/css/style.css}" rel="stylesheet"
+          href="../static/resources/css/style.css" type="text/css"/>
+    <title>Gemeinschaften</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+<nav th:include="navigation :: navigation"></nav>
+
+<section class="main_content">
+    <h1>Gemeinschaft</h1>
+
+    <h3>Ihre Gemeinschaften:</h3>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Gemeinschaftsname</th>
+            <th scope="col">Überblick</th>
+            <th scope="col">Wetten</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="community : ${personalCommunities} ">
+            <td th:text="${community.name}"></td>
+            <td>
+                <a href="/home">
+                    <button>Überblick</button>
+                </a>
+            </td>
+            <td>
+                <a href="/betting">
+                    <button>Wetten</button>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h3>Diesen Gemeinschaften können Sie beitreten:</h3>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Gemeinschaftsname</th>
+            <th scope="col">Überblick</th>
+            <th scope="col">Beitreten</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="community : ${joinableCommunities} ">
+            <td th:text="${community.name}">CommunityName</td>
+            <td>
+                <a href="/home">
+                    <button>Überblick</button>
+                </a>
+            </td>
+            <td>
+                <a href="/community/join">
+                    <button>Beitreten</button>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a  href="/community/create">
+        <button  class="button_slide slide_right">erstellen</button>
+    </a>
+    <a  href="/community/join">
+        <button  class="button_slide slide_right">beitreten</button>
+    </a>
+</section>
+
+</body>
+</html>
