@@ -67,6 +67,13 @@ class BettingController {
 		return "number";
 	}
 
+	@GetMapping("/lotteryViewList")
+	String lotteryViewList(Model model, String productIdListStr) {
+		productIdListStr = productIdListStr.substring(0, productIdListStr.length() - 1);
+		model.addAttribute("productIdListStr", productIdListStr);
+		return "number2";
+	}
+
 	@PostMapping("/football")
 	String addBet(@LoggedIn UserAccount user, @RequestParam("match") FootballMatch match, @RequestParam("home_score") int homeScore,
 				  @RequestParam("guest_score") int guestScore, @RequestParam("amount") double amount) {
