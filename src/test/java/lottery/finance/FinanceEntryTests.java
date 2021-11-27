@@ -4,18 +4,15 @@ import lottery.user.RegistrationForm;
 import lottery.user.User;
 import lottery.user.UserManagement;
 import lottery.user.UserRepository;
+import org.javamoney.moneta.Money;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import org.salespointframework.useraccount.Password;
-import org.salespointframework.useraccount.QUserAccount;
 import org.salespointframework.useraccount.UserAccount;
-import org.salespointframework.useraccount.UserAccountManagement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.util.Streamable;
-import org.springframework.security.test.context.support.WithMockUser;
+
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -41,21 +38,14 @@ public class FinanceEntryTests {
 	void rejectsEmptyUser() {
 
 		assertThatExceptionOfType(IllegalArgumentException.class)//
-			.isThrownBy(() -> new FinanceEntry(null, 100.0 ,"EUR", LocalDateTime.now()));
+			.isThrownBy(() -> new FinanceEntry(null, 100.0 ,"EUR", LocalDateTime.now(), Money.of(0.0,"EUR")));
 	}
 
 	@Test
 	void rejectsEmptyAmount() {
 
 		assertThatExceptionOfType(IllegalArgumentException.class)//
-				.isThrownBy(() -> new FinanceEntry(user1, null ,"EUR", LocalDateTime.now()));
+				.isThrownBy(() -> new FinanceEntry(user1, null ,"EUR", LocalDateTime.now(), Money.of(0.0,"EUR")));
 	}
-
-//	@Test
-//	void rejectsNegativAmount() {
-//
-//		assertThatExceptionOfType(IllegalArgumentException.class).
-//				isThrownBy(() -> new FinanceEntry(user1, -100.0 ,"EUR", LocalDateTime.now()));
-//	}
 
 }

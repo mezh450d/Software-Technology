@@ -55,7 +55,7 @@ public class FinanceControllerUnitTests {
 
 
 		Model model = new ExtendedModelMap();
-		FinanceEntry entry = new FinanceEntry(user1, 100.0, "", LocalDateTime.now());
+		FinanceEntry entry = new FinanceEntry(user1, 100.0, "", LocalDateTime.now(), Money.of(0.0,"EUR"));
 		finances.save(entry);
 		FinanceController controller = new FinanceController(finances, bets);
 		String viewName = controller.financesOverview(user1, model, new FinanceForm(100.0, null));
