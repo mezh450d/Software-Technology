@@ -12,11 +12,17 @@
 <div class="login_box">
 	<h1>Hier Einloggen</h1>
 	<form class="ui form" role="form" th:action="@{/login}" method="post">
+		<div th:if="${param.error}" class="alert-error">
+			Fehlerhafte Anmeldedaten
+		</div>
+
 		<p>Nutzername</p>
 		<input type="text" id="username" name="username" placeholder="Nutzernamen eingeben" autofocus="autofocus"/>
+
 		<p>Passwort</p>
 		<input type="password" id="password" name="password" placeholder="Passwort eingeben">
-		<input type="submit" th:text="Einloggen" class="ui button" value="Einloggen" >
+
+		<input type="submit" class="ui button" value="Einloggen">
 		<a href="register.html" th:href="@{/register}">Sie haben noch kein Konto?</a><br>
 
 	</form>

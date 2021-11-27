@@ -2,6 +2,7 @@ package lottery.user;
 
 import  javax.validation.Valid;
 
+import org.springframework.data.util.Streamable;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
 import org.springframework.validation.Errors;
@@ -25,6 +26,20 @@ public class UserController {
 	String registerNew(@Valid RegistrationForm form, Errors result) {
 
 		//Übergebene Daten werden auf Richtigkeit überprüft
+
+
+		//Falls der angegebene Nutzername schon vorhanden ist, keinen User erstellen
+		String username = form.getName();
+
+		Streamable<User> users = userManagement.findAll();
+
+		for(User user : users){
+			if(user.getUserAccount().getUsername().equals(username)){
+				return "register";
+			}
+		}
+
+		//Falls das Formular Fehler enthält, keinen User erstellen
 		if (result.hasErrors()) {
 			return "register";
 		}

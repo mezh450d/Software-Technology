@@ -45,7 +45,7 @@ class UserManagementUnitTests {
 
 		// When
 		// … a registration form is submitted
-		RegistrationForm form = new RegistrationForm("name", "password");
+		RegistrationForm form = new RegistrationForm("name", "email-address", "lottery-address", "password");
 		User user = userManagement.createUser(form);
 
 		// Then
