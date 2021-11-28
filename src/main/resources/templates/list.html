@@ -12,22 +12,44 @@
 <nav th:include="navigation :: navigation"></nav>
 
 <section class="main_content">
-  <h1>Benutzer Informationen</h1>
-  <p sec:authorize="isAuthenticated()" th:text="${'Hi, hier ist Community.' + cid}"></p>
+  <h1>Community Benutzer</h1>
+  <p sec:authorize="isAuthenticated()" th:text="${'Hi, hier ist Community ' + cid}"></p>
   <table class="table">
     <thead>
     <tr>
-      <td>User Name</td>
       <td>User ID</td>
-      <td>Football Wetten Betrag</td>
-      <td>Lotto Wetten Betrag</td>
-      <td>Football Match Result</td>
-      <td>Lotto Result</td>
-      <td>Win/Lose(football)</td>
-      <td>Win/Lose(Lotto)</td>
+      <td>User Name</td>
+      <td>Details</td>
+
+      <!--      <td>Football Wetten Betrag</td>-->
+      <!--      <td>Lotto Wetten Betrag</td>-->
+      <!--      <td>Football Match Result</td>-->
+      <!--      <td>Lotto Result</td>-->
+      <!--      <td>Win/Lose(football)</td>-->
+      <!--      <td>Win/Lose(Lotto)</td>-->
     </tr>
     </thead>
-    <tbody>
+    <tbody th:remove="all-but-first">
+    <tr th:each="user : ${useraccount}">
+      <td>id xxxx</td>
+      <td th:text="${user.name}">UserName</td>
+      <td>
+        <a href="/admin">
+          <button>Details</button>
+        </a>
+      </td>
+    </tr>
+    <!--    <tr th:each="item : ${info}">-->
+    <!--      <td th:text="${item.name}"></td>-->
+    <!--      <td th:text="${item.id}"></td>-->
+    <!--      <td th:text="${item.bettingAmount}"></td>-->
+    <!--      <td th:text="${item.menge}"></td>-->
+    <!--      <td th:text="${item.footballMatchResult}"></td>-->
+    <!--      <td th:text="${item.result}"></td>-->
+    <!--      <td th:text="${item.fbWinOrLose}"></td>-->
+    <!--      <td th:text="${item.lottoWinOrLose}"></td>-->
+    <!--    </tr>-->
+
     </tbody>
   </table>
 
