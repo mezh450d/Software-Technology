@@ -38,14 +38,14 @@ public class FinanceEntryTests {
 	void rejectsEmptyUser() {
 
 		assertThatExceptionOfType(IllegalArgumentException.class)//
-			.isThrownBy(() -> new FinanceEntry(null, 100.0 ,"EUR", LocalDateTime.now(), Money.of(0.0,"EUR")));
+			.isThrownBy(() -> new FinanceEntry(null, 100.0 ,"Test", LocalDateTime.now()));
 	}
 
 	@Test
 	void rejectsEmptyAmount() {
 
 		assertThatExceptionOfType(IllegalArgumentException.class)//
-				.isThrownBy(() -> new FinanceEntry(user1, null ,"EUR", LocalDateTime.now(), Money.of(0.0,"EUR")));
+				.isThrownBy(() -> new FinanceEntry(user1, null ,"Test", LocalDateTime.now()));
 	}
 
 }
