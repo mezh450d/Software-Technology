@@ -53,7 +53,9 @@ public class UserManagement {
 		if(allUsers.isEmpty())System.out.println("userRepository ist empty!");
 		for(User user:allUsers){
 			System.out.println("this user'id ist"+user.getUserAccount().getId());
-			if(user.getUserAccount().getId()==userAccount.getId()) return user;
+			if(user.getUserAccount().getId()==userAccount.getId()) {
+				return user;
+			}
 		}
 		return null;
 	}
@@ -61,7 +63,9 @@ public class UserManagement {
 	public User findByUsername(String name){
 		List<User> allUsers= users.findAll().toList();
 		for(User user : allUsers){
-			if(user.getUserAccount().getUsername().equals(name)) return user;
+			if(user.getUserAccount().getUsername().equals(name)) {
+				return user;
+			}
 		}
 		return null;
 	}

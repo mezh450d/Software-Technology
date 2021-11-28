@@ -30,7 +30,7 @@
         </thead>
         <tbody>
         <tr th:each="match : ${matches}">
-            <form method="post" role="form" class="ui form" id="form" th:action="@{/football}">
+            <form method="post" role="form" class="ui form" id="form" th:action="@{/betting/football}">
                 <input type="hidden" name="match" value="0" th:value="${match.id}"/>
                 <th><h4 th:text="${match.date}"></h4></th>
                 <th><h4 th:text="${match.home}"></h4></th>

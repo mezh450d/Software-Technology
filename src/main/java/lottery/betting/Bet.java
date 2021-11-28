@@ -27,7 +27,6 @@ public class Bet {
 	protected Bet() {}
 
 	public Bet(UserAccount user, Data reference, Result value, Money bettingAmount){
-
 		this.user = user.getUsername();
 		this.reference = reference;
 		this.value = value;
@@ -54,8 +53,15 @@ public class Bet {
 		return evaluate;
 	}
 
-	public boolean payOut(Money money){
-		return false;
+	public Money payOut(){
+		if(reference.isSet()){
+			evaluate = true;
+			int factor = value.compareTo(reference.getResult());
+			return bettingAmount.multiply(factor);
+		}
+		else {
+			return null;
+		}
 	}
 }
 

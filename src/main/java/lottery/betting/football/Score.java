@@ -29,9 +29,17 @@ public class Score implements Result<Score> {
 	@Override
 	public int compareTo(Score o) {
 		int otherDifference = o.getDifference();
-		if(o.getHome() == home && o.getGuest() == guest) return 4;
-		if(difference == otherDifference && difference != 0) return 3;
-		if((difference > 0 && otherDifference > 0) || (difference == 0 && otherDifference == 0) || (difference < 0 && otherDifference < 0)) return 2;
-		else return 0;
+		if(o.getHome() == home && o.getGuest() == guest) {
+			return 4;
+		}
+		if(difference == otherDifference && difference != 0) {
+			return 3;
+		}
+		if((difference > 0 && otherDifference > 0) || (difference == 0 && otherDifference == 0)
+				|| (difference < 0 && otherDifference < 0)) {
+			return 2;
+		} else {
+			return 0;
+		}
 	}
 }

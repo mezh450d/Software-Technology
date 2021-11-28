@@ -28,10 +28,10 @@ public interface DataCatalog extends Catalog<Data> {
 	Streamable<Data> findAll();
 
 	@Query
-	Iterable<Data> findByCategory(Category category, Sort sort);
+	Streamable<Data> findByCategory(Category category, Sort sort);
 
 	@Query
-	default Iterable<Data> findByCategory(Category category) {
+	default Streamable<Data> findByCategory(Category category) {
 		return findByCategory(category, DEFAULT_SORT);
 	}
 }

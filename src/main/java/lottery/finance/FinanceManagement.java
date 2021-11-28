@@ -34,8 +34,7 @@ public class FinanceManagement {
 			FinanceEntry entry = new FinanceEntry(user, -(form.getAmount()),form.getNote(), form.getDate());
 			entries.save(entry);
 			return true;
-		}
-		else{
+		} else{
 			//message here
 			return false;
 		}
@@ -54,7 +53,5 @@ public class FinanceManagement {
 		return entries.findByUser(user.getUsername());
 	}
 
-	public Streamable<FinanceEntry> findAll() {
-		return entries.findAll();
-	}
+	public Streamable<FinanceEntry> findAll() { return entries.findAll(); }
 }

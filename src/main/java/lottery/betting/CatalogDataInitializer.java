@@ -49,18 +49,36 @@ class CatalogDataInitializer implements DataInitializer {
 		if (!catalog.findAll().iterator().hasNext()) {
 			LOG.info("Creating default catalog entries.");
 
-			catalog.save(new FootballMatch("FCB-SCF", Money.of(1, EURO),
-					LocalDateTime.of(2021, 11, 7, 15, 30),
-					Category.FOOTBALL, "FC Bayern", "SC Freiburg"));
-			catalog.save(new FootballMatch("Wol-FCA", Money.of(1, EURO),
-					LocalDateTime.of(2021, 11, 7, 15, 30),
-					Category.FOOTBALL,"Wolfsburg", "FC Augsburg"));
-			catalog.save(new FootballMatch("RBL-BVB", Money.of(1, EURO),
-					LocalDateTime.of(2021, 11, 7, 18, 30),
-					Category.FOOTBALL,"RB Leipzig", "Borussia Dortmund"));
+			catalog.save(new FootballMatch("FCU-RBL", Money.of(1, EURO),
+					LocalDateTime.of(2021, 12, 3, 20, 30),
+					Category.FOOTBALL, "Union Berlin", "RB Leipzig"));
+			catalog.save(new FootballMatch("Lev-Für", Money.of(1, EURO),
+					LocalDateTime.of(2021, 12, 4, 15, 30),
+					Category.FOOTBALL,"Bayer Leverkusen", "Greuther Fürth"));
+			catalog.save(new FootballMatch("Bie-Köl", Money.of(1, EURO),
+					LocalDateTime.of(2021, 12, 4, 15, 30),
+					Category.FOOTBALL,"Arminia Bielefeld", "1. FC Köln"));
+			catalog.save(new FootballMatch("M05-Wol", Money.of(1, EURO),
+					LocalDateTime.of(2021, 12, 4, 15, 30),
+					Category.FOOTBALL,"Mainz 05", "VfL Wolfsburg"));
+			catalog.save(new FootballMatch("FCA-Vfl", Money.of(1, EURO),
+					LocalDateTime.of(2021, 12, 4, 15, 30),
+					Category.FOOTBALL,"FC Augsburg", "VfL Bochum"));
+			catalog.save(new FootballMatch("TSG-SGE", Money.of(1, EURO),
+					LocalDateTime.of(2021, 12, 4, 15, 30),
+					Category.FOOTBALL,"TSG Hoffenheim", "Eintracht Frankfurt"));
+			catalog.save(new FootballMatch("BVB-FCB", Money.of(1, EURO),
+					LocalDateTime.of(2021, 12, 4, 18, 30),
+					Category.FOOTBALL,"Borussia Dortmund", "FC Bayern München"));
+			catalog.save(new FootballMatch("Stu-BSC", Money.of(1, EURO),
+					LocalDateTime.of(2021, 12, 5, 15, 30),
+					Category.FOOTBALL,"VfB Stuttgart", "Hertha BSC"));
+			catalog.save(new FootballMatch("Gla-SCF", Money.of(1, EURO),
+					LocalDateTime.of(2021, 12, 5, 17, 30),
+					Category.FOOTBALL,"Borussia Mönchengladbach", "SC Freiburg"));
 
-			LocalDateTime date = LocalDateTime.of(2021, 11, 28,0,0);
-			for(long i = 0; i < 10; i++){
+			LocalDateTime date = LocalDateTime.of(2021, 12, 5,20,0);
+			for(long i = 0; i < 15; i++){
 				catalog.save(new LotteryEntity("Tippschein", Money.of(10, EURO),
 						date.plusWeeks(i), Category.LOTTERY, "Lotto 6 aus 49"));
 			}

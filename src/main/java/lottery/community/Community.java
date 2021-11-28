@@ -42,7 +42,9 @@ public class Community {
 	}
 
 	public boolean userInCommunity(UserAccount user){
-		if(user!=null) return users.contains(user);
+		if(user!=null) {
+			return users.contains(user);
+		}
 		return false;
 	}
 

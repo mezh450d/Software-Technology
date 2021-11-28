@@ -19,20 +19,18 @@ import static org.salespointframework.core.Currencies.EURO;
 @Controller
 class BettingController {
 
-	private final DataCatalog dataCatalog;
-	private final BetRepository bets;
+	private final BettingManagement management;
 	private final FinanceManagement financeManagement;
 
-	BettingController(DataCatalog dataCatalog, BetRepository bets, FinanceManagement financeManagement) {
-		this.dataCatalog = dataCatalog;
-		this.bets = bets;
+	BettingController(BettingManagement management, FinanceManagement financeManagement) {
+		this.management = management;
 		this.financeManagement = financeManagement;
 	}
 
 	@GetMapping("/home")
 	String home(@LoggedIn UserAccount user, Model model) {
 		String userName = user.getUsername();
-		model.addAttribute("bets", bets.findByUser(userName));
+		model.addAttribute("bets", management.findBetsByUser(userName));
 		return "home";
 	}
 
@@ -41,53 +39,54 @@ class BettingController {
 		return "betting";
 	}
 
-	@GetMapping("/number")
+	@GetMapping("/betting/number")
 	public String number() {
-		return "number";
+		return "betting_number";
 	}
 
-	@GetMapping("/football")
+	@GetMapping("/betting/football")
 	String football(Model model) {
-		model.addAttribute("matches", dataCatalog.findByCategory(Category.FOOTBALL));
-		return "football";
+		model.addAttribute("matches", management.findDataByCategory(Category.FOOTBALL));
+		return "betting_football";
 	}
 
-	@GetMapping("/lotteryList")
+	@GetMapping("/betting/lotteryList")
 	String lotteryList(Model model) {
-		model.addAttribute("lotteryList", dataCatalog.findByCategory(Category.LOTTERY));
-		return "lotteryList";
+		model.addAttribute("lotteryList", management.findDataByCategory(Category.LOTTERY));
+		return "betting_lotteryList";
 	}
 
-	@GetMapping("/lotteryView")
+	@GetMapping("/betting/lotteryView")
 	String lotteryView(Model model, String productId) {
 		model.addAttribute("productId", productId);
-		return "number";
+		return "betting_number";
 	}
 
-	@PostMapping("/football")
-	String addBet(@LoggedIn UserAccount user, @RequestParam("match") FootballMatch match, @RequestParam("home_score") int homeScore,
-				  @RequestParam("guest_score") int guestScore, @RequestParam("amount") int amount) {
+	@PostMapping("/betting/football")
+	String addBet(@LoggedIn UserAccount user, @RequestParam("match") FootballMatch match,
+				  @RequestParam("home_score") int homeScore, @RequestParam("guest_score") int guestScore,
+				  @RequestParam("amount") int amount) {
 
 		FinanceForm financeForm = new FinanceForm((double)amount, "Wettplatzierung zu "+match.toString());
 
 		if(financeManagement.withdraw(financeForm, user)){
-			bets.save(new Bet(user, match, new Score(homeScore, guestScore), Money.of(amount, EURO)));
-			return "redirect:/home";
+			management.saveBet(new Bet(user, match, new Score(homeScore, guestScore), Money.of(amount, EURO)));
 		}
-		else return "redirect:/football";
+		return "redirect:/home";
 	}
 
-	@PostMapping("/lottery")
-	String addBet(@LoggedIn UserAccount user, @RequestParam("lottery") LotteryEntity lottery, @RequestParam("numStr") String numStr
-				  , @RequestParam("superNumber") int superNumber, @RequestParam("amount") int amount) {
+	@PostMapping("/betting/lotteryView")
+	String addBet(@LoggedIn UserAccount user, @RequestParam("lottery") LotteryEntity lottery,
+				  @RequestParam("numStr") String numStr, @RequestParam("superNumber") int superNumber,
+				  @RequestParam("amount") int amount) {
+
 		int provisionalAmount = 10;
 
 		FinanceForm financeForm = new FinanceForm((double)provisionalAmount, "Wettplatzierung zu "+lottery.toString());
 
 		if(financeManagement.withdraw(financeForm, user)){
-			bets.save(new Bet(user, lottery, new SelectNumber(numStr,superNumber), Money.of(provisionalAmount, EURO)));
-			return "redirect:/home";
+			management.saveBet(new Bet(user, lottery, new SelectNumber(numStr,superNumber), Money.of(provisionalAmount, EURO)));
 		}
-		else return "redirect:/lottery";
+		return "redirect:/home";
 	}
 }
