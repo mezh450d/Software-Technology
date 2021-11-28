@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en"  dir="ltr" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <script src="https://kit.fontawesome.com/63a2b78b2b.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <link th:href="@{/resources/css/style.css}" rel="stylesheet"
+          href="../static/resources/css/style.css" type="text/css"/>
+    <title>Admin</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+<nav th:include="navigation :: navigation"></nav>
+<section class="main_content">
+    <h1>User Information</h1><br/>
+
+    <h2 th:text="${user.userAccount.id}"></h2><br/>
+
+    <label for="id">ID: </label>
+    <h4 id="id" th:text="${user.id}"></h4><br/>
+    <label for="mail">E-Mail: </label>
+    <h4 id="mail" th:text="${user.userAccount.email}"></h4><br/>
+    <label for="address">Lotterieadresse: </label>
+    <h4 id="address" th:text="${user.lotteryAddress}"></h4>
+    <br/><br/>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <td>Community Name</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="community : ${communities}">
+            <td th:text="${community.name}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <br/><br/>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Wette</th>
+            <th scope="col">Betrag</th>
+            <th scope="col">Ergebnis</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="bet : ${bets}">
+            <th th:text="${bet.reference}"> </th>
+            <th th:text="${bet.bettingAmount}"> </th>
+            <th th:text="${bet.value}"> </th>
+        </tr>
+        </tbody>
+    </table>
+
+</section>
+</body>
+</html>

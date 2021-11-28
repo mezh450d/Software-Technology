@@ -27,11 +27,6 @@ public interface DataCatalog extends Catalog<Data> {
 	@Override
 	Streamable<Data> findAll();
 
-	@Query
-	Streamable<Data> findByCategory(Category category, Sort sort);
-
-	@Query
-	default Streamable<Data> findByCategory(Category category) {
-		return findByCategory(category, DEFAULT_SORT);
-	}
+	@Query("SELECT u FROM Data u WHERE u.category = ?1 AND u.set = false ORDER BY u.date")
+	Streamable<Data> findByCategory(Category category);
 }

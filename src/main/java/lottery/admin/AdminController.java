@@ -1,88 +1,114 @@
 package lottery.admin;
 
+import lottery.betting.Bet;
+import lottery.betting.BettingManagement;
+import lottery.betting.Category;
+import lottery.betting.Data;
+import lottery.betting.football.FootballMatch;
+import lottery.betting.football.Score;
+import lottery.betting.number.LotteryEntity;
+import lottery.betting.number.SelectNumber;
 import lottery.community.CommunityManagement;
+import lottery.finance.FinanceForm;
+import lottery.finance.FinanceManagement;
+import lottery.user.User;
 import lottery.user.UserManagement;
-import org.salespointframework.useraccount.UserAccount;
-import org.salespointframework.useraccount.web.LoggedIn;
+import org.springframework.data.util.Streamable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class AdminController {
 
 	private final UserManagement userManagement;
+	private final FinanceManagement financeManagement;
 	private final CommunityManagement communityManagement;
+	private final BettingManagement bettingManagement;
 
-	AdminController(UserManagement userManagement, CommunityManagement communityManagement) {
-		this.userManagement = userManagement;
+	AdminController(UserManagement userManagement, FinanceManagement financeManagement,
+					CommunityManagement communityManagement, BettingManagement bettingManagement){
+
+		this.bettingManagement = bettingManagement;
 		this.communityManagement = communityManagement;
+		this.financeManagement = financeManagement;
+		this.userManagement = userManagement;
 	}
-
 
 	@GetMapping("/admin")
-	String admin(Model model) {
+	@PreAuthorize("hasRole('BOSS')")
+	String admin(){ return "admin";}
 
-		return "admin";
+	@GetMapping("/admin/users")
+	@PreAuthorize("hasRole('BOSS')")
+	String allUsers(Model model) {
+
+		model.addAttribute("users", userManagement.findAll());
+
+		return "admin_allUsers";
 	}
 
-	@GetMapping("/allusers")
+	@GetMapping("/admin/users/getInfo")
 	@PreAuthorize("hasRole('BOSS')")
-	String alluser(Model model) {
-
-		model.addAttribute("userInfo", userManagement.findAll().toList());
-
-		return "allusers";
-	}
-
-	//
-	@GetMapping("/admin/getList")
-	@PreAuthorize("hasRole('BOSS')")
-	String list(Model model, @RequestParam(value = "cid") String cname) {
-
-//
-//		if (cid == 1) {
-//			LinkedList<UserInfo> info = new LinkedList<>();
-//			for (int i = 1; i <= 2; i++) {
-//				UserInfo userinfo = new UserInfo(i, "Jimmy",
-//						25479, Money.of(4, EURO),
-//						20, "TeamA : TeamB = 2:3",
-//						47, "Win", "Lose");
-//				info.add(userinfo);
-//			}
-//			model.addAttribute("info", info);
-//		}
-//		UserInfo userinfo = new UserInfo();
-//		userinfo.setCommunityID(cid);
-//		System.out.println(userinfo.getCommunityID());
-//		model.addAttribute("cid", userinfo.getCommunityID());
-		return "list";
-	}
-
-	@GetMapping("/admin/getInfo")
-	@PreAuthorize("hasRole('BOSS')")
-	String info(Model model, @RequestParam(value = "id") int id){
-		UserInfo userInfo = new UserInfo(userManagement);
-		AdminEntry adminEntry = new AdminEntry();
-		if (userInfo.userExistOrNot(id) == 1){
-			adminEntry.setId(id);
-			System.out.println("the user id is " + id);
-			model.addAttribute("id", adminEntry.getId());
-			model.addAttribute("detail", userManagement.findByUserId(id));
-			model.addAttribute("joinedCommunity", communityManagement.findPersonalCommunities(userManagement.findByUserId(id).getUserAccount()));
-			return "details";
+	String info(Model model, @RequestParam("id") Long id){
+		User user = userManagement.findByUserId(id);
+		if (user != null){
+			model.addAttribute("user", user);
+			model.addAttribute("communities",
+					communityManagement.findPersonalCommunities(user.getUserAccount()));
+			model.addAttribute("bets",
+					bettingManagement.findBetsByUser(user.getUserAccount().getUsername()));
+			return "admin_details";
 		}
 		return "/admin";
 	}
-//
-//	@GetMapping("/details")
-//	@PreAuthorize("hasRole('BOSS')")
-//	String details(Model model, @LoggedIn UserAccount user){
-//		model.addAttribute("joinedCommunity", communityManagement.findPersonalCommunities(user));
-//		return "details";
-//	}
 
+	@GetMapping("/admin/bets")
+	@PreAuthorize("hasRole('BOSS')")
+	String allBets(Model model){
+		model.addAttribute("money", bettingManagement.getMoneyFromAllBets());
+		model.addAttribute("bets",bettingManagement.findNotEvaluatedBets());
 
+		return "admin_allBets";
+	}
+
+	@GetMapping("/admin/evaluateBets")
+	@PreAuthorize("hasRole('BOSS')")
+	String allData(Model model){
+		model.addAttribute("matches", bettingManagement.findDataByCategory(Category.FOOTBALL));
+		model.addAttribute("lotteries", bettingManagement.findDataByCategory(Category.LOTTERY));
+
+		return "admin_evaluatebet";
+	}
+
+	@PostMapping(path = "/admin/evaluateBets/football")
+	@PreAuthorize("hasRole('BOSS')")
+	String setFootball(@RequestParam("match") FootballMatch match,
+					   @RequestParam("home_score") int homeScore, @RequestParam("guest_score") int guestScore){
+
+		match.setResult(new Score(homeScore, guestScore));
+		return evaluateBet(bettingManagement.findBetsByData(match), "Wettausschüttung zu " + match, match);
+	}
+
+	@PostMapping(path = "/admin/evaluateBets/lottery")
+	@PreAuthorize("hasRole('BOSS')")
+	String setLottery(@RequestParam("lottery") LotteryEntity lottery,
+					  @RequestParam("numberStr") String numStr, @RequestParam("superNumber") int superNumber){
+
+		lottery.setResult(new SelectNumber(numStr, superNumber));
+		return evaluateBet(bettingManagement.findBetsByData(lottery), "Wettausschüttung zu "+lottery, lottery);
+	}
+
+	private String evaluateBet(Streamable<Bet> betsByData, String s, @RequestParam("match") Data data){
+		Streamable<Bet> betsForData = betsByData;
+		for(Bet bet : betsForData){
+			Double payOut = bet.payOut();
+			financeManagement.deposit(new FinanceForm(payOut, s),
+					userManagement.findByUsername(bet.getUser()).getUserAccount());
+		}
+		return "redirect:/admin";
+	}
 }

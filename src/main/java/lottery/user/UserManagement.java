@@ -46,46 +46,24 @@ public class UserManagement {
 		return users.save(new User(userAccount, lotteryAddress));
 	}
 
+	public User findByUserId(long id){
+		Optional<User> user = users.findById(id);
+		return user.orElse(null);
+	}
 
 	public User findByUserAccount(UserAccount userAccount){
-		System.out.println("NEED TO FIND USER WITH ID"+userAccount.getId());
-		List<User> allUsers=users.findAll().toList();
-		if(allUsers.isEmpty())System.out.println("userRepository ist empty!");
-		for(User user:allUsers){
-			System.out.println("this user'id ist"+user.getUserAccount().getId());
-			if(user.getUserAccount().getId()==userAccount.getId()) {
-				return user;
-			}
-		}
-		return null;
+		Optional<User> user = users.findByUserAccount(userAccount);
+		return user.orElse(null);
 	}
 
 	public User findByUsername(String name){
-		List<User> allUsers= users.findAll().toList();
-		for(User user : allUsers){
-			if(user.getUserAccount().getUsername().equals(name)) {
-				return user;
-			}
-		}
-		return null;
+		Optional<User> user = users.findByUsername(name);
+		return user.orElse(null);
 	}
 
-	public void deleteUser(User user){ users.delete(user); }
+//	public void deleteUser(User user){ users.delete(user); }
 
-	//Übergibt alle abgespeicherten Nutzer
 	public Streamable<User> findAll() {
 		return users.findAll();
 	}
-
-
-	//written by ziyi
-	public User findByUserId(int id){
-		List<User> allUsers= users.findAll().toList();
-		for(User user : allUsers){
-			if(user.getId() == id) {
-				return user;
-			}
-		}
-		return null;
-	};
 }

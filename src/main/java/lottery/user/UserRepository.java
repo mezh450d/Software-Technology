@@ -12,6 +12,12 @@ public interface UserRepository extends CrudRepository<User, Long> {
 	@Override
 	Optional<User> findById(Long id);
 
+	@Query("SELECT u FROM User u WHERE u.userAccount = ?1")
+	Optional<User> findByUserAccount(UserAccount userAccount);
+
+	@Query("SELECT u FROM User u WHERE u.userAccount.userAccountIdentifier.id = ?1")
+	Optional<User> findByUsername(String userName);
+
 	@Override
 	Streamable<User> findAll();
 }

@@ -1,10 +1,12 @@
 package lottery.betting;
 
-import lottery.finance.FinanceEntry;
+import org.javamoney.moneta.Money;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+
+import static org.salespointframework.core.Currencies.EURO;
 
 @Service
 @Transactional
@@ -24,11 +26,22 @@ public class BettingManagement {
 
 	public void saveBet(Bet bet){ bets.save(bet); }
 
-	public Iterable<Data> findDataByCategory(Category category) { return dataCatalog.findByCategory(category); }
+	public Money getMoneyFromAllBets(){
+		Streamable<Bet> bets = findNotEvaluatedBets();
+		double amount = 0;
+		for(Bet bet : bets){
+			amount += bet.getBettingAmount().getNumber().doubleValue();
+		}
+		return Money.of(amount, EURO);
+	}
+
+	public Streamable<Data> findDataByCategory(Category category) { return dataCatalog.findByCategory(category); }
 
 	public Streamable<Data> findAllData() { return dataCatalog.findAll(); }
 
 	public Streamable<Bet> findBetsByUser(String user) { return bets.findByUser(user); }
+
+	public Streamable<Bet> findBetsByData(Data data) { return bets.findByData(data); }
 
 	public Streamable<Bet> findNotEvaluatedBets() { return bets.findNotEvaluatedBets(); }
 
