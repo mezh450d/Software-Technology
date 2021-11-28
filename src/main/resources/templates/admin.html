@@ -10,28 +10,25 @@
 </head>
 <body>
 <nav th:include="navigation :: navigation"></nav>
-
 <section class="main_content">
     <h1>Admin</h1>
-    <p sec:authorize="isAuthenticated()" th:text="${'Hi ' + #authentication?.name + ', hier kannst du alle Benutzerinformationen sehen!'}"></p>
-    <h1>Community-ID eingeben</h1>
+    <p sec:authorize="isAuthenticated()" th:text="${'Hi ' + #authentication?.name + ', hier kannst du alle Benutzer sehen!'}"></p>
     <div class="input-form">
-        <form class="ui form" role="form" th:action="@{/admin}" method="post">
+        <form class="ui form" role="form" th:action="@{/admin/getList}" method="get">
             <div class="field">
-            <label th:text="Community-ID">Community-ID</label><br>
-            <input id="cid" name="cid" type="number"><br>
-<!--            <input class="cid"  th:field="*{cid}" th:errorclass="is-invalid" required="required" min="0"/> <br/> <br/>-->
-
-<!--            <p  th:if="${#fields.hasErrors('cid')}" th:class="${#fields.hasErrors('cid')}? error">-->
-<!--                ╮(๑•́ ₃•̀๑)╭Geldbeitrag kann nicht kleiner als 0</p>-->
+                <label th:text="Community_Name">Community_Name</label></br>
+                <input type="text" th:name="cname"/></br>
+                <input type="submit"/>
             </div>
         </form>
-        <div class="column">
-            <form class="ui form" method="post" th:action="@{/list}">
-                <button type="submit" class="ui button" th:text="Eintreten">Eintreten</button>
-            </form>
-        </div>
         <a href="allusers.html" th:href="@{/allusers}">Show all users?</a><br>
+        <form class="ui form" role="form" th:action="@{/admin/getInfo}" method="get">
+            <div class="field">
+                <label th:text="User-ID">User-ID</label></br>
+                <input type="text" th:name="id"/></br>
+                <input type="submit"/>
+            </div>
+        </form>
     </div>
 </section>
 </body>
