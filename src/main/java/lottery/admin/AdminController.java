@@ -3,6 +3,7 @@ package lottery.admin;
 import lottery.betting.Bet;
 import lottery.betting.BettingManagement;
 import lottery.betting.Category;
+import lottery.betting.Data;
 import lottery.betting.football.FootballMatch;
 import lottery.betting.football.Score;
 import lottery.betting.number.LotteryEntity;
@@ -47,7 +48,7 @@ public class AdminController {
 
 		model.addAttribute("users", userManagement.findAll());
 
-		return "admin_allusers";
+		return "admin_allUsers";
 	}
 
 	@GetMapping("/admin/users/getInfo")
@@ -65,10 +66,18 @@ public class AdminController {
 		return "/admin";
 	}
 
-	@GetMapping("/admin/evaluateBets")
+	@GetMapping("/admin/bets")
 	@PreAuthorize("hasRole('BOSS')")
 	String allBets(Model model){
+		model.addAttribute("money", bettingManagement.getMoneyFromAllBets());
+		model.addAttribute("bets",bettingManagement.findNotEvaluatedBets());
 
+		return "admin_allBets";
+	}
+
+	@GetMapping("/admin/evaluateBets")
+	@PreAuthorize("hasRole('BOSS')")
+	String allData(Model model){
 		model.addAttribute("matches", bettingManagement.findDataByCategory(Category.FOOTBALL));
 		model.addAttribute("lotteries", bettingManagement.findDataByCategory(Category.LOTTERY));
 
@@ -77,29 +86,27 @@ public class AdminController {
 
 	@PostMapping(path = "/admin/evaluateBets/football")
 	@PreAuthorize("hasRole('BOSS')")
-	String setAndEvaluateFootball(@RequestParam("match") FootballMatch match,
-						  @RequestParam("home_score") int homeScore, @RequestParam("guest_score") int guestScore) {
+	String setFootball(@RequestParam("match") FootballMatch match,
+					   @RequestParam("home_score") int homeScore, @RequestParam("guest_score") int guestScore){
 
 		match.setResult(new Score(homeScore, guestScore));
-		Streamable<Bet> betsForData = bettingManagement.findBetsByData(match);
-		for(Bet bet : betsForData){
-			Double payOut = bet.payOut();
-			financeManagement.deposit(new FinanceForm(payOut, "Wettausschüttung zu "+match),
-					userManagement.findByUsername(bet.getUser()).getUserAccount());
-		}
-		return "redirect:/admin";
+		return evaluateBet(bettingManagement.findBetsByData(match), "Wettausschüttung zu " + match, match);
 	}
 
 	@PostMapping(path = "/admin/evaluateBets/lottery")
 	@PreAuthorize("hasRole('BOSS')")
-	String setAndEvaluateLottery(@RequestParam("lottery") LotteryEntity lottery,
-						  @RequestParam("numberStr") String numStr, @RequestParam("superNumber") int superNumber) {
+	String setLottery(@RequestParam("lottery") LotteryEntity lottery,
+					  @RequestParam("numberStr") String numStr, @RequestParam("superNumber") int superNumber){
 
 		lottery.setResult(new SelectNumber(numStr, superNumber));
-		Streamable<Bet> betsForData = bettingManagement.findBetsByData(lottery);
+		return evaluateBet(bettingManagement.findBetsByData(lottery), "Wettausschüttung zu "+lottery, lottery);
+	}
+
+	private String evaluateBet(Streamable<Bet> betsByData, String s, @RequestParam("match") Data data){
+		Streamable<Bet> betsForData = betsByData;
 		for(Bet bet : betsForData){
 			Double payOut = bet.payOut();
-			financeManagement.deposit(new FinanceForm(payOut, "Wettausschüttung zu "+lottery),
+			financeManagement.deposit(new FinanceForm(payOut, s),
 					userManagement.findByUsername(bet.getUser()).getUserAccount());
 		}
 		return "redirect:/admin";

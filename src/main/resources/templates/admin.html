@@ -43,9 +43,9 @@
         <div class="col-sm-6">
             <div class="card text-white bg-dark">
                 <div class="card-body">
-                    <h4 class="card-title">Finanzsituation</h4>
-                    <p class="card-text">Hier können Sie die finanzielle Situation der Online-Lotterie betrachten!</p>
-                    <a sec:authorize="isAuthenticated()" href="/admin/finances" class="btn btn-primary">Finanzen</a>
+                    <h4 class="card-title">Alle Wetten</h4>
+                    <p class="card-text">Hier können Sie alle Wetten einsehen!</p>
+                    <a sec:authorize="isAuthenticated()" href="/admin/bets" class="btn btn-primary">Wetten</a>
                 </div>
             </div>
         </div>
@@ -59,17 +59,19 @@
             </div>
         </div>
     </div>
-
-<!--    <div class="input-form">-->
-<!--        <form class="ui form" role="form" th:action="@{/admin/getList}" method="get">-->
-<!--            <div class="field">-->
-<!--                <label th:text="Community_Name">Community_Name</label></br>-->
-<!--                <input type="text" th:name="cname"/></br>-->
-<!--                <input type="submit"/>-->
-<!--            </div>-->
-<!--        </form>-->
-<!--        <a href="admin_allusers.html" th:href="@{/allusers}">Show all users?</a><br>-->
-<!--    </div>-->
+    <br/><br/>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card text-white bg-dark">
+                <div class="card-body">
+                    <h4 class="card-title">Finanzsituation</h4>
+                    <p class="card-text">Hier können Sie die finanzielle Situation der Online-Lotterie betrachten!</p>
+                    <a sec:authorize="isAuthenticated()" href="/admin/finances" class="btn btn-primary">Finanzen</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6"></div>
+    </div>
 
 </section>
 
