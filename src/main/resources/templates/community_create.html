@@ -27,6 +27,9 @@
                 <div class="ui negative message" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">
                     <p>Der Name darf nicht leer sein.</p>
                 </div>
+                <p th:if="${param.error}">
+                    Gemeinschaft mit diesem Name existiert breits!
+                </p>
             </div>
 
 

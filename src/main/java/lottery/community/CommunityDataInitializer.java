@@ -20,10 +20,13 @@ public class CommunityDataInitializer implements DataInitializer  {
 
 		LOG.info("Creating default communities.");
 
-		var password = "123";
+		if(communityRepository.findAll().isEmpty()) {
 
-		communityRepository.save(new Community("gruppe", password));
-		communityRepository.save(new Community("gewinner", password));
-		communityRepository.save(new Community("loser", password));
+			var password = "123";
+
+			communityRepository.save(new Community("gruppe", password));
+			communityRepository.save(new Community("gewinner", password));
+			communityRepository.save(new Community("loser", password));
+		}
 	}
 }
