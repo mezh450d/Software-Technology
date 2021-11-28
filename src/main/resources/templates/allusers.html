@@ -12,65 +12,36 @@
 <body>
 <nav th:include="navigation :: navigation"></nav>
 
+<h1>Benutzer Informationen</h1>
+<h2>Hier sind alle Benutzer</h2>
 <section class="main_content">
-    <h1>Benutzer Informationen</h1>
-    <h2>Hier sind die Informationen für alle Benutzer</h2>
-
-    <!--    <table class="ui celled table">-->
-    <!--        <thead>-->
-    <!--        <tr>-->
-    <!--            <th th:text="User ID">User ID</th>-->
-    <!--            <th th:text="User Name">User Name</th>-->
-    <!--&lt;!&ndash;            <th th:text="Football Betting">Football Betting</th>&ndash;&gt;-->
-    <!--        </tr>-->
-    <!--        </thead>-->
-    <!--        <tbody th:remove="all-but-first">-->
-    <!--        <tr th:each="item : ${userinfo}">-->
-    <!--            <td th:text="${item.userAccountIdentifier}">468567</td>-->
-    <!--            <td th:text="${item.firstname}">Tommy</td>-->
-    <!--        </tr>-->
-    <!--        </tbody>-->
-    <!--    </table>-->
-
-
-    <!-- <table>
-         <thead>
-         <tr>
-             <th>User name</th>
-             <th>User ID</th>
-         </tr>
-         </thead>
-         <tbody th:remove="all-but-first">
-         <tr th:each="item : ${userinfo}">
-             <td th:text="${item.name}">468567</td>
-             <td th:text="${item.id}">468567</td>
-         </tr>
-         </tbody>
-     </table>-->
     <table class="table">
         <thead>
         <tr>
-            <th>Community ID</th>
-            <th>User Name</th>
-            <th>User ID</th>
-            <th>Football Wetten Betrag</th>
-            <th>Lotto Wetten Betrag</th>
-            <th>Football Match Result</th>
-            <th>Lotto Result</th>
-            <th>Win/Lose(football)</th>
-            <th>Win/Lose(Lotto)</th>
+            <td>User ID</td>
+            <td>User Name</td>
+            <td>Details</td>
+            <!--            <th>Community ID</th>-->
+            <!--            <th>User Name</th>-->
+            <!--            <th>User ID</th>-->
+            <!--            <th>Football Wetten Betrag</th>-->
+            <!--            <th>Lotto Wetten Betrag</th>-->
+            <!--            <th>Football Match Result</th>-->
+            <!--            <th>Lotto Result</th>-->
+            <!--            <th>Win/Lose(football)</th>-->
+            <!--            <th>Win/Lose(Lotto)</th>-->
         </tr>
         </thead>
-<!--        <tr>-->
-<!--            <th>NAME</th>-->
-<!--            <th>ID</th>-->
-<!--        </tr>-->
-<!--        <tr th:each="prod : ${userinfo}">-->
-<!--            <td th:text="${prod.name}">Onions</td>-->
-<!--            <td th:text="${prod.id}">2.41</td>-->
-<!--        </tr>-->
-        <tbody>
-
+                <tbody th:remove="all-but-first">
+                <tr th:each="item : ${userInfo}">
+                    <td th:text="${item.getId}">8</td>
+                    <td th:text="${item.getUserAccount.getId}">testUser</td>
+                    <td>
+                        <a href="/admin">
+                            <button>Details</button>
+                        </a>
+                    </td>
+                </tr>
         </tbody>
     </table>
 </section>

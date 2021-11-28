@@ -1,81 +1,88 @@
 package lottery.admin;
 
-import org.salespointframework.useraccount.UserAccountManagement;
+import lottery.community.CommunityManagement;
+import lottery.user.UserManagement;
+import org.salespointframework.useraccount.UserAccount;
+import org.salespointframework.useraccount.web.LoggedIn;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class AdminController {
 
-	private final UserAccountManagement userAccountManagement;
-	AdminController(UserAccountManagement userAccountManagement){
-		this.userAccountManagement = userAccountManagement;
+	private final UserManagement userManagement;
+	private final CommunityManagement communityManagement;
+
+	AdminController(UserManagement userManagement, CommunityManagement communityManagement) {
+		this.userManagement = userManagement;
+		this.communityManagement = communityManagement;
 	}
 
-	@PostMapping("/list")
-	String list(Model model){
-
-		return  "list";
-	}
-
-//	@PostMapping("/admin")
-//	String conmmunityid(Model model, Errors errors){
-//		if(errors.hasErrors()){
-//			return "redirect:/admin";
-//		}
-//		return "list";
-//	}
 
 	@GetMapping("/admin")
-	String admin(Model model){return "admin";}
+	String admin(Model model) {
 
-//	@GetMapping("/list")
-////	@PreAuthorize("hasRole('BOSS')")
-//	String community(Model model){return "list";}
+		return "admin";
+	}
 
 	@GetMapping("/allusers")
 	@PreAuthorize("hasRole('BOSS')")
-	String alluser(Model model){
-//		LinkedList<Users> list = new LinkedList<>();
-//		for(int i = 1; i <= 10; i++) {
-//			Users entity = new Users(i, "user"+i);
-//			list.add(entity);
-//		}
-//		model.addAttribute("userinfo", list);
-		model.addAttribute("userList", userAccountManagement.findAll());
+	String alluser(Model model) {
+
+		model.addAttribute("userInfo", userManagement.findAll().toList());
+
 		return "allusers";
 	}
 
-//	private final Community community;
-//	private final FootballMatch footballMatch;
-//	private final NumberLottery numberLottery;
+	//
+	@GetMapping("/admin/getList")
+	@PreAuthorize("hasRole('BOSS')")
+	String list(Model model, @RequestParam(value = "cid") String cname) {
+
 //
-//	AdminController(Community community, FootballMatch footballMatch, NumberLottery numberLottery){
-//		this.community = community;
-//		this.footballMatch = footballMatch;
-//		this.numberLottery = numberLottery;
+//		if (cid == 1) {
+//			LinkedList<UserInfo> info = new LinkedList<>();
+//			for (int i = 1; i <= 2; i++) {
+//				UserInfo userinfo = new UserInfo(i, "Jimmy",
+//						25479, Money.of(4, EURO),
+//						20, "TeamA : TeamB = 2:3",
+//						47, "Win", "Lose");
+//				info.add(userinfo);
+//			}
+//			model.addAttribute("info", info);
+//		}
+//		UserInfo userinfo = new UserInfo();
+//		userinfo.setCommunityID(cid);
+//		System.out.println(userinfo.getCommunityID());
+//		model.addAttribute("cid", userinfo.getCommunityID());
+		return "list";
+	}
+
+	@GetMapping("/admin/getInfo")
+	@PreAuthorize("hasRole('BOSS')")
+	String info(Model model, @RequestParam(value = "id") int id){
+		UserInfo userInfo = new UserInfo(userManagement);
+		AdminEntry adminEntry = new AdminEntry();
+		if (userInfo.userExistOrNot(id) == 1){
+			adminEntry.setId(id);
+			System.out.println("the user id is " + id);
+			model.addAttribute("id", adminEntry.getId());
+			model.addAttribute("detail", userManagement.findByUserId(id));
+			model.addAttribute("joinedCommunity", communityManagement.findPersonalCommunities(userManagement.findByUserId(id).getUserAccount()));
+			return "details";
+		}
+		return "/admin";
+	}
+//
+//	@GetMapping("/details")
+//	@PreAuthorize("hasRole('BOSS')")
+//	String details(Model model, @LoggedIn UserAccount user){
+//		model.addAttribute("joinedCommunity", communityManagement.findPersonalCommunities(user));
+//		return "details";
 //	}
-//
-//	@GetMapping("/admin")
-//	String information(Model model){
-//		model.addAttribute("username", community.getName());
-//		model.addAttribute("userid", community.getId());
-//		model.addAttribute("footballbetting", );
-//		model.addAttribute("numberslotterybetting", );
-//		model.addAttribute("footballresults", footballMatch.getResult());
-//		model.addAttribute("numberslotteryresults", numberLottery.getResult());
-//
-//		return "admin";
-//	}
-//
-//	@PostMapping("/admin")
-//	String financialsituation(Model model, @Valid FootballFinancialSituation footballsitatus){
-//		model.addAttribute("footballfinancialsituation", footballsitatus.getResult(););
-//		model.addAttribute("numberslotteryfinancialsituation",);
-//
-//		return "useraccount";
-//	}
+
+
 }
