@@ -30,6 +30,8 @@ public class BettingManagement {
 
 	public Streamable<Bet> findBetsByUser(String user) { return bets.findByUser(user); }
 
+	public Streamable<Bet> findBetsByData(Data data) { return bets.findByData(data); }
+
 	public Streamable<Bet> findNotEvaluatedBets() { return bets.findNotEvaluatedBets(); }
 
 	public Streamable<Bet> findAllBets() { return bets.findAll(); }
