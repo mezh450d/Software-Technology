@@ -134,7 +134,7 @@
                 var str = "numStr=" + numberList.toString() + "&lottery=" + $("input[name=lottery]").val() + "&superNumber=" + superNumber + "&amount=" + amount;
                 $.ajax({
                    type: "POST",
-                   url: "/lottery",
+                   url: "/betting/lotteryView",
                    data: str,
                    success: function(data){
                        window.location.href = "/home";

@@ -13,8 +13,6 @@
 
 <section class="main_content">
     <h1>Wetten</h1>
-    <p sec:authorize="isAuthenticated()" th:text="${'Hi ' + #authentication?.name + ', hier kannst du Wetten abschließen!'}"></p>
-
 
     <table class="table">
         <thead>
@@ -37,7 +35,7 @@
     </table>
     <script>
         function enterWettenLottery(productId){
-            window.location.href = "/lotteryView?productId=" + productId;
+            window.location.href = "/betting/lotteryView?productId=" + productId;
         }
     </script>
 </section>

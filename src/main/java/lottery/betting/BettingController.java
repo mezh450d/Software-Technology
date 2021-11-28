@@ -39,30 +39,30 @@ class BettingController {
 		return "betting";
 	}
 
-	@GetMapping("/number")
+	@GetMapping("/betting/number")
 	public String number() {
-		return "number";
+		return "betting_number";
 	}
 
-	@GetMapping("/football")
+	@GetMapping("/betting/football")
 	String football(Model model) {
 		model.addAttribute("matches", management.findDataByCategory(Category.FOOTBALL));
-		return "football";
+		return "betting_football";
 	}
 
-	@GetMapping("/lotteryList")
+	@GetMapping("/betting/lotteryList")
 	String lotteryList(Model model) {
 		model.addAttribute("lotteryList", management.findDataByCategory(Category.LOTTERY));
-		return "lotteryList";
+		return "betting_lotteryList";
 	}
 
-	@GetMapping("/lotteryView")
+	@GetMapping("/betting/lotteryView")
 	String lotteryView(Model model, String productId) {
 		model.addAttribute("productId", productId);
-		return "number";
+		return "betting_number";
 	}
 
-	@PostMapping("/football")
+	@PostMapping("/betting/football")
 	String addBet(@LoggedIn UserAccount user, @RequestParam("match") FootballMatch match,
 				  @RequestParam("home_score") int homeScore, @RequestParam("guest_score") int guestScore,
 				  @RequestParam("amount") int amount) {
@@ -71,13 +71,11 @@ class BettingController {
 
 		if(financeManagement.withdraw(financeForm, user)){
 			management.saveBet(new Bet(user, match, new Score(homeScore, guestScore), Money.of(amount, EURO)));
-			return "redirect:/home";
-		} else {
-			return "redirect:/football";
 		}
+		return "redirect:/home";
 	}
 
-	@PostMapping("/lotteryView")
+	@PostMapping("/betting/lotteryView")
 	String addBet(@LoggedIn UserAccount user, @RequestParam("lottery") LotteryEntity lottery,
 				  @RequestParam("numStr") String numStr, @RequestParam("superNumber") int superNumber,
 				  @RequestParam("amount") int amount) {
@@ -88,9 +86,7 @@ class BettingController {
 
 		if(financeManagement.withdraw(financeForm, user)){
 			management.saveBet(new Bet(user, lottery, new SelectNumber(numStr,superNumber), Money.of(provisionalAmount, EURO)));
-			return "redirect:/home";
-		} else {
-			return "redirect:/lotteryView";
 		}
+		return "redirect:/home";
 	}
 }
