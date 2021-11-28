@@ -12,28 +12,6 @@
 <nav th:include="navigation :: navigation"></nav>
 
 <section class="main_content">
-    <!--
-    <h1>Überblick</h1>
-    <p sec:authorize="isAuthenticated()" th:text="${'Hi ' + #authentication?.name + ', hier hast du einen Überblick deines Kontos'}"></p>
-
-    <br>
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">Wette</th>
-            <th scope="col">Betrag</th>
-            <th scope="col">Ergebnis</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="bet : ${bets}">
-            <th th:text="${bet.reference}"> </th>
-            <th th:text="${bet.bettingAmount}"> </th>
-            <th th:text="${bet.value}"> </th>
-        </tr>
-        </tbody>
-    </table>
-    -->
     <h1>ÜBERBLICK</h1>
     <h3></h3>
     <p  th:if="${param.error}">╮(๑•́ ₃•̀๑)╭Ihr Guthaben ist niedrig, Sie können jetzt keine Wette platzieren!</p>
@@ -48,11 +26,11 @@
                         <p> Name:</p>
                         <p th:text="${username}"></p>
                     </li>
-                    <li>
+                    <li th:if="${email_address != null}">
                         <p> Email-Adresse:</p>
                         <p th:text="${email_address}"></p>
                     </li>
-                    <li>
+                    <li th:if="${lottery_address != null}">
                         <p> Lotteriekonto-Adresse:</p>
                         <p th:text="${lottery_address}"></p>
                     </li>
@@ -103,7 +81,7 @@
             </div>
             <div class="container_content">
                 <div id="bets_empty" th:if="${bets.empty}">
-                    <p id="empty_text">Du hast noch keine Wetten abgeschlossen</p>
+                    <p id="empty_text">Sie haben noch keine Wetten abgeschlossen</p>
                 </div>
                 <ul th:each="bet : ${bets}">
                     <li>

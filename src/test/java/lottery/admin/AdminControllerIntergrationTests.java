@@ -19,7 +19,7 @@ class AdminControllerIntergrationTests extends AbstractIntegrationTests {
 	void rejectsUnauthenticatedAccessToController() {
 
 		assertThatExceptionOfType(AuthenticationException.class) //
-				.isThrownBy(() -> controller.alluser(new ExtendedModelMap()));
+				.isThrownBy(() -> controller.allUsers(new ExtendedModelMap()));
 	}
 
 	/**
@@ -31,7 +31,7 @@ class AdminControllerIntergrationTests extends AbstractIntegrationTests {
 
 		ExtendedModelMap model = new ExtendedModelMap();
 
-		controller.alluser(model);
+		controller.allUsers(model);
 
 		assertThat(model.get("userList")).isNotNull();
 	}

@@ -5,7 +5,9 @@ import  javax.validation.Valid;
 import org.springframework.data.util.Streamable;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Controller;
 public class UserController {
 
 	private final UserManagement userManagement;
+	private boolean user_exists = false;
 
 	UserController(UserManagement userManagement) {
 
@@ -23,7 +26,7 @@ public class UserController {
 	}
 
 	@PostMapping("/register")
-	String registerNew(@Valid RegistrationForm form, Errors result) {
+	String registerNew(@Valid RegistrationForm form, BindingResult res, Errors result, Model model) {
 
 		//Übergebene Daten werden auf Richtigkeit überprüft
 
@@ -33,8 +36,16 @@ public class UserController {
 
 		Streamable<User> users = userManagement.findAll();
 
+		if(username.equals("boss")){
+			ObjectError error = new ObjectError("globalError", "Sie können sich nicht als Boss registrieren.");
+			res.addError(error);
+			return "register";
+		}
+
 		for(User user : users){
 			if(user.getUserAccount().getUsername().equals(username)){
+				ObjectError error = new ObjectError("globalError", "Dieser Nutzername ist schon vergeben.");
+				res.addError(error);
 				return "register";
 			}
 		}
@@ -46,7 +57,6 @@ public class UserController {
 
 		//Falls keine Fehler bei der Validierung aufgetreten sind, wird ein User mit den angegebenen Daten erstellt
 		userManagement.createUser(form);
-
 		return "redirect:/login";
 	}
 
