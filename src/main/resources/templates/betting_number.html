@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en"  dir="ltr" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <script src="https://kit.fontawesome.com/63a2b78b2b.js" crossorigin="anonymous"></script>
   <meta charset="UTF-8">
@@ -13,27 +14,48 @@
 
 <style>
     .box {
-        width: 530px; height: 530px; margin: 0 auto; background-color: #ffffff;
-        padding-left: 6px;padding-top: 6px;
+        width: 530px;
+        height: 530px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        padding-left: 6px;
+        padding-top: 6px;
     }
+
     .box-item {
-        width: 70px; height: 70px; text-align: center;font-size: 40px;
-        line-height: 70px; border: 1px solid #3906ff; display: inline-block;float: left;
-        margin: 2px; cursor: pointer;
+        width: 70px;
+        height: 70px;
+        text-align: center;
+        font-size: 40px;
+        line-height: 70px;
+        border: 1px solid #3906ff;
+        display: inline-block;
+        float: left;
+        margin: 2px;
+        cursor: pointer;
     }
+
     .box-item-selected {
         background-color: #ff180a;
     }
+
     .box-input-div {
-        width: 530px; margin: 20px auto; height: 40px; font-size: 20px;
+        width: 530px;
+        margin: 20px auto;
+        height: 40px;
+        font-size: 20px;
     }
+
     .box-input-div > span {
-        display: inline-block; width: 120px;
+        display: inline-block;
+        width: 120px;
     }
+
     .box-input-div > input {
         height: 40px;
         padding-left: 10px;
     }
+
     .box-input-div > button {
         text-align: center;
         height: 40px;
@@ -45,7 +67,8 @@
 </style>
 <section class="main_content">
   <h1>Wetten</h1>
-  <p sec:authorize="isAuthenticated()" th:text="${'Hi ' + #authentication?.name + ', hier kannst du Wetten abschließen!'}"></p>
+  <p sec:authorize="isAuthenticated()"
+     th:text="${'Hi ' + #authentication?.name + ', hier kannst du Wetten abschließen!'}"></p>
   <div class="box" style="">
     <input type="hidden" name="lottery" th:value="${productId}">
     <div class="box-item" style="">1</div>
@@ -100,7 +123,9 @@
   </div>
   <div class="box-input-div"><span>Superzahl:</span><input type="text" name="superNumber"></div>
   <div class="box-input-div"><span>Menge:</span><input type="text" name="amount"></div>
-  <div class="box-input-div"><button id="wetten-button">WETTEN!</button></div>
+  <div class="box-input-div">
+    <button id="wetten-button">WETTEN!</button>
+  </div>
   <script>
         $(function () {
             // 颜色搭配可以自己修改 ！
@@ -124,26 +149,25 @@
                 boxItemSelected.each(function () {
                     numberList.push($(this).text());
                 });
-                if(numberList.length !== 6) {
+                if (numberList.length !== 6) {
                     alert("Bitte wählen Sie 6 Zahlen!");
                     return false;
                 }
                 // superNumber
                 var superNumber = $("input[name=superNumber]").val();
-                if(superNumber > 9){
-                     alert("Die Eingabe von superNumber ist falsch! Bitte erneut eingeben!");
-                     return false;
+                if (superNumber > 9) {
+                    alert("Die Eingabe von superNumber ist falsch! Bitte erneut eingeben!");
+                    return false;
                 }
                 var amount = $("input[name=amount]").val();
-                var str = "numStr=" + numberList.toString() + "&lottery=" + $("input[name=lottery]").val() + "&superNumber=" + superNumber + "&amount=" + amount;
-                $.ajax({
-                   type: "POST",
-                   url: "/betting/lotteryView",
-                   data: str,
-                   success: function(data){
-                       window.location.href = "/home";
-                   }
-                });
+                // var str = "numStr=" + numberList.toString() + "&lottery=" + $("input[name=lottery]").val() + "&superNumber=" + superNumber + "&amount=" + amount;
+                var form = $("<form action=\"/betting/lotteryView\" method='post'></form>")
+                form.append("<input type='hidden' name='numStr' value='" + numberList.toString() + "'>");
+                form.append("<input type='hidden' name='lottery' value='" + $("input[name=lottery]").val() + "'>");
+                form.append("<input type='hidden' name='superNumber' value='" + superNumber + "'>");
+                form.append("<input type='hidden' name='amount' value='" + amount + "'>");
+                $(document.body).append(form);
+                form.submit();
             })
         })
     </script>
