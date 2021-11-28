@@ -125,11 +125,15 @@
                     numberList.push($(this).text());
                 });
                 if(numberList.length !== 6) {
-                    alert("xxx");
+                    alert("Bitte wählen Sie 6 Zahlen!");
                     return false;
                 }
                 // superNumber
                 var superNumber = $("input[name=superNumber]").val();
+                if(superNumber > 9){
+                     alert("Die Eingabe von superNumber ist falsch! Bitte erneut eingeben!");
+                     return false;
+                }
                 var amount = $("input[name=amount]").val();
                 var str = "numStr=" + numberList.toString() + "&lottery=" + $("input[name=lottery]").val() + "&superNumber=" + superNumber + "&amount=" + amount;
                 $.ajax({

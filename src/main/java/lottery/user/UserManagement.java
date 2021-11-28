@@ -76,4 +76,16 @@ public class UserManagement {
 	public Streamable<User> findAll() {
 		return users.findAll();
 	}
+
+
+	//written by ziyi
+	public User findByUserId(int id){
+		List<User> allUsers= users.findAll().toList();
+		for(User user : allUsers){
+			if(user.getId() == id) {
+				return user;
+			}
+		}
+		return null;
+	};
 }
