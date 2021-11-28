@@ -9,35 +9,70 @@
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 <body>
-<div class="wrapper">
-    <div class="sidebar">
-        <div class="profile">
-            <div class="profile_details">
-                <div class="name_status">
-                    <div class="name" sec:authorize="isAuthenticated()" th:text="${#authentication?.name}"></div>
-                    <div class="status" sec:authorize="isAuthenticated()" th:text="${'Role'}"></div>
-                </div>
-            </div>
-            <form class="item" sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
-                <button type="submit" class="ui button" th:text="Logout">Logout</button>
-            </form>
-        </div>
-
-        <ul class="nav-list">
-            <li><a href="/home"><i class="fas fa-home"></i>Überblick</a></li>
-            <li><a href="/betting"><i class="fas fa-money-check-alt"></i>Wetten</a></li>
-            <li><a href="/community"><i class="fas fa-users"></i>Gemeinschaft</a></li>
-            <li><a href="/finances"><i class="fas fa-coins"></i>Finanzen</a></li>
-        </ul>
-    </div>
-</div>
+<nav th:include="navigation :: navigation"></nav>
 
 <section class="main_content">
     <h1>Gemeinschaft</h1>
-    <p sec:authorize="isAuthenticated()" th:text="${'Hi ' + #authentication?.name + ', hier stehen deine Gemeinschaften'}"></p>
 
+    <h3>Ihre Gemeinschaften:</h3>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Gemeinschaftsname</th>
+            <th scope="col">Überblick</th>
+            <th scope="col">Wetten</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="community : ${personalCommunities} ">
+            <td th:text="${community.name}"></td>
+            <td>
+                <a href="/home">
+                    <button>Überblick</button>
+                </a>
+            </td>
+            <td>
+                <a href="/betting">
+                    <button>Wetten</button>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 
-    <!-- Hier kommt Alles für die Gemeinschaften rein -->
+    <h3>Diesen Gemeinschaften können Sie beitreten:</h3>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Gemeinschaftsname</th>
+            <th scope="col">Überblick</th>
+            <th scope="col">Beitreten</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="community : ${joinableCommunities} ">
+            <td th:text="${community.name}">CommunityName</td>
+            <td>
+                <a href="/home">
+                    <button>Überblick</button>
+                </a>
+            </td>
+            <td>
+                <a href="/community/join">
+                    <button>Beitreten</button>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a  href="/community/create">
+        <button  class="button_slide slide_right">erstellen</button>
+    </a>
+    <a  href="/community/join">
+        <button  class="button_slide slide_right">beitreten</button>
+    </a>
 </section>
+
 </body>
 </html>

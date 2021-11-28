@@ -26,9 +26,28 @@ h2{
   color: #e6e6e6;
 }
 
+.login_box .field .error p{
+    color: red;
+    margin-bottom: 10px;
+}
+
+.ui.negative.message p{
+    color: red;
+    text-align: center;
+}
+
+.error p{
+    color: red;
+}
+
+.alert-error{
+color: red;
+}
+
 .login_box{
-  width: 320px;
-  height: 420px;
+  width: 50%;
+  max-width: 400px;
+  height: auto;
   background: #2c2c2c;
   color: #e6e6e6;
   top: 50%;
@@ -60,7 +79,7 @@ h2{
   margin-bottom: 20px;
 }
 
-.login_box input[type="text"], input[type="password"]{
+.login_box input[type="text"], input[type="password"], input[type="email"]{
   border: none;
   border-bottom: 1px solid white;
   background: transparent;
@@ -98,4 +117,11 @@ h2{
   line-height: 20px;
   color: red;
 }
+
+.alert-error{
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+
 
