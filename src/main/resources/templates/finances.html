@@ -15,16 +15,18 @@
 
     <h1>Finanzen</h1>
     <h2 >Ihr Saldo:
-    <p id=balance th:field="*{balance}" th:text="${balance}">0.00 EURO</p>
+    <p id=balance th:field="*{balance}" th:text="${balance}">0.0 EURO</p>
     </h2>
     <br/><br/>
 
-    <form  onsubmit="return checkBalance()" align="center" name ="finances" role="form"  th:object="${form}" th:action="@{/finances}" method="post">
+    <form   align="center" name ="finances" role="form"  th:object="${form}" th:action="@{/finances}" method="post">
         <div class="field">
             <label th:text="Geldbetrag">Geldbetrag</label>
             <input class="input"  th:field="*{amount}" th:errorclass="is-invalid" required="required" min="0"/> <br/> <br/>
-            <p  th:if="${#fields.hasErrors('amount')}" th:class="${#fields.hasErrors('amount')}? error">
-                ╮(๑•́ ₃•̀๑)╭Geldbeitrag kann nicht kleiner als 0</p>
+            <p  th:if="${#fields.hasErrors('amount')}">
+                ╮(๑•́ ₃•̀๑)╭ Geldbeitrag kann nicht kleiner als 0</p>
+            <p  th:if="${param.error}">
+                ╮(๑•́ ₃•̀๑)╭  get a job!</p>
             <label th:text="Beschreibung">Beschreibung</label>
             <input class="input" th:field="*{note}" type="text" />
             <br/> <br/>

@@ -9,7 +9,7 @@ import org.springframework.data.util.Streamable;
 import java.util.Optional;
 
 @EntityScan("bean.FinanceRepository")
-interface FinanceRepository extends CrudRepository<FinanceEntry, Long> {
+public interface FinanceRepository extends CrudRepository<FinanceEntry, Long> {
 
 	Sort DEFAULT_SORT = Sort.by("date").descending();
 

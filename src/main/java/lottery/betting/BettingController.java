@@ -65,6 +65,7 @@ class BettingController {
 		if(financeManagement.withdraw(financeForm, user)){
 			management.saveBet(new Bet(user, match, new Score(homeScore, guestScore), Money.of(amount, EURO)));
 		}
+		else return "redirect:/home?error";
 		return "redirect:/home";
 	}
 
@@ -80,6 +81,7 @@ class BettingController {
 		if(financeManagement.withdraw(financeForm, user)){
 			management.saveBet(new Bet(user, lottery, new SelectNumber(numStr,superNumber), Money.of(provisionalAmount, EURO)));
 		}
+		else return "redirect:/home?error";
 		return "redirect:/home";
 	}
 }

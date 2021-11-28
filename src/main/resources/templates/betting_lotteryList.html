@@ -17,14 +17,16 @@
     <table class="table">
         <thead>
         <tr>
+            <th scope="col"></th>
             <th scope="col">Lotto</th>
             <th scope="col">Datum</th>
-            <th scope="col"></th>
+            <th scope="col"><button onclick="enterWettenLotteryByProductIdList()"><span>Alle Wetten!</span></button></th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="lottery : ${lotteryList}">
-            <th th:text="${lottery.lotteryName}"> </th>
+        <tr th:each="lottery : ${lotteryList}" class="tr">
+            <th><input type="checkbox" name="check"><input type="hidden" name="productId" th:value="${lottery.id}"></th>
+            <th th:text="${lottery.lotteryName}"></th>
             <th th:text="${lottery.date}"> </th>
             <th>
                 <button th:data-id="${lottery.id}" th:onclick="enterWettenLottery(this.getAttribute('data-id'))"><span> Wetten!</span></button>
@@ -36,6 +38,22 @@
     <script>
         function enterWettenLottery(productId){
             window.location.href = "/betting/lotteryView?productId=" + productId;
+        }
+
+        function enterWettenLotteryByProductIdList(){
+            var trList = $(".tr");
+            var productIdListStr = "";
+            trList.each(function () {
+                var checkboxStatus = $(this).find("input[type=checkbox]").is(":checked");
+                if (checkboxStatus) {
+                    productIdListStr = productIdListStr + $(this).find("input[name=productId]").val() + ",";
+                }
+            });
+            if (productIdListStr.length === 0) {
+                alert("Bitte wählen Sie!");
+                return false;
+            }
+            window.location.href = "/lotteryViewList?productIdListStr=" + productIdListStr;
         }
     </script>
 </section>
