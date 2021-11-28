@@ -10,7 +10,8 @@ import org.springframework.ui.ExtendedModelMap;
 
 
 class AdminControllerIntergrationTests extends AbstractIntegrationTests {
-	@Autowired AdminController controller;
+	@Autowired
+	AdminController2 controller;
 
 	/**
 	 * Does not use any authentication and should raise a security exception.

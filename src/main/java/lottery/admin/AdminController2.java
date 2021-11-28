@@ -20,15 +20,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class AdminController {
+public class AdminController2 {
 
 	private final UserManagement userManagement;
 	private final FinanceManagement financeManagement;
 	private final CommunityManagement communityManagement;
 	private final BettingManagement bettingManagement;
 
-	AdminController(UserManagement userManagement, FinanceManagement financeManagement,
-					CommunityManagement communityManagement, BettingManagement bettingManagement){
+	AdminController2(UserManagement userManagement, FinanceManagement financeManagement,
+					 CommunityManagement communityManagement, BettingManagement bettingManagement){
 
 		this.bettingManagement = bettingManagement;
 		this.communityManagement = communityManagement;
@@ -38,7 +38,7 @@ public class AdminController {
 
 	@GetMapping("/admin")
 	@PreAuthorize("hasRole('BOSS')")
-	String admin(){return "admin";}
+	String admin(){return "admin2";}
 
 	@GetMapping("/admin/users")
 	@PreAuthorize("hasRole('BOSS')")
