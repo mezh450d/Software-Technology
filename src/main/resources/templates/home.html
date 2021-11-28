@@ -12,6 +12,7 @@
 <nav th:include="navigation :: navigation"></nav>
 
 <section class="main_content">
+    <!--
     <h1>Überblick</h1>
     <p sec:authorize="isAuthenticated()" th:text="${'Hi ' + #authentication?.name + ', hier hast du einen Überblick deines Kontos'}"></p>
 
@@ -32,7 +33,95 @@
         </tr>
         </tbody>
     </table>
+    -->
+    <h1>ÜBERBLICK</h1>
+    <h3></h3>
+    <h2> Hallo Hannes, hier werden Ihnen Informationen zu Ihrem Konto angezeigt</h2>
 
+    <div id="wrapper">
+        <div class="container" id="account_details">
+            <div class="container_head">
+                <p id="account_label"> Kontoinformationen:</p>
+            </div>
+            <div class="container_content">
+                <ul>
+                    <li>
+                        <p> Name:</p>
+                        <p th:text="${username}"></p>
+                    </li>
+                    <li>
+                        <p> Email-Adresse:</p>
+                        <p th:text="${email_address}"></p>
+                    </li>
+                    <li>
+                        <p> Lotteriekonto-Adresse:</p>
+                        <p th:text="${lottery_address}"></p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="container" id="user_balance">
+            <div class="container_head">
+                <p id="balance_label"> Ihr Saldo:</p>
+            </div>
+            <div class="container_content">
+                <div id="balance_container">
+                    <p id="value" th:field="*{balance}" th:text="${balance}">0.00 Euro</p>
+                </div>
+            </div>
+        </div>
+        <div class="container" id="completed_bets">
+            <div class="container_head">
+                <p id="complete_bets_label"> Wettstatistik</p>
+            </div>
+            <div class="container_content">
+                <ul>
+                    <li>
+                        <p> Anzahl gespielter Wetten:</p>
+                        100
+                    </li>
+                    <li>
+                        <p> Anzahl gewonnener Wetten:</p>
+                        20
+                    </li>
+                    <li>
+                        <details>
+                            <summary>Win/Lose Allgemein: 0.2</summary>
+                            <span>
+                  <ul>
+                    <li>Win/Lose Lotto: 0.4</li>
+                    <li>Win/Lose Fußballtoto: 0.1</li>
+                  </ul>
+                </span>
+                        </details>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="container" id="current_bets">
+            <div class="container_head">
+                <p id="current_bets_label"> Laufende Wetten</p>
+            </div>
+            <div class="container_content">
+                <div id="bets_empty" th:if="${bets.empty}">
+                    <p id="empty_text">Du hast noch keine Wetten abgeschlossen</p>
+                </div>
+                <ul th:each="bet : ${bets}">
+                    <li>
+                        <details>
+                            <summary th:text="${bet.reference}">Wette 1: Lotto 6 aus 49</summary>
+                            <span>
+                              <ul>
+                                <li th:text="${bet.bettingAmount}">Wetteinsatz: 10 Euro</li>
+                                <li th:text="${bet.value}">Wette: 1,2,3,4,5,6,7</li>
+                              </ul>
+                            </span>
+                        </details>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </section>
 </body>
 </html>

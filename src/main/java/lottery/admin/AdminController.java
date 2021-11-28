@@ -71,17 +71,18 @@ public class AdminController {
 			System.out.println("the user id is " + id);
 			model.addAttribute("id", adminEntry.getId());
 			model.addAttribute("detail", userManagement.findByUserId(id));
+			model.addAttribute("joinedCommunity", communityManagement.findPersonalCommunities(userManagement.findByUserId(id).getUserAccount()));
 			return "details";
 		}
 		return "/admin";
 	}
-
-	@GetMapping("/details")
-	@PreAuthorize("hasRole('BOSS')")
-	String details(Model model, @LoggedIn UserAccount user){
-		model.addAttribute("joinedCommunity", communityManagement.findPersonalCommunities(user));
-		return "details";
-	}
+//
+//	@GetMapping("/details")
+//	@PreAuthorize("hasRole('BOSS')")
+//	String details(Model model, @LoggedIn UserAccount user){
+//		model.addAttribute("joinedCommunity", communityManagement.findPersonalCommunities(user));
+//		return "details";
+//	}
 
 
 }

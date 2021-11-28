@@ -15,8 +15,10 @@
     <p sec:authorize="isAuthenticated()" th:text="${'Hi ' + #authentication?.name + ', hier kannst du alle Informationen von Benutzer ' + id + ' sehen!'}"></p>
     <td>User Name : </td>
     <td th:text="${detail.getUserAccount.getId}">testUser</td><br/>
-    <td>E-mail Address : </td><br/>
-    <td>Lottery Address : </td><br/>
+    <td>E-mail Address : </td>
+    <td th:text="${detail.getUserAccount.getEmail}">testUser</td><br/>
+    <td>Lottery Address : </td>
+    <td th:text="${detail.getLotteryAddress}">testUser</td><br/>
     <td>Joined Communities : </td><br/>
     <table class="table">
         <thead>
@@ -27,7 +29,7 @@
         </thead>
         <tbody th:remove="all-but-first">
         <tr th:each="item : ${joinedCommunity}">
-            <td th:text="{item.name}">gruppe</td>
+            <td th:text="${item.name}">gruppe</td>
             <td>
                 <a href="/admin">
                     <button>Überblick</button>
