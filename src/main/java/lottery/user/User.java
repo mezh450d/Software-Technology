@@ -8,7 +8,8 @@ import org.salespointframework.useraccount.UserAccount;
 @Entity
 public class User {
 
-	private @Id @GeneratedValue(strategy = GenerationType.IDENTITY)@Column(name="user_id") long id;
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
 
 	@OneToOne
 	private UserAccount userAccount;
