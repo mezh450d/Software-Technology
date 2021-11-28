@@ -27,13 +27,6 @@ class BettingController {
 		this.financeManagement = financeManagement;
 	}
 
-	@GetMapping("/home")
-	String home(@LoggedIn UserAccount user, Model model) {
-		String userName = user.getUsername();
-		model.addAttribute("bets", management.findBetsByUser(userName));
-		return "home";
-	}
-
 	@GetMapping("/betting")
 	public String betting() {
 		return "betting";
