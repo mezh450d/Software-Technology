@@ -12,6 +12,7 @@
 |0.3    | 10.11.2021 | Hannes, Nick
 |0.4    | 13.11.2021 | Nick
 |1.0    | 14.11.2021 | Hannes, Nick
+|1.1    | 29.11.2021 | Nick
 |===
 
 == Einführung und Ziele
@@ -208,25 +209,25 @@ image::./diagrams/developer_docu/user_interface.svg[user-interface, title= "Benu
 |salespointframework.core a|
 - user.UserDataInitializer
 - betting.BetDataInitializer
-|salespointframework.payment |finance.Finance
+- community.CommunityDataInitializer
 |salespointframework.SalespointSecurityConfiguration |lottery.WebSecurityConfiguration
 |salespointframework.userAccount |user.User
-|springframework.boot |lottery.Application
+|springframework.boot |lottery.Lottery
 |springframework.data a|
 - betting.BetRepository
+- betting.DataCatalog
 - community.CommunityRepository
 - finance.FinanceRepository
-- football.FootballBetCatalog
-- numberLottery.NumberLotteryRepository
 - user.UserRepository
 |springframework.security |lottery.WebSecurityConfiguration
 |springframework.ui a|
+- admin.AdminController
 - betting.BetController
 - community.CommunityController
 - finance.FinanceController
+- lottery.HomeController
 - user.UserController
 |springframework.validation a|
-- community.CommunityController
 - user.UserController
 |springframework.web |lottery.LotterywebConfiguration
 |===
@@ -304,6 +305,15 @@ image::./diagrams/developer_docu/class_finance.svg[class_finance, title= "Financ
 |FinanceRepository|Ein Finanzrepository um Finanzeinträge zu speichern
 |===
 
+=== Admin
+image::./diagrams/developer_docu/class_admin.svg[class_admin, title= "Admin", align=center]
+
+[options="header", cols="1,2"]
+|===
+|Klasse/Enumeration |Description
+|AdminController|SpringMVC Controller welcher jegliche Admineinsichten zu realisieren
+|===
+
 
 === Rückverfolgbarkeit zwischen Analyse- und Entwurfsmodell
 
@@ -316,46 +326,45 @@ image::./diagrams/developer_docu/class_finance.svg[class_finance, title= "Financ
 - Klassenattribut
 - Methodenparameter
 |Community a|
-- Salespoint.UserAccount
 - community.Community a|
 - Klassenattribut
 - Methodenparameter
 |CommunityManagement a|
 - CommunityController
 - CommunityManagement |
-|Message|management.Message |
+|Message|admin.Message |
 |Bet|betting.Bet|
-|Lottery |betting.BettingController |
-|FootballPools |betting.BettingController |
+|Lottery |betting.BettingManagement |
+|FootballPools |betting.BettingManagement |
 |LotteryBet a|
-- lottery.Lottery
+- number.LotteryEntity
 - Salespoint.Product |Vererbung/Implementierung
 |FootballPoolsBet a|
 - football.Match
 - Salespoint.Product |Vererbung/Implementierung
 |BetCatalog a|
-- betting.Catalog
+- betting.DataCatalog
 - Salespoint.Catalog
-- betting.BettingDataInitializer a|
+- betting.CatalogDataInitializer a|
 - Vererbung/Implementierung
 - Klassenattribut
 |System a|
+- admin.AdminController
 - betting.BetController
 - community.CommunityController
 - finance.FinanceController
 - user.UserController
 - betting.BetRepository
+- betting.DataCatalog
 - community.CommunityRepository
 - finance.FinanceRepository
-- football.FootballBetCatalog
-- numberLottery.NumberLotteryRepository
 - user.UserRepository|
 |Finances a|
 - finance.FinanceController
 - finance.FinanceEntry
 - finance.FinanceRepository
 |
-|BetManagement|management.ManagementController|
+|BetManagement|admin.AdminController|
 |===
 
 == Laufzeitsicht

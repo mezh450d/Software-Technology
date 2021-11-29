@@ -1,7 +1,6 @@
 package lottery.community;
 
 import com.mysema.commons.lang.Assert;
-import lottery.user.User;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
 import org.springframework.data.util.Streamable;
@@ -14,26 +13,24 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.swing.*;
 import javax.validation.Valid;
-import java.util.Optional;
 
 @Controller
 public class CommunityController {
 
-	private final CommunityManagement communityManagement;
+	private final CommunityManagement management;
 
-	public CommunityController(CommunityManagement communityManagement){
+	public CommunityController(CommunityManagement management){
 
-		Assert.notNull(communityManagement, "CommunityManagement must not be null!");
-		this.communityManagement=communityManagement;
+		Assert.notNull(management, "CommunityManagement must not be null!");
+		this.management = management;
 	}
 
 	@GetMapping("/community")
 	public String community(@LoggedIn UserAccount user, Model model) {
 
-		model.addAttribute("personalCommunities", communityManagement.findPersonalCommunities(user));
-		model.addAttribute("joinableCommunities",communityManagement.findJoinableCommunities(user));
+		model.addAttribute("personalCommunities", management.findPersonalCommunities(user));
+		model.addAttribute("joinableCommunities", management.findJoinableCommunities(user));
 
 		return "community";
 	}
@@ -52,7 +49,7 @@ public class CommunityController {
 		//Falls der angegebene Communityname schon vorhanden ist, keinen Community erstellen
 		String communityName = form.getName();
 
-		Streamable<Community> communities = communityManagement.findAll();
+		Streamable<Community> communities = management.findAll();
 
 		for(Community community : communities){
 			if(community.getName().equals(communityName)){
@@ -64,9 +61,9 @@ public class CommunityController {
 			return "community_create";
 		}
 
-		communityManagement.createCommunity(form);
-		Community community = communityManagement.findCommunityByForm(form);
-		communityManagement.joinCommunity(community, user);
+		management.createCommunity(form);
+		Community community = management.findCommunityByForm(form);
+		management.joinCommunity(community, user);
 
 		return "redirect:/community";
 	}
@@ -83,14 +80,14 @@ public class CommunityController {
 			return "community_join";
 		}
 
-		Community community= communityManagement.findCommunityByForm(form);
+		Community community= management.findCommunityByForm(form);
 		if(community==null){
 			ObjectError error = new ObjectError("globalError", "Fehlerhafte Communitydaten.");
 			res.addError(error);
 			return "community_join";
 		}
 
-		communityManagement.joinCommunity(community, user);
+		management.joinCommunity(community, user);
 
 		return "redirect:/community";
 	}
@@ -99,7 +96,7 @@ public class CommunityController {
 	@PreAuthorize("hasRole('BOSS')")
 	String communities(Model model) {
 
-		model.addAttribute("communityList", communityManagement.findAll());
+		model.addAttribute("communityList", management.findAll());
 
 		return "communities";
 	}
