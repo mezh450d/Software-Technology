@@ -18,7 +18,10 @@
     <form class="ui form" role="form" th:action="@{/admin/users/getInfo}" method="get">
         <div class="field">
             <label th:text="User-ID">User-ID</label></br>
-            <input type="number" name="id"/></br>
+            <input type="number" name="id"/><br/>
+            <div class="error">
+            <p  th:if="${param.error}">Please enter the correct id. </p>
+            </div>
             <button type="submit">Details</button>
         </div>
     </form>
