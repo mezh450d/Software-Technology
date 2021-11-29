@@ -41,6 +41,7 @@ public class CommunityManagement {
 	public Community findCommunityByForm(CreateForm form){
 
 		Community community = communities.findByName(form.getName());
+		if(community==null)return null;
 		if(community.getPassword().equals(form.getPassword())) {
 			return community;
 		}
