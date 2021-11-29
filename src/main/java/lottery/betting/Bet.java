@@ -58,8 +58,7 @@ public class Bet {
 			evaluate = true;
 			int factor = value.compareTo(reference.getResult());
 			return factor * bettingAmount.getNumber().doubleValue();
-		}
-		else {
+		} else {
 			return null;
 		}
 	}
