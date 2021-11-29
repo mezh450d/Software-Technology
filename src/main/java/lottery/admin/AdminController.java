@@ -62,7 +62,7 @@ public class AdminController {
 					bettingManagement.findBetsByUser(user.getUserAccount().getUsername()));
 			return "admin_details";
 		}
-		return "/admin";
+		return "redirect:/admin/users?error";
 	}
 
 	@GetMapping("/admin/bets")
