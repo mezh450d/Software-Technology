@@ -17,6 +17,7 @@
         <h1>Gemeinschaft beitreten</h1>
 
         <form method="post" role="form"  class="ui form" id="form" th:action="@{/community/join}" th:object="${createForm}">
+            <div class="error" th:if="${#fields.hasErrors('global')}"><p>Felerhafte Communitydaten.</p></div>
 
 
             <div class="field">

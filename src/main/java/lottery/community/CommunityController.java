@@ -8,7 +8,9 @@ import org.springframework.data.util.Streamable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -75,7 +77,7 @@ public class CommunityController {
 	}
 
 	@PostMapping("/community/join")
-	String join(@Valid CreateForm form, @LoggedIn UserAccount user, Errors result){
+	String join(@Valid CreateForm form, @LoggedIn UserAccount user, BindingResult res,Errors result){
 
 		if(result.hasErrors()){
 			return "community_join";
@@ -83,6 +85,8 @@ public class CommunityController {
 
 		Community community= communityManagement.findCommunityByForm(form);
 		if(community==null){
+			ObjectError error = new ObjectError("globalError", "Fehlerhafte Communitydaten.");
+			res.addError(error);
 			return "community_join";
 		}
 
