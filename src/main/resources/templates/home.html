@@ -14,7 +14,9 @@
 <section class="main_content">
     <h1>ÜBERBLICK</h1>
     <h3></h3>
-    <p  th:if="${param.error}">╮(๑•́ ₃•̀๑)╭Ihr Guthaben ist niedrig, Sie können jetzt keine Wette platzieren!</p>
+    <div class="error">
+        <p  th:if="${param.error}">╮(๑•́ ₃•̀๑)╭Ihr Guthaben ist niedrig, Sie können jetzt keine Wette platzieren!</p>
+    </div>
     <div id="wrapper">
         <div class="container" id="account_details">
             <div class="container_head">
