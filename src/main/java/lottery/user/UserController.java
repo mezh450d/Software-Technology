@@ -16,7 +16,7 @@ import org.springframework.stereotype.Controller;
 public class UserController {
 
 	private final UserManagement userManagement;
-	private boolean user_exists = false;
+	private boolean userExists = false;
 
 	UserController(UserManagement userManagement) {
 

@@ -16,7 +16,8 @@ public class HomeController {
 	private final BettingManagement bettingManagement;
 	private final UserManagement userManagement;
 
-	HomeController(FinanceManagement financeManagement, BettingManagement bettingManagement, UserManagement userManagement) {
+	HomeController(FinanceManagement financeManagement, BettingManagement bettingManagement,
+				   UserManagement userManagement) {
 		this.financeManagement = financeManagement;
 		this.bettingManagement = bettingManagement;
 		this.userManagement = userManagement;
@@ -31,7 +32,8 @@ public class HomeController {
 
 		if(!user.getUsername().equals("boss")) {
 			model.addAttribute("email_address", user.getEmail());
-			model.addAttribute("lottery_address", userManagement.findByUserAccount(user).getLotteryAddress());
+			model.addAttribute("lottery_address",
+					userManagement.findByUserAccount(user).getLotteryAddress());
 		}
 
 		return "home";

@@ -3,7 +3,6 @@ package lottery.admin;
 import lottery.betting.Bet;
 import lottery.betting.BettingManagement;
 import lottery.betting.Category;
-import lottery.betting.Data;
 import lottery.betting.football.FootballMatch;
 import lottery.betting.football.Score;
 import lottery.betting.number.LotteryEntity;
@@ -90,7 +89,7 @@ public class AdminController {
 					   @RequestParam("home_score") int homeScore, @RequestParam("guest_score") int guestScore){
 
 		match.setResult(new Score(homeScore, guestScore));
-		return evaluateBet(bettingManagement.findBetsByData(match), "Wettausschüttung zu " + match, match);
+		return evaluateBet(bettingManagement.findBetsByData(match), "Wettausschüttung zu " + match);
 	}
 
 	@PostMapping(path = "/admin/evaluateBets/lottery")
@@ -99,14 +98,13 @@ public class AdminController {
 					  @RequestParam("numberStr") String numStr, @RequestParam("superNumber") int superNumber){
 
 		lottery.setResult(new SelectNumber(numStr, superNumber));
-		return evaluateBet(bettingManagement.findBetsByData(lottery), "Wettausschüttung zu "+lottery, lottery);
+		return evaluateBet(bettingManagement.findBetsByData(lottery), "Wettausschüttung zu "+lottery);
 	}
 
-	private String evaluateBet(Streamable<Bet> betsByData, String s, @RequestParam("match") Data data){
-		Streamable<Bet> betsForData = betsByData;
-		for(Bet bet : betsForData){
+	private String evaluateBet(Streamable<Bet> betsByData, String description){
+		for(Bet bet : betsByData){
 			Double payOut = bet.payOut();
-			financeManagement.deposit(new FinanceForm(payOut, s),
+			financeManagement.deposit(new FinanceForm(payOut, description),
 					userManagement.findByUsername(bet.getUser()).getUserAccount());
 		}
 		return "redirect:/admin";
