@@ -8,6 +8,7 @@ import org.javamoney.moneta.Money;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
+import org.mockito.Mock;
 import org.salespointframework.useraccount.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -37,15 +38,9 @@ public class BettingControllerIntegrationTests {
 
 	@Autowired
 	UserRepository userRepository;
+
 	@Resource
 	private BetRepository betRepository;
-
-	private UserAccount user;
-
-	@BeforeAll
-	void before() {
-		user = userManagement.findByUsername("testUser").getUserAccount();
-	}
 
 	@Test
 	void testToBetting() {
