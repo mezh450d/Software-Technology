@@ -24,13 +24,8 @@ public class FinanceControllerUnitTests {
 	@Autowired
 	UserManagement userManagement;
 
-	UserAccount user1;
-
-
-	@BeforeAll
-	void before() {
-		user1 = userManagement.findByUsername("testUser").getUserAccount();
-	}
+	@Mock
+	UserAccount user;
 
 	@Mock
 	FinanceManagement finances;
@@ -41,9 +36,9 @@ public class FinanceControllerUnitTests {
 
 		Model model = new ExtendedModelMap();
 		FinanceForm form = new FinanceForm(100.0, "");
-		finances.deposit(form, user1);
+		finances.deposit(form, user);
 		FinanceController controller = new FinanceController(finances);
-		String viewName = controller.finances(user1, model, new FinanceForm(100.0, null));
+		String viewName = controller.finances(user, model, new FinanceForm(100.0, null));
 		assertThat(viewName).isEqualTo("finances");
 //		assertThat(model.asMap().get("entries")).isInstanceOf(Iterable.class);
 		assertThat(model.asMap().get("form")).isNotNull();
