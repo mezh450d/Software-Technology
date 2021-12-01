@@ -19,6 +19,7 @@
 |2.1     | abgeschlossen   | 30.10.2021          | Meng       | Enumeration des Klassendiagramm
 |2.2     | abgeschlossen   | 31.10.2021          | Hannes       | Klassendiagramm
 |3.0     | abgeschlossen   | 31.10.2021          | Hannes, Nick       | Glossar, letzte Optimierung
+|3.0     | abgeschlossen   | 01.12.2021          | Nick       | Korrektur: Wohnadresse -> E-Mail-Adresse
 
 |===
 
@@ -439,7 +440,7 @@ Für eine Registrierung werden folgende Informationen benötigt:
 
 - Nutzername (Einzigartig)
 - Passwort
-- Wohnadresse
+- E-Mail-Adresse
 - Lotteriebank-Adresse
 
 Das System prüft die angegeben Daten auf ihre Richtigkeit([F0002]). Nach erfolgreicher Überprüfung wird der Nutzer im System eingetragen([F0003]) und ist in der Lage sich Anzumelden.
@@ -451,7 +452,7 @@ a|Das System ist in der Lage, die Informationen eines nicht registrierten Nutzer
 Folgende Daten werden überprüft:
 
 - Einzigartigkeit des Nutzernamens
-- Stimmigkeit der Wohnadresse
+- Stimmigkeit der E-Mail-Adresse
 - Stimmigkeit der Lotteriebank-Adresse
 
 Bei Unstimmigkeiten wird der Nutzer umgehend informiert und kann die Daten gegebenenfalls Anpassen.
@@ -470,21 +471,21 @@ a|Das System ist aufgeteilt in Bereiche, die jedem Nutzer frei zur Verfügung st
 a|Das System ermöglicht dem Nutzer in sein Konto einzusehen. Es können folgende Informationen eingesehen werden:
 
 - Nutzername
-- Wohnadresse
+- E-Mail-Adresse
 
 |[F0005]
 |Konto bearbeiten
 a|Das System ermöglicht dem Nutzer, bei Bedarf, Informationen zu bearbeiten oder hinzuzufügen. Folgende Informationen können bearbeitet werden:
 
 - Passwort
-- Wohnadresse
+- E-Mail-Adresse
 - Lotteriebank-Adresse
 
 Das System überprüft bei Änderung die neuen Daten auf ihre Richtigkeit.
 Folgende Daten werden überprüft:
 
 - Passwort ist anders
-- Stimmigkeit der Wohnadresse
+- Stimmigkeit der E-Mail-Adresse
 - Stimmigkeit der Lotteriebank-Adresse
 
 Bei Unstimmigkeiten wird der Nutzer umgehend informiert und kann die Daten gegebenenfalls Anpassen.
