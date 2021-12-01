@@ -13,12 +13,14 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.salespointframework.useraccount.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
 
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(MockitoExtension.class)
+@ActiveProfiles("lottery")
 public class FinanceControllerUnitTests {
 
 	@Autowired

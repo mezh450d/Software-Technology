@@ -13,6 +13,7 @@ import org.salespointframework.useraccount.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.util.Streamable;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
 
@@ -28,6 +29,7 @@ import static org.salespointframework.core.Currencies.EURO;
 
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@ActiveProfiles("lottery")
 public class BettingControllerIntegrationTests {
 
 	@Resource
