@@ -15,7 +15,20 @@
     <h1>ÜBERBLICK</h1>
     <h3></h3>
     <div class="error">
-        <p  th:if="${param.error}">╮(๑•́ ₃•̀๑)╭Ihr Guthaben ist niedrig, Sie können jetzt keine Wette platzieren!</p>
+        <div  th:if="${param.error}">
+            <div class="message">
+            <style>
+                a:visited {color:orange;}
+                a:hover {color:#0000FF;}
+              </style>
+            <a href="#" onclick="popupWindow()">Sie haben eine neue Nachricht, Klick mich</a><br>
+            <script type="text/javascript">
+              function popupWindow(){
+                  window.open("http://localhost:8080/message","","height=500,width=300,top=200,left=0,resizable=no");
+              }
+            </script>
+        </div>
+        </div>
     </div>
     <div id="wrapper">
         <div class="container" id="account_details">
