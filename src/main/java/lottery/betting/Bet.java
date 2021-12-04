@@ -53,9 +53,13 @@ public class Bet {
 		return evaluate;
 	}
 
+	public void evaluate() {
+		evaluate = true;
+	}
+
 	public Double payOut(){
 		if(reference.isSet()){
-			evaluate = true;
+			evaluate();
 			int factor = value.compareTo(reference.getResult());
 			return factor * bettingAmount.getNumber().doubleValue();
 		} else {

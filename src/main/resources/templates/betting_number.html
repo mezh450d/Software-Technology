@@ -123,7 +123,6 @@
 <section class="main_content">
   <h1>6 aus 49</h1>
     <div class="box" style="">
-      <input type="hidden" name="lottery" th:value="${productId}">
       <div class="box-item" style="">1</div>
       <div class="box-item" style="">2</div>
       <div class="box-item" style="">3</div>
@@ -211,14 +210,18 @@
                 // superNumber
                 var superNumber = $("input[name=superNumber]").val();
                 if (superNumber > 9) {
-                    alert("Die Eingabe von superNumber ist falsch! Bitte erneut eingeben!");
+                    alert("Die Eingabe der Superzahl ist falsch, die Zahl muss zwischen 1 und 9 liegen!");
                     return false;
                 }
                 var amount = $("input[name=amount]").val();
+                if (amount <= 0) {
+                    alert("Die Eingabe der Menge ist falsch, die Zahl muss mindestens 1 sein!");
+                    return false;
+                }
+
                 // var str = "numStr=" + numberList.toString() + "&lottery=" + $("input[name=lottery]").val() + "&superNumber=" + superNumber + "&amount=" + amount;
-                var form = $("<form action=\"/betting/lotteryView\" method='post'></form>")
+                var form = $("<form action=\"/betting/number\" method='post'></form>")
                 form.append("<input type='hidden' name='numStr' value='" + numberList.toString() + "'>");
-                form.append("<input type='hidden' name='lottery' value='" + $("input[name=lottery]").val() + "'>");
                 form.append("<input type='hidden' name='superNumber' value='" + superNumber + "'>");
                 form.append("<input type='hidden' name='amount' value='" + amount + "'>");
                 $(document.body).append(form);
@@ -226,8 +229,6 @@
             })
         })
     </script>
-
-  <!-- Hier kommt Alles für die Wetten rein -->
 </section>
 </body>
 </html>

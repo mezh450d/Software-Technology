@@ -61,13 +61,6 @@ public class BettingControllerIntegrationTests {
 		assertThat(viewHome).isEqualTo("betting_football");
 	}
 
-	@Test
-	void testToLotteryList() {
-		Model model = new ExtendedModelMap();
-		String viewHome = bettingController.lotteryList(model);
-		assertThat(viewHome).isEqualTo("betting_lotteryList");
-	}
-
 //	@Test
 //	void testFootball() {
 //		FootballMatch footballMatch = new FootballMatch("testName", Money.of(1, EURO), LocalDateTime.now(), Category.FOOTBALL, "home", "guest");

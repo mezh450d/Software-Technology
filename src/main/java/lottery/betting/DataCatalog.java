@@ -22,8 +22,6 @@ import org.springframework.data.util.Streamable;
 
 public interface DataCatalog extends Catalog<Data> {
 
-	Sort DEFAULT_SORT = Sort.by("date").ascending();
-
 	@Override
 	Streamable<Data> findAll();
 
