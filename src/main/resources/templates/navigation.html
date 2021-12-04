@@ -13,6 +13,14 @@
               <div class="name" sec:authorize="isAuthenticated()" th:text="${#authentication?.name}"></div>
             </div>
           </div>
+          <div class="Message">
+            <a href="#" onclick="popupWindow()">Message</a><br>
+            <script type="text/javascript">
+              function popupWindow(){
+                  window.open("http://localhost:8080/message","","height=500,width=300,top=200,left=0,resizable=no");
+              }
+            </script>
+          </div>
           <form class="item" sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
             <button type="submit" class="ui button" th:text="Logout">Logout</button>
           </form>

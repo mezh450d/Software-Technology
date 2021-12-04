@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en"  dir="ltr" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <script src="https://kit.fontawesome.com/63a2b78b2b.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <link th:href="@{/resources/css/style.css}" rel="stylesheet"
+          href="../static/resources/css/style.css" type="text/css"/>
+    <title>Message</title>
+</head>
+<body>
+<section>
+    <div id="wrapper">
+        <div class="container" id="messages" style="position:absolute;width:100%;height:100%;">
+            <div class="container_head">
+                <p id="messages_label"> Message</p>
+            </div>
+            <div class="container_content">
+                <div id="messages_empty" th:if="${messages.empty}">
+                    <p>Sie haben noch keine Messages abgeschlossen</p>
+                </div>
+                <ul th:each="message : ${messages}">
+                    <li>
+                        <details>
+                            <summary th:text="${message.topic}">Mahnung</summary>
+                            <span>
+                              <ul>
+                                <li th:text="${message.fine}">EURO 2.0</li>
+                                <li th:text="${message.detail}"></li>
+                                <li th:text="${message.date}"></li>
+                              </ul>
+                            </span>
+                        </details>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
+
+
+
+
+
+
+
+
