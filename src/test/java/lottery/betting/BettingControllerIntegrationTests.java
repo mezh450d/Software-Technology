@@ -29,7 +29,6 @@ import static org.salespointframework.core.Currencies.EURO;
 
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-@ActiveProfiles("lottery")
 public class BettingControllerIntegrationTests {
 
 	@Resource

@@ -23,7 +23,6 @@ import static org.assertj.core.api.Assertions.*;
 
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-@ActiveProfiles("lottery")
 public class FinanceEntryTests {
 
 	@Autowired
