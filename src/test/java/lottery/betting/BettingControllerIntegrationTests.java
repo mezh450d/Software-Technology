@@ -8,10 +8,12 @@ import org.javamoney.moneta.Money;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
+import org.mockito.Mock;
 import org.salespointframework.useraccount.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.util.Streamable;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
 
@@ -27,6 +29,7 @@ import static org.salespointframework.core.Currencies.EURO;
 
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@ActiveProfiles("lottery")
 public class BettingControllerIntegrationTests {
 
 	@Resource
@@ -37,15 +40,9 @@ public class BettingControllerIntegrationTests {
 
 	@Autowired
 	UserRepository userRepository;
+
 	@Resource
 	private BetRepository betRepository;
-
-	private UserAccount user;
-
-	@BeforeAll
-	void before() {
-		user = userManagement.findByUsername("testUser").getUserAccount();
-	}
 
 	@Test
 	void testToBetting() {

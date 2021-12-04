@@ -9,9 +9,11 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
+import org.mockito.Mock;
 import org.salespointframework.useraccount.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
 
 import java.time.LocalDateTime;
@@ -21,18 +23,15 @@ import static org.assertj.core.api.Assertions.*;
 
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@ActiveProfiles("lottery")
 public class FinanceEntryTests {
 
 	@Autowired
 	UserManagement userManagement;
 
-	UserAccount user1;
+	@Mock
+	UserAccount user;
 
-
-	@BeforeAll
-	void before() {
-		user1 = userManagement.findByUsername("testUser").getUserAccount();
-	}
 
 	@Test
 	void rejectsEmptyUser() {
@@ -45,7 +44,7 @@ public class FinanceEntryTests {
 	void rejectsEmptyAmount() {
 
 		assertThatExceptionOfType(IllegalArgumentException.class)//
-				.isThrownBy(() -> new FinanceEntry(user1, null ,"Test", LocalDateTime.now()));
+				.isThrownBy(() -> new FinanceEntry(user, null ,"Test", LocalDateTime.now()));
 	}
 
 }
