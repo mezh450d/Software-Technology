@@ -100,6 +100,30 @@
                 </ul>
             </div>
         </div>
+        <div class="container" id="messages">
+            <div class="container_head">
+                <p id="messages_label"> Message</p>
+            </div>
+            <div class="container_content">
+                <div id="messages_empty" th:if="${messages.empty}">
+                    <p>Sie haben noch keine Messages abgeschlossen</p>
+                </div>
+                <ul th:each="message : ${messages}">
+                    <li>
+                        <details>
+                            <summary th:text="${message.topic}">Mahnung</summary>
+                            <span>
+                              <ul>
+                                <li th:text="${message.fine}">EURO 2.0</li>
+                                <li th:text="${message.detail}">EURO 2.0</li>
+                                <li th:text="${message.date}"></li>
+                              </ul>
+                            </span>
+                        </details>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 </section>
 </body>

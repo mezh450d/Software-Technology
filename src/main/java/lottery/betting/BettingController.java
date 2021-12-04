@@ -4,6 +4,8 @@ import lottery.betting.football.*;
 import lottery.betting.number.SelectNumber;
 import lottery.finance.FinanceForm;
 import lottery.finance.FinanceManagement;
+import lottery.message.Message;
+import lottery.message.MessageManagement;
 import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDateTime;
+
 import static org.salespointframework.core.Currencies.EURO;
 
 @Controller
@@ -20,10 +24,12 @@ class BettingController {
 
 	private final BettingManagement management;
 	private final FinanceManagement financeManagement;
+	private final MessageManagement messageManagement;
 
-	BettingController(BettingManagement management, FinanceManagement financeManagement) {
+	BettingController(BettingManagement management, FinanceManagement financeManagement, MessageManagement messageManagement) {
 		this.management = management;
 		this.financeManagement = financeManagement;
+		this.messageManagement = messageManagement;
 	}
 
 	@GetMapping("/betting")
@@ -52,6 +58,10 @@ class BettingController {
 		if(financeManagement.withdraw(financeForm, user)){
 			management.saveBet(new Bet(user, match, new Score(homeScore, guestScore), Money.of(amount, EURO)));
 		} else {
+			Message message = new Message(user, "Mahnung von Fußball", match.toString(), Money.of(-2.0,"EUR"), LocalDateTime.now());
+			messageManagement.save(message);
+			FinanceForm form = new FinanceForm(2.0, "Mahnung: " + match.toString());
+			financeManagement.withdraw(form, user);
 			return "redirect:/home?error";
 		}
 		return "redirect:/home";
@@ -80,6 +90,10 @@ class BettingController {
 				}
 			}
 		} else {
+			Message message = new Message(user, "Mahnung von 6 aus 49", "Mahnung: für Lotto 6 aus 49 ("+amount+"x)", Money.of(-2.0,"EUR"), LocalDateTime.now());
+			messageManagement.save(message);
+			FinanceForm form = new FinanceForm(2.0, "Mahnung: für Lotto 6 aus 49 ("+amount+"x)");
+			financeManagement.withdraw(form, user);
 			return "redirect:/home?error";
 		}
 		return "redirect:/home";

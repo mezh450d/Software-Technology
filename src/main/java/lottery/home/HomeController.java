@@ -2,6 +2,7 @@ package lottery.home;
 
 import lottery.betting.BettingManagement;
 import lottery.finance.FinanceManagement;
+import lottery.message.MessageManagement;
 import lottery.user.UserManagement;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
@@ -15,12 +16,14 @@ public class HomeController {
 	private final FinanceManagement financeManagement;
 	private final BettingManagement bettingManagement;
 	private final UserManagement userManagement;
+	private final MessageManagement messageManagement;
 
 	HomeController(FinanceManagement financeManagement, BettingManagement bettingManagement,
-				   UserManagement userManagement) {
+				   UserManagement userManagement, MessageManagement messageManagement) {
 		this.financeManagement = financeManagement;
 		this.bettingManagement = bettingManagement;
 		this.userManagement = userManagement;
+		this.messageManagement = messageManagement;
 	}
 
 	@GetMapping(path = "/home")
@@ -29,6 +32,7 @@ public class HomeController {
 		model.addAttribute("balance", financeManagement.getUserBalance(user));
 		model.addAttribute("bets", bettingManagement.findBetsByUser(user.getUsername()));
 		model.addAttribute("username", user.getUsername());
+		model.addAttribute("messages", messageManagement.findEntriesByUser(user.getUsername()));
 
 		if(!user.getUsername().equals("boss")) {
 			model.addAttribute("email_address", user.getEmail());
