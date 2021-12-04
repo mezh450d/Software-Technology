@@ -1,7 +1,6 @@
 package lottery.betting;
 
 import lottery.betting.football.*;
-import lottery.betting.number.LotteryEntity;
 import lottery.betting.number.SelectNumber;
 import lottery.finance.FinanceForm;
 import lottery.finance.FinanceManagement;
@@ -43,18 +42,6 @@ class BettingController {
 		return "betting_football";
 	}
 
-	@GetMapping("/betting/lotteryList")
-	String lotteryList(Model model) {
-		model.addAttribute("lotteryList", management.findDataByCategory(Category.LOTTERY));
-		return "betting_lotteryList";
-	}
-
-	@GetMapping("/betting/lotteryView")
-	String lotteryView(Model model, String productId) {
-		model.addAttribute("productId", productId);
-		return "betting_number";
-	}
-
 	@PostMapping("/betting/football")
 	String addBet(@LoggedIn UserAccount user, @RequestParam("match") FootballMatch match,
 				  @RequestParam("home_score") int homeScore, @RequestParam("guest_score") int guestScore,
@@ -70,17 +57,28 @@ class BettingController {
 		return "redirect:/home";
 	}
 
-	@PostMapping("/betting/lotteryView")
-	String addBet(@LoggedIn UserAccount user, @RequestParam("lottery") LotteryEntity lottery,
-				  @RequestParam("numStr") String numStr, @RequestParam("superNumber") int superNumber,
-				  @RequestParam("amount") int amount) {
+	@PostMapping("/betting/number")
+	String addBet(@LoggedIn UserAccount user, @RequestParam("numStr") String numStr,
+				  @RequestParam("superNumber") int superNumber, @RequestParam("amount") int amount) {
 
-		int provisionalAmount = 10;
+		if(amount <= 0){
+			return "redirect:/home?error";
+		}
 
-		FinanceForm financeForm = new FinanceForm((double)provisionalAmount, "Wettplatzierung zu "+lottery.toString());
+		int realAmount = 10 * amount;
+		Data firstLottery = management.findNextLottery();
+
+		FinanceForm financeForm = new FinanceForm((double)realAmount,
+				"Wettplatzierung für Lotto 6 aus 49 ("+amount+"x)");
 
 		if(financeManagement.withdraw(financeForm, user)){
-			management.saveBet(new Bet(user, lottery, new SelectNumber(numStr,superNumber), Money.of(provisionalAmount, EURO)));
+			for(Data lottery : management.findDataByCategory(Category.LOTTERY)){
+				if(amount > 0){
+					management.saveBet(new Bet(user, lottery, new SelectNumber(numStr,superNumber),
+							Money.of(10, EURO)));
+					amount--;
+				}
+			}
 		} else {
 			return "redirect:/home?error";
 		}
