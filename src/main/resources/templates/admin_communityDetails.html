@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en"  dir="ltr" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <script src="https://kit.fontawesome.com/63a2b78b2b.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <link th:href="@{/resources/css/style.css}" rel="stylesheet"
+          href="../static/resources/css/style.css" type="text/css"/>
+    <title>Admin</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+<nav th:include="navigation :: navigation"></nav>
+<section class="main_content">
+    <h1>Community Information</h1><br/>
+
+    <h2 th:text="${communityName}"></h2><br/>
+
+    <h3>Alle Mitglieder der Gesellschaft:</h3>
+    <table class="table">
+        <thead>
+        <tr>
+            <td>User ID</td>
+            <td>User Name</td>
+            <td>Details</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${usersInCommunity}">
+            <form class="ui form" role="form" th:action="@{/admin/users/getInfo}" method="get">
+                <input type="hidden" name="id" value="0" th:value="${user.id}"/>
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.userAccount.getUsername()}"></td>
+                <td>
+                    <a href="/admin">
+                        <button type="submit">Details</button>
+                    </a>
+                </td>
+            </form>
+        </tr>
+        </tbody>
+    </table>
+</section>
+</body>
+</html>

@@ -70,5 +70,10 @@ public class CommunityManagement {
 		}
 		return personalCommunities;
 	}
+
+	public Community findByCommunityName(String name){
+		return communities.findByName(name);
+	}
+
 }
 

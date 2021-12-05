@@ -7,11 +7,13 @@ import lottery.betting.football.FootballMatch;
 import lottery.betting.football.Score;
 import lottery.betting.number.LotteryEntity;
 import lottery.betting.number.SelectNumber;
+import lottery.community.Community;
 import lottery.community.CommunityManagement;
 import lottery.finance.FinanceForm;
 import lottery.finance.FinanceManagement;
 import lottery.user.User;
 import lottery.user.UserManagement;
+import org.salespointframework.useraccount.UserAccount;
 import org.springframework.data.util.Streamable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 @Controller
 public class AdminController {
@@ -65,6 +71,27 @@ public class AdminController {
 		return "redirect:/admin/users?error";
 	}
 
+	@GetMapping("/admin/communities")
+	@PreAuthorize("hasRole('BOSS')")
+	String allCommunities(Model model) {
+
+		model.addAttribute("communities", communityManagement.findAll());
+
+		return "admin_allCommunities";
+	}
+
+	@GetMapping("/admin/communities/getCommunityInfo")
+	@PreAuthorize("hasRole('BOSS')")
+	String communityInfo(Model model, @RequestParam("name") String name){
+		Community community = communityManagement.findByCommunityName(name);
+		if (community != null) {
+			model.addAttribute("communityName", community.getName());
+			model.addAttribute("usersInCommunity", findUsersByCommunityName(name));
+			return "admin_communityDetails";
+		}
+		return "redirect:/admin/communities?error";
+	}
+
 	@GetMapping("/admin/bets")
 	@PreAuthorize("hasRole('BOSS')")
 	String allBets(Model model){
@@ -108,5 +135,19 @@ public class AdminController {
 					userManagement.findByUsername(bet.getUser()).getUserAccount());
 		}
 		return "redirect:/admin";
+	}
+
+	public Set<User> findUsersByCommunityName(String name) {
+		Streamable<User> allUsers = userManagement.findAll();
+		Set<User> usersInCommunity = new HashSet<>();
+		for(User mitglieder : allUsers){
+			Set<Community> communities = communityManagement.findPersonalCommunities(mitglieder.getUserAccount());
+			for (Community community : communities) {
+				if (Objects.equals(community.getName(), name)) {
+					usersInCommunity.add(mitglieder);
+				}
+			}
+		}
+		return usersInCommunity;
 	}
 }
