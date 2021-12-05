@@ -89,7 +89,9 @@ class BettingController {
 		if(financeManagement.withdraw(financeForm, user)){
 			management.saveBet(new Bet(user, match, new Score(homeScore, guestScore), Money.of(amount, EURO)));
 		} else {
-			Message message = new Message(user, "Mahnung von Fußball", match.toString(), Money.of(-2.0,"EUR"), LocalDateTime.now());
+			Message message = new Message(user, "2 Euro Bußgeld",
+					"Sie haben einen niedrigen Saldo im Wetten von " + match.toString(),
+					LocalDateTime.now());
 			messageManagement.save(message);
 			FinanceForm form = new FinanceForm(2.0, "Mahnung: " + match.toString());
 			financeManagement.withdraw(form, user);
@@ -133,7 +135,9 @@ class BettingController {
 				}
 			}
 		} else {
-			Message message = new Message(user, "Mahnung von 6 aus 49", "Mahnung: für Lotto 6 aus 49 ("+amount+"x)", Money.of(-2.0,"EUR"), LocalDateTime.now());
+			Message message = new Message(user, "2 Euro Bußgeld",
+					"Sie haben einen niedrigen Saldo im Wetten von 6 aus 49 ("+amount+"x)",
+					LocalDateTime.now());
 			messageManagement.save(message);
 			FinanceForm form = new FinanceForm(2.0, "Mahnung: für Lotto 6 aus 49 ("+amount+"x)");
 			financeManagement.withdraw(form, user);

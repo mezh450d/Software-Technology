@@ -16,17 +16,15 @@ public class Message {
 	private String user;
 	private String topic;
 	private String detail;
-	private Money fine;
 	private LocalDateTime date;
 	private static DateTimeFormatter formatDateTime = DateTimeFormatter.ofPattern("dd.MM.yyyy, HH:mm");
 	@SuppressWarnings("unused")
 	protected Message() {}
 
-	public Message(UserAccount user, String topic, String detail, Money fine, LocalDateTime date){
+	public Message(UserAccount user, String topic, String detail, LocalDateTime date){
 		this.user = user.getUsername();
 		this.topic = topic;
 		this.detail= detail;
-		this.fine = fine;
 		this.date = date;
 	}
 
@@ -36,10 +34,6 @@ public class Message {
 
 	public String getUser() {
 		return user;
-	}
-
-	public Money getFine(){
-		return fine;
 	}
 
 	public String getTopic(){

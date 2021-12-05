@@ -11,9 +11,11 @@ import lottery.community.Community;
 import lottery.community.CommunityManagement;
 import lottery.finance.FinanceForm;
 import lottery.finance.FinanceManagement;
+import lottery.message.Message;
+import lottery.message.MessageManagement;
 import lottery.user.User;
 import lottery.user.UserManagement;
-import org.salespointframework.useraccount.UserAccount;
+import org.javamoney.moneta.Money;
 import org.springframework.data.util.Streamable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -33,14 +36,16 @@ public class AdminController {
 	private final FinanceManagement financeManagement;
 	private final CommunityManagement communityManagement;
 	private final BettingManagement bettingManagement;
+	private final MessageManagement messageManagement;
 
 	AdminController(UserManagement userManagement, FinanceManagement financeManagement,
-					CommunityManagement communityManagement, BettingManagement bettingManagement){
+					CommunityManagement communityManagement, BettingManagement bettingManagement, MessageManagement messageManagement){
 
 		this.bettingManagement = bettingManagement;
 		this.communityManagement = communityManagement;
 		this.financeManagement = financeManagement;
 		this.userManagement = userManagement;
+		this.messageManagement = messageManagement;
 	}
 
 	@GetMapping("/admin")
@@ -133,6 +138,10 @@ public class AdminController {
 			Double payOut = bet.payOut();
 			financeManagement.deposit(new FinanceForm(payOut, description),
 					userManagement.findByUsername(bet.getUser()).getUserAccount());
+			Message message = new Message(userManagement.findByUsername(bet.getUser()).getUserAccount(),
+					"Ihr Wette wurde gezogen!", "Sie haben " + payOut + " EURO" + " in " + description + " gewonnen!",
+					LocalDateTime.now());
+			messageManagement.save(message);
 		}
 		return "redirect:/admin";
 	}
