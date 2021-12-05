@@ -38,6 +38,13 @@ public class CommunityManagement {
 		community.addUser(user);
 	}
 
+	public void removeFromCommunity(Community community,UserAccount user){
+		Assert.notNull(community, "community must not be null!");
+		Assert.notNull(user, "user must not be null!");
+
+		community.deleteUser(user);
+	}
+
 	public Community findCommunityByForm(CreateForm form){
 
 		Community community = communities.findByName(form.getName());
