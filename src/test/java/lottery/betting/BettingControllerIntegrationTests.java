@@ -1,31 +1,23 @@
 package lottery.betting;
 
-import lottery.betting.football.FootballMatch;
-import lottery.betting.number.LotteryEntity;
+import lottery.betting.bet.BetRepository;
 import lottery.user.UserManagement;
 import lottery.user.UserRepository;
-import org.javamoney.moneta.Money;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.mockito.Mock;
 import org.salespointframework.useraccount.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.util.Streamable;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
 
 
 import javax.annotation.Resource;
-import java.time.LocalDateTime;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 //import static org.junit.jupiter.api.AssertEquals.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.salespointframework.core.Currencies.EURO;
 
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -43,6 +35,9 @@ public class BettingControllerIntegrationTests {
 	@Resource
 	private BetRepository betRepository;
 
+	@Mock
+	UserAccount user;
+
 	@Test
 	void testToBetting() {
 		String viewHome = bettingController.betting();
@@ -51,7 +46,8 @@ public class BettingControllerIntegrationTests {
 
 	@Test
 	void testToNumber() {
-		String viewHome = bettingController.number();
+		Model model = new ExtendedModelMap();
+		String viewHome = bettingController.number(user, model);
 		assertThat(viewHome).isEqualTo("betting_number");
 	}
 

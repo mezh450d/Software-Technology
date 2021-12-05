@@ -1,6 +1,6 @@
-package lottery.betting.number;
+package lottery.betting.data.number;
 
-import lottery.betting.Result;
+import lottery.betting.data.Result;
 
 import java.util.Arrays;
 import java.util.List;

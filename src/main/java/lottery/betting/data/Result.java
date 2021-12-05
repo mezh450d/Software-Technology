@@ -1,4 +1,4 @@
-package lottery.betting;
+package lottery.betting.data;
 
 import java.io.Serializable;
 

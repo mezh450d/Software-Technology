@@ -1,6 +1,6 @@
-package lottery.betting.football;
+package lottery.betting.data.football;
 
-import lottery.betting.Result;
+import lottery.betting.data.Result;
 
 public class Score implements Result<Score> {
 	private final int home, guest, difference;

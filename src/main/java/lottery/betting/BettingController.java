@@ -1,7 +1,13 @@
 package lottery.betting;
 
-import lottery.betting.football.*;
-import lottery.betting.number.SelectNumber;
+import lottery.betting.bet.CommunityBet;
+import lottery.betting.bet.IndividualBet;
+import lottery.betting.bet.Type;
+import lottery.betting.data.Category;
+import lottery.betting.data.Data;
+import lottery.betting.data.football.*;
+import lottery.betting.data.number.SelectNumber;
+import lottery.community.CommunityManagement;
 import lottery.finance.FinanceForm;
 import lottery.finance.FinanceManagement;
 import org.javamoney.moneta.Money;
@@ -19,10 +25,13 @@ import static org.salespointframework.core.Currencies.EURO;
 class BettingController {
 
 	private final BettingManagement management;
+	private final CommunityManagement communityManagement;
 	private final FinanceManagement financeManagement;
 
-	BettingController(BettingManagement management, FinanceManagement financeManagement) {
+	BettingController(BettingManagement management, CommunityManagement communityManagement,
+					  FinanceManagement financeManagement) {
 		this.management = management;
+		this.communityManagement = communityManagement;
 		this.financeManagement = financeManagement;
 	}
 
@@ -32,7 +41,9 @@ class BettingController {
 	}
 
 	@GetMapping("/betting/number")
-	public String number() {
+	public String number(@LoggedIn UserAccount user, Model model) {
+		model.addAttribute("personalCommunities", communityManagement.findPersonalCommunities(user));
+
 		return "betting_number";
 	}
 
@@ -50,7 +61,7 @@ class BettingController {
 		FinanceForm financeForm = new FinanceForm((double)amount, "Wettplatzierung zu "+match.toString());
 
 		if(financeManagement.withdraw(financeForm, user)){
-			management.saveBet(new Bet(user, match, new Score(homeScore, guestScore), Money.of(amount, EURO)));
+			management.saveIndividualBet(new IndividualBet(match, new Score(homeScore, guestScore), Type.INDIVIDUAL, user, Money.of(amount, EURO)));
 		} else {
 			return "redirect:/home?error";
 		}
@@ -59,24 +70,33 @@ class BettingController {
 
 	@PostMapping("/betting/number")
 	String addBet(@LoggedIn UserAccount user, @RequestParam("numStr") String numStr,
-				  @RequestParam("superNumber") int superNumber, @RequestParam("amount") int amount) {
+				  @RequestParam("superNumber") int superNumber, @RequestParam("amount") int amount,
+				  @RequestParam("community") String community) {
 
 		if(amount <= 0){
 			return "redirect:/home?error";
 		}
-
 		int realAmount = 10 * amount;
-		Data firstLottery = management.findNextLottery();
 
 		FinanceForm financeForm = new FinanceForm((double)realAmount,
 				"Wettplatzierung für Lotto 6 aus 49 ("+amount+"x)");
 
 		if(financeManagement.withdraw(financeForm, user)){
-			for(Data lottery : management.findDataByCategory(Category.LOTTERY)){
-				if(amount > 0){
-					management.saveBet(new Bet(user, lottery, new SelectNumber(numStr,superNumber),
-							Money.of(10, EURO)));
-					amount--;
+			if(community.isEmpty()){
+				for(Data lottery : management.findDataByCategory(Category.LOTTERY)){
+					if(amount > 0){
+						management.saveIndividualBet(new IndividualBet(lottery, new SelectNumber(numStr,superNumber),
+								Type.INDIVIDUAL, user, Money.of(10, EURO)));
+						amount--;
+					}
+				}
+			} else {
+				for(Data lottery : management.findDataByCategory(Category.LOTTERY)){
+					if(amount > 0){
+						management.saveCommunityBet(new CommunityBet(lottery, new SelectNumber(numStr,superNumber),
+								Type.COMMUNITY, community, user, Money.of(10, EURO)));
+						amount--;
+					}
 				}
 			}
 		} else {

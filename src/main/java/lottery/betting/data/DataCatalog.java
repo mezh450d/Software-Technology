@@ -13,10 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lottery.betting;
+package lottery.betting.data;
 
 import org.salespointframework.catalog.Catalog;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.util.Streamable;
 

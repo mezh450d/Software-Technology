@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lottery.betting;
+package lottery.betting.data;
 
-import lottery.betting.football.FootballMatch;
-import lottery.betting.number.LotteryEntity;
+import lottery.betting.data.football.FootballMatch;
+import lottery.betting.data.number.LotteryEntity;
 import org.javamoney.moneta.Money;
 import org.salespointframework.core.DataInitializer;
 import org.slf4j.Logger;

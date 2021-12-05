@@ -1,53 +1,59 @@
-package lottery.betting;
+package lottery.betting.bet;
 
+import lottery.betting.data.Data;
+import lottery.betting.data.Result;
 import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.UserAccount;
 
 import javax.persistence.*;
+import java.util.Map;
 
 @Entity
-public class Bet {
+public abstract class Bet {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	private String user;
+	private String origin;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private Data reference;
 
 	private Result value;
 
-	private Money bettingAmount;
+	private Type type;
 
 	private boolean evaluate = false;
 
 	@SuppressWarnings("unused")
 	protected Bet() {}
 
-	public Bet(UserAccount user, Data reference, Result value, Money bettingAmount){
-		this.user = user.getUsername();
+	public Bet(Data reference, Result value, Type type, UserAccount user){
 		this.reference = reference;
 		this.value = value;
-		this.bettingAmount = bettingAmount;
+		this.type = type;
+		this.origin = user.getUsername();
+	}
+
+	public Bet(Data reference, Result value, Type type, String community){
+		this.reference = reference;
+		this.value = value;
+		this.type = type;
+		this.origin = community;
 	}
 
 	public long getId() {
 		return id;
 	}
 
-	public String getUser() {
-		return user;
-	}
+	public String getOrigin() { return origin; }
 
 	public Data getReference() { return reference; }
 
 	public Result getValue() { return value; }
 
-	public Money getBettingAmount() {
-		return bettingAmount;
-	}
+	public abstract Money getTotalBettingAmount();
 
 	public boolean isEvaluated() {
 		return evaluate;
@@ -56,15 +62,6 @@ public class Bet {
 	public void evaluate() {
 		evaluate = true;
 	}
-
-	public Double payOut(){
-		if(reference.isSet()){
-			evaluate();
-			int factor = value.compareTo(reference.getResult());
-			return factor * bettingAmount.getNumber().doubleValue();
-		} else {
-			return null;
-		}
-	}
+	public abstract Map<String, Double> payOut();
 }
 

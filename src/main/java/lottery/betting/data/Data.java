@@ -1,4 +1,4 @@
-package lottery.betting;
+package lottery.betting.data;
 
 import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.Product;

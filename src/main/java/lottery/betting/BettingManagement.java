@@ -1,7 +1,12 @@
 package lottery.betting;
 
-import lottery.betting.number.LotteryEntity;
-import org.apache.tomcat.jni.Local;
+import lottery.betting.bet.Bet;
+import lottery.betting.bet.BetRepository;
+import lottery.betting.bet.CommunityBet;
+import lottery.betting.bet.IndividualBet;
+import lottery.betting.data.Category;
+import lottery.betting.data.Data;
+import lottery.betting.data.DataCatalog;
 import org.javamoney.moneta.Money;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
@@ -12,6 +17,7 @@ import java.time.Clock;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 import static org.salespointframework.core.Currencies.EURO;
 
@@ -31,15 +37,22 @@ public class BettingManagement {
 		this.bets = bets;
 	}
 
-	public void saveBet(Bet bet){ bets.save(bet); }
+	public void saveIndividualBet(IndividualBet bet){ bets.save(bet); }
+
+	public void saveCommunityBet(CommunityBet bet){
+		bets.save(bet);
+//		Optional<CommunityBet> existingBet = bets.equalCommunityBet(bet.getOrigin(),
+//				bet.getReference(), bet.getValue());
+
+	}
 
 	public Money getMoneyFromAllBets(){
 		Streamable<Bet> bets = findNotEvaluatedBets();
-		double amount = 0;
+		Money amount = Money.of(0, EURO);
 		for(Bet bet : bets){
-			amount += bet.getBettingAmount().getNumber().doubleValue();
+			amount.add(bet.getTotalBettingAmount());
 		}
-		return Money.of(amount, EURO);
+		return amount;
 	}
 
 	public Streamable<Data> findDataByCategory(Category category) { return dataCatalog.findByCategory(category); }
@@ -58,7 +71,7 @@ public class BettingManagement {
 
 	public Streamable<Data> findAllData() { return dataCatalog.findAll(); }
 
-	public Streamable<Bet> findBetsByUser(String user) { return bets.findByUser(user); }
+	public Streamable<Bet> findBetsByUser(String user) { return bets.findIndividualByUser(user); }
 
 	public Streamable<Bet> findBetsByData(Data data) { return bets.findByData(data); }
 

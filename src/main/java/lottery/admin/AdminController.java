@@ -1,12 +1,12 @@
 package lottery.admin;
 
-import lottery.betting.Bet;
+import lottery.betting.bet.Bet;
 import lottery.betting.BettingManagement;
-import lottery.betting.Category;
-import lottery.betting.football.FootballMatch;
-import lottery.betting.football.Score;
-import lottery.betting.number.LotteryEntity;
-import lottery.betting.number.SelectNumber;
+import lottery.betting.data.Category;
+import lottery.betting.data.football.FootballMatch;
+import lottery.betting.data.football.Score;
+import lottery.betting.data.number.LotteryEntity;
+import lottery.betting.data.number.SelectNumber;
 import lottery.community.CommunityManagement;
 import lottery.finance.FinanceForm;
 import lottery.finance.FinanceManagement;
@@ -102,11 +102,11 @@ public class AdminController {
 	}
 
 	private String evaluateBet(Streamable<Bet> betsByData, String description){
-		for(Bet bet : betsByData){
-			Double payOut = bet.payOut();
-			financeManagement.deposit(new FinanceForm(payOut, description),
-					userManagement.findByUsername(bet.getUser()).getUserAccount());
-		}
+//		for(Bet bet : betsByData){
+//			Double payOut = bet.payOut();
+//			financeManagement.deposit(new FinanceForm(payOut, description),
+//					userManagement.findByUsername(bet.getUser()).getUserAccount());
+//		}
 		return "redirect:/admin";
 	}
 }

@@ -1,7 +1,7 @@
-package lottery.betting.football;
+package lottery.betting.data.football;
 
-import lottery.betting.Category;
-import lottery.betting.Data;
+import lottery.betting.data.Category;
+import lottery.betting.data.Data;
 import org.javamoney.moneta.Money;
 
 import javax.persistence.Entity;
