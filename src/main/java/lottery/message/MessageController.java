@@ -23,7 +23,7 @@ public class MessageController {
 	@GetMapping(path = "/message")
 	String message(@LoggedIn UserAccount user, Model model ) {
 		int messageCount = management.messageCount(user.getUsername());
-			if(messageCount >= 2 && !communityManagement.findPersonalCommunities(user).isEmpty()){
+			if(messageCount >= 10 && !communityManagement.findPersonalCommunities(user).isEmpty()){
 				Message message = new Message(user, "Sie wurden aus der Gemeinschaft entfernt" ,
 					"Sie haben schon 10 Mitteilungen für unzureichende Deckung erhalten",
 					LocalDateTime.now());
