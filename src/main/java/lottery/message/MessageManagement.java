@@ -1,7 +1,6 @@
 package lottery.message;
 
 
-import org.salespointframework.useraccount.UserAccount;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +20,10 @@ public class MessageManagement {
 
 	public void save(Message entry){
 		entries.save(entry);
+	}
+
+	public Integer messageCount(String user){
+		return (int)entries.findByUser(user).stream().count();
 	}
 
 	public Streamable<Message> findEntriesByUser(String user){
