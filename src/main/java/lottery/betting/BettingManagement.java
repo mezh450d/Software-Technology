@@ -7,6 +7,8 @@ import lottery.betting.bet.IndividualBet;
 import lottery.betting.data.Category;
 import lottery.betting.data.Data;
 import lottery.betting.data.DataCatalog;
+import lottery.betting.data.Result;
+import lottery.community.Community;
 import org.javamoney.moneta.Money;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
@@ -69,9 +71,13 @@ public class BettingManagement {
 		return null;
 	}
 
+	public CommunityBet findByCommunityBetId(long id){ return bets.findCommunityBetById(id); }
+
 	public Streamable<Data> findAllData() { return dataCatalog.findAll(); }
 
-	public Streamable<Bet> findBetsByUser(String user) { return bets.findIndividualByUser(user); }
+	public Streamable<IndividualBet> findBetsByUser(String user) { return bets.findIndividualByUser(user); }
+
+	public Streamable<CommunityBet> findBetsByCommunity(String community) { return bets.findCommunityBetsByCommunity(community); }
 
 	public Streamable<Bet> findBetsByData(Data data) { return bets.findByData(data); }
 

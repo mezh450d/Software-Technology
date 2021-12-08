@@ -48,13 +48,13 @@ class BettingController {
 	}
 
 	@GetMapping("/betting/football")
-	String football(Model model) {
+	public String football(Model model) {
 		model.addAttribute("matches", management.findDataByCategory(Category.FOOTBALL));
 		return "betting_football";
 	}
 
 	@PostMapping("/betting/football")
-	String addBet(@LoggedIn UserAccount user, @RequestParam("match") FootballMatch match,
+	public String addBet(@LoggedIn UserAccount user, @RequestParam("match") FootballMatch match,
 				  @RequestParam("home_score") int homeScore, @RequestParam("guest_score") int guestScore,
 				  @RequestParam("amount") int amount) {
 
@@ -69,7 +69,7 @@ class BettingController {
 	}
 
 	@PostMapping("/betting/number")
-	String addBet(@LoggedIn UserAccount user, @RequestParam("numStr") String numStr,
+	public String addBet(@LoggedIn UserAccount user, @RequestParam("numStr") String numStr,
 				  @RequestParam("superNumber") int superNumber, @RequestParam("amount") int amount,
 				  @RequestParam("community") String community) {
 
@@ -81,8 +81,8 @@ class BettingController {
 		FinanceForm financeForm = new FinanceForm((double)realAmount,
 				"Wettplatzierung für Lotto 6 aus 49 ("+amount+"x)");
 
-		if(financeManagement.withdraw(financeForm, user)){
-			if(community.isEmpty()){
+		if(community.isEmpty()){
+			if(financeManagement.withdraw(financeForm, user)){
 				for(Data lottery : management.findDataByCategory(Category.LOTTERY)){
 					if(amount > 0){
 						management.saveIndividualBet(new IndividualBet(lottery, new SelectNumber(numStr,superNumber),
@@ -91,17 +91,43 @@ class BettingController {
 					}
 				}
 			} else {
+				return "redirect:/home?error";
+			}
+		} else {
+			if(financeManagement.withdraw(financeForm, user)){
 				for(Data lottery : management.findDataByCategory(Category.LOTTERY)){
 					if(amount > 0){
-						management.saveCommunityBet(new CommunityBet(lottery, new SelectNumber(numStr,superNumber),
-								Type.COMMUNITY, community, user, Money.of(10, EURO)));
+						{
+							management.saveCommunityBet(new CommunityBet(lottery, new SelectNumber(numStr,superNumber),
+									Type.COMMUNITY, community, user, Money.of(10, EURO)));
+						}
 						amount--;
 					}
 				}
+			} else {
+				return "redirect:/home?error";
 			}
+		}
+		return "redirect:/home";
+	}
+
+	@PostMapping("/community/bet")
+	public String addAmountToBet(@LoggedIn UserAccount user, @RequestParam("bet") long betID,
+								 @RequestParam("amount") int amount, Model model) {
+
+		CommunityBet bet = management.findByCommunityBetId(betID);
+
+		FinanceForm financeForm = new FinanceForm((double)amount, "Wettplatzierung zu "+bet.toString());
+
+		if(financeManagement.withdraw(financeForm, user)){
+			bet.addUserToBet(user, Money.of(amount, EURO));
 		} else {
 			return "redirect:/home?error";
 		}
-		return "redirect:/home";
+
+		model.addAttribute("personalCommunities", communityManagement.findPersonalCommunities(user));
+		model.addAttribute("joinableCommunities", communityManagement.findJoinableCommunities(user));
+
+		return "redirect:/community";
 	}
 }

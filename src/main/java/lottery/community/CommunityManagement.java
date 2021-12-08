@@ -47,6 +47,8 @@ public class CommunityManagement {
 		return null;
 	}
 
+	public Community findCommunityByName(String name) { return communities.findByName(name); }
+
 	public Streamable<Community> findAll() { return communities.findAll(); }
 
 	public Set<Community> findPersonalCommunities(UserAccount user) {

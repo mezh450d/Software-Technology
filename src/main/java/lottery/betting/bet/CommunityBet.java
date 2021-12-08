@@ -4,6 +4,7 @@ import lottery.betting.data.Data;
 import lottery.betting.data.Result;
 import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.UserAccount;
+import org.springframework.data.util.Streamable;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -31,7 +32,13 @@ public class CommunityBet extends Bet {
 	}
 
 	public void addUserToBet(UserAccount user, Money amount){
-		amountPerUser.put(user.getUsername(), amount.getNumber().doubleValue());
+		String username = user.getUsername();
+		if(amountPerUser.containsKey(username)){
+			Double newAmount = amountPerUser.get(username) + amount.getNumber().doubleValue();
+			amountPerUser.replace(username, newAmount);
+		} else {
+			amountPerUser.put(user.getUsername(), amount.getNumber().doubleValue());
+		}
 	}
 
 	public Map<String, Double> getAmountPerUser() {

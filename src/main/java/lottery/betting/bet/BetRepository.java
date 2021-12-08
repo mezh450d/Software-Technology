@@ -12,15 +12,11 @@ public interface BetRepository extends CrudRepository<Bet, Long> {
 
 	@Query("SELECT u FROM Bet u WHERE u.type = lottery.betting.bet.Type.INDIVIDUAL " +
 			"AND u.origin = ?1 AND u.evaluate = false")
-	Streamable<Bet> findIndividualByUser(String user);
+	Streamable<IndividualBet> findIndividualByUser(String user);
 
 	@Query("SELECT u FROM Bet u WHERE u.type = lottery.betting.bet.Type.COMMUNITY " +
 			"AND u.origin = ?1 AND u.evaluate = false")
-	Streamable<Bet> findCommunityBetsByCommunity(String community);
-
-	@Query("SELECT u FROM Bet u WHERE u.type = lottery.betting.bet.Type.COMMUNITY " +
-			"AND u.origin = ?1 AND u.reference = ?2 AND u.value = ?3 AND u.evaluate = false")
-	Optional<CommunityBet> equalCommunityBet(String origin, Data reference, Result value);
+	Streamable<CommunityBet> findCommunityBetsByCommunity(String community);
 
 	@Query("SELECT u FROM Bet u WHERE u.type = ?1 AND u.evaluate = false")
 	Streamable<Data> findByType(Type type);
@@ -30,6 +26,9 @@ public interface BetRepository extends CrudRepository<Bet, Long> {
 
 	@Query("SELECT u FROM Bet u WHERE u.reference = ?1 AND u.evaluate = false")
 	Streamable<Bet> findByData(Data data);
+
+	@Query("SELECT u FROM Bet u WHERE u.type = lottery.betting.bet.Type.COMMUNITY AND u.id = ?1 AND u.evaluate = false")
+	CommunityBet findCommunityBetById(long id);
 
 	@Override
 	Streamable<Bet> findAll();

@@ -1,6 +1,10 @@
 package lottery.community;
 
 import com.mysema.commons.lang.Assert;
+import lottery.betting.BettingManagement;
+import lottery.betting.bet.CommunityBet;
+import lottery.finance.FinanceForm;
+import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
 import org.springframework.data.util.Streamable;
@@ -11,19 +15,25 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+
+import static org.salespointframework.core.Currencies.EURO;
 
 @Controller
 public class CommunityController {
 
 	private final CommunityManagement management;
+	private final BettingManagement bettingManagement;
 
-	public CommunityController(CommunityManagement management){
+	public CommunityController(CommunityManagement management, BettingManagement bettingManagement){
 
 		Assert.notNull(management, "CommunityManagement must not be null!");
 		this.management = management;
+		this.bettingManagement = bettingManagement;
 	}
 
 	@GetMapping("/community")
@@ -35,13 +45,26 @@ public class CommunityController {
 		return "community";
 	}
 
+	@GetMapping("/community/{communityName}")
+	public String info(@PathVariable("communityName") String communityName, Model model) {
+
+		Community community = management.findCommunityByName(communityName);
+
+		model.addAttribute("communityName", communityName);
+		model.addAttribute("members", community.getUsers());
+		Streamable<CommunityBet> bets = bettingManagement.findBetsByCommunity(community.getName());
+		model.addAttribute("bets", bets);
+
+		return "community_info";
+	}
+
 	@GetMapping("/community/create")
-	String create(Model model, CreateForm form) {
+	public String create(Model model, CreateForm form) {
 		return "community_create";
 	}
 
 	@PostMapping("/community/create")
-	String createNew(@Valid CreateForm form, @LoggedIn UserAccount user, Errors result) {
+	public String createNew(@Valid CreateForm form, @LoggedIn UserAccount user, Errors result) {
 
 		//Übergebene Daten werden auf Richtigkeit überprüft
 
@@ -69,12 +92,12 @@ public class CommunityController {
 	}
 
 	@GetMapping("/community/join")
-	String join(Model model, CreateForm form) {
+	public String join(Model model, CreateForm form) {
 		return "community_join";
 	}
 
 	@PostMapping("/community/join")
-	String join(@Valid CreateForm form, @LoggedIn UserAccount user, BindingResult res,Errors result){
+	public String join(@Valid CreateForm form, @LoggedIn UserAccount user, BindingResult res,Errors result){
 
 		if(result.hasErrors()){
 			return "community_join";
@@ -94,7 +117,7 @@ public class CommunityController {
 
 	@GetMapping("/communities")
 	@PreAuthorize("hasRole('BOSS')")
-	String communities(Model model) {
+	public String communities(Model model) {
 
 		model.addAttribute("communityList", management.findAll());
 

@@ -74,20 +74,14 @@
                     <tr>
                         <th scope="col">Gemeinschaftsname</th>
                         <th scope="col">Überblick</th>
-                        <th scope="col">Wetten</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="community : ${personalCommunities} ">
                         <td th:text="${community.name}"></td>
                         <td>
-                            <a href="/home">
+                            <a th:href="@{/community/{communityName}(communityName=${community.name})}">
                                 <button>Überblick</button>
-                            </a>
-                        </td>
-                        <td>
-                            <a href="/betting">
-                                <button>Wetten</button>
                             </a>
                         </td>
                     </tr>
@@ -104,18 +98,12 @@
                     <thead>
                     <tr>
                         <th scope="col">Gemeinschaftsname</th>
-                        <th scope="col">Überblick</th>
                         <th scope="col">Beitreten</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="community : ${joinableCommunities} ">
                         <td th:text="${community.name}">CommunityName</td>
-                        <td>
-                            <a href="/home">
-                                <button>Überblick</button>
-                            </a>
-                        </td>
                         <td>
                             <a href="/community/join">
                                 <button>Beitreten</button>
