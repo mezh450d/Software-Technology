@@ -69,7 +69,8 @@ public class CommunityController {
 	}
 
 	@GetMapping("/community/join")
-	String join(Model model, CreateForm form) {
+	String join(Model model, CreateForm form, String communityName) {
+		model.addAttribute("communityName", communityName);
 		return "community_join";
 	}
 

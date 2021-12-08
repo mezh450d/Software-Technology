@@ -19,10 +19,9 @@
         <form method="post" role="form"  class="ui form" id="form" th:action="@{/community/join}" th:object="${createForm}">
             <div class="error" th:if="${#fields.hasErrors('global')}"><p>Felerhafte Communitydaten.</p></div>
 
-
             <div class="field">
                 <label for="name">Name</label>
-                <input  id="name" name="name" th:field="*{name}" th:errorclass="fieldError" type="text" required="required" placeholder="Gruppenname"/><br/>
+                <input  id="name" name="name" th:errorclass="fieldError" type="text" required="required" th:value="${communityName}" placeholder="Gruppenname"/><br/>
                 <div class="ui negative message" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">
                     <p>Der Name darf nicht leer sein.</p>
                 </div>
@@ -31,7 +30,7 @@
             <div class="field">
                 <p>Passwort</p>
                 <input  id="password" th:field="*{password}" th:errorclass="fieldError" type="password"
-                     required="required" name="password" placeholder="Passwort eingeben">
+                        required="required"  name="password" placeholder="Passwort eingeben">
                 <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Das Passwort darf
                     nicht leer sein.</p>
             </div>
