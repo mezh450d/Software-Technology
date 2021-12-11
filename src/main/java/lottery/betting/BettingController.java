@@ -130,7 +130,8 @@ class BettingController {
 
 		CommunityBet bet = management.findByCommunityBetId(betID);
 
-		FinanceForm financeForm = new FinanceForm((double)amount, "Wettplatzierung zu "+bet.toString());
+		FinanceForm financeForm = new FinanceForm((double)amount,
+				"Wettplatzierung zu "+bet.getReference().toString());
 
 		if(financeManagement.withdraw(financeForm, user)){
 			bet.addUserToBet(user, Money.of(amount, EURO));

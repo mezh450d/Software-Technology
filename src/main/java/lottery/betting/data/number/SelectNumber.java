@@ -44,34 +44,38 @@ public class SelectNumber implements Result<SelectNumber> {
 			}
 		}
 
-		if (equalCount == 6) {
-			if(superNumber == otherSuperNumber){
-				return 100000;
-			} else {
-				return 3000;
-			}
+		int compared = 0;
+
+		switch(equalCount){
+			case 3:
+				if(superNumber == otherSuperNumber){
+					compared = 2;
+				} else {
+					compared = 1;
+				}
+				break;
+			case 4:
+				if(superNumber == otherSuperNumber){
+					compared = 12;
+				} else {
+					compared = 4;
+				}
+				break;
+			case 5:
+				if(superNumber == otherSuperNumber){
+					compared = 400;
+				} else {
+					compared = 150;
+				}
+				break;
+			case 6:
+				if(superNumber == otherSuperNumber){
+					compared = 50000;
+				} else {
+					compared = 1500;
+				}
+				break;
 		}
-		if (equalCount == 5) {
-			if(superNumber == otherSuperNumber){
-				return 675;
-			} else {
-				return 225;
-			}
-		}
-		if (equalCount == 4) {
-			if(superNumber == otherSuperNumber){
-				return 12;
-			} else {
-				return 4;
-			}
-		}
-		if (equalCount == 3) {
-			if(superNumber == otherSuperNumber){
-				return 2;
-			} else {
-				return 1;
-			}
-		}
-		return 0;
+		return compared;
 	}
 }

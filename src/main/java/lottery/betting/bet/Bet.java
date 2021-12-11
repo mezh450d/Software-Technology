@@ -62,6 +62,7 @@ public abstract class Bet {
 	public void evaluate() {
 		evaluate = true;
 	}
+
 	public abstract Map<String, Double> payOut();
 }
 

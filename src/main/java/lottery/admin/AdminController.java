@@ -20,6 +20,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Map;
+import java.util.Set;
+
 @Controller
 public class AdminController {
 
@@ -102,11 +105,13 @@ public class AdminController {
 	}
 
 	private String evaluateBet(Streamable<Bet> betsByData, String description){
-//		for(Bet bet : betsByData){
-//			Double payOut = bet.payOut();
-//			financeManagement.deposit(new FinanceForm(payOut, description),
-//					userManagement.findByUsername(bet.getUser()).getUserAccount());
-//		}
+		for(Bet bet : betsByData){
+			Set<Map.Entry<String, Double>> payOut = bet.payOut().entrySet();
+			for(Map.Entry<String, Double> entry : payOut){
+				financeManagement.deposit(new FinanceForm(entry.getValue(), description),
+						userManagement.findByUsername(entry.getKey()).getUserAccount());
+			}
+		}
 		return "redirect:/admin";
 	}
 }

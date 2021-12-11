@@ -13,7 +13,7 @@ public interface BetRepository extends CrudRepository<Bet, Long> {
 
 	@Query("SELECT u FROM Bet u WHERE u.type = lottery.betting.bet.Type.INDIVIDUAL " +
 			"AND u.origin = ?1 AND u.evaluate = false")
-	Streamable<IndividualBet> findIndividualByUser(String user);
+	Streamable<Bet> findIndividualByUser(String user);
 
 	@Query("SELECT u FROM Bet u WHERE u.type = lottery.betting.bet.Type.COMMUNITY " +
 			"AND u.origin = ?1 AND u.reference.category = ?2 AND u.evaluate = false")
