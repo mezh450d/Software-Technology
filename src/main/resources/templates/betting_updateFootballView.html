@@ -30,11 +30,9 @@
     <tbody>
     <tr>
       <form method="post" role="form" class="ui form" id="form" th:action="@{/betting/updateFootball}">
-        <input type="hidden" name="id" th:value="${match.id}"/>
-        <input type="hidden" name="match" th:value="${match.reference.getId()}"/>
-        <input type="hidden" name="amount" th:value="${match.bettingAmount.number}"/>
-        <th><h5 th:text="${match.reference.date}"></h5></th>
-        <th><h5 th:text="${match.reference.home}"></h5></th>
+        <input type="hidden" name="betId" value="0" th:value="${betId}"/>
+        <th><h5 th:text="${match.date}"></h5></th>
+        <th><h5 th:text="${match.home}"></h5></th>
         <th>
           <div class="row">
             <div class="col mb-2">
@@ -45,9 +43,9 @@
             </div>
           </div>
         </th>
-        <th><h5 th:text="${match.reference.guest}"></h5></th>
+        <th><h5 th:text="${match.guest}"></h5></th>
         <th>
-          <button type="submit" class="btn btn-primary mb-3"><span> ändern </span></button>
+          <button type="submit" class="btn btn-primary mb-3"><span> Ändern!</span></button>
         </th>
       </form>
     </tr>

@@ -26,4 +26,7 @@ public interface DataCatalog extends Catalog<Data> {
 
 	@Query("SELECT u FROM Data u WHERE u.category = ?1 AND u.set = false ORDER BY u.date")
 	Streamable<Data> findByCategory(Category category);
+
+	@Query("SELECT u FROM Data u WHERE u.productIdentifier.id = ?1 AND u.set = false")
+	Data findById(String id);
 }

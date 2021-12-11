@@ -123,8 +123,7 @@
 <section class="main_content">
     <h1>6 aus 49</h1>
     <div class="box" style="">
-        <input type="hidden" name="id" th:value="${id}">
-        <input type="hidden" name="lottery" th:value="${productId}">
+        <input type="hidden" name="betId" value="0" th:value="${betId}"/>
         <div class="box-item" style="">1</div>
         <div class="box-item" style="">2</div>
         <div class="box-item" style="">3</div>
@@ -214,15 +213,12 @@
                     alert("Die Eingabe von superNumber ist falsch! Bitte erneut eingeben!");
                     return false;
                 }
-                var amount = $("input[name=amount]").val();
-                // var str = "numStr=" + numberList.toString() + "&lottery=" + $("input[name=lottery]").val() + "&superNumber=" + superNumber + "&amount=" + amount;
                 var form = $("<form action=\"/betting/updateLottery\" method='post'></form>")
-              form.append("<input type='hidden' name='numStr' value='" + numberList.toString() + "'>");
-              form.append("<input type='hidden' name='id' value='" + $("input[name=id]").val() + "'>");
-              form.append("<input type='hidden' name='lottery' value='" + $("input[name=lottery]").val() + "'>");
-              form.append("<input type='hidden' name='superNumber' value='" + superNumber + "'>");
-              $(document.body).append(form);
-              form.submit();
+                form.append("<input type='hidden' name='betId' value='" + $("input[name=betId]").val() + "'>");
+                form.append("<input type='hidden' name='numStr' value='" + numberList.toString() + "'>");
+                form.append("<input type='hidden' name='superNumber' value='" + superNumber + "'>");
+                $(document.body).append(form);
+                form.submit();
             })
         })
     </script>

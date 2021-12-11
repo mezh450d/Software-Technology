@@ -11,11 +11,9 @@ import lottery.community.Community;
 import lottery.community.CommunityManagement;
 import lottery.finance.FinanceForm;
 import lottery.finance.FinanceManagement;
-import lottery.message.Message;
 import lottery.message.MessageManagement;
 import lottery.user.User;
 import lottery.user.UserManagement;
-import org.javamoney.moneta.Money;
 import org.springframework.data.util.Streamable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -24,6 +22,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -145,11 +144,11 @@ public class AdminController {
 	public Set<User> findUsersByCommunityName(String name) {
 		Streamable<User> allUsers = userManagement.findAll();
 		Set<User> usersInCommunity = new HashSet<>();
-		for(User mitglieder : allUsers){
-			Set<Community> communities = communityManagement.findPersonalCommunities(mitglieder.getUserAccount());
+		for(User user : allUsers){
+			Set<Community> communities = communityManagement.findPersonalCommunities(user.getUserAccount());
 			for (Community community : communities) {
-				if (Objects.equals(community.getName(), name)) {
-					usersInCommunity.add(mitglieder);
+				if (community.getName().equals(name)) {
+					usersInCommunity.add(user);
 				}
 			}
 		}

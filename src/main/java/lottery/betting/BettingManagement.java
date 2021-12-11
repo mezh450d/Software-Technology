@@ -10,6 +10,7 @@ import lottery.betting.data.DataCatalog;
 import lottery.betting.data.Result;
 import lottery.community.Community;
 import org.javamoney.moneta.Money;
+import org.salespointframework.catalog.ProductIdentifier;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,14 +40,7 @@ public class BettingManagement {
 		this.bets = bets;
 	}
 
-	public void saveIndividualBet(IndividualBet bet){ bets.save(bet); }
-
-	public void saveCommunityBet(CommunityBet bet){
-		bets.save(bet);
-//		Optional<CommunityBet> existingBet = bets.equalCommunityBet(bet.getOrigin(),
-//				bet.getReference(), bet.getValue());
-
-	}
+	public void saveBet(Bet bet){ bets.save(bet); }
 
 	public Money getMoneyFromAllBets(){
 		Streamable<Bet> bets = findNotEvaluatedBets();
@@ -56,8 +50,6 @@ public class BettingManagement {
 		}
 		return amount;
 	}
-
-	public Streamable<Data> findDataByCategory(Category category) { return dataCatalog.findByCategory(category); }
 
 	public Data findNextLottery(){
 		Streamable<Data> lotteries = findDataByCategory(Category.LOTTERY);
@@ -71,9 +63,13 @@ public class BettingManagement {
 		return null;
 	}
 
-	public CommunityBet findByCommunityBetId(long id){ return bets.findCommunityBetById(id); }
+	public Streamable<Data> findDataByCategory(Category category) { return dataCatalog.findByCategory(category); }
 
 	public Streamable<Data> findAllData() { return dataCatalog.findAll(); }
+
+	public Bet findBetById(long id){ return bets.findBetById(id); }
+
+	public CommunityBet findCommunityBetById(long id){ return bets.findCommunityBetById(id); }
 
 	public Streamable<Bet> findBetsByUser(String user) { return bets.findBetsByOrigin(user); }
 
@@ -81,9 +77,9 @@ public class BettingManagement {
 		return bets.findCommunityBetsByCommunityAndCategory(community, category);
 	}
 
-	public Streamable<Bet> findBetsByData(Data data) { return bets.findByData(data); }
+	public Streamable<Bet> findBetsByData(Data data) { return bets.findBetsByData(data); }
 
-	public Streamable<Bet> findNotEvaluatedBets() { return bets.findNotEvaluatedBets(); }
+	public Streamable<Bet> findNotEvaluatedBets() { return bets.findBetsNotEvaluated(); }
 
 	public Streamable<Bet> findAllBets() { return bets.findAll(); }
 }
