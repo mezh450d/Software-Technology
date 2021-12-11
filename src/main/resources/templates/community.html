@@ -105,7 +105,7 @@
                     <tr th:each="community : ${joinableCommunities} ">
                         <td th:text="${community.name}">CommunityName</td>
                         <td>
-                            <a href="/community/join">
+                            <a th:href="${'/community/join?communityName=' + community.name}">
                                 <button>Beitreten</button>
                             </a>
                         </td>

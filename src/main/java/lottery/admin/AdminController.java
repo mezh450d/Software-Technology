@@ -7,11 +7,15 @@ import lottery.betting.data.football.FootballMatch;
 import lottery.betting.data.football.Score;
 import lottery.betting.data.number.LotteryEntity;
 import lottery.betting.data.number.SelectNumber;
+import lottery.community.Community;
 import lottery.community.CommunityManagement;
 import lottery.finance.FinanceForm;
 import lottery.finance.FinanceManagement;
+import lottery.message.Message;
+import lottery.message.MessageManagement;
 import lottery.user.User;
 import lottery.user.UserManagement;
+import org.javamoney.moneta.Money;
 import org.springframework.data.util.Streamable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -30,14 +34,16 @@ public class AdminController {
 	private final FinanceManagement financeManagement;
 	private final CommunityManagement communityManagement;
 	private final BettingManagement bettingManagement;
+	private final MessageManagement messageManagement;
 
 	AdminController(UserManagement userManagement, FinanceManagement financeManagement,
-					CommunityManagement communityManagement, BettingManagement bettingManagement){
+					CommunityManagement communityManagement, BettingManagement bettingManagement, MessageManagement messageManagement){
 
 		this.bettingManagement = bettingManagement;
 		this.communityManagement = communityManagement;
 		this.financeManagement = financeManagement;
 		this.userManagement = userManagement;
+		this.messageManagement = messageManagement;
 	}
 
 	@GetMapping("/admin")
@@ -66,6 +72,27 @@ public class AdminController {
 			return "admin_details";
 		}
 		return "redirect:/admin/users?error";
+	}
+
+	@GetMapping("/admin/communities")
+	@PreAuthorize("hasRole('BOSS')")
+	String allCommunities(Model model) {
+
+		model.addAttribute("communities", communityManagement.findAll());
+
+		return "admin_allCommunities";
+	}
+
+	@GetMapping("/admin/communities/getCommunityInfo")
+	@PreAuthorize("hasRole('BOSS')")
+	String communityInfo(Model model, @RequestParam("name") String name){
+		Community community = communityManagement.findByCommunityName(name);
+		if (community != null) {
+			model.addAttribute("communityName", community.getName());
+			model.addAttribute("usersInCommunity", findUsersByCommunityName(name));
+			return "admin_communityDetails";
+		}
+		return "redirect:/admin/communities?error";
 	}
 
 	@GetMapping("/admin/bets")
@@ -113,5 +140,19 @@ public class AdminController {
 			}
 		}
 		return "redirect:/admin";
+	}
+
+	public Set<User> findUsersByCommunityName(String name) {
+		Streamable<User> allUsers = userManagement.findAll();
+		Set<User> usersInCommunity = new HashSet<>();
+		for(User mitglieder : allUsers){
+			Set<Community> communities = communityManagement.findPersonalCommunities(mitglieder.getUserAccount());
+			for (Community community : communities) {
+				if (Objects.equals(community.getName(), name)) {
+					usersInCommunity.add(mitglieder);
+				}
+			}
+		}
+		return usersInCommunity;
 	}
 }

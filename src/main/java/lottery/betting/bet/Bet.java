@@ -53,6 +53,10 @@ public abstract class Bet {
 
 	public Result getValue() { return value; }
 
+	public void setValue(Result value) {
+		this.value = value;
+	}
+
 	public abstract Money getTotalBettingAmount();
 
 	public boolean isEvaluated() {
