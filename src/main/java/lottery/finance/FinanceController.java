@@ -41,8 +41,8 @@ public class FinanceController {
 
 		if (action.equals("deposit")) {
 			management.deposit(form, user);
-		} else if (action.equals("withdraw")) {
-			if(!management.withdraw(form, user)){
+		} else {
+			if (action.equals("withdraw") && !management.withdraw(form, user)) {
 				return "redirect:/finances?error";
 			}
 		}

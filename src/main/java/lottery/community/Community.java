@@ -42,7 +42,9 @@ public class Community {
 	}
 
 	public void deleteUser(UserAccount user){
-		if(user!=null)users.remove(user);
+		if(user!=null){
+			users.remove(user);
+		}
 	}
 
 	public boolean userInCommunity(UserAccount user){

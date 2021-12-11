@@ -43,8 +43,7 @@ public class CommunityBet extends Bet {
 	public Money getSingleAmount(String user) {
 		if (amountPerUser.containsKey(user)){
 			return Money.of(amountPerUser.get(user), EURO);
-		}
-		else {
+		} else {
 			return Money.of(0, EURO);
 		}
 	}

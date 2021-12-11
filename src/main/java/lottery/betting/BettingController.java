@@ -5,6 +5,7 @@ import lottery.betting.bet.CommunityBet;
 import lottery.betting.bet.IndividualBet;
 import lottery.betting.data.Category;
 import lottery.betting.data.Data;
+import lottery.betting.data.Result;
 import lottery.betting.data.football.*;
 import lottery.betting.data.number.SelectNumber;
 import lottery.community.CommunityManagement;
@@ -12,6 +13,7 @@ import lottery.finance.FinanceForm;
 import lottery.finance.FinanceManagement;
 import lottery.message.Message;
 import lottery.message.MessageManagement;
+import lottery.user.User;
 import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
@@ -76,7 +78,7 @@ class BettingController {
 						user, Money.of(amount, EURO)));
 			} else {
 				Message message = new Message(user, "2 Euro Bußgeld",
-						"Sie haben einen niedrigen Saldo im Wetten von " + match,
+						"Sie haben nicht genügend Geld auf Ihrem Konto für die Wette " + match,
 						LocalDateTime.now());
 				messageManagement.save(message);
 				FinanceForm form = new FinanceForm(2.0, "Mahnung: " + match);
@@ -89,7 +91,7 @@ class BettingController {
 						community, user, Money.of(amount, EURO)));
 			} else {
 				Message message = new Message(user, "2 Euro Bußgeld",
-						"Sie haben einen niedrigen Saldo im Wetten von " + match,
+						"Sie haben nicht genügend Geld auf Ihrem Konto für die Wette " + match,
 						LocalDateTime.now());
 				messageManagement.save(message);
 				FinanceForm form = new FinanceForm(2.0, "Mahnung: " + match);
@@ -98,6 +100,48 @@ class BettingController {
 			}
 		}
 
+		return "redirect:/home";
+	}
+
+	private String saveIndividualLotteryBet(FinanceForm financeForm, UserAccount user, int amount, Result value){
+		if(financeManagement.withdraw(financeForm, user)){
+			for(Data lottery : management.findDataByCategory(Category.LOTTERY)){
+				if(amount > 0){
+					management.saveBet(new IndividualBet(lottery, value, user, Money.of(10, EURO)));
+					amount--;
+				}
+			}
+		} else {
+			Message message = new Message(user, "2 Euro Bußgeld",
+					"Sie haben nicht genügend Geld auf Ihrem Konto für die Wette Lotto 6 aus 49 ("+amount+"x)",
+					LocalDateTime.now());
+			messageManagement.save(message);
+			FinanceForm form = new FinanceForm(2.0, "Mahnung: für Lotto 6 aus 49 ("+amount+"x)");
+			financeManagement.withdraw(form, user);
+			return "redirect:/home?error";
+		}
+		return "redirect:/home";
+	}
+
+	private String saveCommunityLotteryBet(FinanceForm financeForm, UserAccount user, int amount,
+										   Result value, String community){
+		if(financeManagement.withdraw(financeForm, user)){
+			for(Data lottery : management.findDataByCategory(Category.LOTTERY)){
+				if(amount > 0){
+					management.saveBet(new CommunityBet(lottery, value,
+							community, user, Money.of(10, EURO)));
+					amount--;
+				}
+			}
+		} else {
+			Message message = new Message(user, "2 Euro Bußgeld",
+					"Sie haben nicht genügend Geld auf Ihrem Konto für die Wette Lotto 6 aus 49 ("+amount+"x)",
+					LocalDateTime.now());
+			messageManagement.save(message);
+			FinanceForm form = new FinanceForm(2.0, "Mahnung: für Lotto 6 aus 49 ("+amount+"x)");
+			financeManagement.withdraw(form, user);
+			return "redirect:/home?error";
+		}
 		return "redirect:/home";
 	}
 
@@ -115,46 +159,15 @@ class BettingController {
 		FinanceForm financeForm = new FinanceForm((double)realAmount,
 				"Wettplatzierung für Lotto 6 aus 49 ("+amount+"x)");
 
+		String redirect;
+
 		if(community.isEmpty()){
-			if(financeManagement.withdraw(financeForm, user)){
-				for(Data lottery : management.findDataByCategory(Category.LOTTERY)){
-					if(amount > 0){
-						management.saveBet(new IndividualBet(lottery, new SelectNumber(numStr,superNumber),
-								user, Money.of(10, EURO)));
-						amount--;
-					}
-				}
-			} else {
-				Message message = new Message(user, "2 Euro Bußgeld",
-						"Sie haben einen niedrigen Saldo im Wetten von 6 aus 49 ("+amount+"x)",
-						LocalDateTime.now());
-				messageManagement.save(message);
-				FinanceForm form = new FinanceForm(2.0, "Mahnung: für Lotto 6 aus 49 ("+amount+"x)");
-				financeManagement.withdraw(form, user);
-				return "redirect:/home?error";
-			}
+			redirect = saveIndividualLotteryBet(financeForm, user, amount, new SelectNumber(numStr,superNumber));
 		} else {
-			if(financeManagement.withdraw(financeForm, user)){
-				for(Data lottery : management.findDataByCategory(Category.LOTTERY)){
-					if(amount > 0){
-						{
-							management.saveBet(new CommunityBet(lottery, new SelectNumber(numStr,superNumber),
-									community, user, Money.of(10, EURO)));
-						}
-						amount--;
-					}
-				}
-			} else {
-				Message message = new Message(user, "2 Euro Bußgeld",
-						"Sie haben einen niedrigen Saldo im Wetten von 6 aus 49 ("+amount+"x)",
-						LocalDateTime.now());
-				messageManagement.save(message);
-				FinanceForm form = new FinanceForm(2.0, "Mahnung: für Lotto 6 aus 49 ("+amount+"x)");
-				financeManagement.withdraw(form, user);
-				return "redirect:/home?error";
-			}
+			redirect = saveCommunityLotteryBet(financeForm, user, amount,
+					new SelectNumber(numStr,superNumber), community);
 		}
-		return "redirect:/home";
+		return redirect;
 	}
 
 	@GetMapping("/betting/change")
