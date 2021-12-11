@@ -32,7 +32,11 @@ public class FootballMatch extends Data {
 
 	@Override
 	public String toString(){
-		return guest+" @ "+home+" am "+ getDate();
+		return home +" vs. "+ guest +" am "+ getDate();
+	}
+
+	public String toShortString(){
+		return home +" vs. "+ guest;
 	}
 
 }

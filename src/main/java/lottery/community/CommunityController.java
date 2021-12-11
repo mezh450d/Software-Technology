@@ -3,7 +3,9 @@ package lottery.community;
 import com.mysema.commons.lang.Assert;
 import lottery.betting.BettingManagement;
 import lottery.betting.bet.CommunityBet;
+import lottery.betting.data.Category;
 import lottery.finance.FinanceForm;
+import lottery.user.User;
 import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
@@ -46,14 +48,19 @@ public class CommunityController {
 	}
 
 	@GetMapping("/community/{communityName}")
-	public String info(@PathVariable("communityName") String communityName, Model model) {
+	public String info(@PathVariable("communityName") String communityName, @LoggedIn UserAccount user, Model model) {
 
 		Community community = management.findCommunityByName(communityName);
 
 		model.addAttribute("communityName", communityName);
+		model.addAttribute("userName", user.getUsername());
 		model.addAttribute("members", community.getUsers());
-		Streamable<CommunityBet> bets = bettingManagement.findBetsByCommunity(community.getName());
-		model.addAttribute("bets", bets);
+		Streamable<CommunityBet> lotteryBets = bettingManagement.findBetsByCommunityAndCategory(communityName,
+				Category.LOTTERY);
+		Streamable<CommunityBet> footballBets = bettingManagement.findBetsByCommunityAndCategory(communityName,
+				Category.FOOTBALL);
+		model.addAttribute("lotteryBets", lotteryBets);
+		model.addAttribute("footballBets", footballBets);
 
 		return "community_info";
 	}

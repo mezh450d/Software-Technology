@@ -54,7 +54,7 @@ public class BettingControllerIntegrationTests {
 	@Test
 	void testToFootball() {
 		Model model = new ExtendedModelMap();
-		String viewHome = bettingController.football(model);
+		String viewHome = bettingController.football(user, model);
 		assertThat(viewHome).isEqualTo("betting_football");
 	}
 

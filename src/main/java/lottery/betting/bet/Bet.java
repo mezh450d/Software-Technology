@@ -32,7 +32,7 @@ public abstract class Bet {
 	public Bet(Data reference, Result value, Type type, UserAccount user){
 		this.reference = reference;
 		this.value = value;
-		this.type = type;
+		this.type = null;
 		this.origin = user.getUsername();
 	}
 

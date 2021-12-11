@@ -26,11 +26,12 @@
             <th scope="col"><h4>Gast</h4></th>
             <th scope="col"><h4>Wettbetrag</h4></th>
             <th scope="col"></th>
+            <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="match : ${matches}">
-            <form method="post" role="form" class="ui form" id="form" th:action="@{/betting/football}">
+            <form method="post" role="form" class="ui form" th:action="@{/betting/football}">
                 <input type="hidden" name="match" value="0" th:value="${match.id}"/>
                 <th><h5 th:text="${match.date}"></h5></th>
                 <th><h5 th:text="${match.home}"></h5></th>
@@ -46,9 +47,16 @@
                 </th>
                 <th><h5 th:text="${match.guest}"></h5></th>
                 <th>
-                    <div class="mb-3">
+                    <div class="mb-1">
                         <input type="number" class="form-control" id="amount" name="amount" placeholder="Wettbetrag" min="0">
                     </div>
+                </th>
+                <th>
+                    <select class="form-control" name="dropCommunity">
+                        <option value="">Einzelwette</option>
+                        <option th:each="community : ${personalCommunities}" th:value="${community.name}"
+                                th:text="${community.name}"></option>
+                    </select>
                 </th>
                 <th>
                     <button type="submit" class="btn btn-primary mb-3"><span> Wetten!</span></button>

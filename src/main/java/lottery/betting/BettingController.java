@@ -48,23 +48,36 @@ class BettingController {
 	}
 
 	@GetMapping("/betting/football")
-	public String football(Model model) {
+	public String football(@LoggedIn UserAccount user, Model model) {
 		model.addAttribute("matches", management.findDataByCategory(Category.FOOTBALL));
+		model.addAttribute("personalCommunities", communityManagement.findPersonalCommunities(user));
+
 		return "betting_football";
 	}
 
 	@PostMapping("/betting/football")
 	public String addBet(@LoggedIn UserAccount user, @RequestParam("match") FootballMatch match,
 				  @RequestParam("home_score") int homeScore, @RequestParam("guest_score") int guestScore,
-				  @RequestParam("amount") int amount) {
+				  @RequestParam("amount") int amount, @RequestParam("dropCommunity") String community) {
 
 		FinanceForm financeForm = new FinanceForm((double)amount, "Wettplatzierung zu "+match.toString());
 
-		if(financeManagement.withdraw(financeForm, user)){
-			management.saveIndividualBet(new IndividualBet(match, new Score(homeScore, guestScore), Type.INDIVIDUAL, user, Money.of(amount, EURO)));
+		if(community.isEmpty()){
+			if(financeManagement.withdraw(financeForm, user)){
+				management.saveIndividualBet(new IndividualBet(match, new Score(homeScore, guestScore),
+						user, Money.of(amount, EURO)));
+			} else {
+				return "redirect:/home?error";
+			}
 		} else {
-			return "redirect:/home?error";
+			if(financeManagement.withdraw(financeForm, user)){
+				management.saveCommunityBet(new CommunityBet(match, new Score(homeScore, guestScore),
+						community, user, Money.of(amount, EURO)));
+			} else {
+				return "redirect:/home?error";
+			}
 		}
+
 		return "redirect:/home";
 	}
 
@@ -86,7 +99,7 @@ class BettingController {
 				for(Data lottery : management.findDataByCategory(Category.LOTTERY)){
 					if(amount > 0){
 						management.saveIndividualBet(new IndividualBet(lottery, new SelectNumber(numStr,superNumber),
-								Type.INDIVIDUAL, user, Money.of(10, EURO)));
+								user, Money.of(10, EURO)));
 						amount--;
 					}
 				}
@@ -99,7 +112,7 @@ class BettingController {
 					if(amount > 0){
 						{
 							management.saveCommunityBet(new CommunityBet(lottery, new SelectNumber(numStr,superNumber),
-									Type.COMMUNITY, community, user, Money.of(10, EURO)));
+									community, user, Money.of(10, EURO)));
 						}
 						amount--;
 					}

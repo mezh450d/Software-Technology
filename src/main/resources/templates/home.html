@@ -91,7 +91,7 @@
                             <summary th:text="${bet.reference}">Wette 1: Lotto 6 aus 49</summary>
                             <span>
                               <ul>
-                                <li th:text="EUR  + ${bet.getTotalBettingAmount()}">Wetteinsatz: 10 Euro</li>
+                                <li th:text="${bet.getTotalBettingAmount()}">Wetteinsatz: 10 Euro</li>
                                 <li th:text="${bet.value}">Wette: 1,2,3,4,5,6,7</li>
                               </ul>
                             </span>

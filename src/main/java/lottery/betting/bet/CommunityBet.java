@@ -1,10 +1,10 @@
 package lottery.betting.bet;
 
+import lottery.betting.data.Category;
 import lottery.betting.data.Data;
 import lottery.betting.data.Result;
 import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.UserAccount;
-import org.springframework.data.util.Streamable;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -22,10 +22,9 @@ public class CommunityBet extends Bet {
 	@SuppressWarnings("unused")
 	protected CommunityBet() {}
 
-	public CommunityBet(Data reference, Result value, Type type,
-						String community, UserAccount user, Money bettingAmount){
+	public CommunityBet(Data reference, Result value, String community, UserAccount user, Money bettingAmount){
 
-		super(reference, value, type, community);
+		super(reference, value, Type.COMMUNITY, community);
 
 		addUserToBet(user, bettingAmount);
 
@@ -41,7 +40,16 @@ public class CommunityBet extends Bet {
 		}
 	}
 
-	public Map<String, Double> getAmountPerUser() {
+	public Money getSingleAmount(String user) {
+		if (amountPerUser.containsKey(user)){
+			return Money.of(amountPerUser.get(user), EURO);
+		}
+		else {
+			return Money.of(0, EURO);
+		}
+	}
+
+	public Map<String, Double> getMap() {
 		return amountPerUser;
 	}
 

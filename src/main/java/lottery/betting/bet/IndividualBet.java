@@ -17,9 +17,9 @@ public class IndividualBet extends Bet{
 	@SuppressWarnings("unused")
 	protected IndividualBet() {}
 
-	public IndividualBet(Data reference, Result value, Type type, UserAccount user, Money bettingAmount){
+	public IndividualBet(Data reference, Result value, UserAccount user, Money bettingAmount){
 
-		super(reference, value, type, user);
+		super(reference, value, Type.INDIVIDUAL, user);
 
 		this.bettingAmount = bettingAmount;
 

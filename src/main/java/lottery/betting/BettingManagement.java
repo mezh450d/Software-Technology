@@ -77,7 +77,9 @@ public class BettingManagement {
 
 	public Streamable<IndividualBet> findBetsByUser(String user) { return bets.findIndividualByUser(user); }
 
-	public Streamable<CommunityBet> findBetsByCommunity(String community) { return bets.findCommunityBetsByCommunity(community); }
+	public Streamable<CommunityBet> findBetsByCommunityAndCategory(String community, Category category) {
+		return bets.findCommunityBetsByCommunityAndCategory(community, category);
+	}
 
 	public Streamable<Bet> findBetsByData(Data data) { return bets.findByData(data); }
 

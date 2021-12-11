@@ -1,5 +1,6 @@
 package lottery.betting.bet;
 
+import lottery.betting.data.Category;
 import lottery.betting.data.Data;
 import lottery.betting.data.Result;
 import org.springframework.data.jpa.repository.Query;
@@ -15,8 +16,8 @@ public interface BetRepository extends CrudRepository<Bet, Long> {
 	Streamable<IndividualBet> findIndividualByUser(String user);
 
 	@Query("SELECT u FROM Bet u WHERE u.type = lottery.betting.bet.Type.COMMUNITY " +
-			"AND u.origin = ?1 AND u.evaluate = false")
-	Streamable<CommunityBet> findCommunityBetsByCommunity(String community);
+			"AND u.origin = ?1 AND u.reference.category = ?2 AND u.evaluate = false")
+	Streamable<CommunityBet> findCommunityBetsByCommunityAndCategory(String community, Category category);
 
 	@Query("SELECT u FROM Bet u WHERE u.type = ?1 AND u.evaluate = false")
 	Streamable<Data> findByType(Type type);
