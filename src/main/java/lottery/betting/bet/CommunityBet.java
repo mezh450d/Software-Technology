@@ -1,6 +1,5 @@
 package lottery.betting.bet;
 
-import lottery.betting.data.Category;
 import lottery.betting.data.Data;
 import lottery.betting.data.Result;
 import org.javamoney.moneta.Money;
@@ -26,18 +25,12 @@ public class CommunityBet extends Bet {
 
 		super(reference, value, Type.COMMUNITY, community);
 
-		addUserToBet(user, bettingAmount);
+		setBettingAmount(user, bettingAmount);
 
 	}
 
-	public void addUserToBet(UserAccount user, Money amount){
-		String username = user.getUsername();
-		if(amountPerUser.containsKey(username)){
-			Double newAmount = amountPerUser.get(username) + amount.getNumber().doubleValue();
-			amountPerUser.replace(username, newAmount);
-		} else {
-			amountPerUser.put(user.getUsername(), amount.getNumber().doubleValue());
-		}
+	public Map<String, Double> getMap() {
+		return amountPerUser;
 	}
 
 	public Money getSingleAmount(String user) {
@@ -48,16 +41,25 @@ public class CommunityBet extends Bet {
 		}
 	}
 
-	public Map<String, Double> getMap() {
-		return amountPerUser;
-	}
-
 	public Money getTotalBettingAmount() {
 		double total = 0;
 		for(Double amount : amountPerUser.values()){
 			total += amount;
 		}
 		return Money.of(total, EURO);
+	}
+
+	@Override
+	public Money setBettingAmount(UserAccount user, Money amount){
+		String username = user.getUsername();
+		Double difference = amount.getNumber().doubleValue();
+		if(amountPerUser.containsKey(username)){
+			difference -= amountPerUser.get(username) ;
+			amountPerUser.replace(username, amount.getNumber().doubleValue());
+		} else {
+			amountPerUser.put(user.getUsername(), amount.getNumber().doubleValue());
+		}
+		return Money.of(difference, EURO);
 	}
 
 	public Map<String, Double> payOut(){

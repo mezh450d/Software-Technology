@@ -32,7 +32,7 @@ public abstract class Bet {
 	public Bet(Data reference, Result value, Type type, UserAccount user){
 		this.reference = reference;
 		this.value = value;
-		this.type = null;
+		this.type = type;
 		this.origin = user.getUsername();
 	}
 
@@ -58,6 +58,8 @@ public abstract class Bet {
 	}
 
 	public abstract Money getTotalBettingAmount();
+
+	public abstract Money setBettingAmount(UserAccount user, Money amount);
 
 	public boolean isEvaluated() {
 		return evaluate;

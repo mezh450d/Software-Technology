@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.salespointframework.core.Currencies.EURO;
+
 @Entity
 public class IndividualBet extends Bet{
 
@@ -26,6 +28,13 @@ public class IndividualBet extends Bet{
 	}
 	public Money getTotalBettingAmount() {
 		return bettingAmount;
+	}
+
+	@Override
+	public Money setBettingAmount(UserAccount user, Money amount){
+		Double difference = amount.getNumber().doubleValue() - bettingAmount.getNumber().doubleValue();
+		bettingAmount = amount;
+		return Money.of(difference, EURO);
 	}
 
 	public Map<String, Double> payOut(){

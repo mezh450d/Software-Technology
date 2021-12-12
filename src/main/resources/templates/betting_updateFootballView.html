@@ -26,6 +26,8 @@
       <th scope="col"><h4>Heim</h4></th>
       <th scope="col"><h4>Ergebnis</h4></th>
       <th scope="col"><h4>Gast</h4></th>
+      <th scope="col">bisheriger Betrag</th>
+      <th scope="col"><h4>neuer Betrag</h4></th>
       <th scope="col"></th>
     </tr>
     </thead>
@@ -46,6 +48,12 @@
           </div>
         </th>
         <th><h5 th:text="${match.guest}"></h5></th>
+        <th><h5 th:text="${betAmount}"></h5></th>
+        <th>
+          <div class="mb-1">
+            <input type="number" class="form-control" id="amount" name="amount" placeholder="Wettbetrag" min="1">
+          </div>
+        </th>
         <th>
           <button type="submit" class="btn btn-primary mb-3"><span> Ändern!</span></button>
         </th>

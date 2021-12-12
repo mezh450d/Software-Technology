@@ -11,6 +11,6 @@ public interface CommunityRepository extends CrudRepository<Community, Long> {
 	@Query("SELECT u FROM Community u WHERE u.name = ?1")
 	Community findByName(String name);
 
-	@Override
+	@Query("SELECT u FROM Community u ORDER BY u.name")
 	Streamable<Community> findAll();
 }

@@ -41,7 +41,7 @@
             <th>Ergebnis</th>
             <th>Gesamtbetrag</th>
             <th>Eigener Betrag</th>
-            <th></th>
+            <th>neuer Betrag</th>
             <th></th>
         </tr>
         </thead>
@@ -82,10 +82,13 @@
                     <th th:text="${bet.value}"></th>
                     <th th:text="${bet.getTotalBettingAmount()}"></th>
                     <th th:text="${bet.getSingleAmount(userName)}"></th>
-                    <input type="hidden" name="amount" value=10 />
                     <th>
-                        <button type="submit" class="btn btn-primary mb-3" th:if="${bet.getSingleAmount(userName).getNumber() == 10}" disabled><span>Mitwetten!</span></button>
-                        <button type="submit" class="btn btn-primary mb-3" th:unless="${bet.getSingleAmount(userName).getNumber() == 10}" ><span>Mitwetten!</span></button>
+                        <button type="submit" class="btn btn-outline-primary mb-3"
+                                th:if="${bet.getSingleAmount(userName).getNumber() == 10}"
+                                name="amount" value=0 ><span>Aussetzen</span></button>
+                        <button type="submit" class="btn btn-primary mb-3"
+                                th:unless="${bet.getSingleAmount(userName).getNumber() == 10}"
+                                name="amount"  value=10 ><span>Mitwetten!</span></button>
                     </th>
                 </form>
             </tr>

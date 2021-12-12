@@ -177,12 +177,13 @@ class BettingController {
 	}
 
 	@GetMapping("/betting/change/{bet}")
-	public String updateLotteryView(@PathVariable("bet") long betId, @RequestParam("category") Category category,
+	public String updateView(@PathVariable("bet") long betId, @RequestParam("category") Category category,
 									@RequestParam("reference") Data data, Model model) {
 		model.addAttribute("betId", betId);
 		if (category == Category.LOTTERY) {
 			return "betting_updateLotteryView";
 		} else if (category == Category.FOOTBALL) {
+			model.addAttribute("betAmount", management.findBetById(betId).getTotalBettingAmount());
 			model.addAttribute("match", data);
 			return "betting_updateFootballView";
 		}
@@ -190,42 +191,25 @@ class BettingController {
 	}
 
 	@PostMapping("/community/bet")
-	public String addAmountToBet(@LoggedIn UserAccount user, @RequestParam("bet") long betID,
-								 @RequestParam("amount") int amount, Model model) {
+	public String setAmountOfCommunityBet(@LoggedIn UserAccount user, @RequestParam("bet") long betID,
+										  @RequestParam("amount") int newAmount) {
 
 		CommunityBet bet = management.findCommunityBetById(betID);
+		double dif = newAmount - bet.getSingleAmount(user.getUsername()).getNumber().doubleValue();
 
-		FinanceForm financeForm = new FinanceForm((double)amount,
-				"Wettplatzierung zu "+bet.getReference().toString());
-
-		if(financeManagement.withdraw(financeForm, user)){
-			bet.addUserToBet(user, Money.of(amount, EURO));
-		} else {
-			Message message = new Message(user, "2 Euro Bußgeld",
-					"Sie haben nicht genügend Geld auf Ihrem Konto für die Communitywette",
-					LocalDateTime.now());
-			messageManagement.save(message);
-			FinanceForm form = new FinanceForm(2.0, "Mahnung: für Communitywette");
-			financeManagement.withdraw(form, user);
-			return "redirect:/home?error";
-		}
-
-		model.addAttribute("personalCommunities", communityManagement.findPersonalCommunities(user));
-		model.addAttribute("joinableCommunities", communityManagement.findJoinableCommunities(user));
-
-		return "redirect:/community";
+		return setNewAmount(user, bet, newAmount, dif);
 	}
 
 	@PostMapping("/betting/updateFootball")
-	public String updateFootballBet(@RequestParam("betId") Long betId, @RequestParam("home_score") int homeScore,
-									@RequestParam("guest_score") int guestScore) {
+	public String updateFootballBet(@LoggedIn UserAccount user, @RequestParam("betId") Long betId,
+									@RequestParam("home_score") int homeScore,
+									@RequestParam("guest_score") int guestScore, @RequestParam("amount") int newAmount){
 
 		Bet bet = management.findBetById(betId);
 		bet.setValue(new Score(homeScore, guestScore));
+		double dif = newAmount - bet.getTotalBettingAmount().getNumber().doubleValue();
 
-		management.saveBet(bet);
-
-		return "redirect:/home";
+		return setNewAmount(user, bet, newAmount, dif);
 	}
 
 	@PostMapping("/betting/updateLottery")
@@ -234,6 +218,35 @@ class BettingController {
 
 		Bet bet = management.findBetById(betId);
 		bet.setValue(new SelectNumber(numStr, superNumber));
+
+		management.saveBet(bet);
+
+		return "redirect:/home";
+	}
+
+	private String setNewAmount(UserAccount user, Bet bet, int newAmount, double difference){
+
+		if(difference > 0){
+			FinanceForm financeForm = new FinanceForm(difference,
+					"Betragsänderung zu "+bet.getReference().toString());
+
+			if(financeManagement.withdraw(financeForm, user)){
+				bet.setBettingAmount(user, Money.of(newAmount, EURO));
+			} else {
+				Message message = new Message(user, "2 Euro Bußgeld",
+						"Sie haben nicht genügend Geld auf Ihrem Konto für die Betragsänderung",
+						LocalDateTime.now());
+				messageManagement.save(message);
+				FinanceForm form = new FinanceForm(2.0, "Mahnung: für Betragsänderung");
+				financeManagement.withdraw(form, user);
+				return "redirect:/home?error";
+			}
+		} else if(difference < 0){
+			FinanceForm financeForm = new FinanceForm(-difference,
+					"Betragsänderung zu "+bet.getReference().toString());
+			financeManagement.deposit(financeForm, user);
+			bet.setBettingAmount(user, Money.of(newAmount, EURO));
+		}
 
 		management.saveBet(bet);
 
