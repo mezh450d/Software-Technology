@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.Clock;
+import java.time.Duration;
 import java.time.LocalDateTime;
 
 import static org.salespointframework.core.Currencies.EURO;
@@ -146,11 +148,25 @@ class BettingController {
 
 	@PostMapping("/betting/number")
 	public String addBet(@LoggedIn UserAccount user, @RequestParam("numStr") String numStr,
-				  @RequestParam("superNumber") int superNumber, @RequestParam("amount") int amount,
+				  @RequestParam("superNumber") int superNumber, @RequestParam("amount") String radio,
 				  @RequestParam("community") String community) {
 
-		if(amount <= 0){
-			return "redirect:/home";
+		int amount;
+		switch(radio){
+			case "single":
+				amount = 1;
+				break;
+			case "month":
+				amount = management.getLotteryAmountForDuration(LocalDateTime.now(Clock.systemUTC()).plusMonths(1));
+				break;
+			case "half-year":
+				amount = management.getLotteryAmountForDuration(LocalDateTime.now(Clock.systemUTC()).plusMonths(6));
+				break;
+			case "year":
+				amount = management.getLotteryAmountForDuration(LocalDateTime.now(Clock.systemUTC()).plusYears(1));
+				break;
+			default:
+				return "redirect:/home";
 		}
 
 		int realAmount = 10 * amount;

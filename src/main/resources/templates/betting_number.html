@@ -185,7 +185,32 @@
     <div class="col-6">
       <div id="form_container">
         <div class="box-input-div"><span>Superzahl:</span><input type="text" name="superNumber"></div>
-        <div class="box-input-div"><span>Menge:</span><input type="text" name="amount"></div>
+        <div class="box-input-div">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="amount" id="radio1" value="single" checked>
+            <label class="form-check-label" for="radio1">
+              einmalig
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="amount" id="radio2" value="month">
+            <label class="form-check-label" for="radio2">
+              ein Monat
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="amount" id="radio3" value="half-year">
+            <label class="form-check-label" for="radio3">
+              halbes Jahr
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="amount" id="radio4" value="year">
+            <label class="form-check-label" for="radio4">
+              ein Jahr
+            </label>
+          </div>
+        </div>
         <div class="box-input-div">
           <span>Community:</span>
           <select class="form-control" id="dropCommunity" name="dropCommunity">
@@ -233,11 +258,7 @@
                     alert("Die Eingabe der Superzahl ist falsch, die Zahl muss zwischen 1 und 9 liegen!");
                     return false;
                 }
-                var amount = $("input[name=amount]").val();
-                if (amount <= 0) {
-                    alert("Die Eingabe der Menge ist falsch, die Zahl muss mindestens 1 sein!");
-                    return false;
-                }
+                var amount = $("input[name=amount]:checked").val();
 
                 var dropCommunity = $("select[name=dropCommunity]").val();
 
@@ -245,7 +266,7 @@
                 var form = $("<form action=\"/betting/number\" method='post'></form>")
                 form.append("<input type='hidden' name='numStr' value='" + numberList.toString() + "'>");
                 form.append("<input type='hidden' name='superNumber' value='" + superNumber + "'>");
-                form.append("<input type='hidden' name='amount' value='" + amount + "'>");
+                form.append("<input type='hidden' name='amount' value=" + amount + ">");
                 form.append("<input type='hidden' name='community' value='" + dropCommunity + "'>");
 
               $(document.body).append(form);

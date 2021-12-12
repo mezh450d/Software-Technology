@@ -9,6 +9,7 @@ import lottery.betting.data.Data;
 import lottery.betting.data.DataCatalog;
 import lottery.betting.data.Result;
 import lottery.community.Community;
+import org.apache.tomcat.jni.Local;
 import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.ProductIdentifier;
 import org.springframework.data.util.Streamable;
@@ -51,16 +52,18 @@ public class BettingManagement {
 		return amount;
 	}
 
-	public Data findNextLottery(){
+	public int getLotteryAmountForDuration(LocalDateTime date){
 		Streamable<Data> lotteries = findDataByCategory(Category.LOTTERY);
-		LocalDateTime now = LocalDateTime.now(Clock.offset(Clock.systemUTC(), Duration.ofHours(1)));
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy, HH:mm");
+		int amount = 0;
 		for(Data lottery : lotteries){
-			if(now.isBefore(LocalDateTime.parse(lottery.getDate(), formatter))){
-				return lottery;
+			if(date.isAfter(LocalDateTime.parse(lottery.getDate(), formatter))){
+				amount++;
+			} else {
+				break;
 			}
 		}
-		return null;
+		return amount;
 	}
 
 	public Streamable<Data> findDataByCategory(Category category) { return dataCatalog.findByCategory(category); }
