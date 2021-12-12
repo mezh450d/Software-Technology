@@ -27,8 +27,9 @@ public interface BetRepository extends CrudRepository<Bet, Long> {
 	@Query("SELECT u FROM Bet u WHERE u.reference = ?1 AND u.evaluate = false")
 	Streamable<Bet> findBetsByData(Data data);
 
-
-
 	@Override
 	Streamable<Bet> findAll();
+
+	@Override
+	void deleteById(Long aLong);
 }

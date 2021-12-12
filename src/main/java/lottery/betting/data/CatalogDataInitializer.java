@@ -78,8 +78,8 @@ class CatalogDataInitializer implements DataInitializer {
 					Category.FOOTBALL,"Borussia Mönchengladbach", "SC Freiburg"));
 
 			LocalDateTime date = LocalDateTime.of(2021, 12, 19,20,0);
-			for(long i = 0; i < 55; i++){
-				catalog.save(new LotteryEntity("Tippschein", Money.of(10, EURO),
+			for(long i = 0; i < 60; i++){
+				catalog.save(new LotteryEntity("Tippschein"+i, Money.of(10, EURO),
 						date.plusWeeks(i), Category.LOTTERY, "Lotto 6 aus 49"));
 			}
 		}

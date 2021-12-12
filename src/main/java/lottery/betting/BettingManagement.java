@@ -45,11 +45,11 @@ public class BettingManagement {
 
 	public Money getMoneyFromAllBets(){
 		Streamable<Bet> bets = findNotEvaluatedBets();
-		Money amount = Money.of(0, EURO);
+		double amount = 0;
 		for(Bet bet : bets){
-			amount.add(bet.getTotalBettingAmount());
+			amount += bet.getTotalBettingAmount().getNumber().doubleValue();
 		}
-		return amount;
+		return Money.of(amount, EURO);
 	}
 
 	public int getLotteryAmountForDuration(LocalDateTime date){
@@ -66,9 +66,17 @@ public class BettingManagement {
 		return amount;
 	}
 
+	//DATA-REQUESTS
+
+	public Data findDataById(String id){ return dataCatalog.findById(id); }
+
 	public Streamable<Data> findDataByCategory(Category category) { return dataCatalog.findByCategory(category); }
 
 	public Streamable<Data> findAllData() { return dataCatalog.findAll(); }
+
+	public void deleteData(String dataId){ dataCatalog.deleteById(dataId); }
+
+	//BET-REQUESTS
 
 	public Bet findBetById(long id){ return bets.findBetById(id); }
 
@@ -85,4 +93,6 @@ public class BettingManagement {
 	public Streamable<Bet> findNotEvaluatedBets() { return bets.findBetsNotEvaluated(); }
 
 	public Streamable<Bet> findAllBets() { return bets.findAll(); }
+
+	public void deleteBet(Long betId){ bets.deleteById(betId); }
 }

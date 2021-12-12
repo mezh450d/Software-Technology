@@ -217,7 +217,7 @@ class BettingController {
 	}
 
 	@PostMapping("/betting/updateFootball")
-	public String updateFootballBet(@LoggedIn UserAccount user, @RequestParam("betId") Long betId,
+	public String updateFootballBet(@LoggedIn UserAccount user, @RequestParam("betId") long betId,
 									@RequestParam("home_score") int homeScore,
 									@RequestParam("guest_score") int guestScore, @RequestParam("amount") int newAmount){
 
@@ -229,7 +229,7 @@ class BettingController {
 	}
 
 	@PostMapping("/betting/updateLottery")
-	public String updateLotteryBet(@RequestParam("betId") Long betId, @RequestParam("numStr") String numStr,
+	public String updateLotteryBet(@RequestParam("betId") long betId, @RequestParam("numStr") String numStr,
 								   @RequestParam("superNumber") int superNumber) {
 
 		Bet bet = management.findBetById(betId);

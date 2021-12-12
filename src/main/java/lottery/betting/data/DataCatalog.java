@@ -16,6 +16,7 @@
 package lottery.betting.data;
 
 import org.salespointframework.catalog.Catalog;
+import org.salespointframework.catalog.ProductIdentifier;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.util.Streamable;
 
@@ -29,4 +30,7 @@ public interface DataCatalog extends Catalog<Data> {
 
 	@Query("SELECT u FROM Data u WHERE u.productIdentifier.id = ?1 AND u.set = false")
 	Data findById(String id);
+
+	@Query("DELETE FROM Data u WHERE u.productIdentifier.id = ?1")
+	void deleteById(String id);
 }
