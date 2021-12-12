@@ -1,6 +1,5 @@
-package lottery.message;
+package lottery.home.message;
 
-import lottery.finance.FinanceEntry;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -14,6 +13,12 @@ public interface MessageRepository extends CrudRepository<Message, Long> {
 
 	@Query("SELECT u FROM Message u WHERE u.user = ?1")
 	Streamable<Message> findByUser(String user, Sort sort);
+
+	@Query("SELECT u FROM Message u WHERE u.user = ?1 AND u.read = true ORDER BY u.date DESC")
+	Streamable<Message> findByUserRead(String user);
+
+	@Query("SELECT u FROM Message u WHERE u.user = ?1 AND u.read = false ORDER BY u.date DESC")
+	Streamable<Message> findByUserNotRead(String user);
 
 	@Query("SELECT u FROM Message u WHERE u.user = ?1")
 	default Streamable<Message> findByUser(String user) {

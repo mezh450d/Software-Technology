@@ -1,40 +1,52 @@
 <!DOCTYPE html>
 <html lang="en"  dir="ltr" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <script src="https://kit.fontawesome.com/63a2b78b2b.js" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <link th:href="@{/resources/css/style.css}" rel="stylesheet"
           href="../static/resources/css/style.css" type="text/css"/>
-    <title>Message</title>
+    <title>Nachrichten</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- Symbols -->
+    <script src="https://kit.fontawesome.com/63a2b78b2b.js" crossorigin="anonymous"></script>
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 <body>
-<section>
-    <div id="wrapper">
-        <div class="container" id="messages" style="position:absolute;width:100%;height:100%;">
-            <div class="container_head">
-                <p id="messages_label"> Message</p>
-            </div>
-            <div class="container_content">
-                <div id="messages_empty" th:if="${messages.empty}">
-                    <p>Sie haben noch keine Messages abgeschlossen</p>
+    <nav th:include="navigation :: navigation"></nav>
+
+    <section class="main_content">
+        <h1>Nachrichten</h1><br/>
+        <h4> Neue Nachrichten:</h4>
+        <ul class="list-group list-group-flush">
+            <li th:each="message : ${newMessages}" class="list-group-item bg-dark text-white">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 th:text="${message.topic}" class="mb-1">Überschrift</h5>
                 </div>
-                <ul th:each="message : ${messages}">
-                    <li>
-                        <details>
-                            <summary th:text="${message.topic}">Mahnung</summary>
-                            <span>
-                              <ul>
-                                <li th:text="${message.detail}"></li>
-                                <li th:text="${message.date}"></li>
-                              </ul>
-                            </span>
-                        </details>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
+                <p th:text="${message.detail}" class="mb-1">Details</p>
+                <small th:text="${message.date}">Datum</small>
+            </li>
+        </ul>
+        <form method="post" role="form" class="ui form" th:action="@{/message}">
+            <input type="hidden" name="newMessages" value="0" th:value="${newMessages}"/>
+            <button type="submit" class="btn btn-primary btn-sm" th:if="${alert}">Alle als gelesen markieren</button>
+            <button type="submit" class="btn btn-primary btn-sm" th:unless="${alert}" disabled>Alle als gelesen markieren</button>
+        </form>
+        <br/>
+        <ul class="list-group list-group-flush">
+            <li th:each="message : ${oldMessages}" class="list-group-item bg-dark text-white">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 th:text="${message.topic}" class="mb-1">Überschrift</h5>
+                </div>
+                <p th:text="${message.detail}" class="mb-1">Details</p>
+                <small th:text="${message.date}">Datum</small>
+            </li>
+        </ul>
+    </section>
+
+<!-- Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>
 

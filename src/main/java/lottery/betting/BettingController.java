@@ -11,9 +11,8 @@ import lottery.betting.data.number.SelectNumber;
 import lottery.community.CommunityManagement;
 import lottery.finance.FinanceForm;
 import lottery.finance.FinanceManagement;
-import lottery.message.Message;
-import lottery.message.MessageManagement;
-import lottery.user.User;
+import lottery.home.message.Message;
+import lottery.home.message.MessageManagement;
 import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
@@ -151,7 +150,7 @@ class BettingController {
 				  @RequestParam("community") String community) {
 
 		if(amount <= 0){
-			return "redirect:/home?error";
+			return "redirect:/home";
 		}
 
 		int realAmount = 10 * amount;
@@ -187,7 +186,7 @@ class BettingController {
 			model.addAttribute("match", data);
 			return "betting_updateFootballView";
 		}
-		return "redirect:/home?error";
+		return "redirect:/home";
 	}
 
 	@PostMapping("/community/bet")
@@ -202,6 +201,12 @@ class BettingController {
 		if(financeManagement.withdraw(financeForm, user)){
 			bet.addUserToBet(user, Money.of(amount, EURO));
 		} else {
+			Message message = new Message(user, "2 Euro Bußgeld",
+					"Sie haben nicht genügend Geld auf Ihrem Konto für die Communitywette",
+					LocalDateTime.now());
+			messageManagement.save(message);
+			FinanceForm form = new FinanceForm(2.0, "Mahnung: für Communitywette");
+			financeManagement.withdraw(form, user);
 			return "redirect:/home?error";
 		}
 

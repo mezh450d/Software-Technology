@@ -11,7 +11,7 @@ import lottery.community.Community;
 import lottery.community.CommunityManagement;
 import lottery.finance.FinanceForm;
 import lottery.finance.FinanceManagement;
-import lottery.message.MessageManagement;
+import lottery.home.message.MessageManagement;
 import lottery.user.User;
 import lottery.user.UserManagement;
 import org.springframework.data.util.Streamable;

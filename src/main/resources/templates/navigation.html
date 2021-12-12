@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"  dir="ltr" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-  <script src="https://kit.fontawesome.com/63a2b78b2b.js" crossorigin="anonymous"></script>
 </head>
 <body>
   <nav th:fragment="navigation">
@@ -11,22 +10,20 @@
           <div class="profile_details">
             <div class="name_status">
               <div class="name" sec:authorize="isAuthenticated()" th:text="${#authentication?.name}"></div>
-            </div>
+            </div><br/>
             <div class="message">
-              <style>
-                a:visited {color:orange;}
-                a:hover {color:#0000FF;}
-              </style>
-              <a href="#" onclick="popupWindow()">Message</a><br>
-              <script type="text/javascript">
-              function popupWindow(){
-                  window.open("http://localhost:8080/message","","height=500,width=300,top=200,left=0,resizable=no");
-              }
-            </script>
-            </div>
+              <a href="/message">
+                <button type="button" class="btn btn-primary position-relative">
+                  Nachrichten
+                  <span th:if="${alert}" class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                    <span class="visually-hidden">New alerts</span>
+                  </span>
+                </button>
+              </a>
+            </div><br/>
           </div>
           <form class="item" sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
-            <button type="submit" class="ui button" th:text="Logout">Logout</button>
+            <button type="submit" class="btn btn-secondary btn-sm">Logout</button>
           </form>
         </div>
 

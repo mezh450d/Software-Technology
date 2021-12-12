@@ -1,6 +1,5 @@
-package lottery.message;
+package lottery.home.message;
 
-import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.UserAccount;
 
 import javax.persistence.*;
@@ -18,6 +17,7 @@ public class Message {
 	private String detail;
 	private LocalDateTime date;
 	private static DateTimeFormatter formatDateTime = DateTimeFormatter.ofPattern("dd.MM.yyyy, HH:mm");
+	private boolean read = false;
 	@SuppressWarnings("unused")
 	protected Message() {}
 
@@ -45,5 +45,9 @@ public class Message {
 	}
 
 	public String getDate() { return date.format(formatDateTime); }
+
+	public boolean getRead() { return read; }
+
+	public void setRead() { read = true; }
 
 }
