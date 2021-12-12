@@ -3,6 +3,7 @@ package lottery.admin;
 import lottery.betting.bet.Bet;
 import lottery.betting.BettingManagement;
 import lottery.betting.data.Category;
+import lottery.betting.data.Data;
 import lottery.betting.data.football.FootballMatch;
 import lottery.betting.data.football.Score;
 import lottery.betting.data.number.LotteryEntity;
@@ -128,6 +129,26 @@ public class AdminController {
 
 		lottery.setResult(new SelectNumber(numStr, superNumber));
 		return evaluateBet(bettingManagement.findBetsByData(lottery), "Wettausschüttung zu "+lottery);
+	}
+
+	@GetMapping("/admin/finances")
+	@PreAuthorize("hasRole('BOSS')")
+	String finanzSituation(Model model) {
+
+		Streamable<Data> footballMatches = bettingManagement.findDataByCategoryAndSet(Category.FOOTBALL, true);
+		Streamable<Data> lotteryList = bettingManagement.findDataByCategoryAndSet(Category.LOTTERY, true);
+
+		model.addAttribute("evaluatedMatches", footballMatches);
+		model.addAttribute("evaluatedLotteries", lotteryList);
+
+		return "admin_finanzsituation";
+	}
+
+	@GetMapping("/admin/users/getAllCommunities")
+	@PreAuthorize("hasRole('BOSS')")
+	String allCommunitiesOfBet(Model model, @RequestParam("id") String id){
+		model.addAttribute("allCommunities", bettingManagement.findCommunityById(id));
+		return "admin_allCommunitiesOfBet";
 	}
 
 	private String evaluateBet(Streamable<Bet> betsByData, String description){
