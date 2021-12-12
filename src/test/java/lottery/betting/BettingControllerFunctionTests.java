@@ -50,29 +50,28 @@ public class BettingControllerFunctionTests {
 
 	User user;
 
-	@Mock
 	FootballMatch match1;
 
 	@Mock
-	LotteryEntity lottery1;
+	FootballMatch match2;
 
 	@BeforeAll
 	void before(){
 		user = userManagement.findByUsername("testUser");
+		match1 = new FootballMatch("test1", Money.of(1, EURO), LocalDateTime.now(),
+				Category.FOOTBALL,"test1","test2");
 		financeManagement.deposit(new FinanceForm(25.0,""),user.getUserAccount());
 
-		bettingManagement.saveBet(new IndividualBet(new FootballMatch("test1", Money.of(1, EURO),
-				LocalDateTime.now(),Category.FOOTBALL,"test1","test2"), new Score(2,1),
+		bettingManagement.saveBet(new IndividualBet(match1, new Score(2,1),
 				user.getUserAccount(), Money.of(10, EURO)));
 		bettingManagement.saveBet(new IndividualBet(new LotteryEntity("test2",Money.of(10, EURO),
 				LocalDateTime.now(),Category.LOTTERY,"testLotto"), new SelectNumber("1,2,3,4,5,6",1),
 				user.getUserAccount(), Money.of(10, EURO)));
-
 	}
 
 	@Test
 	void testAddFootballBetNotEnoughMoney() {
-		String viewHome = bettingController.addBet(user.getUserAccount(), match1, 2, 1, 20, "");
+		String viewHome = bettingController.addBet(user.getUserAccount(), match2, 2, 1, 40, "");
 		assertThat(viewHome).isEqualTo("redirect:/home?error");
 	}
 
