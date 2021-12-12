@@ -31,6 +31,12 @@ public interface DataCatalog extends Catalog<Data> {
 	@Query("SELECT u FROM Data u WHERE u.productIdentifier.id = ?1 AND u.set = false")
 	Data findById(String id);
 
+	@Query("SELECT u FROM Data u WHERE u.productIdentifier.id = ?1")
+	Data findCommunityById(String id);
+
+	@Query("SELECT u FROM Data u WHERE u.category = ?1 AND u.set = ?2 ORDER BY u.date")
+	Streamable<Data> findByCategoryAndSet(Category category, boolean set);
+
 	@Query("DELETE FROM Data u WHERE u.productIdentifier.id = ?1")
 	void deleteById(String id);
 }

@@ -26,17 +26,17 @@
     <table class="table">
         <thead>
         <tr>
-            <td>Wette</td>
             <td>Nutzer</td>
+            <td>Wette</td>
             <td>Wettbetrag</td>
             <td>Ergebnis</td>
         </tr>
         </thead>
         <tbody>
         <tr th:each="bet : ${bets}">
-            <td th:text="${bet.user}"></td>
+            <td th:text="${bet.origin}"></td>
             <td th:text="${bet.reference}"></td>
-            <td th:text="${bet.bettingAmount}"></td>
+            <td th:text="${bet.getTotalBettingAmount()}"></td>
             <td th:text="${bet.value}"></td>
         </tr>
         </tbody>

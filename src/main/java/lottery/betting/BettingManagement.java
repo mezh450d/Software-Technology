@@ -72,6 +72,9 @@ public class BettingManagement {
 
 	public Streamable<Data> findDataByCategory(Category category) { return dataCatalog.findByCategory(category); }
 
+	public Streamable<Data> findDataByCategoryAndSet(Category category, boolean set) { return dataCatalog.findByCategoryAndSet(category, set); }
+
+
 	public Streamable<Data> findAllData() { return dataCatalog.findAll(); }
 
 	public void deleteData(String dataId){ dataCatalog.deleteById(dataId); }
@@ -81,6 +84,8 @@ public class BettingManagement {
 	public Bet findBetById(long id){ return bets.findBetById(id); }
 
 	public CommunityBet findCommunityBetById(long id){ return bets.findCommunityBetById(id); }
+
+	public Data findCommunityById(String id){ return dataCatalog.findCommunityById(id); }
 
 	public Streamable<Bet> findBetsByUser(String user) { return bets.findBetsByOrigin(user); }
 
