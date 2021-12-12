@@ -21,11 +21,18 @@
                 </button>
               </a>
             </div><br/>
+            <div>
+              <a href="/edit_user">
+                <button type="button" class="btn btn-secondary btn-sm position-relative">
+                  <!--                  <i class="fas fa-user"></i>-->
+                  Kontobearbeitung
+                </button>
+              </a>
+            </div><br/>
           </div>
           <form class="item" sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
             <button type="submit" class="btn btn-secondary btn-sm">Logout</button>
           </form>
-          <a href="/edit_user"><i class="fas fa-user"></i>Konto bearbeiten</a>
         </div>
 
         <ul class="nav-list">
