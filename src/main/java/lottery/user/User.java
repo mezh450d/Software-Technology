@@ -34,4 +34,7 @@ public class User {
 		return userAccount;
 	}
 
+	public void setLotteryAddress(String lottery_address){
+		lotteryAddress = lottery_address;
+	}
 }

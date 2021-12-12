@@ -46,6 +46,23 @@ public class UserManagement {
 		return users.save(new User(userAccount, lotteryAddress));
 	}
 
+	public User editUser(UserAccount user, UserEditForm form) {
+
+		var first_name = form.getFirstName();
+		var last_name = form.getLastName();
+		var emailAddress = form.getEmailAddress();
+		var lotteryAddress = form.getLotteryAddress();
+
+		var userAccount = user;
+		userAccount.setEmail(emailAddress);
+		userAccount.setFirstname(first_name);
+		userAccount.setLastname(last_name);
+		findByUserAccount(user).setLotteryAddress(lotteryAddress);
+
+		return findByUserAccount(user);
+	}
+
+
 	public User findByUserId(long id){
 		Optional<User> user = users.findById(id);
 		return user.orElse(null);
