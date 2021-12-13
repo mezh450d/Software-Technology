@@ -32,7 +32,7 @@
             <div class="error">
             <p  th:if="${param.error}">Please enter the correct id. </p>
             </div>
-            <button type="submit">Details</button>
+            <button class="btn btn-primary btn-sm" type="submit">Details</button>
         </div>
     </form>
     <br/><br/>
@@ -54,7 +54,7 @@
                 <td th:text="${user.userAccount.getUsername()}"></td>
                 <td>
                     <a href="/admin">
-                        <button type="submit">Details</button>
+                        <button class="btn btn-primary btn-sm" type="submit">Details</button>
                     </a>
                 </td>
             </form>
