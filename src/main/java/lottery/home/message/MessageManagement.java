@@ -1,11 +1,17 @@
 package lottery.home.message;
 
 
+import lottery.community.Community;
 import lottery.community.CommunityManagement;
+import lottery.user.User;
+import lottery.user.UserManagement;
+import org.salespointframework.useraccount.UserAccount;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+
+import java.util.Set;
 
 @Service
 @Transactional
@@ -13,13 +19,16 @@ public class MessageManagement {
 
 	private final MessageRepository entries;
 	private final CommunityManagement communityManagement;
+	private final UserManagement userManagement;
 
-	MessageManagement(MessageRepository messageRepository, CommunityManagement communityManagement) {
+	MessageManagement(MessageRepository messageRepository, CommunityManagement communityManagement,
+					  UserManagement userManagement) {
 
 		Assert.notNull(messageRepository, "messageRepository must not be null!");
 
 		this.entries = messageRepository;
 		this.communityManagement = communityManagement;
+		this.userManagement = userManagement;
 	}
 
 	public void save(Message entry){
@@ -27,18 +36,15 @@ public class MessageManagement {
 		checkTenMessages(entry.getUser());
 	}
 
-	public boolean checkTenMessages(String user){
-		int messageCount = messageCount(user);
-//		if(messageCount >= 10 && !communityManagement.findPersonalCommunities(user).isEmpty()){
-//			Message message = new Message(user, "Sie wurden aus der Gemeinschaft entfernt" ,
-//					"Sie haben schon 10 Mitteilungen für unzureichende Deckung erhalten",
-//					LocalDateTime.now());
-//			save(message);
-//			for (Community community : communityManagement.findPersonalCommunities(user)) {
-//				communityManagement.removeFromCommunity(community, user);
-//			}
-//		}
-		return false;
+	public void checkTenMessages(String user){
+		if(messageCount(user) < 10){
+			return;
+		} else {
+			UserAccount userAccount = userManagement.findByUsername(user).getUserAccount();
+			for (Community community : communityManagement.findPersonalCommunities(userAccount)) {
+				communityManagement.removeFromCommunity(community, userAccount);
+			}
+		}
 	}
 
 	public int messageCount(String user){
