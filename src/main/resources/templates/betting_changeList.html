@@ -7,17 +7,22 @@
   <script src="https://kit.fontawesome.com/63a2b78b2b.js" crossorigin="anonymous"></script>
   <!-- JQuery -->
   <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  <!-- CSS -->
+  <link th:href="@{/resources/css/style_navigation.css}" rel="stylesheet"/>
+
+  <link th:href="@{/resources/css/style_general.css}" rel="stylesheet"/>
+
+  <link th:href="@{/resources/css/style_betting.css}" rel="stylesheet"/>
 
   <meta charset="UTF-8">
-  <link th:href="@{/resources/css/style.css}" rel="stylesheet"
-        href="../static/resources/css/style.css" type="text/css"/>
-  <title>Wetten</title>
+  <title>Admin</title>
 </head>
 <body>
 <nav th:include="navigation :: navigation"></nav>
 
 <section class="main_content">
   <h1>Wetten</h1>
+  <div class="separating_line"></div>
 
   <table class="table table-dark table-striped">
     <thead>

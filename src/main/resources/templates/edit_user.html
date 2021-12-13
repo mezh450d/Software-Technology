@@ -7,18 +7,22 @@
     <script src="https://kit.fontawesome.com/63a2b78b2b.js" crossorigin="anonymous"></script>
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <!-- CSS -->
+    <link th:href="@{/resources/css/style_navigation.css}" rel="stylesheet"/>
+
+    <link th:href="@{/resources/css/style_login.css}" rel="stylesheet"/>
+
+    <link th:href="@{/resources/css/style_general.css}" rel="stylesheet"/>
 
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style_login.css}" />
-    <link th:href="@{/resources/css/style.css}" rel="stylesheet"
-          href="../static/resources/css/style.css" type="text/css"/>
-    <title>Kontobearbeitung</title>
+    <title>Admin</title>
 </head>
 
 <body>
 <nav th:include="navigation :: navigation"></nav>
 <section class="main_content">
     <h1>Kontodaten ändern</h1>
+    <h3></h3>
     <div class="login_box">
         <div class="head">
             <h1>Konto bearbeiten</h1>

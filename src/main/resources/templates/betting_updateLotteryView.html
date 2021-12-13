@@ -8,125 +8,23 @@
     <script src="https://kit.fontawesome.com/63a2b78b2b.js" crossorigin="anonymous"></script>
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <!-- CSS -->
+    <link th:href="@{/resources/css/style_navigation.css}" rel="stylesheet"/>
+
+    <link th:href="@{/resources/css/style_general.css}" rel="stylesheet"/>
+
+    <link th:href="@{/resources/css/style_betting.css}" rel="stylesheet"/>
 
     <meta charset="UTF-8">
-    <link th:href="@{/resources/css/style.css}" rel="stylesheet"
-          href="../static/resources/css/style.css" type="text/css"/>
-    <title>Wetten</title>
+    <title>Admin</title>
 </head>
 <body>
 <nav th:include="navigation :: navigation"></nav>
 
-<style>
-
-    #box_container{
-        padding:25px;
-        width: auto;
-        overflow: visible;
-        margin-bottom: 25px;
-    }
-    .box {
-        margin-top: 25px;
-        width: 530px;
-        height: 530px;
-        margin: 0 auto;
-        background-color: #212529;
-        padding-left: 6px;
-        padding-top: 6px;
-        border-radius: 5px;
-        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.8);
-    }
-
-    #form_container{
-        width: 530px;
-        margin: 0 auto;
-        margin-top: 25px;
-        background-color: #212529;
-        padding: 5px;
-        border-radius: 5px;
-        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.8);
-    }
-
-
-    .box-item {
-        width: 70px;
-        height: 70px;
-        text-align: center;
-        font-size: 40px;
-        color: white;
-        border-radius: 5px;
-        line-height: 70px;
-        background: #333;
-        display: inline-block;
-        float: left;
-        margin: 2px;
-        cursor: pointer;
-        font-family: sans-serif;
-        user-select: none;
-        transition-duration: 0.2s;
-        box-shadow: inset 0px 0px 2px 2px #222;
-    }
-
-    .box-item-selected {
-        background-color: #0d6efd;
-        box-shadow: 0px 0px 10px #0d6efd;
-        box-shadow: inset 0px 0px 5px 2px #333;
-    }
-
-    .box-item:hover{
-      box-shadow: inset 0px 0px 5px 2px white;
-    }
-
-    .box-input-div {
-        margin: 15px 15px;
-        font-size: 20px;
-        border-radius: 5px;
-        padding: 10px;
-        width: 50%;
-    }
-
-    .box-input-div > span {
-        display: inline-block;
-        width: 120px;
-    }
-
-    .box-input-div > input {
-        padding-left: 10px;
-        height: 35px;
-        width: 50px;
-        border: none;
-        border-bottom: 1px solid white;
-        background: transparent;
-        outline: none;
-        color: #e6e6e6;
-        font-size: 16px;
-    }
-
-    .box-input-div > button {
-        text-align: center;
-        height: 40px;
-        width: 100px;
-        border: none;
-        outline: none;
-        background: #0d6efd;
-        font-size: 18px;
-        border-radius: 5px;
-        color: white;
-        transition-duration: 0.2s;
-        cursor: pointer;
-    }
-
-    .box-input-div > button:hover {
-        background: #0a58ca;
-    }
-
-    .box-input-div > button:active {
-        box-shadow: inset 0px 0px 4px 3px rgba(0, 0, 0, 0.3);
-    }
-
-</style>
 <section class="main_content">
     <h1>6 aus 49</h1>
+    <div class="separating_line"></div>
+
     <div class="box" style="">
         <input type="hidden" name="betId" value="0" th:value="${betId}"/>
         <div class="box-item" style="">1</div>

@@ -23,7 +23,7 @@
             </div><br/>
             <div>
               <a href="/edit_user">
-                <button type="button" class="btn btn-secondary btn-sm position-relative">
+                <button type="button" sec:authorize="!hasRole('BOSS')" class="btn btn-secondary btn-sm position-relative">
                   <!--                  <i class="fas fa-user"></i>-->
                   Kontobearbeitung
                 </button>

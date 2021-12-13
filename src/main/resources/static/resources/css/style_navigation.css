@@ -1,0 +1,57 @@
+.wrapper .sidebar{
+  width: 200px;
+  height: 100%;
+  padding: 15px 0px;
+  position: fixed;
+  background: #2c2c2c;
+  border-right: 1px solid #2c2c2c;
+  line-height: normal;
+  text-decoration: none;
+}
+
+.wrapper .sidebar ul{
+  position: relative;
+  padding-left: 0;
+}
+
+.wrapper .sidebar ul li{
+  background: #2c2c2c;
+  padding: 15px;
+  border-radius: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.wrapper .sidebar ul li a{
+  color: #e6e6e6;
+  display: block;
+}
+
+.wrapper .sidebar ul li a .fas{
+  width: 25px;
+}
+
+.wrapper .sidebar ul li:hover{
+  background: #3c3c3c;
+}
+
+.wrapper .sidebar .profile:hover {
+    background: #3c3c3c;
+}
+
+.wrapper .sidebar .profile{
+  background: #2c2c2c;
+  position: absolute;
+  color: white;
+  bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 15px;
+  border-radius: 10px;
+  display: block;
+  border: 1px solid #2c2c2c;
+}
+
+.wrapper .sidebar .profile .profile_details{
+  margin-right: 20px;
+}
