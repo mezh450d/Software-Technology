@@ -31,15 +31,15 @@ public class Score implements Result<Score> {
 		int compared = 0;
 		int otherDifference = o.getDifference();
 		if(o.getHome() == home && o.getGuest() == guest) {
-			compared = 4;
+			compared = 3;
 		} else if(difference == otherDifference) {
 			if(difference != 0){
-				compared = 3;
-			} else{
 				compared = 2;
+			} else{
+				compared = 1;
 			}
 		} else if((difference > 0 && otherDifference > 0) || (difference < 0 && otherDifference < 0)) {
-			compared = 2;
+			compared = 1;
 		}
 		return compared;
 	}

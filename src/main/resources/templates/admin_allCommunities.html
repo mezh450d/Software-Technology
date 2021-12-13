@@ -21,16 +21,16 @@
 <nav th:include="navigation :: navigation"></nav>
 
 <section class="main_content">
-    <h1>Community Informationen</h1>
+    <h1>Community-Informationen</h1>
     <div class="separating_line"></div>
 
     <h3>Suche nach einzelner Gemeinschaft:</h3>
     <form class="ui form" role="form" th:action="@{/admin/communities/getCommunityInfo}" method="get">
         <div class="field">
-            <label th:text="Community-Name">Community-Name</label></br>
+            <label th:text="Community-Name">Gemeinschaftsname</label></br>
             <input type="text" name="name"/><br/>
             <div class="error">
-                <p  th:if="${param.error}">Please enter the correct name. </p>
+                <p  th:if="${param.error}">Geben Sie einen korrekten Namen ein. </p>
             </div>
             <button class="btn btn-primary btn-sm" type="submit">Details</button>
         </div>
@@ -41,7 +41,7 @@
     <table class="table">
         <thead>
         <tr>
-            <td>Community Name</td>
+            <td>Gemeinschaftsname</td>
             <td>Details</td>
         </tr>
         </thead>

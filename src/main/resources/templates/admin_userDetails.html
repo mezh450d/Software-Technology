@@ -19,56 +19,53 @@
 </head>
 <body>
 <nav th:include="navigation :: navigation"></nav>
-
 <section class="main_content">
-    <h1>Lottery Informationen</h1>
+    <h1>Benutzer-Information</h1>
     <div class="separating_line"></div>
 
-    <h4>Alle Ergebnisse</h4><br/>
+    <h2 th:text="${user.userAccount.id}"></h2><br/>
 
-    <h3>Football Match:</h3>
+    <label for="id">ID: </label>
+    <h4 id="id" th:text="${user.id}"></h4><br/>
+    <label for="mail">E-Mail: </label>
+    <h4 id="mail" th:text="${user.userAccount.email}"></h4><br/>
+    <label for="address">Lotterieadresse: </label>
+    <h4 id="address" th:text="${user.lotteryAddress}"></h4>
+    <br/><br/>
+
     <table class="table">
         <thead>
         <tr>
-            <td>Wette</td>
-            <td>Ergebnis</td>
-            <td>Details</td>
+            <td>Gemeinschaftsname</td>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="bet : ${evaluatedMatches}">
-            <form class="ui form" role="form" th:action="@{/admin/users/getAllCommunities}" method="get">
-                <input type="hidden" name="id" value="0" th:value="${bet.id}"/>
-                <td th:text="${bet}"></td>
-                <td th:text="${bet.getResult()}"></td>
-                <td>
-                    <a href="/admin">
-                        <button type="submit">Details</button>
-                    </a>
-                </td>
-            </form>
+        <tr th:each="community : ${communities}">
+            <td th:text="${community.name}"></td>
         </tr>
         </tbody>
     </table>
+    <br/><br/>
 
-    <h3>Number Lotto:</h3>
     <table class="table">
         <thead>
         <tr>
-            <td>Wette</td>
-            <td>Ergebnis</td>
-            <td>Details</td>
+            <th scope="col">Wette</th>
+            <th scope="col">Betrag</th>
+            <th scope="col">Ergebnis</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="bet : ${evaluatedLotteries}">
-            <td th:text="${bet}"></td>
-            <td th:text="${bet.getResult()}"></td>
-            <td>Details</td>
+        <tr th:each="bet : ${bets}">
+            <th th:text="${bet.reference}"> </th>
+            <th th:text="${bet.bettingAmount}"> </th>
+            <th th:text="${bet.value}"> </th>
         </tr>
         </tbody>
     </table>
 
 </section>
+<!-- Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>

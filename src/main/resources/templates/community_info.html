@@ -88,7 +88,7 @@
                     <th th:text="${bet.getTotalBettingAmount()}"></th>
                     <th th:text="${bet.getSingleAmount(userName)}"></th>
                     <th>
-                        <button type="submit" class="btn btn-outline-primary mb-3"
+                        <button type="submit" class="btn btn-secondary mb-3"
                                 th:if="${bet.getSingleAmount(userName).getNumber() == 10}"
                                 name="amount" value=0 ><span>Aussetzen</span></button>
                         <button type="submit" class="btn btn-primary mb-3"

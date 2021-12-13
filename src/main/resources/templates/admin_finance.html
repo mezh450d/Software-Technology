@@ -21,12 +21,29 @@
 <nav th:include="navigation :: navigation"></nav>
 
 <section class="main_content">
-    <h1>All Communities</h1>
+    <h1>Finanzsituation</h1>
     <div class="separating_line"></div>
 
-    <label for="name">Wette: </label>
-    <h4 id="name" th:text="${allCommunities.toString()}"></h4><br/>
-</section>
+    <label for="money">Finanzbilanz: </label>
+    <h4 id="money" th:text="${finance}"></h4><br/>
 
+    <h3>Bilanz pro Wettangebot</h3>
+    <table class="table">
+        <thead>
+        <tr>
+            <td>Wette</td>
+            <td>gesetztes Geld</td>
+            <td>Bilanz</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="tuple : ${moneySetData}">
+            <td th:text="${tuple.data}"></td>
+            <td th:text="${tuple.input}"></td>
+            <td th:text="${tuple.output}"></td>
+        </tr>
+        </tbody>
+    </table>
+</section>
 </body>
 </html>

@@ -24,8 +24,8 @@ public interface BetRepository extends CrudRepository<Bet, Long> {
 	@Query("SELECT u FROM Bet u WHERE u.evaluate = false")
 	Streamable<Bet> findBetsNotEvaluated();
 
-	@Query("SELECT u FROM Bet u WHERE u.reference = ?1 AND u.evaluate = false")
-	Streamable<Bet> findBetsByData(Data data);
+	@Query("SELECT u FROM Bet u WHERE u.reference = ?1 AND u.evaluate = ?2")
+	Streamable<Bet> findBetsByDataAndEvaluate(Data data, boolean evaluate);
 
 	@Override
 	Streamable<Bet> findAll();

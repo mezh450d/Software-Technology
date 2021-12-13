@@ -21,7 +21,7 @@
 <nav th:include="navigation :: navigation"></nav>
 
 <section class="main_content">
-    <h1>User Informationen</h1>
+    <h1>Benutzer-Informationen</h1>
     <div class="separating_line"></div>
 
     <h3>Suche nach einzelnem Benutzer:</h3>
@@ -30,7 +30,7 @@
             <label th:text="User-ID">User-ID</label></br>
             <input type="number" name="id"/><br/>
             <div class="error">
-            <p  th:if="${param.error}">Please enter the correct id. </p>
+            <p  th:if="${param.error}">Geben Sie eine korrekte ID ein. </p>
             </div>
             <button class="btn btn-primary btn-sm" type="submit">Details</button>
         </div>
@@ -41,8 +41,8 @@
     <table class="table">
         <thead>
         <tr>
-            <td>User ID</td>
-            <td>User Name</td>
+            <td>Benutzer-ID</td>
+            <td>Benutzername</td>
             <td>Details</td>
         </tr>
         </thead>

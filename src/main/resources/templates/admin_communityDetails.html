@@ -20,17 +20,17 @@
 <body>
 <nav th:include="navigation :: navigation"></nav>
 <section class="main_content">
-    <h1>Community Information</h1>
+    <h1>Gemeinschaftsinformation</h1>
     <div class="separating_line"></div>
 
     <h2 th:text="${communityName}"></h2><br/>
 
-    <h3>Alle Mitglieder der Gesellschaft:</h3>
+    <h3>Alle Mitglieder der Gemeinschaft:</h3>
     <table class="table">
         <thead>
         <tr>
-            <td>User ID</td>
-            <td>User Name</td>
+            <td>Benutzer-ID</td>
+            <td>Benutzername</td>
             <td>Details</td>
         </tr>
         </thead>
@@ -39,7 +39,7 @@
             <form class="ui form" role="form" th:action="@{/admin/users/getInfo}" method="get">
                 <input type="hidden" name="id" value="0" th:value="${user.id}"/>
                 <td th:text="${user.id}"></td>
-                <td th:text="${user.userAccount.getUsername()}"></td>
+                <td th:text="${user.getUsername()}"></td>
                 <td>
                     <a href="/admin">
                         <button type="submit">Details</button>

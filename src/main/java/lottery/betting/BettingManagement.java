@@ -3,25 +3,19 @@ package lottery.betting;
 import lottery.betting.bet.Bet;
 import lottery.betting.bet.BetRepository;
 import lottery.betting.bet.CommunityBet;
-import lottery.betting.bet.IndividualBet;
 import lottery.betting.data.Category;
 import lottery.betting.data.Data;
 import lottery.betting.data.DataCatalog;
-import lottery.betting.data.Result;
-import lottery.community.Community;
-import org.apache.tomcat.jni.Local;
 import org.javamoney.moneta.Money;
-import org.salespointframework.catalog.ProductIdentifier;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import java.time.Clock;
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Optional;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.salespointframework.core.Currencies.EURO;
 
@@ -66,14 +60,56 @@ public class BettingManagement {
 		return amount;
 	}
 
+	public class Tuple {
+
+		private Data data;
+		private Money input, output;
+
+		public Tuple(Data data, Money input, Money output){
+			this.data = data;
+			this.input = input;
+			this.output = output;
+		}
+
+		public Data getData() { return data; }
+
+		public Money getInput() { return input; }
+
+		public Money getOutput() { return output; }
+	}
+
+	public List<Tuple> getMoneyForSetData(){
+		List<Tuple> list = new ArrayList<>();
+		for(Data data : findDataIsSet()){
+			double input = 0;
+			double output = 0;
+			for(Bet bet : findBetsByDataAndEvaluate(data, true)){
+				double totalAmount = bet.getTotalBettingAmount().getNumber().doubleValue();
+				input += totalAmount;
+				int factor = bet.getValue().compareTo(data.getResult());
+				output += (factor-1) * totalAmount;
+			}
+			list.add(new Tuple(data,Money.of(input, EURO),Money.of(-output, EURO)));
+		}
+		return list;
+	}
+
+	public Money getFinancialSituation(List<Tuple> list){
+		double finance = 0;
+		for(Tuple tuple : list){
+			finance += tuple.getOutput().getNumber().doubleValue();
+		}
+		return Money.of(finance, EURO);
+	}
+
 	//DATA-REQUESTS
 
 	public Data findDataById(String id){ return dataCatalog.findById(id); }
 
 	public Streamable<Data> findDataByCategory(Category category) { return dataCatalog.findByCategory(category); }
 
-	public Streamable<Data> findDataByCategoryAndSet(Category category, boolean set){
-		return dataCatalog.findByCategoryAndSet(category, set);
+	public Streamable<Data> findDataIsSet(){
+		return dataCatalog.findSet();
 	}
 
 	public Streamable<Data> findAllData() { return dataCatalog.findAll(); }
@@ -86,15 +122,15 @@ public class BettingManagement {
 
 	public CommunityBet findCommunityBetById(long id){ return bets.findCommunityBetById(id); }
 
-	public Data findCommunityById(String id){ return dataCatalog.findCommunityById(id); }
-
 	public Streamable<Bet> findBetsByUser(String user) { return bets.findBetsByOrigin(user); }
 
 	public Streamable<CommunityBet> findBetsByCommunityAndCategory(String community, Category category) {
 		return bets.findCommunityBetsByCommunityAndCategory(community, category);
 	}
 
-	public Streamable<Bet> findBetsByData(Data data) { return bets.findBetsByData(data); }
+	public Streamable<Bet> findBetsByDataAndEvaluate(Data data, boolean evaluate) {
+		return bets.findBetsByDataAndEvaluate(data, evaluate);
+	}
 
 	public Streamable<Bet> findNotEvaluatedBets() { return bets.findBetsNotEvaluated(); }
 
