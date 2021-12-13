@@ -43,3 +43,14 @@
         grid-column: 1 / 3;
         grid-row: 3;
     }
+
+    .community_buttons{
+          text-align: center;
+    }
+
+    .community_buttons button{
+      margin: auto;
+      margin-top: 25px;
+      margin-right: 10px;
+      margin-left: 10px;
+    }

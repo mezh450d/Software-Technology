@@ -52,8 +52,10 @@
                         <input class="input" th:field="*{note}" type="text" />
                         <br/> <br/>
                     </div><br/>
-                    <button class="button_slide slide_left"  type="submit" name="action" value="deposit">Einzahlung</button>
-                    <button class="button_slide slide_left" type="submit" name="action" value="withdraw">Auszahlung</button>
+                    <div class="buttons">
+                        <button class="btn btn-primary btn-lg"  type="submit" name="action" value="deposit">Einzahlung</button>
+                        <button class="btn btn-primary btn-lg" type="submit" name="action" value="withdraw">Auszahlung</button>
+                    </div>
                 </form>
             </div>
         </div>

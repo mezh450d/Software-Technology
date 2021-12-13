@@ -43,7 +43,7 @@
                         <td th:text="${community.name}"></td>
                         <td>
                             <a th:href="@{/community/{communityName}(communityName=${community.name})}">
-                                <button>Überblick</button>
+                                <button class="btn btn-primary btn-sm">Überblick</button>
                             </a>
                         </td>
                     </tr>
@@ -68,7 +68,7 @@
                         <td th:text="${community.name}">CommunityName</td>
                         <td>
                             <a th:href="${'/community/join?communityName=' + community.name}">
-                                <button>Beitreten</button>
+                                <button class="btn btn-primary btn-sm">Beitreten</button>
                             </a>
                         </td>
                     </tr>
@@ -78,12 +78,14 @@
         </div>
         <div class="container" id="create">
             <div class="container_content">
-                <a  href="/community/create">
-                    <button  class="button_slide slide_right">erstellen</button>
-                </a>
-                <a  href="/community/join">
-                    <button  class="button_slide slide_right">beitreten</button>
-                </a>
+                <div class="community_buttons">
+                    <a  href="/community/create">
+                        <button class="btn btn-primary btn-lg">erstellen</button>
+                    </a>
+                    <a  href="/community/join">
+                        <button class="btn btn-primary btn-lg">beitreten</button>
+                    </a>
+                </div>
             </div>
         </div>
     </div>

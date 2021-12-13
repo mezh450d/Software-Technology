@@ -3,17 +3,18 @@
     }
 
     section #user_balance{
-      grid-column: 1 / 3;
+      grid-column: 1 / 2;
       grid-row: 1 / 1;
     }
 
     section #payment{
-      grid-column: 1 / 3;
+      grid-column: 1 / 2;
       grid-row: 2 / 4;
+
     }
 
     section #transactions{
-      grid-column: 3 / 3;
+      grid-column: 2 / 4;
       grid-row: 1 / 4;
     }
 
@@ -60,3 +61,14 @@
         box-shadow: inset 0px 0px 4px 3px rgba(0, 0, 0, 0.3);
     }
 
+    .buttons{
+        text-align: center;
+    }
+
+    .buttons button{
+        margin-top: 10px;
+    }
+
+    .field .input{
+        width: 100%;
+    }
