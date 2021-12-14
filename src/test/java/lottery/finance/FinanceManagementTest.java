@@ -1,0 +1,70 @@
+package lottery.finance;
+
+
+
+import lottery.user.User;
+import lottery.user.UserManagement;
+import org.javamoney.moneta.Money;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.ui.ExtendedModelMap;
+import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+
+import javax.annotation.Resource;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+@SpringBootTest
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+class FinanceManagementTest {
+
+	@Resource
+	FinanceManagement financeManagement;
+
+	@Autowired
+	UserManagement userManagement;
+
+	User user;
+
+	@Mock
+	Errors errors;
+
+	@BeforeAll
+	void before(){
+		user = userManagement.findByUsername("testUser");
+	}
+
+
+	@Test
+	void testBalanceAndDeposit() {
+		financeManagement.deposit(new FinanceForm(30.0,""), user.getUserAccount());
+		Money balance = financeManagement.getUserBalance(user.getUserAccount());
+		assertThat(balance).isEqualTo(Money.of(30.0,"EUR"));
+	}
+
+	@Test
+	void testWithdrawAmountWithNotEnoughMoney() {
+		boolean isWithdraw = financeManagement.withdraw(new FinanceForm(100.0,""), user.getUserAccount());
+		assertThat(isWithdraw).isFalse();
+	}
+
+	@Test
+	void testWithdrawAmountWithEnoughMoney() {
+		boolean isWithdraw = financeManagement.withdraw(new FinanceForm(20.0,""), user.getUserAccount());
+		assertThat(isWithdraw).isTrue();
+	}
+
+
+	@AfterAll
+	void after(){
+		for(FinanceEntry financeEntry : financeManagement.findAll()){
+			financeManagement.deleteEntry(financeEntry.getId());
+		}
+	}
+}

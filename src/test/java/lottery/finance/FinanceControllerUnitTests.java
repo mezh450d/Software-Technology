@@ -4,6 +4,7 @@ import lottery.user.UserManagement;
 
 import static org.assertj.core.api.Assertions.*;
 
+import org.javamoney.moneta.Money;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -20,10 +21,7 @@ import org.springframework.ui.Model;
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(MockitoExtension.class)
-public class FinanceControllerUnitTests {
-
-	@Autowired
-	UserManagement userManagement;
+class FinanceControllerUnitTests {
 
 	@Mock
 	UserAccount user;
@@ -41,9 +39,8 @@ public class FinanceControllerUnitTests {
 		FinanceController controller = new FinanceController(finances);
 		String viewName = controller.finances(user, model, new FinanceForm(100.0, null));
 		assertThat(viewName).isEqualTo("finances");
-//		assertThat(model.asMap().get("entries")).isInstanceOf(Iterable.class);
+		assertThat(model.getAttribute("entries")).isEqualTo(finances.findEntriesByUser(user));
 		assertThat(model.asMap().get("form")).isNotNull();
-//		assertThat(model.getAttribute("balance")).isEqualTo(Money.of(100,"EUR"));
 	}
 }
 

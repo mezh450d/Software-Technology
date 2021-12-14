@@ -54,4 +54,6 @@ public class FinanceManagement {
 	}
 
 	public Streamable<FinanceEntry> findAll() { return entries.findAll(); }
+
+	public void deleteEntry(Long entryID){ entries.deleteById(entryID); }
 }

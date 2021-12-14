@@ -13,7 +13,7 @@ public class FinanceForm {
 	@Min(value = 0)
 	public Double amount;
 
-	public String note;
+	private String note;
 
 	private LocalDateTime date;
 
@@ -36,20 +36,5 @@ public class FinanceForm {
 		return note;
 	}
 
-//	public Money calculateBalance(){
-//		FinanceEntry entry = FinanceForm.ALL_AMOUNT.get(getId());
-//		if (entry == null) {
-//			entry = new FinanceEntry();
-//			FinanceForm.ALL_AMOUNT.put(getId(), entry);
-//		}
-//		entry.setBalance(Money.of(0.0,"EUR"));
-//		Iterable<Double> amountsWithoutSign = getAmounts();
-//		Iterator<Double> iterator = amountsWithoutSign.iterator() ;
-//		while (iterator.hasNext()) {
-//			double temp = iterator.next();
-//			entry.setBalance(entry.balance.add(Money.of(temp,"EUR")));
-//		}
-//		return entry.balance;
-//	}
 
 }
