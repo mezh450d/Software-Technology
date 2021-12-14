@@ -12,8 +12,6 @@ import org.junit.jupiter.api.TestInstance;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.ui.ExtendedModelMap;
-import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 
 import javax.annotation.Resource;
@@ -32,25 +30,25 @@ class FinanceManagementTest {
 
 	User user;
 
-	@Mock
-	Errors errors;
-
 	@BeforeAll
 	void before(){
+		for(FinanceEntry financeEntry : financeManagement.findAll()){
+			financeManagement.deleteEntry(financeEntry.getId());
+		}
 		user = userManagement.findByUsername("testUser");
+		financeManagement.deposit(new FinanceForm(30.0,""), user.getUserAccount());
 	}
 
 
 	@Test
 	void testBalanceAndDeposit() {
-		financeManagement.deposit(new FinanceForm(30.0,""), user.getUserAccount());
 		Money balance = financeManagement.getUserBalance(user.getUserAccount());
 		assertThat(balance).isEqualTo(Money.of(30.0,"EUR"));
 	}
 
 	@Test
 	void testWithdrawAmountWithNotEnoughMoney() {
-		boolean isWithdraw = financeManagement.withdraw(new FinanceForm(100.0,""), user.getUserAccount());
+		boolean isWithdraw = financeManagement.withdraw(new FinanceForm(40.0,""), user.getUserAccount());
 		assertThat(isWithdraw).isFalse();
 	}
 

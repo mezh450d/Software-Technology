@@ -29,7 +29,7 @@ public class HomeController {
 	}
 
 	@GetMapping(path = "/home")
-	String home(@LoggedIn UserAccount user, Model model) {
+	public String home(@LoggedIn UserAccount user, Model model) {
 
 		model.addAttribute("balance", financeManagement.getUserBalance(user));
 		model.addAttribute("bets", bettingManagement.findBetsByUser(user.getUsername()));
@@ -46,7 +46,7 @@ public class HomeController {
 	}
 
 	@GetMapping(path = "/message")
-	String message(@LoggedIn UserAccount user, Model model ) {
+	public String message(@LoggedIn UserAccount user, Model model ) {
 
 		model.addAttribute("alert", messageManagement.newMessages(user.getUsername()));
 		model.addAttribute("newMessages", messageManagement.findNotReadByUser(user.getUsername()));
@@ -55,7 +55,7 @@ public class HomeController {
 	}
 
 	@PostMapping(path = "/message")
-	String readMessages(@LoggedIn UserAccount user) {
+	public String readMessages(@LoggedIn UserAccount user) {
 
 		for(Message message : messageManagement.findNotReadByUser(user.getUsername())){
 			message.setRead();

@@ -72,4 +72,6 @@ public class MessageManagement {
 	}
 
 	public Streamable<Message> findAll() { return entries.findAll(); }
+
+	public void deleteMessage(Long messageId){ entries.deleteById(messageId); }
 }
