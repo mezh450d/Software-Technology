@@ -44,7 +44,7 @@ public class CommunityManagement {
 		Assert.notNull(community, "community must not be null!");
 		Assert.notNull(user, "user must not be null!");
 
-		if(community.userInCommunity(user)) community.deleteUser(user);
+		community.deleteUser(user);
 	}
 
 	public Community findCommunityByForm(CreateForm form){
