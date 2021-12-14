@@ -41,7 +41,7 @@ public class CommunityManagement {
 	}
 
 	public void removeFromCommunity(Community community,UserAccount user){
-		Assert.notNull(community, "community must not be null!");
+//		Assert.notNull(community, "community must not be null!");
 		Assert.notNull(user, "user must not be null!");
 
 		community.deleteUser(user);

@@ -90,9 +90,8 @@ public class CommunityControllerFunctionTest {
 
 	@AfterAll
 	void after(){
-		for(Community community : communityManagement.findAll()){
-			communityManagement.deleteCommunity(community.getName());
-		}
+		communityManagement.deleteCommunity("testCommunity1");
+		communityManagement.deleteCommunity("testCommunity2");
 	}
 
 
