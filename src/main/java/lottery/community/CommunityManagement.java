@@ -1,5 +1,6 @@
 package lottery.community;
 
+import org.jetbrains.annotations.NotNull;
 import org.salespointframework.useraccount.UserAccount;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
@@ -7,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 @Service
@@ -42,7 +44,7 @@ public class CommunityManagement {
 		Assert.notNull(community, "community must not be null!");
 		Assert.notNull(user, "user must not be null!");
 
-		community.deleteUser(user);
+		if(community.userInCommunity(user)) community.deleteUser(user);
 	}
 
 	public Community findCommunityByForm(CreateForm form){
@@ -83,6 +85,8 @@ public class CommunityManagement {
 	public Community findByCommunityName(String name){
 		return communities.findByName(name);
 	}
+
+	public void deleteCommunity(String name){communities.delete(communities.findByName(name));}
 
 }
 
