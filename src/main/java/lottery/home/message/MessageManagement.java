@@ -52,11 +52,7 @@ public class MessageManagement {
 	}
 
 	public boolean newMessages(String user){
-		if((int)entries.findByUserNotRead(user).stream().count() == 0){
-			return false;
-		} else {
-			return true;
-		}
+		return (int) entries.findByUserNotRead(user).stream().count() != 0;
 	}
 
 	public Streamable<Message> findNotReadByUser(String user){

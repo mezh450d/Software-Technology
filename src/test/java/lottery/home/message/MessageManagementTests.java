@@ -1,7 +1,5 @@
 package lottery.home.message;
 
-import lottery.community.Community;
-import lottery.community.CommunityManagement;
 import lottery.user.User;
 import lottery.user.UserManagement;
 import org.junit.jupiter.api.AfterAll;
@@ -26,15 +24,10 @@ class MessageManagementTests {
 	@Autowired
 	UserManagement userManagement;
 
-	@Autowired
-	CommunityManagement communityManagement;
-
 	User user;
 
 	Message message;
 	Message message1;
-
-	Community community;
 
 	@BeforeAll
 	void before(){
@@ -46,8 +39,6 @@ class MessageManagementTests {
 		message1 = new Message(user.getUserAccount(), "Mahnung1", "Test1", LocalDateTime.now());
 		messageManagement.save(message);
 		messageManagement.save(message1);
-//		communityManagement.createCommunity(new CreateForm("jackpot", "123"));
-//		community = communityManagement.findCommunityByName("jackpot");
 	}
 
 	@Test
@@ -75,28 +66,6 @@ class MessageManagementTests {
 		assertThat(messageList.size()).isEqualTo(2);
 	}
 
-//	@Test
-//	void testCheckTenMessage(){
-//		community.addUser(user.getUserAccount());
-//		assertThat(communityManagement.findPersonalCommunities(user.getUserAccount())).isNotNull();
-//		Message message2 = new Message(user.getUserAccount(), "Mahnung2", "Test2", LocalDateTime.now());
-//		Message message3 = new Message(user.getUserAccount(), "Mahnung3", "Test3", LocalDateTime.now());
-//		Message message4 = new Message(user.getUserAccount(), "Mahnung4", "Test4", LocalDateTime.now());
-//		Message message5 = new Message(user.getUserAccount(), "Mahnung5", "Test5", LocalDateTime.now());
-//		Message message6 = new Message(user.getUserAccount(), "Mahnung6", "Test6", LocalDateTime.now());
-//		Message message7 = new Message(user.getUserAccount(), "Mahnung7", "Test7", LocalDateTime.now());
-//		Message message8 = new Message(user.getUserAccount(), "Mahnung8", "Test8", LocalDateTime.now());
-//		Message message9 = new Message(user.getUserAccount(), "Mahnung9", "Test9", LocalDateTime.now());
-//		messageManagement.save(message2);
-//		messageManagement.save(message3);
-//		messageManagement.save(message4);
-//		messageManagement.save(message5);
-//		messageManagement.save(message6);
-//		messageManagement.save(message7);
-//		messageManagement.save(message8);
-//		messageManagement.save(message9);
-//		assertThat(communityManagement.findPersonalCommunities(user.getUserAccount())).isNullOrEmpty();
-//	}
 	@AfterAll
 	void after(){
 		for(Message message : messageManagement.findAll()){

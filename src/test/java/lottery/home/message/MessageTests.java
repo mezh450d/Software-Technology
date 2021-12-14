@@ -2,16 +2,11 @@ package lottery.home.message;
 
 import lottery.user.User;
 import lottery.user.UserManagement;
-import org.javamoney.moneta.Money;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.ui.ExtendedModelMap;
-import org.springframework.ui.Model;
-
-import javax.validation.constraints.AssertTrue;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 

@@ -8,8 +8,6 @@ import lottery.user.UserManagement;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import org.mockito.Mock;
-import org.salespointframework.useraccount.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.ui.ExtendedModelMap;
@@ -24,16 +22,7 @@ class HomeControllerIntegrationTests {
 	HomeController homeController;
 
 	@Autowired
-	MessageManagement messageManagement;
-
-	@Autowired
-	FinanceManagement financeManagement;
-
-	@Autowired
 	UserManagement userManagement;
-
-	@Autowired
-	BettingManagement bettingManagement;
 
 	User user;
 
