@@ -9,7 +9,7 @@ Ende:     14:50 Uhr
 __Schriftführer:__ Nick Ruider
 
 *Nächstes Treffen:* +
-15.12.2021, 11:50 Uhr, Discord
+15.12.2021, 12:00 Uhr, Discord
 
 __Teilnehmer:__
 
@@ -20,9 +20,6 @@ __Teilnehmer:__
 - Nick
 - Shiyue
 - Ziyi
-
-== Bemerkungen
-- Konsultation in KW51 & KW1(2022) entfallen
 
 == Retrospektive des letzten Sprints
 *Issue referenziert die Issue ID von GitHub*
@@ -35,8 +32,8 @@ __Teilnehmer:__
 |[F0010] |Dauertippschein erwerben |siehe Pflichtenheft |Meng |offen
 |[F0017] |Gewinngemeinschaft Tipp abgeben |siehe Pflichtenheft |Jing, Meng, Nick |offen
 |[F0018] |Gewinngemeinschaft Mitglied entfernen |siehe Pflichtenheft |Jing |offen
-|[F0019] |Mitteilungen einsehen |siehe Pflichtenheft | |offen
-|[F0020] |Mitteilung bei unzureichender Deckung |siehe Pflichtenheft | |offen
+|[F0019] |Mitteilungen einsehen |siehe Pflichtenheft |Shiyue |offen
+|[F0020] |Mitteilung bei unzureichender Deckung |siehe Pflichtenheft |Shiyue |offen
 |[F0021] |Admin Einsicht finanzieller Status |siehe Pflichtenheft |Ziyi |offen
 |[F0024] |Auswertung Ziehung/Spiel |siehe Pflichtenheft |Ziyi |offen
 |[F0025] |Überweisung Gewinne |siehe Pflichtenheft |Nick |offen
