@@ -70,11 +70,28 @@ Jede testbezogene Aufgabe muss einem Ansprechpartner zugeordnet werden.
 |ID |Methodenname |Anwendungsfall |Vorbedingungen |Eingabe |Ausgabe
 |U-S-LoginTest-1|loginWithFalsePassword     |Vistor sollten das richtige und gültige Passwort eingeben, wenn sie sich einloggen möchten.   |      |        |FALSCHE ODER NICHT EXIST USERNAME/PASSWORD
 |U-S-RegistrationFormTest-1|registerWithInvalidEntry     |Vistor sollten das validierte Eingabe eingeben, wenn sie sich registrieren möchten.   |            |       |INVALIDIERTE EINGABE
-|U-S-RegistrationFormTest-2|createUserAccountWhenRegister |Testen ob auch ein Useraccount erstellt wird, wenn sie erfolg registriert.   |           |       |REGISTER ERFOLG
-|U-S-FinanzenTest-1 |depositOrWithdrawWithInvalidEntry|Der Benutzer sollte einen validierte Betrag eingeben.|User ist mit Rolle "ROLE_PRIVATEKUNDE"||INVALIDIERTE EINGABE
-|U-S-FinanzenTest-2 |withdrawOverBalance    |Der Benutzer sollte einen Auszahlungsbetrag eingeben, der dem Saldo nicht übersteigt.|User ist mit Rolle "ROLE_PRIVATEKUNDE"||AUSZAHLUNGSBETRAG ÜBER DEM SALDO
-|U-S-FinanzenTest-3 |balanceChangeWithDepositOrWithdraw|Der Saldo sollte nach einer Abbuchung oder Aufladung den richtigen Wert anzeigen  |User ist mit Rolle "ROLE_PRIVATEKUNDE"||
-|U-J-CommunityTest-1 |joinCommunityWithFalsePassword     |User sollten das richtige und gültige Passwort verwenden, wenn sie einem Gemeinschaft beitreten  möchten.   |User ist mit Rolle "ROLE_PRIVATEKUNDE"            |FALSCHE ODER NICHT EXIST GEMEINSCHAFTPASSWORD       |…
+|U-S-RegistrationFormTest-2|createUserAccountWhenRegister |Testen, ob auch ein Useraccount erstellt wird, wenn sie erfolg registriert.   |           |       |REGISTER ERFOLG
+|I-S-FinanceControllerIntegrationTest-1 |financeOverview|Testet ob der Benutzer die Finanzübersicht ansehen kann|User ist mit Rolle "ROLE_PRIVATEKUNDE"||
+|U-S-FinanceControllerFunctionTest-1 |testWithdrawAmountWithNotEnoughMoney|Der Benutzer sollte einen Auszahlungsbetrag eingeben, der dem Saldo nicht übersteigt.|User ist mit Rolle "ROLE_PRIVATEKUNDE"||
+|U-S-FinanceControllerFunctionTest-2 |testWithdrawAmountWithEnoughMoney|Der Saldo sollte nach einer validierter Abbuchung den richtigen Wert anzeigen |User ist mit Rolle "ROLE_PRIVATEKUNDE"||
+|U-S-FinanceControllerFunctionTest-3 |testDeposit|Der Saldo sollte nach einer Aufladung den richtigen Wert anzeigen.|User ist mit Rolle "ROLE_PRIVATEKUNDE"||
+|U-S-FinanceManagementTest-1 |testBalanceAndDeposit|Testen, ob der betrag im Repository hinterlegt werden kann.|User ist mit Rolle "ROLE_PRIVATEKUNDE"|EINZAHLUNGSBETRAG|RICHTIGE SALDO
+|U-S-FinanceManagementTest-2 |testWithdrawAmountWithNotEnoughMoney|Wenn der Saldo geringer ist als der Auszahlungsbetrag, wird die Eingabe nicht im Repository gespeichert.|User ist mit Rolle "ROLE_PRIVATEKUNDE"|AUSZAHLUNGSBETRAG|FALSE
+|U-S-FinanceManagementTest-3 |testWithdrawAmountWithEnoughMoney|Der Saldo sollte nach einer Auszahlung den richtigen Wert anzeigen.|User ist mit Rolle "ROLE_PRIVATEKUNDE"|AUSZAHLUNGSBETRAG|TURE
+|U-S-FinanceManagementTest-4 |testAllEntries|Testen, ob alle Einträge aus dem Repository gefunden werden können.|User ist mit Rolle "ROLE_PRIVATEKUNDE"||ALLE EINTRÄGE
+|U-S-FinanceManagementTest-5 |testAllEntriesByUser|Testen, ob alle Einträge aus dem Repository entsprechend dem Benutzer gefunden werden können.|User ist mit Rolle "ROLE_PRIVATEKUNDE"|USER_NAME|ALLE EINTRÄGE VOM USER
+|U-S-FinanceEntryTests-1 |testGetter|Testen der Attribute der Klasse|||
+|U-S-FinanceEntryTests-2 |rejectsEmptyUser|Prüft mittels Validatoren die Eingaben auf Vollständigkeit.||LERRE USER|IllegalArgumentException
+|U-S-FinanceEntryTests-3 |rejectsEmptyAmount|Prüft mittels Validatoren die Eingaben auf Vollständigkeit.||LERRE AMOUNT|IllegalArgumentException
+|U-S-FinanceFormTests-1 |testGetter|Testen der Attribute der Klasse|||
+|I-S-HomeControllerIntegrationTests-1 |testHome|Testet ob der Benutzer die Homepageübersicht ansehen kann|User ist mit Rolle "ROLE_PRIVATEKUNDE"||
+|I-S-HomeControllerIntegrationTests-2 |testMessage|Testet ob der Benutzer die Messageübersicht ansehen kann|User ist mit Rolle "ROLE_PRIVATEKUNDE"||
+|U-S-HomeControllerFunctionTests-1 |testReadMessages|Testen, ob ein Benutzer nach zehn Benachrichtigungen aus der Vereinigung entfernt wird|User ist mit Rolle "ROLE_PRIVATEKUNDE" in mindestens einer Gemeinschaft|10 MITTEILUNGEN|NULL PERSONALGEMAINSCHAGT
+|U-S-MessageManagementTests-1 |testAllMessage|Testen, ob alle Message aus dem Repository gefunden werden können.|User ist mit Rolle "ROLE_PRIVATEKUNDE"|EINZAHLUNGSBETRAG|RICHTIGE SALDO
+|U-S-MessageManagementTests-2 |testNotReadMessage|Testen, ob alle Message, die nicht von Nutzer gelesen werden, aus dem Repository gefunden werden können.|User ist mit Rolle "ROLE_PRIVATEKUNDE"||Alle von Nutzern nicht gelesenen Nachrichten
+|U-S-MessageManagementTests-3 |testReadMessage|Testen, ob alle Message, die von Nutzer gelesen werden, aus dem Repository gefunden werden können.|User ist mit Rolle "ROLE_PRIVATEKUNDE"||Alle von Nutzern gelesenen Nachrichten
+|U-S-MessageManagementTests-4 |testAllMessageByUser|Testen, ob alle Message aus dem Repository entsprechend dem Benutzer gefunden werden können.|User ist mit Rolle "ROLE_PRIVATEKUNDE"||ALLE Nachrichten VOM USER
+|U-S-MessageTests-1 |testGetter|Testen der Attribute der Klasse|||
 |U-J-CommunityTest-2 |joinCommunityWithCorrectPassword   |User mit richtige Password kann eine entsprechende Gemeinschaft beitreten     |User ist mit Rolle "ROLE_PRIVATEKUNDE"    |GÜLTIGE GEMEINSCHAFTPASSWORD    |…
 |U-J-CommunityTest-3 |createCommunity                    |User kann eine Gemeinschaft erstellen.     |User ist mit Rolle "ROLE_PRIVATEKUNDE"     |GEMEINSCHAFTNAME, GEMEINSCHAFTPASSWORD   |…
 |U-J-CommunityTest-4 |createCommunityWithExistingPassword  |Das Passwort muss eindeutig sein. Der Ersteller muss ein Passwort verwenden, das noch nie benutzt wurde.   |User ist mit Rolle "ROLE_PRIVATEKUNDE". Ein Community mit eingegebene Password schon vorhanden ist. |GEMEINSCHAFTNAME, (existent)GEMEINSCHAFTPASSWORD    |…

@@ -1,27 +1,15 @@
 package lottery.finance;
 
-import lottery.user.RegistrationForm;
 import lottery.user.User;
 import lottery.user.UserManagement;
-import lottery.user.UserRepository;
 import org.javamoney.moneta.Money;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import org.mockito.Mock;
-import org.salespointframework.useraccount.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.ui.ExtendedModelMap;
-import org.springframework.ui.Model;
-
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -37,7 +25,6 @@ class FinanceEntryTests {
 
 	@BeforeAll
 	void before(){
-		Model model = new ExtendedModelMap();
 		user = userManagement.findByUsername("testUser");
 	}
 	@Test
@@ -64,19 +51,19 @@ class FinanceEntryTests {
 		assertEquals(LocalDateTime.now().format(formatDateTime), financeEntry.getDate());
 	}
 
-//	@Test
-//	void rejectsEmptyUser() {
-//
-//		assertThatExceptionOfType(IllegalArgumentException.class)//
-//			.isThrownBy(() -> new FinanceEntry(null, 100.0 ,"Test", LocalDateTime.now()));
-//	}
-//
-//	@Test
-//	void rejectsEmptyAmount() {
-//
-//		assertThatExceptionOfType(IllegalArgumentException.class)//
-//				.isThrownBy(() -> new FinanceEntry(user.getUserAccount(), null ,"Test", LocalDateTime.now()));
-//	}
+	@Test
+	void rejectsEmptyUser() {
+
+		assertThatExceptionOfType(IllegalArgumentException.class)//
+			.isThrownBy(() -> new FinanceEntry(null, 100.0 ,"Test", LocalDateTime.now()));
+	}
+
+	@Test
+	void rejectsEmptyAmount() {
+
+		assertThatExceptionOfType(IllegalArgumentException.class)//
+				.isThrownBy(() -> new FinanceEntry(user.getUserAccount(), null ,"Test", LocalDateTime.now()));
+	}
 
 
 }

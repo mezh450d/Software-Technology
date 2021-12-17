@@ -21,7 +21,7 @@ import org.springframework.ui.Model;
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(MockitoExtension.class)
-class FinanceControllerUnitTests {
+class FinanceControllerIntegrationTests {
 
 	@Mock
 	UserAccount user;
@@ -31,7 +31,6 @@ class FinanceControllerUnitTests {
 
 	@Test
 	void populatesModelForFinance() {
-
 
 		Model model = new ExtendedModelMap();
 		FinanceForm form = new FinanceForm(100.0, "");

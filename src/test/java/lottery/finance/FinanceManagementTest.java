@@ -9,12 +9,12 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.validation.Errors;
 
 import javax.annotation.Resource;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -37,13 +37,14 @@ class FinanceManagementTest {
 		}
 		user = userManagement.findByUsername("testUser");
 		financeManagement.deposit(new FinanceForm(30.0,""), user.getUserAccount());
+		financeManagement.deposit(new FinanceForm(1.0,""), user.getUserAccount());
 	}
 
 
 	@Test
 	void testBalanceAndDeposit() {
 		Money balance = financeManagement.getUserBalance(user.getUserAccount());
-		assertThat(balance).isEqualTo(Money.of(30.0,"EUR"));
+		assertThat(balance).isEqualTo(Money.of(31.0,"EUR"));
 	}
 
 	@Test
@@ -58,6 +59,17 @@ class FinanceManagementTest {
 		assertThat(isWithdraw).isTrue();
 	}
 
+	@Test
+	void testAllEntries() {
+		List<FinanceEntry> financeEntries = financeManagement.findAll().toList();
+		assertThat(financeEntries.size()).isEqualTo(2);
+	}
+
+	@Test
+	void testAllEntriesByUser() {
+		List<FinanceEntry> financeEntries = financeManagement.findEntriesByUser(user.getUserAccount()).toList();
+		assertThat(financeEntries.size()).isEqualTo(2);
+	}
 
 	@AfterAll
 	void after(){
