@@ -99,11 +99,18 @@ Jede testbezogene Aufgabe muss einem Ansprechpartner zugeordnet werden.
 |U-J-CommunityTest-5 |createCommunityWithExistingName   |Der Name muss eindeutig sein. Der Ersteller muss ein Name verwenden, der noch nie benutzt wurde.   |User ist mit Rolle "ROLE_PRIVATEKUNDE". Ein Community mit eingegebenem Name schon vorhanden ist. |(existent)GEMEINSCHAFTNAME, GEMEINSCHAFTPASSWORD  |…
 |U-J-CommunityTest-6 |kickOutFromCommunity   |User kann von einer Gemeinschaft entfernen werden.   |User ist Mitglieder von einer Gemeinschaft.     |USERACCOUNT   |User kann nicht mehr in der Mitgliederliste finden.
 |U-J-CommunityTest-7 |getCommunityMitglieder   |Prüft ob der Benutzer mit Roller 'Admin' die Mitgliederliste ansehen kann.    |User ist mit Rolle "Admin"   |…    |LISTE VON GEMEINSCHAFTMITGLIEDER
-|U-Z-LotteryResultTest-1 |lotteryNotDrawn |Nachdem die Lotterieauslosung bekannt gegeben wurde, sollte der Administrator das Lotterieergebnis einsehen können |   |    |KEINE AUSLOSUNG
-|U-Z-EvaluateTest-1 |userWinsLottery |Vergleichen Sie das Lotterieergebnis mit der Wettsituation des Benutzers, wenn es übereinstimmt, ist der Benutzer der Gewinner |Benutzer kauft Lottoschein |  |Gewinner
-|U-Z-EvaluateTest-2 |userLosesLottery |Vergleichen Sie das Lotterieergebnis mit der Wettsituation des Benutzers, wenn es keine Übereinstimmung gibt, ist der Benutzer der Verlierer |Benutzer kauft Lottoschein |   |Verlierer
-|U-Z-WinnerList-1 |userIsWinner |Finden Sie den Gewinner in der Gewinnerliste |  |die Nummer von Benutzer |Erfolg
-|U-Z-WinnerList-2 |userIsLoser |Finden Sie den Verlierer in der Gewinnerliste|  |die Nummer von Benutzer |Benutzer existiert nicht
+|I-Z-AdminControllerIntegrationTests-1 |testToAdmin | Testen, ob der Administrator die Adminseite anzeigen kann | Administrator ist mit Rolle "BOSS" | |
+|I-Z-AdminControllerIntegrationTests-2 |testToInfo |Testen, ob der Administrator die Seite von Nutzerdetails anzeigen kann |Administrator ist mit Rolle "BOSS" | ID von Nutzer: 8 | Die Nutzerdetailseite von Nutzer 8
+|I-Z-AdminControllerIntegrationTests-3 |testToAllUsers |Testen, ob der Administrator die Liste aller Nutzer anzeigen kann |Administrator ist mit Rolle "BOSS" |   |
+|I-Z-AdminControllerIntegrationTests-4 |testToAllCommunities |Testen, ob der Administrator die Liste aller Gemeinschaften anzeigen kann | Administrator ist mit Rolle "BOSS" | |
+|I-Z-AdminControllerIntegrationTests-5 |testToCommunityInfo |Testen, ob der Administrator die Seite von Gemeinschaftsdetails anzeigen kann| Administrator ist mit Rolle "BOSS" |Name von Gemeinschaft: gruppe |Die Gemeinschaftsdetailseite von Gemeinschaft "gruppe"
+|I-Z-AdminControllerIntegrationTests-6 |testToAllBets | Testen, ob der Administrator die Liste aller Bets anzeigen kann |Administrator ist mit Rolle "BOSS" |   |
+|I-Z-AdminControllerIntegrationTests-7 |testToAllData | Testen, ob der Administrator die Seite von Wettenauswertung anzeigen kann | Administrator ist mit Rolle "BOSS" | |
+|I-Z-AdminControllerIntegrationTests-8 |testToFinanceSituation | Testen, ob der Administrator die Seite von Finanzsituation anzeigen kann |Administrator ist mit Rolle "BOSS"| |
+|U-Z-AdminControllerFunctionTests-1 |testSearchNotExistedUserId |Testen, ob bei der Eingabe einer nicht vorhandenen Benutzer-ID ein Webseitenfehler vorliegt |Administrator ist mit Rolle "BOSS" |ID von Nutzer: 30 |Error
+|U-Z-AdminControllerFunctionTests-2 |testSearchExistedUserId | Testen, ob bei der Eingabe der bestehenden Benutzer-ID auf die entsprechende Webseite springen |Administrator ist mit Rolle "BOSS" |ID von Nutzer: 8 |Erfolg
+|U-Z-AdminControllerFunctionTests-3 |testSearchNotExistedCommunityName |Testen, ob bei der Eingabe einer nicht vorhandenen Gemeinschaftsname ein Webseitenfehler vorliegt |Administrator ist mit Rolle "BOSS" |Name von Gemeinschaft: testCommunity |Error
+|U-Z-AdminControllerFunctionTests-4 |testSearchExistedCommunityName | Testen, ob bei der Eingabe des bestehenden Gemeinschaftsnamen auf die entsprechende Webseite springen| Administrator ist mit Rolle "BOSS" |Name von Gemeinschaft: gruppe |Erfolg
 |U-M-LotteryTest-1 |testGetter |Testen der Attribute der Klasse  |  | |
 |I-M-LotteryControllerIntegrationTests-1 |sixGeneralNumberChooseCorrectly |Testet ob 6 allgemeinen Zahlen richtig ausgewählt sind  |  |Wähle mehr als 6 Zahlen und weniger als 6 Zahlen |Funktion wirft IllegalArgumentException
 |I-M-LotteryControllerIntegrationTests-2 |superNumberChooseCorrectly |Testet ob die Superzahl zwischen 0 und 9 liegt  |  |Superzahl ist größer als 9 |Funktion wirft IllegalArgumentException
