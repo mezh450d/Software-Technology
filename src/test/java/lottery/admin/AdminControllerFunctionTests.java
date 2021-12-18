@@ -1,18 +1,16 @@
 package lottery.admin;
 
-import lottery.betting.data.Result;
-import lottery.betting.data.football.FootballMatch;
-import lottery.betting.data.football.Score;
 import lottery.community.Community;
 import lottery.community.CommunityManagement;
-import lottery.finance.FinanceEntry;
 import lottery.user.User;
 import lottery.user.UserManagement;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
@@ -23,6 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@ComponentScan(basePackages = {"lottery.community.CommunityManagement", "lottery.user.UserManagement"})
 public class AdminControllerFunctionTests {
 
 	@Resource
@@ -34,29 +33,19 @@ public class AdminControllerFunctionTests {
 	@Autowired
 	CommunityManagement communityManagement;
 
-	@Autowired
-	FootballMatch footballMatch;
-
-	@Autowired
-	Score score;
-
-	@Autowired
-	FinanceEntry financeEntry;
 
 	User user;
 	Community community;
 
 	@BeforeAll
 	void before(){
-		Model model = new ExtendedModelMap();
 		user = userManagement.findByUserId(8);
 		communityManagement.joinCommunity(communityManagement.findCommunityByName("gruppe"), user.getUserAccount());
 		community = communityManagement.findByCommunityName("gruppe");
-		score = new Score(3, 2);
 	}
 
     @Test
-	@WithMockUser(username="boss",roles="BOSS")
+	@WithMockUser(username="boss",roles={"BOSS"})
 	void testSearchNotExistedUserId(){
 		Model model = new ExtendedModelMap();
 		long id = 30;
@@ -91,4 +80,8 @@ public class AdminControllerFunctionTests {
 		assertThat(viewHome).isEqualTo("admin_communityDetails");
 	}
 
+	@AfterAll
+	void after(){
+		communityManagement.removeFromCommunity(community, user.getUserAccount());
+	}
 }
