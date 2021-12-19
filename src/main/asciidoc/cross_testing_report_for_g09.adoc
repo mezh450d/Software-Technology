@@ -11,7 +11,11 @@ Online Lotterie
 [options="header"]
 |===
 |Pfad |Parameter |Beschreibung |Rückgabe
-| … | … | … | … |
+| http://localhost:8080/customer_bets | Einsatz ändern |Der Nutzer kann den Betrag eines Lottoscheins noch ändern, nachdem er gezogen wurde| … |
+| http://localhost:8080/customer_bets | Tipp ändern(Zahlenwetten) |Bei Zahlenwetten wird bei ausreichendem Guthaben durch Anklicken von "Tipp ändern" Folgendes angezeigt:"Um zu wetten müssen Sie Geld in Ihr virtuelles Portmonee aufladen."| … |
+| http://localhost:8080/group_join | Fehlermeldung |Die Fehlermeldung beim Beitritt zu einem nicht existierenden Gemeinschaft lautet:"Um zu wetten müssen Sie Geld in Ihr virtuelles Portmonee aufladen."| … |
+| http://localhost:8080/footballadmin | Fußballtoto Ergebnis Eintragen |Der Administrator kann die Spiele, auf die die Benutzer wetten können, nicht finden| … |
+| http://localhost:8080/zahlenlotterie | Auswertung der Tippschein |Wenn der Administrator die gleiche Zahl wie die vom Benutzer angegebene Zahl bei Auswertung der Tippschein gibt, wird das Ergebnis der Wette vom Benutzer auch als "LOSS" angezeigt.| … |
 |===
 
 == Sonstiges
@@ -26,5 +30,6 @@ Online Lotterie
 
 == Verbesserungsvorschläge
 Was kann noch weiter verbessert werden?
-
+- Einheitlich gestalteter Anmeldepage
+- Die richtige Fehlermeldung
 * ...
