@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
-<svg width="68cm" height="47cm" viewBox="-1 -22 1343 928" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="69cm" height="47cm" viewBox="-2 -23 1368 929" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <g>
-    <rect style="fill: #ffffff" x="-0.0118293" y="-1.23286" width="1341.8" height="906.231"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" x="-0.0118293" y="-1.23286" width="1341.8" height="906.231"/>
+    <rect style="fill: #ffffff" x="-0.0118293" y="-1.23286" width="1365.09" height="906.231"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" x="-0.0118293" y="-1.23286" width="1365.09" height="906.231"/>
     <rect style="fill: #ffffff" x="-0.0118293" y="-21.2329" width="181.1" height="20"/>
     <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" x="-0.0118293" y="-21.2329" width="181.1" height="20"/>
     <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1.98817" y="-6.23286">package lottery.finance</text>
@@ -74,20 +74,19 @@
     <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="512.183" y="475.312">ID:Long</text>
   </g>
   <g>
-    <rect style="fill: #ffcd99" x="859" y="82.0471" width="395" height="28"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" x="859" y="82.0471" width="395" height="28"/>
+    <rect style="fill: #ffcd99" x="859" y="82.0472" width="395" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" x="859" y="82.0472" width="395" height="28"/>
     <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="1056.5" y="101.047">FinanceController</text>
     <rect style="fill: #ffcd99" x="859" y="110.047" width="395" height="8"/>
     <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" x="859" y="110.047" width="395" height="8"/>
-    <rect style="fill: #ffcd99" x="859" y="118.047" width="395" height="116"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" x="859" y="118.047" width="395" height="116"/>
+    <rect style="fill: #ffcd99" x="859" y="118.047" width="395" height="100"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" x="859" y="118.047" width="395" height="100"/>
     <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="861.5" y="132.047">+FinanceController(management:FinanceManagement)</text>
     <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="861.5" y="148.047">+finances(user:UserAccount,form:FinanceForm,</text>
     <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="861.5" y="164.047">          model:Model): String</text>
     <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="861.5" y="180.047">+depositOrWithdraw(form:FinanceForm,errors:Errors,</text>
     <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="861.5" y="196.047">                   model:Model,action:String,</text>
     <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="861.5" y="212.047">                   user:UserAccount): String</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="861.5" y="228.047">+finances(form:FinanceForm,model:Model): String</text>
   </g>
   <g>
     <rect style="fill: #add8e6" x="49.3392" y="695.846" width="172.728" height="61.6884"/>
@@ -145,12 +144,13 @@
     <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="389.722" y="822.71">T:</text>
   </g>
   <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 8; stroke: #000000" points="1254.5,158.047 1304.78,158.047 1304.78,836.362 719.485,836.362 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 8; stroke: #000000" points="1254.5,150.047 1304.78,150.047 1304.78,836.362 719.485,836.362 "/>
     <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="732.133,831.362 716.133,836.362 732.133,841.362 "/>
   </g>
   <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 8; stroke: #000000" points="1254.5,158.047 1304.78,158.047 1304.78,733.136 722.275,733.136 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 8; stroke: #000000" points="1254.5,150.047 1304.78,150.047 1304.78,733.136 722.275,733.136 "/>
     <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="734.923,728.136 718.923,733.136 734.923,738.136 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1306.78" y="438.592">&lt;&lt;use&gt;&gt;</text>
   </g>
   <g>
     <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 8; stroke: #000000" points="316.183,571.815 316.183,632.816 271.99,632.816 271.99,753.132 313.115,753.132 "/>
@@ -171,46 +171,50 @@
     <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="43.3928,730.268 59.3928,725.268 43.3928,720.268 "/>
   </g>
   <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 8; stroke: #000000" points="501.552,220.905 468.898,220.905 468.898,377.562 17.9947,377.562 17.9947,725.268 56.0402,725.268 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 8; stroke: #000000" points="501.552,220.906 468.898,220.906 468.898,398 17.9947,398 17.9947,725.268 56.0402,725.268 "/>
     <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="43.3928,730.268 59.3928,725.268 43.3928,720.268 "/>
   </g>
   <g>
-    <rect style="fill: #ffcd99" x="741.599" y="417.543" width="487.4" height="28"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" x="741.599" y="417.543" width="487.4" height="28"/>
-    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="985.299" y="436.543">FinanceManagement</text>
-    <rect style="fill: #ffcd99" x="741.599" y="445.543" width="487.4" height="8"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" x="741.599" y="445.543" width="487.4" height="8"/>
-    <rect style="fill: #ffcd99" x="741.599" y="453.543" width="487.4" height="100"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" x="741.599" y="453.543" width="487.4" height="100"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="744.099" y="467.543">+FinanceManagement(entries:FinanceRepository)</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="744.099" y="483.543">+deposit(financeForm:FinanceForm,user:UserAccount): void</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="744.099" y="499.543">+withdraw(financeForm:FinanceForm,user:UserAccount): boolean</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="744.099" y="515.543">+getUserBalance(user:UserAccount): Money</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="744.099" y="531.543">+findEntriesByUser(user:UserAccount): Streamable&lt;FinanceEntry&gt;</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="744.099" y="547.543">+findAll(): Streamable&lt;FinanceEntry&gt;</text>
+    <rect style="fill: #ffcd99" x="741.598" y="417.542" width="487.4" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" x="741.598" y="417.542" width="487.4" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="985.298" y="436.542">FinanceManagement</text>
+    <rect style="fill: #ffcd99" x="741.598" y="445.542" width="487.4" height="8"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" x="741.598" y="445.542" width="487.4" height="8"/>
+    <rect style="fill: #ffcd99" x="741.598" y="453.542" width="487.4" height="100"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" x="741.598" y="453.542" width="487.4" height="100"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="744.098" y="467.542">+FinanceManagement(entries:FinanceRepository)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="744.098" y="483.542">+deposit(financeForm:FinanceForm,user:UserAccount): void</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="744.098" y="499.542">+withdraw(financeForm:FinanceForm,user:UserAccount): boolean</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="744.098" y="515.542">+getUserBalance(user:UserAccount): Money</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="744.098" y="531.542">+findEntriesByUser(user:UserAccount): Streamable&lt;FinanceEntry&gt;</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="744.098" y="547.542">+findAll(): Streamable&lt;FinanceEntry&gt;</text>
   </g>
   <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="577.355,529.312 653.637,529.312 653.637,485.543 741.091,485.543 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="577.355,529.312 653.637,529.312 653.637,485.542 741.091,485.542 "/>
     <polygon style="fill: #ffffff" points="552.183,529.312 566.183,524.512 580.183,529.312 566.183,534.112 "/>
     <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="552.183,529.312 566.183,524.512 580.183,529.312 566.183,534.112 "/>
-    <text font-size="12.7998" style="fill: #000000;text-anchor:end;font-family:monospace;font-style:normal;font-weight:normal" x="737.091" y="482.543"> -entries</text>
-    <text font-size="12.7998" style="fill: #000000;text-anchor:end;font-family:monospace;font-style:normal;font-weight:normal" x="737.091" y="498.543">1</text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="655.637" y="504.427"></text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="584.183" y="526.312"></text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:end;font-family:monospace;font-style:normal;font-weight:normal" x="737.091" y="482.542"> -entries</text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:end;font-family:monospace;font-style:normal;font-weight:normal" x="737.091" y="498.542">1</text>
   </g>
   <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="985.299,391.863 985.299,318.796 1056.5,318.796 1056.5,234.556 "/>
-    <polygon style="fill: #ffffff" points="985.299,417.035 980.499,403.035 985.299,389.035 990.099,403.035 "/>
-    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="985.299,417.035 980.499,403.035 985.299,389.035 990.099,403.035 "/>
-    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1060.5" y="246.556"> -management</text>
-    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1060.5" y="262.556">1</text>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="985.298,391.862 985.298,310.795 1056.5,310.795 1056.5,218.556 "/>
+    <polygon style="fill: #ffffff" points="985.298,417.034 980.498,403.034 985.298,389.034 990.098,403.034 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="985.298,417.034 980.498,403.034 985.298,389.034 990.098,403.034 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="1020.9" y="307.795"></text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="996.298" y="413.034"></text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1060.5" y="230.556"> -management</text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1060.5" y="246.556">1</text>
   </g>
   <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 8; stroke: #000000" points="859,96.0471 656.702,96.0471 656.702,160.2 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 8; stroke: #000000" points="859,96.0472 656.702,96.0472 656.702,160.2 "/>
     <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="651.702,147.553 656.702,163.553 661.702,147.553 "/>
-    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="757.851" y="96.0471">&lt;&lt;use&gt;&gt;</text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="757.851" y="93.0472">&lt;&lt;use&gt;&gt;</text>
   </g>
   <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 8; stroke: #000000" points="741.599,431.543 258.823,431.543 258.823,364.88 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 8; stroke: #000000" points="741.598,431.542 258.823,431.542 258.823,364.88 "/>
     <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="263.823,377.527 258.823,361.527 253.823,377.527 "/>
-    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="500.211" y="431.543">&lt;&lt;create&gt;&gt;</text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="500.211" y="428.542">&lt;&lt;create&gt;&gt;</text>
   </g>
 </svg>

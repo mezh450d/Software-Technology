@@ -13,6 +13,7 @@
 |0.4    | 13.11.2021 | Nick
 |1.0    | 14.11.2021 | Hannes, Nick
 |1.1    | 29.11.2021 | Nick
+|2.0    | 20.12.2021 | Nick
 |===
 
 == Einführung und Ziele
@@ -192,6 +193,8 @@ image::./diagrams/developer_docu/top-level-architecture.svg[top-level-architectu
 ==== Verwendete Muster
 
 - Spring MVC
+- Strategy
+- Template Method
 
 ==== Persistenz
 
@@ -225,7 +228,7 @@ image::./diagrams/developer_docu/user_interface.svg[user-interface, title= "Benu
 - betting.BetController
 - community.CommunityController
 - finance.FinanceController
-- lottery.HomeController
+- home.HomeController
 - user.UserController
 |springframework.validation a|
 - user.UserController
@@ -255,7 +258,8 @@ image::./diagrams/developer_docu/class_user.svg[class_user, title= "User", align
 |UserDataInitializer | Eine Implementierung des DataInitializer um Standard-Nutzerkonten zu generieren.
 |UserManagement | Eine Klasse, welche für die Nutzerverwaltung zuständig ist.
 |UserRepository | Ein Interface für die Speicherung von Nutzerkonten, welches Instanzen von Nutzern verwaltet.
-|ReistrationForm | Ein Interface, welches die Eingaben des Nutzers bei einer Registrierung auf ihre Richtigkeit prüft.
+|RegistrationForm | Eine Klasse, welche die Eingaben des Nutzers bei einer Registrierung auf ihre Richtigkeit prüft.
+|UserEditForm | Eine Klasse, welchs die Eingaben des Nutzers bei einer ´Nutzerdatenänderung auf ihre Richtigkeit prüft.
 |===
 
 
@@ -266,11 +270,11 @@ image::./diagrams/developer_docu/class_community.svg[class_community, title= "Co
 |===
 |Klasse/Enumeration |Description
 |Community| Eine Klasse, welche den Salespoint-UserAccount um eine Liste der Mitglieder (userID) erweitert.
-|CummunityController| SpringMVC Controller, welcher Anfragen für die Erstellung, Anzeige und Beitreten/Verlassen von Gemeinschaften verwaltet.
+|CommunityController| SpringMVC Controller, welcher Anfragen für die Erstellung, Anzeige und Beitreten/Verlassen von Gemeinschaften verwaltet.
 |CommunityDataInitializer| Eine Implementierung des DataInitializer um Standard-Gemeinschaften zu generieren.
 |CommunityManagement| Eine Klasse, welche für die Verwaltung der Gemeinschaften zuständig ist.
 |CommunityRepository| Ein Interface für die Speicherung von Gemeinschaften, welches Instanzen von Gemeinschaften verwaltet.
-|RegistrationForm| Ein Interface, welches die Eingaben des Nutzers bei einer Erstellung einer Gemeinschaft auf ihre Richtigkeit prüft.
+|CreateForm| Ein Interface, welches die Eingaben des Nutzers bei einer Erstellung einer Gemeinschaft auf ihre Richtigkeit prüft.
 |===
 
 
@@ -281,11 +285,14 @@ image::./diagrams/developer_docu/class_betting.svg[class_betting, title= "Bettin
 |===
 |Klasse/Enumeration |Description
 |BettingController |SpringMVC Controller, welcher mögliche Wetten anzeigt
-|BettingDataInitializer |Eine Implementierung des DataInitializer um Standard-Daten zu generieren
+|CatalogDataInitializer |Eine Implementierung des DataInitializer, um Standard-Daten zu generieren
 |BettingCatalog |Eine Erweiterung von Catalog, um bestimmte Datensätze zu erhalten
-|Bet |Eine gesetzte Wette welche durch Formulare erstellt wird
-|Category |Enumeration um Wetten einfach zu unterscheiden
-|Data |Überklasse für alle abschließbaren Wetten
+|Bet |Oberklasse für alle platzierten Wetten
+|Type |Enumeration, um Wetten schnell zu gruppieren
+|IndividualBet |Eine Klasse für alle platzierten Einzelwetten
+|CommunityBet |Eine Klasse für alle platzierten Gemeinschaftswetten
+|Data |Oberklasse für alle Daten, auf die Wetten abgeschlossen werden können
+|Category |Enumeration, um Daten einfach zu unterscheiden
 |Result |Interface für alle Ergebnisarten
 |Lottery |Eine Lotterieziehung, auf das eine Wette abgeschlossen wird
 |FootballMatch |Ein Fußballspiel, auf das eine Wette abgeschlossen wird
@@ -332,8 +339,11 @@ image::./diagrams/developer_docu/class_admin.svg[class_admin, title= "Admin", al
 |CommunityManagement a|
 - CommunityController
 - CommunityManagement |
-|Message|admin.Message |
-|Bet|betting.Bet|
+|Message|message.Message |
+|Bet a|
+- betting.Bet
+- betting.IndividualBet
+- betting.CommunityBet|
 |Lottery |betting.BettingManagement |
 |FootballPools |betting.BettingManagement |
 |LotteryBet a|
@@ -353,7 +363,9 @@ image::./diagrams/developer_docu/class_admin.svg[class_admin, title= "Admin", al
 - betting.BetController
 - community.CommunityController
 - finance.FinanceController
+- home.HomeController
 - user.UserController
+- message.MessageManagement
 - betting.BetRepository
 - betting.DataCatalog
 - community.CommunityRepository
