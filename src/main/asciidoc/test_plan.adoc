@@ -115,16 +115,18 @@ Jede testbezogene Aufgabe muss einem Ansprechpartner zugeordnet werden.
 |U-Z-AdminControllerFunctionTests-2 |testSearchExistedUserId | Testen, ob bei der Eingabe der bestehenden Benutzer-ID auf die entsprechende Webseite springen |Administrator ist mit Rolle "BOSS" |ID von Nutzer: 8 |Erfolg
 |U-Z-AdminControllerFunctionTests-3 |testSearchNotExistedCommunityName |Testen, ob bei der Eingabe einer nicht vorhandenen Gemeinschaftsname ein Webseitenfehler vorliegt |Administrator ist mit Rolle "BOSS" |Name von Gemeinschaft: testCommunity |Error
 |U-Z-AdminControllerFunctionTests-4 |testSearchExistedCommunityName | Testen, ob bei der Eingabe des bestehenden Gemeinschaftsnamen auf die entsprechende Webseite springen| Administrator ist mit Rolle "BOSS" |Name von Gemeinschaft: gruppe |Erfolg
-|U-M-LotteryTest-1 |testGetter |Testen der Attribute der Klasse  |  | |
-|I-M-LotteryControllerIntegrationTests-1 |sixGeneralNumberChooseCorrectly |Testet ob 6 allgemeinen Zahlen richtig ausgewählt sind  |  |Wähle mehr als 6 Zahlen und weniger als 6 Zahlen |Funktion wirft IllegalArgumentException
-|I-M-LotteryControllerIntegrationTests-2 |superNumberChooseCorrectly |Testet ob die Superzahl zwischen 0 und 9 liegt  |  |Superzahl ist größer als 9 |Funktion wirft IllegalArgumentException
-|U-M-FootballPoolsTest-1 |testGetter |Testen der Attribute der Klasse  |  | |
-|I-M-FootballPoolsControllerIntegrationTests-1 |scoreWithNegativeNumber |Testet ob die vorhergesagte Punktzahl negative Zahlen enthält  |  |negative Zahlen |Funktion wirft IllegalArgumentException
-|U-M-BetManagementTest-1 |testAddMatch |Füge ein neues Fußballspiel hinzu  |  | |
-|U-M-BetManagementTest-2 |testDeleteMatch |Löschen ein Fußballspiel, das zu Ende ist  |  | |
-|U-M-BetManagementTest-3 |saveFootballMatchResultTest |Speichern das Ergebnis eines beendeten Fußballspiels  |  | |
-|U-M-BetManagementTest-4 |saveLotteryResultTest |Lottoergebnisse nach der Ziehung speichern  |  | |
-|U-M-BetManagementTest-5 |saveAllFootballMatchBetAmountTest |Speichern den gesamten Wettbetrag auf Fußballspiele  |  | |
-|U-M-BetManagementTest-6 |saveAllLotteryBetAmountTest |Speichern den Betrag aller Lotteriewetten  |  | |
-|U-M-BetManagementTest-7 |ratioCalculationTest |Berechnen das Verhältnis des Wettbetrags des Benutzers  |  | |
+|U-M-BettingControllerFunctionTest-1 |testAddFootballBetNotEnoughMoney |Testen Sie, ob der Benutzer bei unzureichendem Kontostand Fußball-Lotterielose kaufen kann.  |User ist mit Rolle "ROLE_PRIVATEKUNDE"  | |Springe zurück zur Startseite und frage, ob der Kontostand nicht ausreicht
+|U-M-BettingControllerFunctionTest-2 |testUpdateFootballBet |Testen Sie, ob der Benutzer die gewettete Fußballlotterie ändern kann.  |User ist mit Rolle "ROLE_PRIVATEKUNDE"  | |Geänderte Fußballlotterieinformationen
+|U-M-BettingControllerFunctionTest-3 |testUpdateLotteryBet |Testen Sie, ob der Benutzer die gesetzte digitale Lotterie ändern kann.  |User ist mit Rolle "ROLE_PRIVATEKUNDE"  | |Geänderte digitale Lotterieinformationen
+|U-M-BettingControllerFunctionTest-4 |testUpdateFootballNotEnoughMoney |Testen Sie, ob der Benutzer die Informationen der Fußballlotterie, auf die gewettet wurde, ändern kann, wenn der Kontostand nicht ausreicht.  |User ist mit Rolle "ROLE_PRIVATEKUNDE"  | |Geänderte Fußballlotterieinformationen
+|I-M-BettingControllerIntegrationTests-1 |testToBetting |Testen Sie, ob Sie erfolgreich zur Wettseite springen können.  |User ist mit Rolle "ROLE_PRIVATEKUNDE"  | |
+|I-M-BettingControllerIntegrationTests-2 |testToNumber |Testen Sie, ob Sie erfolgreich auf die Seite des digitalen Lottoscheins springen können.  |User ist mit Rolle "ROLE_PRIVATEKUNDE"  | |
+|I-M-BettingControllerIntegrationTests-3 |testToFootball |Testen Sie, ob Sie erfolgreich zur Fußball-Lotterie-Seite springen können.  |User ist mit Rolle "ROLE_PRIVATEKUNDE"  | |
+|I-M-BettingControllerIntegrationTests-4 |testToChangeView |Testen Sie, ob Sie erfolgreich auf die Seite springen können, auf der Sie den Lottoschein ändern können.  |User ist mit Rolle "ROLE_PRIVATEKUNDE"  | |
+|U-M-BettingManagementFunctionTests-1 |testAllDate |Testen Sie, ob Sie alle Initialisierungsdaten anzeigen können.  |User ist mit Rolle "ROLE_PRIVATEKUNDE"  | |
+|U-M-BettingManagementFunctionTests-2 |testCategoryData |Testen Sie, ob es möglich ist, die Initialisierungsdaten des Fußballtyps anzuzeigen.  |User ist mit Rolle "ROLE_PRIVATEKUNDE"  | |
+|U-M-BettingManagementFunctionTests-3 |testAllBets |Testen Sie, ob Sie alle Lotteriedaten einsehen können, die gewettet wurden.  |User ist mit Rolle "ROLE_PRIVATEKUNDE"  | |
+|U-M-BettingManagementFunctionTests-4 |testUserBets |Testen Sie, ob es möglich ist, alle Lotteriedaten einzusehen, die ein einzelner Benutzer gesetzt hat.  |User ist mit Rolle "ROLE_PRIVATEKUNDE"  | |
+|U-M-BettingManagementFunctionTests-5 |testCommunityBets |Testen Sie, ob es möglich ist, alle Lotteriedaten einzusehen, die in der Community gewettet wurden.  |User ist mit Rolle "ROLE_PRIVATEKUNDE"  | |
+|U-M-BettingManagementFunctionTests-6 |testMoneyAll |Testen Sie, ob es möglich ist, alle eingesetzten Lotteriebeträge einzusehen.  |User ist mit Rolle "ROLE_PRIVATEKUNDE"  | |
 |===
