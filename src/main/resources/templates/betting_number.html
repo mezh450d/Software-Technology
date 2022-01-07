@@ -151,8 +151,8 @@
                 }
                 // superNumber
                 var superNumber = $("input[name=superNumber]").val();
-                if (superNumber > 9) {
-                    alert("Die Eingabe der Superzahl ist falsch, die Zahl muss zwischen 1 und 9 liegen!");
+                if (superNumber > 9 || superNumber == "") {
+                    alert("Die Eingabe der Superzahl ist falsch, die Zahl muss zwischen 0 und 9 liegen!");
                     return false;
                 }
                 var amount = $("input[name=amount]:checked").val();
