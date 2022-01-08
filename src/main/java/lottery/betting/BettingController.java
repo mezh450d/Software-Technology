@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.Clock;
-import java.time.Duration;
 import java.time.LocalDateTime;
 
 import static org.salespointframework.core.Currencies.EURO;
@@ -36,7 +35,6 @@ class BettingController {
 	private final CommunityManagement communityManagement;
 	private final FinanceManagement financeManagement;
 	private final MessageManagement messageManagement;
-
 
 	BettingController(BettingManagement management, CommunityManagement communityManagement,
 					  FinanceManagement financeManagement, MessageManagement messageManagement) {

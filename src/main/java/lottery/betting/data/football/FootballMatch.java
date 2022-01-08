@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Entity
 public class FootballMatch extends Data {
 
-	private String home, guest;
+	private String home, guest, shortHome, shortGuest, homeIcon, guestIcon;
 
 	protected FootballMatch() { super(); }
 
