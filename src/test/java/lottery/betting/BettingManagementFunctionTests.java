@@ -56,13 +56,13 @@ public class BettingManagementFunctionTests {
 	@Test
 	void testAllData() {
 		Streamable<Data> result = management.findAllData();
-		assertThat(result).hasSize(69);
+		assertThat(result).hasSize(645);
 	}
 
 	@Test
 	void testCategoryData() {
-		Streamable<Data> result = management.findDataByCategory(Category.FOOTBALL);
-		assertThat(result).hasSize(9);
+		Streamable<Data> result = management.findDataByCategory(Category.LOTTERY);
+		assertThat(result).hasSize(69);
 	}
 
 	@Test

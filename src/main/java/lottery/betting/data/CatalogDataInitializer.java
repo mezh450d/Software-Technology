@@ -58,7 +58,7 @@ class CatalogDataInitializer implements DataInitializer {
 			LOG.info("Creating default catalog entries.");
 
 			//create FootballMatches
-			for(FootballMatch match : parser.getNextBL1MatchDay()){
+			for(FootballMatch match : parser.getCompleteBLSeason()){
 				catalog.save(match);
 			}
 			LOG.info("Retrieved data successfully from OpenLigaDB.");
@@ -72,7 +72,7 @@ class CatalogDataInitializer implements DataInitializer {
 			LocalDateTime date = LocalDateTime.of(nextSunday.getYear(), nextSunday.getMonth(),
 					nextSunday.getDayOfMonth(), 20,0);
 
-			for(long i = 0; i < 60; i++){
+			for(long i = 0; i < 69; i++){
 				catalog.save(new LotteryEntity("Tippschein"+i, Money.of(10, EURO),
 						date.plusWeeks(i), Category.LOTTERY, "Lotto 6 aus 49"));
 			}

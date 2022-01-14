@@ -35,6 +35,30 @@ public class RestAPIParser {
 	public List<FootballMatch> getNextBL1MatchDay(){
 		return parseRestMatches(fetchMatchesFromOpenLigaDB(uriNextBL1Matchday));
 	}
+	public List<FootballMatch> getNextBL2MatchDay(){
+		return parseRestMatches(fetchMatchesFromOpenLigaDB(uriNextBL2Matchday));
+	}
+
+	public List<FootballMatch> getSpecificMatchDay(int matchDay){
+		if(1 > matchDay || matchDay > 32){
+			return null;
+		} else {
+			List<FootballMatch> completeMatchDay = new ArrayList<>();
+			completeMatchDay.addAll(parseRestMatches(fetchMatchesFromOpenLigaDB(
+					uriSingleBL1MatchIncomplete + matchDay)));
+			completeMatchDay.addAll(parseRestMatches(fetchMatchesFromOpenLigaDB(
+					uriSingleBL2MatchIncomplete + matchDay)));
+			return completeMatchDay;
+		}
+	}
+
+	public List<FootballMatch> getCompleteBLSeason(){
+		List<FootballMatch> season = new ArrayList<>();
+		for(int i = 1; i <= 32; i++){
+			season.addAll(getSpecificMatchDay(i));
+		}
+		return season;
+	}
 
 	/**
 	 * fetches data from OpenLigaDB
