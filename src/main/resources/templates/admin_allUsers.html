@@ -28,7 +28,7 @@
     <form class="ui form" role="form" th:action="@{/admin/users/getInfo}" method="get">
         <div class="field">
             <label th:text="User-ID">User-ID</label></br>
-            <input type="number" name="id"/><br/>
+            <input type="number" name="id" required/><br/>
             <div class="error">
             <p  th:if="${param.error}">Geben Sie eine korrekte ID ein. </p>
             </div>
