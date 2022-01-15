@@ -45,7 +45,7 @@
                         <label th:text="Geldbetrag">Geldbetrag</label>
                         <input class="input"  th:field="*{amount}" th:errorclass="is-invalid" required="required" min="0"/> <br/> <br/>
                         <div class="error">
-                            <p  th:if="${#fields.hasErrors('amount')}"><font color="red">╮(๑•́ ₃•̀๑)╭Der Betrag kann nicht kleiner als 0 sein.</font></p>
+                            <p  th:if="${#fields.hasErrors('amount')}"><font color="red">╮(๑•́ ₃•̀๑)╭Der Betrag kann nicht kleiner als 0 oder größer als 100,000,000 sein.</font></p>
                             <p  th:if="${param.error}"><font color="red">╮(๑•́ ₃•̀๑)╭ Der Betrag kann nicht höher sein als der Saldo.</font></p>
                         </div>
                         <label th:text="Beschreibung">Beschreibung</label>

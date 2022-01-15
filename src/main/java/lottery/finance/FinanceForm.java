@@ -1,5 +1,6 @@
 package lottery.finance;
 
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.time.Clock;
@@ -11,6 +12,7 @@ public class FinanceForm {
 
 	@NotNull(message = "amount cannot be null.")
 	@Min(value = 0)
+	@Max(value = 100000000)
 	public Double amount;
 
 	private String note;

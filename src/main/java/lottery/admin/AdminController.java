@@ -11,8 +11,11 @@ import lottery.community.Community;
 import lottery.community.CommunityManagement;
 import lottery.finance.FinanceForm;
 import lottery.finance.FinanceManagement;
+import lottery.home.message.Message;
+import lottery.home.message.MessageManagement;
 import lottery.user.User;
 import lottery.user.UserManagement;
+import org.apache.catalina.Store;
 import org.springframework.data.util.Streamable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -21,6 +24,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -32,14 +36,17 @@ public class AdminController {
 	private final FinanceManagement financeManagement;
 	private final CommunityManagement communityManagement;
 	private final BettingManagement bettingManagement;
+	private final MessageManagement messageManagement;
+
 
 	AdminController(UserManagement userManagement, FinanceManagement financeManagement,
-					CommunityManagement communityManagement, BettingManagement bettingManagement) {
+					CommunityManagement communityManagement, BettingManagement bettingManagement, MessageManagement messageManagement) {
 
 		this.bettingManagement = bettingManagement;
 		this.communityManagement = communityManagement;
 		this.financeManagement = financeManagement;
 		this.userManagement = userManagement;
+		this.messageManagement = messageManagement;
 	}
 
 	@GetMapping("/admin")
@@ -145,7 +152,12 @@ public class AdminController {
 			for (Map.Entry<String, Double> entry : payOut) {
 				financeManagement.deposit(new FinanceForm(entry.getValue(), description),
 						userManagement.findByUsername(entry.getKey()).getUserAccount());
+				Message message = new Message(userManagement.findByUsername(entry.getKey()).getUserAccount(), "Ihre Wette ist abgeschlossen",
+						"Ihr Gewinn ist :"+entry.getValue(),
+						LocalDateTime.now());
+				messageManagement.save(message);
 			}
+
 		}
 		return "redirect:/admin";
 	}
