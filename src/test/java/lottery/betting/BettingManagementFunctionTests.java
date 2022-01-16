@@ -56,7 +56,8 @@ public class BettingManagementFunctionTests {
 	@Test
 	void testAllData() {
 		Streamable<Data> result = management.findAllData();
-		assertThat(result).hasSize(645);
+		assertThat(result).hasSize(87);
+//		assertThat(result).hasSize(645);
 	}
 
 	@Test

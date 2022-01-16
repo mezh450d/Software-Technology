@@ -7,7 +7,8 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RestMatch {
 
-	private String matchDateTime;
+	private String matchDateTime, leagueShortcut;
+	private RestGroup group;
 	private RestTeam team1;
 	private RestTeam team2;
 	private boolean matchIsFinished;
@@ -22,6 +23,22 @@ public class RestMatch {
 
 	public void setMatchDateTime(String matchDateTime) {
 		this.matchDateTime = matchDateTime;
+	}
+
+	public String getLeagueShortcut() {
+		return leagueShortcut;
+	}
+
+	public void setLeagueShortcut(String leagueShortcut) {
+		this.leagueShortcut = leagueShortcut;
+	}
+
+	public RestGroup getGroup() {
+		return group;
+	}
+
+	public void setGroup(RestGroup group) {
+		this.group = group;
 	}
 
 	public RestTeam getTeam1() {

@@ -31,6 +31,7 @@ import org.springframework.web.client.RestTemplate;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static org.salespointframework.core.Currencies.EURO;
 
@@ -58,7 +59,7 @@ class CatalogDataInitializer implements DataInitializer {
 			LOG.info("Creating default catalog entries.");
 
 			//create FootballMatches
-			for(FootballMatch match : parser.getCompleteBLSeason()){
+			for(FootballMatch match : parser.getNextMatchday()){
 				catalog.save(match);
 			}
 			LOG.info("Retrieved data successfully from OpenLigaDB.");

@@ -32,30 +32,17 @@ public class RestAPIParser {
 		return parseRestMatches(fetchMatchesFromOpenLigaDB(uri));
 	}
 
-	public List<FootballMatch> getNextBL1MatchDay(){
-		return parseRestMatches(fetchMatchesFromOpenLigaDB(uriNextBL1Matchday));
-	}
-	public List<FootballMatch> getNextBL2MatchDay(){
-		return parseRestMatches(fetchMatchesFromOpenLigaDB(uriNextBL2Matchday));
-	}
-
-	public List<FootballMatch> getSpecificMatchDay(int matchDay){
-		if(1 > matchDay || matchDay > 32){
-			return null;
-		} else {
-			List<FootballMatch> completeMatchDay = new ArrayList<>();
-			completeMatchDay.addAll(parseRestMatches(fetchMatchesFromOpenLigaDB(
-					uriSingleBL1MatchIncomplete + matchDay)));
-			completeMatchDay.addAll(parseRestMatches(fetchMatchesFromOpenLigaDB(
-					uriSingleBL2MatchIncomplete + matchDay)));
-			return completeMatchDay;
-		}
+	public List<FootballMatch> getNextMatchday(){
+		List<FootballMatch> matchday = getMatches(uriNextBL1Matchday);
+		matchday.addAll(getMatches(uriNextBL2Matchday));
+		return matchday;
 	}
 
 	public List<FootballMatch> getCompleteBLSeason(){
 		List<FootballMatch> season = new ArrayList<>();
 		for(int i = 1; i <= 32; i++){
-			season.addAll(getSpecificMatchDay(i));
+			season.addAll(getMatches(uriSingleBL1MatchIncomplete + i));
+			season.addAll(getMatches(uriSingleBL2MatchIncomplete + i));
 		}
 		return season;
 	}
@@ -82,9 +69,12 @@ public class RestAPIParser {
 	public List<FootballMatch> parseRestMatches(RestMatch[] restMatches){
 		List<FootballMatch> matches = new ArrayList<>();
 		for(RestMatch match : restMatches){
+			RestTeam team1 = match.getTeam1();
+			RestTeam team2 = match.getTeam2();
 			FootballMatch parsedMatch = new FootballMatch(match.toString(), Money.of(1, EURO),
-					LocalDateTime.parse(match.getMatchDateTime()), Category.FOOTBALL,
-					match.getTeam1().getTeamName(), match.getTeam2().getTeamName());
+					LocalDateTime.parse(match.getMatchDateTime()), Category.FOOTBALL, team1.getTeamName(),
+					team2.getTeamName(), team1.getShortName(), team2.getShortName(), team1.getTeamIconUrl(),
+					team2.getTeamIconUrl(), match.getLeagueShortcut());
 			if(match.isMatchIsFinished()){
 				parsedMatch.setResult(new Score(match.getMatchResults().get(0).getPointsTeam1(),
 						match.getMatchResults().get(0).getPointsTeam2()));
