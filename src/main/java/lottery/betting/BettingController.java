@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.Clock;
-import java.time.Duration;
 import java.time.LocalDateTime;
 
 import static org.salespointframework.core.Currencies.EURO;
@@ -36,7 +35,6 @@ class BettingController {
 	private final CommunityManagement communityManagement;
 	private final FinanceManagement financeManagement;
 	private final MessageManagement messageManagement;
-
 
 	BettingController(BettingManagement management, CommunityManagement communityManagement,
 					  FinanceManagement financeManagement, MessageManagement messageManagement) {
@@ -70,6 +68,10 @@ class BettingController {
 	public String addBet(@LoggedIn UserAccount user, @RequestParam("match") FootballMatch match,
 				  @RequestParam("home_score") int homeScore, @RequestParam("guest_score") int guestScore,
 				  @RequestParam("amount") int amount, @RequestParam("dropCommunity") String community) {
+
+		if(homeScore < 0 || guestScore < 0 || amount < 1){
+			return "redirect:/home?error";
+		}
 
 		FinanceForm financeForm = new FinanceForm((double)amount, "Wettplatzierung zu "+match.toString());
 
@@ -151,6 +153,10 @@ class BettingController {
 				  @RequestParam("superNumber") int superNumber, @RequestParam("amount") String radio,
 				  @RequestParam("community") String community) {
 
+		if(superNumber < 1 || superNumber > 9){
+			return "redirect:/home";
+		}
+
 		int amount;
 		switch(radio){
 			case "single":
@@ -194,7 +200,7 @@ class BettingController {
 
 	@GetMapping("/betting/change/{bet}")
 	public String updateView(@PathVariable("bet") long betId, @RequestParam("category") Category category,
-									@RequestParam("reference") Data data, Model model) {
+							 @RequestParam("reference") Data data, Model model) {
 		model.addAttribute("betId", betId);
 		if (category == Category.LOTTERY) {
 			return "betting_updateLotteryView";
@@ -210,6 +216,10 @@ class BettingController {
 	public String setAmountOfCommunityBet(@LoggedIn UserAccount user, @RequestParam("bet") long betID,
 										  @RequestParam("amount") int newAmount) {
 
+		if(newAmount < 0){
+			return "redirect:/home";
+		}
+
 		CommunityBet bet = management.findCommunityBetById(betID);
 		double dif = newAmount - bet.getSingleAmount(user.getUsername()).getNumber().doubleValue();
 
@@ -221,6 +231,10 @@ class BettingController {
 									@RequestParam("home_score") int homeScore,
 									@RequestParam("guest_score") int guestScore, @RequestParam("amount") int newAmount){
 
+		if(homeScore < 0 || guestScore < 0 || newAmount < 1){
+			return "redirect:/home?error";
+		}
+
 		Bet bet = management.findBetById(betId);
 		bet.setValue(new Score(homeScore, guestScore));
 		double dif = newAmount - bet.getTotalBettingAmount().getNumber().doubleValue();
@@ -231,6 +245,10 @@ class BettingController {
 	@PostMapping("/betting/updateLottery")
 	public String updateLotteryBet(@RequestParam("betId") long betId, @RequestParam("numStr") String numStr,
 								   @RequestParam("superNumber") int superNumber) {
+
+		if(superNumber < 1 || superNumber > 9){
+			return "redirect:/home";
+		}
 
 		Bet bet = management.findBetById(betId);
 		bet.setValue(new SelectNumber(numStr, superNumber));

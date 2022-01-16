@@ -16,7 +16,9 @@
 package lottery.betting.data;
 
 import lottery.betting.data.football.FootballMatch;
+import lottery.betting.data.football.rest.RestAPIParser;
 import lottery.betting.data.number.LotteryEntity;
+import org.apache.tomcat.jni.Local;
 import org.javamoney.moneta.Money;
 import org.salespointframework.core.DataInitializer;
 import org.slf4j.Logger;
@@ -24,8 +26,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
+import org.springframework.web.client.RestTemplate;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static org.salespointframework.core.Currencies.EURO;
 
@@ -38,9 +44,12 @@ class CatalogDataInitializer implements DataInitializer {
 
 	private final DataCatalog catalog;
 
-	CatalogDataInitializer(DataCatalog catalog) {
+	private final RestAPIParser parser;
+
+	CatalogDataInitializer(DataCatalog catalog, RestAPIParser parser) {
 		Assert.notNull(catalog, "DataCatalog must not be null!");
 		this.catalog = catalog;
+		this.parser = parser;
 	}
 
 	@Override
@@ -49,36 +58,22 @@ class CatalogDataInitializer implements DataInitializer {
 		if (!catalog.findAll().iterator().hasNext()) {
 			LOG.info("Creating default catalog entries.");
 
-			catalog.save(new FootballMatch("FCU-RBL", Money.of(1, EURO),
-					LocalDateTime.of(2021, 12, 3, 20, 30),
-					Category.FOOTBALL, "Union Berlin", "RB Leipzig"));
-			catalog.save(new FootballMatch("Lev-Für", Money.of(1, EURO),
-					LocalDateTime.of(2021, 12, 4, 15, 30),
-					Category.FOOTBALL,"Bayer Leverkusen", "Greuther Fürth"));
-			catalog.save(new FootballMatch("Bie-Köl", Money.of(1, EURO),
-					LocalDateTime.of(2021, 12, 4, 15, 30),
-					Category.FOOTBALL,"Arminia Bielefeld", "1. FC Köln"));
-			catalog.save(new FootballMatch("M05-Wol", Money.of(1, EURO),
-					LocalDateTime.of(2021, 12, 4, 15, 30),
-					Category.FOOTBALL,"Mainz 05", "VfL Wolfsburg"));
-			catalog.save(new FootballMatch("FCA-Vfl", Money.of(1, EURO),
-					LocalDateTime.of(2021, 12, 4, 15, 30),
-					Category.FOOTBALL,"FC Augsburg", "VfL Bochum"));
-			catalog.save(new FootballMatch("TSG-SGE", Money.of(1, EURO),
-					LocalDateTime.of(2021, 12, 4, 15, 30),
-					Category.FOOTBALL,"TSG Hoffenheim", "Eintracht Frankfurt"));
-			catalog.save(new FootballMatch("BVB-FCB", Money.of(1, EURO),
-					LocalDateTime.of(2021, 12, 4, 18, 30),
-					Category.FOOTBALL,"Borussia Dortmund", "FC Bayern München"));
-			catalog.save(new FootballMatch("Stu-BSC", Money.of(1, EURO),
-					LocalDateTime.of(2021, 12, 5, 15, 30),
-					Category.FOOTBALL,"VfB Stuttgart", "Hertha BSC"));
-			catalog.save(new FootballMatch("Gla-SCF", Money.of(1, EURO),
-					LocalDateTime.of(2021, 12, 5, 17, 30),
-					Category.FOOTBALL,"Borussia Mönchengladbach", "SC Freiburg"));
+			//create FootballMatches
+			for(FootballMatch match : parser.getNextMatchday()){
+				catalog.save(match);
+			}
+			LOG.info("Retrieved data successfully from OpenLigaDB.");
 
-			LocalDateTime date = LocalDateTime.of(2021, 12, 19,20,0);
-			for(long i = 0; i < 60; i++){
+			//create LotteryEntities
+			LocalDateTime nextSunday = LocalDateTime.now();
+			while(nextSunday.getDayOfWeek() != DayOfWeek.SUNDAY){
+				nextSunday = nextSunday.plusDays(1);
+			}
+
+			LocalDateTime date = LocalDateTime.of(nextSunday.getYear(), nextSunday.getMonth(),
+					nextSunday.getDayOfMonth(), 20,0);
+
+			for(long i = 0; i < 69; i++){
 				catalog.save(new LotteryEntity("Tippschein"+i, Money.of(10, EURO),
 						date.plusWeeks(i), Category.LOTTERY, "Lotto 6 aus 49"));
 			}

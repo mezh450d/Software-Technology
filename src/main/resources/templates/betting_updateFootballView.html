@@ -15,7 +15,7 @@
   <link th:href="@{/resources/css/style_betting.css}" rel="stylesheet"/>
 
   <meta charset="UTF-8">
-  <title>Admin</title>
+  <title>Wetten</title>
 </head>
 <body>
 <nav th:include="navigation :: navigation"></nav>
@@ -24,48 +24,85 @@
   <h1>Wetten</h1>
   <div class="separating_line"></div>
 
-  <table class="table table-dark table-striped">
-    <thead>
-    <tr>
-      <th scope="col"><h4>Datum</h4></th>
-      <th scope="col"><h4>Heim</h4></th>
-      <th scope="col"><h4>Ergebnis</h4></th>
-      <th scope="col"><h4>Gast</h4></th>
-      <th scope="col">bisheriger Betrag</th>
-      <th scope="col"><h4>neuer Betrag</h4></th>
-      <th scope="col"></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <form method="post" role="form" class="ui form" id="form" th:action="@{/betting/updateFootball}">
-        <input type="hidden" name="betId" value="0" th:value="${betId}"/>
-        <th><h5 th:text="${match.date}"></h5></th>
-        <th><h5 th:text="${match.home}"></h5></th>
-        <th>
-          <div class="row">
-            <div class="col mb-2">
-              <input type="number" class="form-control" id="home_score" name="home_score" placeholder="Heim" min="0">
+  <div class="row row-cols-1 row-cols-md-3 g-4" >
+    <div class="col">
+      <div class="card text-white bg-dark">
+        <div class="card-header bg-primary" th:text="${match.date}"></div>
+        <div class="card-body">
+          <form method="post" role="form" class="ui form" id="form" th:action="@{/betting/updateFootball}">
+            <input type="hidden" name="betId" value="0" th:value="${betId}"/>
+            <input type="hidden" name="match" value="0" th:value="${match.id}"/>
+            <h5 class="card-title text-center" th:text="${match.toShortString()}">Dark card title</h5>
+            <div class="row">
+              <img class="col-2" th:src="${match.homeIcon}" style="height:3rem;width: content-box"/>
+              <div class="col-4">
+                <input type="number" class="form-control" id="home_score" name="home_score" placeholder="Heim" min="0">
+              </div>
+              <div class="col-4">
+                <input type="number" class="form-control" id="guest_score" name="guest_score" placeholder="Gast" min="0">
+              </div>
+              <img class="col-2" th:src="${match.guestIcon}" style="height:3rem;width: content-box"/>
             </div>
-            <div class="col mb-2">
-              <input type="number" class="form-control" id="guest_score" name="guest_score" placeholder="Gast" min="0">
+            <br/>
+            <label for="oldAmount">bisheriger Wettbetrag: </label>
+            <span id="oldAmount" th:text="${betAmount}"></span>
+            <br/>
+            <div class="row">
+              <div class="col-9">
+                <input type="number" class="form-control" id="amount" name="amount" placeholder="neuer Wettbetrag" min="1">
+              </div>
+              <div class="col-2">
+                <button type="submit" class="btn btn-primary mb-3"><span> Wetten!</span></button>
+              </div>
             </div>
-          </div>
-        </th>
-        <th><h5 th:text="${match.guest}"></h5></th>
-        <th><h5 th:text="${betAmount}"></h5></th>
-        <th>
-          <div class="mb-1">
-            <input type="number" class="form-control" id="amount" name="amount" placeholder="Wettbetrag" min="1">
-          </div>
-        </th>
-        <th>
-          <button type="submit" class="btn btn-primary btn-sm"><span> ändern</span></button>
-        </th>
-      </form>
-    </tr>
-    </tbody>
-  </table>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!--  <table class="table table-dark table-striped">-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--      <th scope="col"><h4>Datum</h4></th>-->
+<!--      <th scope="col"><h4>Heim</h4></th>-->
+<!--      <th scope="col"><h4>Ergebnis</h4></th>-->
+<!--      <th scope="col"><h4>Gast</h4></th>-->
+<!--      <th scope="col"><h4>bisheriger Betrag</h4></th>-->
+<!--      <th scope="col"><h4>neuer Betrag</h4></th>-->
+<!--      <th scope="col"></th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    <tr>-->
+<!--      <form method="post" role="form" class="ui form" id="form" th:action="@{/betting/updateFootball}">-->
+<!--        <input type="hidden" name="betId" value="0" th:value="${betId}"/>-->
+<!--        <th><h5 th:text="${match.date}"></h5></th>-->
+<!--        <th><h5 th:text="${match.home}"></h5></th>-->
+<!--        <th>-->
+<!--          <div class="row">-->
+<!--            <div class="col mb-2">-->
+<!--              <input type="number" class="form-control" id="home_score" name="home_score" placeholder="Heim" min="0">-->
+<!--            </div>-->
+<!--            <div class="col mb-2">-->
+<!--              <input type="number" class="form-control" id="guest_score" name="guest_score" placeholder="Gast" min="0">-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </th>-->
+<!--        <th><h5 th:text="${match.guest}"></h5></th>-->
+<!--        <th><h5 th:text="${betAmount}"></h5></th>-->
+<!--        <th>-->
+<!--          <div class="mb-1">-->
+<!--            <input type="number" class="form-control" id="amount" name="amount" placeholder="Wettbetrag" min="1">-->
+<!--          </div>-->
+<!--        </th>-->
+<!--        <th>-->
+<!--          <button type="submit" class="btn btn-primary btn-sm"><span> ändern</span></button>-->
+<!--        </th>-->
+<!--      </form>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--  </table>-->
 </section>
 
 <!-- Bootstrap Bundle with Popper -->
