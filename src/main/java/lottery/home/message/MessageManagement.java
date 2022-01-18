@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -37,7 +38,7 @@ public class MessageManagement {
 	}
 
 	public void checkTenMessages(String user){
-		if(messageCount(user) < 10){
+		if(fineMessageCount(user) < 10){
 			return;
 		} else {
 			UserAccount userAccount = userManagement.findByUsername(user).getUserAccount();
@@ -45,6 +46,12 @@ public class MessageManagement {
 				communityManagement.removeFromCommunity(community, userAccount);
 			}
 		}
+	}
+
+	public int fineMessageCount(String user){
+		Streamable<Message>allMessage = findEntriesByUser(user);
+		Streamable<Message>fineMessage=allMessage.filter(message -> "2 Euro Bußgeld".equals(message.getTopic()));
+		return (int)fineMessage.stream().count();
 	}
 
 	public int messageCount(String user){
