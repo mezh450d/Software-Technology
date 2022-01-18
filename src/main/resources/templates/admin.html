@@ -18,10 +18,7 @@
     <title>Admin</title>
 </head>
 <body>
-<nav th:include="navigation :: navigation"></nav>
-
-<section class="main_content">
-
+<section class="admin-content">
     <h1>Admin</h1>
     <div class="separating_line"></div>
 
@@ -79,6 +76,10 @@
         </div>
         <div class="col-sm-6"></div>
     </div>
+    <br/>
+    <form class="item" sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+        <button type="submit" class="btn btn-danger">Logout</button>
+    </form>
 </section>
 
 <!-- Bootstrap Bundle with Popper -->

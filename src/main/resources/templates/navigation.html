@@ -23,7 +23,7 @@
             </div><br/>
             <div>
               <a href="/edit_user">
-                <button type="button" sec:authorize="!hasRole('BOSS')" class="btn btn-secondary btn-sm position-relative">
+                <button type="button" class="btn btn-secondary btn-sm position-relative">
                   <!--                  <i class="fas fa-user"></i>-->
                   Kontobearbeitung
                 </button>
@@ -31,7 +31,7 @@
             </div><br/>
           </div>
           <form class="item" sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
-            <button type="submit" class="btn btn-secondary btn-sm">Logout</button>
+            <button type="submit" class="btn btn-danger btn-sm">Logout</button>
           </form>
         </div>
 
@@ -40,7 +40,7 @@
           <li><a href="/betting"><i class="fas fa-money-check-alt"></i>Wetten</a></li>
           <li><a href="/community"><i class="fas fa-users"></i>Gemeinschaft</a></li>
           <li><a href="/finances"><i class="fas fa-coins"></i>Finanzen</a></li>
-          <li><a href="/admin" sec:authorize="hasRole('BOSS')"><i class="fas fa-user-tie"></i>Admin</a></li>
+<!--          <li><a href="/admin" sec:authorize="hasRole('BOSS')"><i class="fas fa-user-tie"></i>Admin</a></li>-->
         </ul>
       </div>
     </div>

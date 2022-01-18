@@ -5,8 +5,10 @@ import lottery.finance.FinanceManagement;
 import lottery.home.message.Message;
 import lottery.home.message.MessageManagement;
 import lottery.user.UserManagement;
+import org.salespointframework.useraccount.Role;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
+import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,16 +33,17 @@ public class HomeController {
 	@GetMapping(path = "/home")
 	public String home(@LoggedIn UserAccount user, Model model) {
 
+		Streamable<Role> roles = user.getRoles();
+		if(roles.toList().contains(Role.of("BOSS"))){
+			return "redirect:/admin";
+		}
+
 		model.addAttribute("balance", financeManagement.getUserBalance(user));
 		model.addAttribute("bets", bettingManagement.findBetsByUser(user.getUsername()));
 		model.addAttribute("username", user.getUsername());
 		model.addAttribute("alert", messageManagement.newMessages(user.getUsername()));
-
-		if(!user.getUsername().equals("boss")) {
-			model.addAttribute("email_address", user.getEmail());
-			model.addAttribute("lottery_address",
-					userManagement.findByUserAccount(user).getLotteryAddress());
-		}
+		model.addAttribute("email_address", user.getEmail());
+		model.addAttribute("lottery_address", userManagement.findByUserAccount(user).getLotteryAddress());
 
 		return "home";
 	}

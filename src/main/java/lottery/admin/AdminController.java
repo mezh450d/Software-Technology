@@ -15,7 +15,6 @@ import lottery.home.message.Message;
 import lottery.home.message.MessageManagement;
 import lottery.user.User;
 import lottery.user.UserManagement;
-import org.apache.catalina.Store;
 import org.springframework.data.util.Streamable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -25,6 +24,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -123,6 +123,10 @@ public class AdminController {
 	String setFootball(@RequestParam("match") FootballMatch match,
 					   @RequestParam("home_score") int homeScore, @RequestParam("guest_score") int guestScore) {
 
+		if(errorFootballInput(homeScore, guestScore)){
+			return "redirect:/admin?error";
+		}
+
 		match.setResult(new Score(homeScore, guestScore));
 		return evaluateBet(bettingManagement.findBetsByDataAndEvaluate(match, false), "Wettausschüttung zu " + match);
 	}
@@ -131,6 +135,10 @@ public class AdminController {
 	@PreAuthorize("hasRole('BOSS')")
 	String setLottery(@RequestParam("lottery") LotteryEntity lottery,
 					  @RequestParam("numberStr") String numStr, @RequestParam("superNumber") int superNumber) {
+
+		if(errorLotteryInput(numStr, superNumber)){
+			return "redirect:/admin?error";
+		}
 
 		lottery.setResult(new SelectNumber(numStr, superNumber));
 		return evaluateBet(bettingManagement.findBetsByDataAndEvaluate(lottery, false), "Wettausschüttung zu " + lottery);
@@ -152,13 +160,48 @@ public class AdminController {
 			for (Map.Entry<String, Double> entry : payOut) {
 				financeManagement.deposit(new FinanceForm(entry.getValue(), description),
 						userManagement.findByUsername(entry.getKey()).getUserAccount());
-				Message message = new Message(userManagement.findByUsername(entry.getKey()).getUserAccount(), "Ihre Wette ist abgeschlossen",
-						"Ihr Gewinn ist :"+entry.getValue(),
+				Message message = new Message(userManagement.findByUsername(entry.getKey()).getUserAccount(),
+						"Ihre Wette ist abgeschlossen",
+						"Ihr Gewinn ist: "+entry.getValue()+" €",
 						LocalDateTime.now());
 				messageManagement.save(message);
 			}
 
 		}
 		return "redirect:/admin";
+	}
+
+	private static boolean errorLotteryInput(String numStr, int superNumber){
+		boolean error = false;
+		String[] numArr = numStr.split(",");
+		Set<Integer> numbers = new HashSet<>();
+		for(String s : numArr){
+			int number;
+			try {
+				number = Integer.parseInt(s);
+			} catch (NumberFormatException nfe) {
+				error = true;
+				continue;
+			}
+			if(number < 1 || number > 49){
+				error = true;
+				continue;
+			}
+			numbers.add(number);
+		}
+		if(numbers.size() != 6){
+			error = true;
+		}
+		if(superNumber < 1 || superNumber > 9){
+			error = true;
+		}
+		return error;
+	}
+
+	private static boolean errorFootballInput(int homeScore, int guestScore){
+		if(homeScore < 0 || guestScore < 0){
+			return true;
+		}
+		return homeScore > 30 || guestScore > 30;
 	}
 }
