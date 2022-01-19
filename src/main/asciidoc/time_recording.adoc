@@ -14,17 +14,32 @@
 |9  |1300  |1100    |1100    |1000    |1100    |1620    |20
 |10  |600  |600    |900    |690    |590    |600    |30
 |11  |…   |…    |…    |…    |…    |1100    |30
-|12  |…   |…    |…    |…    |…    |…    |…
+|12  |…   |…    |…    |…    |…    |…    |15
 |===
 
-//Summe der Arbeitsstunden pro Student:
-//
-//SUMME(SPALTE(DevX))
-//
-//Arbeitsstunden pro Woche pro Student:
-//
-//SUMME(SPALTE(DevX)) / 12
-//
-//Durchschnittliche Arbeitzeit aller Studenten pro Woche:
-//
+*Summe der Arbeitsstunden pro Student:*
+
+//SUMME(SPALTE(DevX)) / 60
+* Hannes: ... Stunden
+* Jing: ... Stunden
+* Shiyue: ... Stunden
+* Ziyi: ... Stunden
+* Meng: ... Stunden
+* Nick: ... Stunden
+
+
+*Arbeitsstunden pro Woche pro Student:*
+
+//SUMME(SPALTE(DevX)) / 60 / 12
+* Hannes: ... Stunden
+* Jing: ... Stunden
+* Shiyue: ... Stunden
+* Ziyi: ... Stunden
+* Meng: ... Stunden
+* Nick: ... Stunden
+
+
+*Durchschnittliche Arbeitszeit aller Studenten pro Woche:*
+
 //(SUMME(SPALTE(Dev1)) + SUMME(SPALTE(Dev2)) + SUMME(SPALTE(Dev3)) + SUMME(SPALTE(Dev4)) + SUMME(SPALTE(Dev5)) +SUMME(SPALTE(Dev6))) / 6
+* ... Stunden
