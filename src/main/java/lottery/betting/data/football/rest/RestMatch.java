@@ -8,13 +8,19 @@ import java.util.List;
 public class RestMatch {
 
 	private String matchDateTime, leagueShortcut;
-	private RestGroup group;
 	private RestTeam team1;
 	private RestTeam team2;
 	private boolean matchIsFinished;
 	private List<RestResult> matchResults;
 
-	public RestMatch() {
+	public RestMatch(String matchDateTime, String leagueShortcut, RestTeam team1, RestTeam team2,
+					 boolean matchIsFinished, List<RestResult> matchResults) {
+		this.matchDateTime = matchDateTime;
+		this.leagueShortcut = leagueShortcut;
+		this.team1 = team1;
+		this.team2 = team2;
+		this.matchIsFinished = matchIsFinished;
+		this.matchResults = matchResults;
 	}
 
 	public String getMatchDateTime() {
@@ -31,14 +37,6 @@ public class RestMatch {
 
 	public void setLeagueShortcut(String leagueShortcut) {
 		this.leagueShortcut = leagueShortcut;
-	}
-
-	public RestGroup getGroup() {
-		return group;
-	}
-
-	public void setGroup(RestGroup group) {
-		this.group = group;
 	}
 
 	public RestTeam getTeam1() {

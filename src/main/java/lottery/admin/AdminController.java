@@ -40,7 +40,8 @@ public class AdminController {
 
 
 	AdminController(UserManagement userManagement, FinanceManagement financeManagement,
-					CommunityManagement communityManagement, BettingManagement bettingManagement, MessageManagement messageManagement) {
+					CommunityManagement communityManagement, BettingManagement bettingManagement,
+					MessageManagement messageManagement) {
 
 		this.bettingManagement = bettingManagement;
 		this.communityManagement = communityManagement;

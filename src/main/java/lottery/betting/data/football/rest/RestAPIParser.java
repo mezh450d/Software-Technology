@@ -19,10 +19,10 @@ public class RestAPIParser {
 	private final WebClient webClient;
 
 	//URI
-	private static final String uriSingleBL1MatchIncomplete = "/bl1/2021/";
-	private static final String uriNextBL1Matchday = "/bl1";
-	private static final String uriSingleBL2MatchIncomplete = "/bl2/2021/";
-	private static final String uriNextBL2Matchday = "/bl2";
+	private static final String URISINGLEBL1MATCH = "/bl1/2021/";
+	private static final String URINEXTBL1MATCHDAY = "/bl1";
+	private static final String URISINGLEBL2MATCH = "/bl2/2021/";
+	private static final String URINEXTBL2MATCHDAY = "/bl2";
 
 	public RestAPIParser(WebClient.Builder builder){
 		webClient = builder.baseUrl("https://api.openligadb.de/getmatchdata").build();
@@ -33,16 +33,16 @@ public class RestAPIParser {
 	}
 
 	public List<FootballMatch> getNextMatchday(){
-		List<FootballMatch> matchday = getMatches(uriNextBL1Matchday);
-		matchday.addAll(getMatches(uriNextBL2Matchday));
+		List<FootballMatch> matchday = getMatches(URINEXTBL1MATCHDAY);
+		matchday.addAll(getMatches(URINEXTBL2MATCHDAY));
 		return matchday;
 	}
 
 	public List<FootballMatch> getCompleteBLSeason(){
 		List<FootballMatch> season = new ArrayList<>();
 		for(int i = 1; i <= 32; i++){
-			season.addAll(getMatches(uriSingleBL1MatchIncomplete + i));
-			season.addAll(getMatches(uriSingleBL2MatchIncomplete + i));
+			season.addAll(getMatches(URISINGLEBL1MATCH + i));
+			season.addAll(getMatches(URISINGLEBL2MATCH + i));
 		}
 		return season;
 	}

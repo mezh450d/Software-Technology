@@ -9,7 +9,10 @@ public class RestTeam {
 	private String shortName;
 	private String teamIconUrl;
 
-	public RestTeam() {
+	public RestTeam(String teamName, String shortName, String teamIconUrl) {
+		this.teamName = teamName;
+		this.shortName = shortName;
+		this.teamIconUrl = teamIconUrl;
 	}
 
 	public String getTeamName() {
