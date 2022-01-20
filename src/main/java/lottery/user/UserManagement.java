@@ -1,5 +1,6 @@
 package lottery.user;
 
+import lottery.partner.PartnerCodeForm;
 import org.salespointframework.useraccount.Password.UnencryptedPassword;
 import org.salespointframework.useraccount.Role;
 import org.salespointframework.useraccount.UserAccount;
@@ -43,7 +44,16 @@ public class UserManagement {
 
 		var lotteryAddress = form.getLotteryAddress();
 
-		return users.save(new User(userAccount, lotteryAddress));
+		String partnerName = "";
+		if(!form.getPartnerCode().equals("")) {
+			var partner = findByPartnerCode(form.getPartnerCode());
+
+			if (partner != null) {
+				partnerName = partner.getUserAccount().getUsername();
+			}
+		}
+
+		return users.save(new User(userAccount, lotteryAddress, partnerName));
 	}
 
 	public User editUser(UserAccount user, UserEditForm form) {
@@ -62,6 +72,14 @@ public class UserManagement {
 		return findByUserAccount(user);
 	}
 
+	public User createPartnerCode(UserAccount user, PartnerCodeForm form){
+		String code = form.getNewPartnerCode();
+
+		findByUserAccount(user).setPartnerCode(code);
+
+		return findByUserAccount(user);
+	}
+
 
 	public User findByUserId(long id){
 		Optional<User> user = users.findById(id);
@@ -75,6 +93,11 @@ public class UserManagement {
 
 	public User findByUsername(String name){
 		Optional<User> user = users.findByUsername(name);
+		return user.orElse(null);
+	}
+
+	public User findByPartnerCode(String code){
+		Optional<User> user = users.findByPartnerCode(code);
 		return user.orElse(null);
 	}
 

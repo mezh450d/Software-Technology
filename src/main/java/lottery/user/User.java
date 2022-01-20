@@ -16,12 +16,21 @@ public class User {
 
 	private String lotteryAddress;
 
+	private String partnerName;
+
+	private String partnerCode;
+
+	private boolean hasFreeBet;
+
 	@SuppressWarnings("unused")
 	public User(){}
 
-	public User(UserAccount userAccount, String lotteryAddress) {
+	public User(UserAccount userAccount, String lotteryAddress, String partnerName) {
 		this.userAccount = userAccount;
 		this.lotteryAddress = lotteryAddress;
+		this.partnerName = partnerName;
+		this.partnerCode = "";
+		this.hasFreeBet = false;
 	}
 
 	public long getId() {
@@ -32,6 +41,22 @@ public class User {
 
 	public UserAccount getUserAccount() {
 		return userAccount;
+	}
+
+	public String getPartnerName() {
+		return partnerName;
+	}
+
+	public String getPartnerCode() {
+		return partnerCode;
+	}
+
+	public boolean hasFreeBet() {
+		return hasFreeBet;
+	}
+
+	public void setPartnerCode(String code) {
+		partnerCode = code;
 	}
 
 	public void setLotteryAddress(String lottery_address){

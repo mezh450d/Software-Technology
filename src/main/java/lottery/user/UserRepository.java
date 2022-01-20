@@ -18,6 +18,9 @@ public interface UserRepository extends CrudRepository<User, Long> {
 	@Query("SELECT u FROM User u WHERE u.userAccount.userAccountIdentifier.id = ?1")
 	Optional<User> findByUsername(String userName);
 
+	@Query("SELECT u FROM User u WHERE u.partnerCode = ?1")
+	Optional<User> findByPartnerCode(String partnerCode);
+
 	@Override
 	Streamable<User> findAll();
 }

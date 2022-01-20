@@ -21,13 +21,16 @@ public class RegistrationForm {
 	@NotEmpty(message = "{RegistrationForm.password.NotEmpty}")
 	private final String password;
 
+	private final String partnerCode;
 
-	public RegistrationForm(String name, String emailAddress, String lotteryAddress, String password) {
+
+	public RegistrationForm(String name, String emailAddress, String lotteryAddress, String password, String partnerCode) {
 
 		this.name = name;
 		this.emailAddress = emailAddress;
 		this.lotteryAddress = lotteryAddress;
 		this.password = password;
+		this.partnerCode = partnerCode;
 	}
 
 	public String getName() {
@@ -44,6 +47,10 @@ public class RegistrationForm {
 
 	public String getPassword() {
 		return password;
+	}
+
+	public String getPartnerCode() {
+		return partnerCode;
 	}
 
 }

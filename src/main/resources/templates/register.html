@@ -55,6 +55,15 @@
                 </div>
             </div>
 
+            <div class="field">
+                <p>Partner-Code</p>
+                <input id="partnerCode" th:field="*{partnerCode}" th:errorclass="fieldError" type="text"
+                        name="partnerCode" placeholder="Partnder-Code eingeben">
+                <div class="ui negative message" th:if="${#fields.hasErrors('password')}">
+                    <p>Der eingegebene Code ist keinem Nutzer zugeorndet. Bitte den Code korrigieren oder das Feld freilassen.</p><br>
+                </div>
+            </div>
+
             <input type="submit" class="ui button" name="" value="Registrieren">
             <a  href="register.html" th:href="@{/login}">Sie haben schon ein Konto?</a><br>
         </form>
