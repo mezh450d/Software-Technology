@@ -42,6 +42,7 @@ public class UserController {
 
 		//Falls der angegebene Nutzername schon vorhanden ist, keinen User erstellen
 		String username = form.getName();
+		String email = form.getEmailAddress();
 
 		Streamable<User> users = userManagement.findAll();
 
@@ -58,6 +59,13 @@ public class UserController {
 				res.addError(error);
 				return "register";
 			}
+
+			if(user.getUserAccount().getEmail().equals(email)){
+				ObjectError error = new ObjectError("globalError", "Diese Emailadresse ist schon vergeben.");
+				res.addError(error);
+				return "register";
+			}
+
 			if(user.getPartnerCode().equals(form.getPartnerCode())){
 				validPartnerCode = true;
 			}
@@ -75,16 +83,33 @@ public class UserController {
 		return "redirect:/login";
 	}
 
-	@PostMapping("/edit-user")
-	String editCurrentUser(@Valid @ModelAttribute("form") UserEditForm form, Errors errors, Model model,
+	@PostMapping("/edit_user")
+	String editCurrentUser(@Valid @ModelAttribute("form") UserEditForm form, Errors errors,BindingResult res, Model model,
 						   @RequestParam(value = "action") String action, @LoggedIn UserAccount user) {
 
 
 		if(form.getFirstName().contains(" ") || form.getLastName().contains(" ")){
-			return "redirect:/edit-user";
+			return editUser(user, model, form);
 		}
 
-		//Falls das Formular Fehler enthält, keinen User erstellen
+		String email = form.getEmailAddress();
+		boolean changedEmail = !user.getEmail().equals(email);
+
+		Streamable<User> users = userManagement.findAll();
+
+		if(changedEmail){
+			for(User otherUser : users) {
+				if (otherUser.getUserAccount().getEmail().equals(email)) {
+					ObjectError error = new ObjectError("globalError", "Diese Emailadresse ist schon vergeben.");
+					res.addError(error);
+					return editUser(user, model, form);
+				}
+			}
+		}
+
+
+
+		//Falls das Formular Fehler enthält, keinen User bearbeiten
 		if (errors.hasErrors()) {
 			return editUser(user, model, form);
 		}
