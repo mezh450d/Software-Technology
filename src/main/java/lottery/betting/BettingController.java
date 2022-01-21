@@ -55,7 +55,11 @@ class BettingController {
 	@GetMapping("/betting/number")
 	public String number(@LoggedIn UserAccount user, Model model) {
 		model.addAttribute("personalCommunities", communityManagement.findPersonalCommunities(user));
-		model.addAttribute("hasFreeBet", userManagement.findByUserAccount(user).hasFreeBet());
+		try{
+			model.addAttribute("hasFreeBet", userManagement.findByUserAccount(user).hasFreeBet());
+		} catch (Exception e){
+			model.addAttribute("hasFreeBet", false);
+		}
 
 		return "betting_number";
 	}
