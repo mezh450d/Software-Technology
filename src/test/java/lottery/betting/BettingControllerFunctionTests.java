@@ -72,7 +72,7 @@ public class BettingControllerFunctionTests {
 	@Test
 	void testAddFootballBetNotEnoughMoney() {
 		String viewHome = bettingController.addBet(user.getUserAccount(), match2, 2, 1, 40, "");
-		assertThat(viewHome).isEqualTo("redirect:/home?error");
+		assertThat(viewHome).isEqualTo("redirect:/betting/football?error");
 	}
 
 	@Test
