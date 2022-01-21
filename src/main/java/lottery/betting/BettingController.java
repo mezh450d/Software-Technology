@@ -74,7 +74,7 @@ class BettingController {
 				  @RequestParam("amount") int amount, @RequestParam("dropCommunity") String community) {
 
 		if(homeScore < 0 || guestScore < 0 || amount < 1){
-			return "redirect:/home?error";
+			return "redirect:/betting/football?error";
 		}
 
 		FinanceForm financeForm = new FinanceForm((double)amount, "Wettplatzierung zu "+match.toString());
@@ -90,7 +90,7 @@ class BettingController {
 				messageManagement.save(message);
 				FinanceForm form = new FinanceForm(2.0, "Mahnung: " + match);
 				financeManagement.withdraw(form, user);
-				return "redirect:/home?error";
+				return "redirect:/betting/football?error";
 			}
 		} else {
 			if(financeManagement.withdraw(financeForm, user)){
@@ -103,7 +103,7 @@ class BettingController {
 				messageManagement.save(message);
 				FinanceForm form = new FinanceForm(2.0, "Mahnung: " + match);
 				financeManagement.withdraw(form, user);
-				return "redirect:/home?error";
+				return "redirect:/betting/football?error";
 			}
 		}
 
@@ -125,7 +125,7 @@ class BettingController {
 			messageManagement.save(message);
 			FinanceForm form = new FinanceForm(2.0, "Mahnung: für Lotto 6 aus 49 ("+amount+"x)");
 			financeManagement.withdraw(form, user);
-			return "redirect:/home?error";
+			return "redirect:/betting/lottery?error";
 		}
 		return "redirect:/home";
 	}
@@ -158,7 +158,7 @@ class BettingController {
 				  @RequestParam("community") String community) {
 
 		if(superNumber < 1 || superNumber > 9){
-			return "redirect:/home";
+			return "redirect:/betting/number?error";
 		}
 
 		int amount;
@@ -242,7 +242,7 @@ class BettingController {
 									@RequestParam("guest_score") int guestScore, @RequestParam("amount") int newAmount){
 
 		if(homeScore < 0 || guestScore < 0 || newAmount < 1){
-			return "redirect:/home?error";
+			return "redirect:/betting/updateFootball?error";
 		}
 
 		Bet bet = management.findBetById(betId);
@@ -257,7 +257,7 @@ class BettingController {
 								   @RequestParam("superNumber") int superNumber) {
 
 		if(superNumber < 1 || superNumber > 9){
-			return "redirect:/home";
+			return "redirect:/betting/updateLottery?error";
 		}
 
 		Bet bet = management.findBetById(betId);

@@ -74,9 +74,11 @@ public class CommunityController {
 	public String createNew(@Valid CreateForm form, @LoggedIn UserAccount user, Errors result) {
 
 		//Übergebene Daten werden auf Richtigkeit überprüft
+		if(form.getName().contains(" ") || form.getPassword().contains(" ") || result.hasErrors()){
+			return "redirect:/community/create?error";
+		}
 
-
-		//Falls der angegebene Communityname schon vorhanden ist, keinen Community erstellen
+		//Falls der angegebene Community-Name schon vorhanden ist, keine Community erstellen
 		String communityName = form.getName();
 
 		Streamable<Community> communities = management.findAll();
@@ -85,10 +87,6 @@ public class CommunityController {
 			if(community.getName().equals(communityName)){
 				return "redirect:/community/create?error";
 			}
-		}
-
-		if (result.hasErrors()) {
-			return "community_create";
 		}
 
 		management.createCommunity(form);
@@ -108,7 +106,7 @@ public class CommunityController {
 	public String join(@Valid CreateForm form, @LoggedIn UserAccount user, BindingResult res,Errors result){
 
 		if(result.hasErrors()){
-			return "community_join";
+			return "community_join?error";
 		}
 
 		Community community= management.findCommunityByForm(form);

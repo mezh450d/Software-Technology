@@ -1,4 +1,4 @@
-package lottery.partner;
+package lottery.user.partner;
 
 import javax.validation.constraints.NotEmpty;
 

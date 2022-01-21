@@ -35,7 +35,7 @@
             <form method="post" role="form"  class="ui form" id="form" th:action="@{/community/create}" th:object="${createForm}">
                 <div class="error">
                     <p class="error" th:if="${param.error}">
-                        Gemeinschaft mit diesem Name existiert breits!
+                        Dieser Gemeinschaftsname ist bereits vorhanden / nicht erlaubt!
                     </p>
                 </div>
 

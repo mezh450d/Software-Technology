@@ -49,13 +49,13 @@ public class SelectNumber implements Result<SelectNumber> {
 				compared = 2;
 				break;
 			case 4:
-				compared = 12;
+				compared = 8;
 				break;
 			case 5:
-				compared = 400;
+				compared = 300;
 				break;
 			case 6:
-				compared = 50000;
+				compared = 10000;
 				break;
 			default:
 				compared = 0;
@@ -73,10 +73,10 @@ public class SelectNumber implements Result<SelectNumber> {
 				compared = 4;
 				break;
 			case 5:
-				compared = 150;
+				compared = 120;
 				break;
 			case 6:
-				compared = 1500;
+				compared = 800;
 				break;
 			default:
 				compared = 0;

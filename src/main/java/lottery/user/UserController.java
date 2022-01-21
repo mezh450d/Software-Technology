@@ -2,6 +2,7 @@ package lottery.user;
 
 import  javax.validation.Valid;
 
+import lottery.user.partner.PartnerCodeForm;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
 import org.springframework.data.util.Streamable;
@@ -34,7 +35,9 @@ public class UserController {
 	String registerNew(@Valid RegistrationForm form, BindingResult res, Errors result, Model model) {
 
 		//Übergebene Daten werden auf Richtigkeit überprüft
-
+		if(form.getName().contains(" ") || form.getPartnerCode().contains(" ")){
+			return "redirect:/register?error";
+		}
 
 		//Falls der angegebene Nutzername schon vorhanden ist, keinen User erstellen
 		String username = form.getName();
@@ -75,14 +78,18 @@ public class UserController {
 		return "redirect:/login";
 	}
 
-	@PostMapping("/edit_user")
+	@PostMapping("/edit-user")
 	String editCurrentUser(@Valid @ModelAttribute("form") UserEditForm form, Errors errors, Model model,
 						   @RequestParam(value = "action") String action, @LoggedIn UserAccount user) {
 
 
+		if(form.getFirstName().contains(" ") || form.getFirstName().contains(" ")){
+			return "redirect:/edit-user";
+		}
+
 		//Falls das Formular Fehler enthält, keinen User erstellen
 		if (errors.hasErrors()) {
-			return edit_user(user, model, form);
+			return editUser(user, model, form);
 		}
 
 		userManagement.editUser(user, form);
@@ -105,8 +112,8 @@ public class UserController {
 		return "login";
 	}
 
-	@GetMapping("/edit_user")
-	public String edit_user(@LoggedIn UserAccount user, Model model, UserEditForm form) {
+	@GetMapping("/edit-user")
+	public String editUser(@LoggedIn UserAccount user, Model model, UserEditForm form) {
 
 		model.addAttribute("firstName", user.getFirstname());
 		model.addAttribute("lastName", user.getLastname());
@@ -116,5 +123,52 @@ public class UserController {
 		return "edit_user";
 	}
 
+	@GetMapping(path = "/partner")
+	public String partner(@LoggedIn UserAccount user, Model model, PartnerCodeForm form) {
+
+		model.addAttribute("partnerCode", userManagement.findByUserAccount(user).getPartnerCode());
+		//model.addAttribute("partners", userManagement.findByUserAccount(user).getPartners());
+		User partner = userManagement.findByUsername(userManagement.findByUserAccount(user).getPartnerName());
+		String partnerName = "";
+		if(partner != null) {
+			partnerName = partner.getUserAccount().getUsername();
+		}
+
+		model.addAttribute("partner", partnerName);
+		model.addAttribute("hasPartnerCode", !userManagement.findByUserAccount(user).getPartnerCode().equals(""));
+		model.addAttribute("newPartnerCode", "");
+		model.addAttribute("form", form);
+
+		return "partner";
+	}
+
+	@PostMapping("/partner")
+	String createPartnerCode(@Valid @ModelAttribute("form") PartnerCodeForm form, Errors errors, Model model,
+							 @RequestParam(value = "action") String action, BindingResult res, @LoggedIn UserAccount user) {
+
+		if(form.getNewPartnerCode().contains(" ")){
+			return "redirect:/partner?error";
+		}
+
+		String code = form.getNewPartnerCode();
+
+		Streamable<User> users = userManagement.findAll();
+
+		for(User u : users){
+			if(u.getPartnerCode().equals(code)){
+				ObjectError error = new ObjectError("globalError", "Dieser Code ist schon vergeben.");
+				res.addError(error);
+				model.addAttribute("hasPartnerCode", false);
+				return "partner";
+			}
+		}
+
+		if (errors.hasErrors()) {
+			return "partner";
+		}
+
+		userManagement.createPartnerCode(user, form);
+		return "redirect:/home";
+	}
 
 }

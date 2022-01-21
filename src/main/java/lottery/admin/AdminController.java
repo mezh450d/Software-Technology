@@ -15,6 +15,7 @@ import lottery.home.message.Message;
 import lottery.home.message.MessageManagement;
 import lottery.user.User;
 import lottery.user.UserManagement;
+import org.javamoney.moneta.Money;
 import org.springframework.data.util.Streamable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import static org.salespointframework.core.Currencies.EURO;
 
 @Controller
 public class AdminController {
@@ -125,7 +128,7 @@ public class AdminController {
 					   @RequestParam("home_score") int homeScore, @RequestParam("guest_score") int guestScore) {
 
 		if(errorFootballInput(homeScore, guestScore)){
-			return "redirect:/admin?error";
+			return "redirect:/admin/evaluateBets?error";
 		}
 
 		match.setResult(new Score(homeScore, guestScore));
@@ -138,7 +141,7 @@ public class AdminController {
 					  @RequestParam("numberStr") String numStr, @RequestParam("superNumber") int superNumber) {
 
 		if(errorLotteryInput(numStr, superNumber)){
-			return "redirect:/admin?error";
+			return "redirect:/admin/evaluateBets?error";
 		}
 
 		lottery.setResult(new SelectNumber(numStr, superNumber));
@@ -163,13 +166,31 @@ public class AdminController {
 						userManagement.findByUsername(entry.getKey()).getUserAccount());
 				Message message = new Message(userManagement.findByUsername(entry.getKey()).getUserAccount(),
 						"Ihre Wette ist abgeschlossen",
-						"Ihr Gewinn ist: "+entry.getValue()+" €",
+						"Ihr Gewinn ist: "+ Money.of(entry.getValue(), EURO),
 						LocalDateTime.now());
 				messageManagement.save(message);
+				evaluatePartnerProgram(entry.getKey(), entry.getValue() * 0.01);
 			}
-
 		}
 		return "redirect:/admin";
+	}
+
+	private void evaluatePartnerProgram(String username, Double payOut){
+		User user = userManagement.findByUsername(username);
+		String partner;
+		if(user.getPartnerName().equals("")){
+			return;
+		} else {
+			partner = user.getPartnerName();
+		}
+
+		financeManagement.deposit(new FinanceForm(payOut, "Partnerprogrammbonus durch "+username),
+				userManagement.findByUsername(partner).getUserAccount());
+		Message message = new Message(userManagement.findByUsername(partner).getUserAccount(),
+				"Eine Partnerwette ist abgeschlossen",
+				"Ihr Gewinn ist: "+ Money.of(payOut, EURO),
+				LocalDateTime.now());
+		messageManagement.save(message);
 	}
 
 	private static boolean errorLotteryInput(String numStr, int superNumber){
