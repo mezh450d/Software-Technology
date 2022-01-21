@@ -24,9 +24,7 @@
 <section class="main_content">
   <h1>Lotto 6 aus 49</h1>
   <div class="separating_line"></div>
-
-  <div class="row">
-    <div class="col-6">
+  <div class="lottery-container">
       <div class="box" style="">
         <div class="box-item" style="">1</div>
         <div class="box-item" style="">2</div>
@@ -77,10 +75,8 @@
         <div class="box-item" style="">47</div>
         <div class="box-item" style="">48</div>
         <div class="box-item" style="">49</div>
-      </div>
     </div>
-    <div class="col-6">
-      <div id="form_container">
+      <div id="form-container">
         <div class="box-input-div"><span>Superzahl:</span><input type="number" name="superNumber" min="1" max="9" step="1"></div>
         <div class="box-input-div">
           <div class="form-check">
@@ -127,8 +123,6 @@
           <button class="btn btn-success mb-3" id="wetten-button">Wetten!</button>
         </div>
       </div>
-    </div>
-  </div>
   <script>
         $(function () {
             $(".box").on("click", ".box-item", function () {
@@ -175,6 +169,7 @@
             })
         })
     </script>
+  </div>
 </section>
 
 <!-- Bootstrap Bundle with Popper -->

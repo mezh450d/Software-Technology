@@ -21,44 +21,54 @@
 <nav th:include="navigation :: navigation"></nav>
 
 <section class="main_content">
-    <h1>Wetten</h1>
-    <div class="separating_line"></div>
-
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="card text-white bg-dark">
-                <div class="card-body">
-                    <h4 class="card-title">Lotterie 6 aus 49</h4>
-                    <p class="card-text">Hier können Sie den Jackpot in Höhe von 500.000€ gewinnen!</p>
-                    <a href="/betting/number" class="btn btn-primary">Wettschein</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="card text-white bg-dark">
-                <div class="card-body">
-                    <h4 class="card-title">Fußball</h4>
-                    <p class="card-text">Beweisen Sie Ihre Fußballkenntnisse und wetten Sie auf die deutsche Bundesliga!</p>
-                    <a href="/betting/football" class="btn btn-primary">Angebot</a>
-                </div>
-            </div>
-        </div>
+    <div class="main-head">
+        <h1>WETTEN</h1>
     </div>
-    <br/>
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="card text-white bg-dark">
-                <div class="card-body">
-                    <h4 class="card-title">Änderungen</h4>
-                    <p class="card-text">Hier können Sie die Eingabedaten Ihrer platzierten Wetten verändern!</p>
-                    <a href="/betting/change" class="btn btn-primary">ändern</a>
-                </div>
+
+    <div class="card-container">
+        <div class="hover-card" id="card-lottery">
+            <div class="card-image">
+
+            </div>
+            <div class="card-content">
+                <h3>Lotterie 6 aus 49</h3>
+                <p>Versuchen Sie Ihr Glück und gewinnen Sie den Jackpot in Höhe von 500.000€!
+                </p>
+            </div>
+            <div class="card-footer">
+                <a href="/betting/number" class="btn btn-primary">Wettschein</a>
+            </div>
+        </div>
+
+        <div class="hover-card" id="card-football">
+            <div class="card-image">
+
+            </div>
+            <div class="card-content">
+                <h3>Fußballtoto</h3>
+                <p>Beweisen Sie Ihre Fußballkenntnisse und wetten Sie auf die deutsche Bundesliga!
+                </p>
+            </div>
+            <div class="card-footer">
+                <a href="/betting/football" class="btn btn-primary">Wettschein</a>
+            </div>
+        </div>
+
+        <div class="hover-card" id="card-change">
+            <div class="card-image">
+
+            </div>
+            <div class="card-content">
+                <h3>Änderungen</h3>
+                <p>Hier können Sie die Eingabedaten Ihrer platzierten Wetten verändern!
+                </p>
+            </div>
+            <div class="card-footer">
+                <a href="/betting/change" class="btn btn-primary">Wettschein</a>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Bootstrap Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>

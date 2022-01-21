@@ -20,53 +20,55 @@
 
 <body>
 <nav th:include="navigation :: navigation"></nav>
-<section class="main_content">
+<section class="main-content">
     <h1>Kontodaten ändern</h1>
     <h3></h3>
-    <div class="login_box">
-        <div class="head">
-            <h1>Konto bearbeiten</h1>
-        </div>
-        <div class="content">
-            <form method="post" role="form" class="ui form" id="form" th:action="@{/edit-user}" th:object="${form}">
+    <div class="content">
+        <div class="login-box">
+            <div class="head">
+                <h1>Konto bearbeiten</h1>
+            </div>
+            <div class="login-content">
+                <form method="post" role="form" class="ui form" id="form" th:action="@{/edit_user}" th:object="${form}">
 
-                <div class="ui negative message" th:if="${#fields.hasErrors('*')}">
-                    <p>Einige Angaben sind nicht korrekt.</p><br>
-                </div>
-
-                <div class="field">
-                    <p>Vorname</p>
-                    <input id="firstName" th:value="${firstName}" th:errorclass="fieldError" type="text"
-                           required="required" name="firstName" placeholder="Vornamen eingeben">
-                </div>
-
-                <div class="field">
-                    <p>Nachname</p>
-                    <input id="lastName" th:value="${lastName}" th:errorclass="fieldError" type="text"
-                           required="required" name="lastName" placeholder="Nachnamen eingeben">
-                </div>
-
-                <div class="field">
-                    <p>E-Mail Adresse</p>
-                    <input id="emailAddress" th:value="${emailAddress}" th:errorclass="fieldError" type="text" required="required" name="emailAddress" placeholder="E-Mail Adresse eingeben"/>
-                    <div class="error">
-                        <p th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}">Das Passwort darf
-                            nicht leer sein.</p>
+                    <div class="ui negative message" th:if="${#fields.hasErrors('*')}">
+                        <p>Einige Angaben sind nicht korrekt.</p><br>
                     </div>
-                </div>
 
-                <div class="field">
-                    <p>Lotteriebank-Adresse</p>
-                    <input id="lotteryAddress" th:value="${lotteryAddress}" th:errorclass="fieldError" type="text" required="required" name="lotteryAddress" placeholder="Lotteriebank-Adresse eingeben"/>
-                    <div class="error">
-                        <p th:if="${#fields.hasErrors('lotteryAddress')}" th:errors="*{lotteryAddress}">Das Passwort darf
-                            nicht leer sein.</p>
+                    <div class="input-field">
+                        <p>Vorname</p>
+                        <input id="firstName" th:value="${firstName}" th:errorclass="fieldError" type="text"
+                               required="required" name="firstName" placeholder="Vornamen eingeben">
                     </div>
-                </div>
 
-                <input type="submit" class="ui button" name="action" value="Änderungen speichern">
-                <a  href="home.html" th:href="@{/home}">Sie möchten Ihre Daten nicht ändern?</a><br>
-            </form>
+                    <div class="input-field">
+                        <p>Nachname</p>
+                        <input id="lastName" th:value="${lastName}" th:errorclass="fieldError" type="text"
+                               required="required" name="lastName" placeholder="Nachnamen eingeben">
+                    </div>
+
+                    <div class="input-field">
+                        <p>E-Mail Adresse</p>
+                        <input id="emailAddress" th:value="${emailAddress}" th:errorclass="fieldError" type="text" required="required" name="emailAddress" placeholder="E-Mail Adresse eingeben"/>
+                        <div class="error">
+                            <p th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}">Das Passwort darf
+                                nicht leer sein.</p>
+                        </div>
+                    </div>
+
+                    <div class="input-field">
+                        <p>Lotteriebank-Adresse</p>
+                        <input id="lotteryAddress" th:value="${lotteryAddress}" th:errorclass="fieldError" type="text" required="required" name="lotteryAddress" placeholder="Lotteriebank-Adresse eingeben"/>
+                        <div class="error">
+                            <p th:if="${#fields.hasErrors('lotteryAddress')}" th:errors="*{lotteryAddress}">Das Passwort darf
+                                nicht leer sein.</p>
+                        </div>
+                    </div>
+
+                    <input type="submit" class="ui button" name="action" value="Änderungen speichern">
+                    <a  href="home.html" th:href="@{/home}">Sie möchten Ihre Daten nicht ändern?</a><br>
+                </form>
+            </div>
         </div>
     </div>
 </section>
