@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -22,6 +23,7 @@ public class FinanceController {
 	}
 
 	@GetMapping(path = "/finances")
+	@PreAuthorize("hasRole('USER')")
 	String finances(@LoggedIn UserAccount user, Model model, FinanceForm form) {
 
 		model.addAttribute("entries", management.findEntriesByUser(user));

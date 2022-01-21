@@ -9,6 +9,7 @@ import org.salespointframework.useraccount.Role;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
 import org.springframework.data.util.Streamable;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +32,7 @@ public class HomeController {
 	}
 
 	@GetMapping(path = "/home")
+	@PreAuthorize("hasRole('USER')")
 	public String home(@LoggedIn UserAccount user, Model model) {
 
 		Streamable<Role> roles = user.getRoles();
@@ -49,6 +51,7 @@ public class HomeController {
 	}
 
 	@GetMapping(path = "/message")
+	@PreAuthorize("hasRole('USER')")
 	public String message(@LoggedIn UserAccount user, Model model ) {
 
 		model.addAttribute("alert", messageManagement.newMessages(user.getUsername()));

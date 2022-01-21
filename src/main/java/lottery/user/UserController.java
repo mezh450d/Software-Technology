@@ -6,6 +6,7 @@ import lottery.user.partner.PartnerCodeForm;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
 import org.springframework.data.util.Streamable;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
@@ -35,7 +36,7 @@ public class UserController {
 	String registerNew(@Valid RegistrationForm form, BindingResult res, Errors result, Model model) {
 
 		//Übergebene Daten werden auf Richtigkeit überprüft
-		if(form.getName().contains(" ") || form.getPartnerCode().contains(" ")){
+		if(form.getName().contains(" ") || form.getPartnerCode().contains(" ") || result.hasErrors()){
 			return "redirect:/register?error";
 		}
 
@@ -63,13 +64,9 @@ public class UserController {
 		}
 
 		if(!validPartnerCode){
-			FieldError error = new FieldError("partnerCode","partnerCode", "Der Partner-Code ist nicht gültig. Bitte korrigieren oder das Feld leerlassen.");
+			FieldError error = new FieldError("partnerCode","partnerCode",
+					"Der Partner-Code ist nicht gültig. Bitte korrigieren oder das Feld leerlassen.");
 			res.addError(error);
-			return "register";
-		}
-
-		//Falls das Formular Fehler enthält, keinen User erstellen
-		if (result.hasErrors()) {
 			return "register";
 		}
 
@@ -83,7 +80,7 @@ public class UserController {
 						   @RequestParam(value = "action") String action, @LoggedIn UserAccount user) {
 
 
-		if(form.getFirstName().contains(" ") || form.getFirstName().contains(" ")){
+		if(form.getFirstName().contains(" ") || form.getLastName().contains(" ")){
 			return "redirect:/edit-user";
 		}
 
@@ -113,6 +110,7 @@ public class UserController {
 	}
 
 	@GetMapping("/edit-user")
+	@PreAuthorize("hasRole('USER')")
 	public String editUser(@LoggedIn UserAccount user, Model model, UserEditForm form) {
 
 		model.addAttribute("firstName", user.getFirstname());
@@ -124,6 +122,7 @@ public class UserController {
 	}
 
 	@GetMapping(path = "/partner")
+	@PreAuthorize("hasRole('USER')")
 	public String partner(@LoggedIn UserAccount user, Model model, PartnerCodeForm form) {
 
 		model.addAttribute("partnerCode", userManagement.findByUserAccount(user).getPartnerCode());
@@ -146,7 +145,7 @@ public class UserController {
 	String createPartnerCode(@Valid @ModelAttribute("form") PartnerCodeForm form, Errors errors, Model model,
 							 @RequestParam(value = "action") String action, BindingResult res, @LoggedIn UserAccount user) {
 
-		if(form.getNewPartnerCode().contains(" ")){
+		if(form.getNewPartnerCode().contains(" ") || errors.hasErrors()){
 			return "redirect:/partner?error";
 		}
 
@@ -161,10 +160,6 @@ public class UserController {
 				model.addAttribute("hasPartnerCode", false);
 				return "partner";
 			}
-		}
-
-		if (errors.hasErrors()) {
-			return "partner";
 		}
 
 		userManagement.createPartnerCode(user, form);

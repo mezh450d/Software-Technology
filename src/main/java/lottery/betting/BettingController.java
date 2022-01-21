@@ -17,6 +17,7 @@ import lottery.user.UserManagement;
 import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,11 +49,13 @@ class BettingController {
 	}
 
 	@GetMapping("/betting")
+	@PreAuthorize("hasRole('USER')")
 	public String betting() {
 		return "betting";
 	}
 
 	@GetMapping("/betting/number")
+	@PreAuthorize("hasRole('USER')")
 	public String number(@LoggedIn UserAccount user, Model model) {
 		model.addAttribute("personalCommunities", communityManagement.findPersonalCommunities(user));
 		try{
@@ -65,6 +68,7 @@ class BettingController {
 	}
 
 	@GetMapping("/betting/football")
+	@PreAuthorize("hasRole('USER')")
 	public String football(@LoggedIn UserAccount user, Model model) {
 		model.addAttribute("matches", management.findDataByCategory(Category.FOOTBALL));
 		model.addAttribute("personalCommunities", communityManagement.findPersonalCommunities(user));
@@ -206,6 +210,7 @@ class BettingController {
 	}
 
 	@GetMapping("/betting/change")
+	@PreAuthorize("hasRole('USER')")
 	public String changeList(@LoggedIn UserAccount userAccount, Model model) {
 		model.addAttribute("betList", management.findBetsByUser(userAccount.getUsername()));
 
@@ -213,6 +218,7 @@ class BettingController {
 	}
 
 	@GetMapping("/betting/change/{bet}")
+	@PreAuthorize("hasRole('USER')")
 	public String updateView(@PathVariable("bet") long betId, @RequestParam("category") Category category,
 							 @RequestParam("reference") Data data, Model model) {
 		model.addAttribute("betId", betId);

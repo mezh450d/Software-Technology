@@ -39,6 +39,7 @@ public class CommunityController {
 	}
 
 	@GetMapping("/community")
+	@PreAuthorize("hasRole('USER')")
 	public String community(@LoggedIn UserAccount user, Model model) {
 
 		model.addAttribute("personalCommunities", management.findPersonalCommunities(user));
@@ -48,6 +49,7 @@ public class CommunityController {
 	}
 
 	@GetMapping("/community/{communityName}")
+	@PreAuthorize("hasRole('USER')")
 	public String info(@PathVariable("communityName") String communityName, @LoggedIn UserAccount user, Model model) {
 
 		Community community = management.findCommunityByName(communityName);
@@ -66,6 +68,7 @@ public class CommunityController {
 	}
 
 	@GetMapping("/community/create")
+	@PreAuthorize("hasRole('USER')")
 	public String create(Model model, CreateForm form) {
 		return "community_create";
 	}
@@ -97,6 +100,7 @@ public class CommunityController {
 	}
 
 	@GetMapping("/community/join")
+	@PreAuthorize("hasRole('USER')")
 	public String join(Model model, CreateForm form, String communityName) {
 		model.addAttribute("communityName", communityName);
 		return "community_join";
@@ -119,14 +123,5 @@ public class CommunityController {
 		management.joinCommunity(community, user);
 
 		return "redirect:/community";
-	}
-
-	@GetMapping("/communities")
-	@PreAuthorize("hasRole('BOSS')")
-	public String communities(Model model) {
-
-		model.addAttribute("communityList", management.findAll());
-
-		return "communities";
 	}
 }
