@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -46,12 +47,22 @@ public class UserController {
 			return "register";
 		}
 
+		boolean validPartnerCode = false;
 		for(User user : users){
 			if(user.getUserAccount().getUsername().equals(username)){
 				ObjectError error = new ObjectError("globalError", "Dieser Nutzername ist schon vergeben.");
 				res.addError(error);
 				return "register";
 			}
+			if(user.getPartnerCode().equals(form.getPartnerCode())){
+				validPartnerCode = true;
+			}
+		}
+
+		if(!validPartnerCode){
+			FieldError error = new FieldError("partnerCode","partnerCode", "Der Partner-Code ist nicht gültig. Bitte korrigieren oder das Feld leerlassen.");
+			res.addError(error);
+			return "register";
 		}
 
 		//Falls das Formular Fehler enthält, keinen User erstellen

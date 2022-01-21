@@ -25,12 +25,12 @@ public class User {
 	@SuppressWarnings("unused")
 	public User(){}
 
-	public User(UserAccount userAccount, String lotteryAddress, String partnerName) {
+	public User(UserAccount userAccount, String lotteryAddress, String partnerName, boolean hasFreeBet) {
 		this.userAccount = userAccount;
 		this.lotteryAddress = lotteryAddress;
 		this.partnerName = partnerName;
 		this.partnerCode = "";
-		this.hasFreeBet = false;
+		this.hasFreeBet = hasFreeBet;
 	}
 
 	public long getId() {
@@ -53,6 +53,10 @@ public class User {
 
 	public boolean hasFreeBet() {
 		return hasFreeBet;
+	}
+
+	public void setFreeBet(boolean freeBet) {
+		hasFreeBet = freeBet;
 	}
 
 	public void setPartnerCode(String code) {

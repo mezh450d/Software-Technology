@@ -13,6 +13,7 @@ import lottery.finance.FinanceForm;
 import lottery.finance.FinanceManagement;
 import lottery.home.message.Message;
 import lottery.home.message.MessageManagement;
+import lottery.user.UserManagement;
 import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
@@ -33,13 +34,15 @@ class BettingController {
 
 	private final BettingManagement management;
 	private final CommunityManagement communityManagement;
+	private final UserManagement userManagement;
 	private final FinanceManagement financeManagement;
 	private final MessageManagement messageManagement;
 
 	BettingController(BettingManagement management, CommunityManagement communityManagement,
-					  FinanceManagement financeManagement, MessageManagement messageManagement) {
+					  UserManagement userManagement, FinanceManagement financeManagement, MessageManagement messageManagement) {
 		this.management = management;
 		this.communityManagement = communityManagement;
+		this.userManagement = userManagement;
 		this.financeManagement = financeManagement;
 		this.messageManagement = messageManagement;
 	}
@@ -52,6 +55,7 @@ class BettingController {
 	@GetMapping("/betting/number")
 	public String number(@LoggedIn UserAccount user, Model model) {
 		model.addAttribute("personalCommunities", communityManagement.findPersonalCommunities(user));
+		model.addAttribute("hasFreeBet", userManagement.findByUserAccount(user).hasFreeBet());
 
 		return "betting_number";
 	}
@@ -158,6 +162,7 @@ class BettingController {
 		}
 
 		int amount;
+		boolean bonusBet = false;
 		switch(radio){
 			case "single":
 				amount = 1;
@@ -171,11 +176,16 @@ class BettingController {
 			case "year":
 				amount = management.getLotteryAmountForDuration(LocalDateTime.now(Clock.systemUTC()).plusYears(1));
 				break;
+			case "bonus":
+				amount = 1;
+				bonusBet = true;
+				userManagement.findByUserAccount(user).setFreeBet(false);
+				break;
 			default:
 				return "redirect:/home";
 		}
 
-		int realAmount = 10 * amount;
+		int realAmount = bonusBet ? 0 : 10 * amount;
 
 		FinanceForm financeForm = new FinanceForm((double)realAmount,
 				"Wettplatzierung für Lotto 6 aus 49 ("+amount+"x)");

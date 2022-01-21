@@ -44,16 +44,19 @@ public class UserManagement {
 
 		var lotteryAddress = form.getLotteryAddress();
 
+
 		String partnerName = "";
+		boolean hasFreeBet = false;
 		if(!form.getPartnerCode().equals("")) {
 			var partner = findByPartnerCode(form.getPartnerCode());
 
 			if (partner != null) {
 				partnerName = partner.getUserAccount().getUsername();
+				hasFreeBet = true;
 			}
 		}
 
-		return users.save(new User(userAccount, lotteryAddress, partnerName));
+		return users.save(new User(userAccount, lotteryAddress, partnerName, hasFreeBet));
 	}
 
 	public User editUser(UserAccount user, UserEditForm form) {

@@ -22,8 +22,8 @@
             <div class="field">
                 <p>Nutzername</p>
                 <input id="name" th:field="*{name}" th:errorclass="fieldError" type="text" required="required" name="name" placeholder="Nutzernamen eingeben"/>
-                <div class="error" th:if="${#fields.hasErrors('global')}"><p>Dieser Nutzername ist bereits vergeben.</p></div>
-                <div class="ui negative message" th:if="${#fields.hasErrors('name')}">
+                <div class="error" th:if="${#fields.hasErrors('name')}"><p>Dieser Nutzername ist bereits vergeben.</p></div>
+                <div class="ui negative message" th:if="${#fields.hasErrors('global')}">
                     <p>Dieses Feld darf nicht leer sein.</p><br>
                 </div>
             </div>
@@ -59,7 +59,7 @@
                 <p>Partner-Code</p>
                 <input id="partnerCode" th:field="*{partnerCode}" th:errorclass="fieldError" type="text"
                         name="partnerCode" placeholder="Partnder-Code eingeben">
-                <div class="ui negative message" th:if="${#fields.hasErrors('password')}">
+                <div class="ui negative message" th:if="${#fields.hasErrors('partnerCode')}">
                     <p>Der eingegebene Code ist keinem Nutzer zugeorndet. Bitte den Code korrigieren oder das Feld freilassen.</p><br>
                 </div>
             </div>
