@@ -14,4 +14,4 @@ import org.springframework.transaction.annotation.Transactional;
 @TestInstance(Lifecycle.PER_CLASS)
 @SpringBootTest
 @Transactional
-public abstract class AbstractIntegrationTests {}
+public abstract class AbstractIntegrationTest {}

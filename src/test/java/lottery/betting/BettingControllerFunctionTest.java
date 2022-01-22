@@ -34,7 +34,7 @@ import static org.salespointframework.core.Currencies.EURO;
 
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class BettingControllerFunctionTests {
+public class BettingControllerFunctionTest {
 
 	@Resource
 	BettingController bettingController;

@@ -20,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class HomeControllerFunctionTests {
+class HomeControllerFunctionTest {
 	@Resource
 	HomeController homeController;
 

@@ -33,7 +33,7 @@ import static org.salespointframework.core.Currencies.EURO;
 
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class BettingManagementFunctionTests {
+public class BettingManagementFunctionTest {
 
 	@Autowired
 	BettingManagement management;

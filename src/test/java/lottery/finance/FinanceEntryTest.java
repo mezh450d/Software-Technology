@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class FinanceEntryTests {
+class FinanceEntryTest {
 
 	@Autowired
 	UserManagement userManagement;

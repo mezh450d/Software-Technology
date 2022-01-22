@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class MessageManagementTests {
+class MessageManagementTest {
 	@Resource
 	MessageManagement messageManagement;
 

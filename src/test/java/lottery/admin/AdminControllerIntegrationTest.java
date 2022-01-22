@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class AdminControllerIntegrationTests {
+public class AdminControllerIntegrationTest {
 
 	@Resource
 	private AdminController adminController;

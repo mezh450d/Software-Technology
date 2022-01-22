@@ -25,7 +25,7 @@ import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.UserAccountManagement;
 
 
-class UserManagementUnitTests {
+class UserManagementUnitTest {
 
 	@Test // #93
 	void createsUserAccountWhenCreatingAUser() {

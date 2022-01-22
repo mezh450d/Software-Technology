@@ -24,7 +24,7 @@ import static org.salespointframework.core.Currencies.EURO;
 
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class CommunityManagementFunctionTests {
+public class CommunityManagementFunctionTest {
 
 	@Autowired
 	CommunityManagement communityManagement;

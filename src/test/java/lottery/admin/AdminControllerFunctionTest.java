@@ -22,7 +22,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ComponentScan(basePackages = {"lottery.community.CommunityManagement", "lottery.user.UserManagement"})
-public class AdminControllerFunctionTests {
+public class AdminControllerFunctionTest {
 
 	@Resource
 	private AdminController adminController;

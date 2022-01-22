@@ -5,6 +5,7 @@ import org.junit.jupiter.api.TestInstance;
 import org.mockito.Mock;
 import org.salespointframework.useraccount.UserAccount;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
 
@@ -14,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class CommunityControllerIntegrationTests {
+public class CommunityControllerIntegrationTest {
 
 	@Resource
 	private CommunityController communityController;
@@ -23,6 +24,7 @@ public class CommunityControllerIntegrationTests {
 	UserAccount user;
 
 	@Test
+	@WithMockUser(username="user")
 	void testToCommunity() {
 		Model model = new ExtendedModelMap();
 		String viewHome = communityController.community(user, model);
@@ -30,6 +32,7 @@ public class CommunityControllerIntegrationTests {
 	}
 
 	@Test
+	@WithMockUser(username="user")
 	void testToCommunityInfo() {
 		Model model = new ExtendedModelMap();
 		String viewHome = communityController.info("gruppe", user, model);
@@ -37,6 +40,7 @@ public class CommunityControllerIntegrationTests {
 	}
 
 	@Test
+	@WithMockUser(username="user")
 	void testToCommunityCreate() {
 		Model model = new ExtendedModelMap();
 		String viewHome = communityController.create(model,new CreateForm("",""));
@@ -44,6 +48,7 @@ public class CommunityControllerIntegrationTests {
 	}
 
 	@Test
+	@WithMockUser(username="user")
 	void testToCommunityJoin() {
 		Model model = new ExtendedModelMap();
 		String viewHome = communityController.join(model,new CreateForm("",""),"gruppe");

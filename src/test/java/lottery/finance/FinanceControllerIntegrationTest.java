@@ -21,7 +21,7 @@ import org.springframework.ui.Model;
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(MockitoExtension.class)
-class FinanceControllerIntegrationTests {
+class FinanceControllerIntegrationTest {
 
 	@Mock
 	UserAccount user;

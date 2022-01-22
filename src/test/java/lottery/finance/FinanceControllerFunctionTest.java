@@ -19,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class FinanceControllerFunctionTests {
+class FinanceControllerFunctionTest {
 	@Resource
 	FinanceController financeController;
 
