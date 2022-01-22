@@ -16,38 +16,43 @@
     <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="74.8232" y="49.9766">lottery.betting</text>
   </g>
   <g>
-    <rect style="fill: #ffcd99" x="973.79" y="634.674" width="456.6" height="28"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="973.79" y="634.674" width="456.6" height="28"/>
-    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="1202.09" y="653.674">BettingController</text>
-    <rect style="fill: #ffcd99" x="973.79" y="662.674" width="456.6" height="292"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="973.79" y="662.674" width="456.6" height="292"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.79" y="676.674">+BettingController(management:BettingManagement)</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.79" y="692.674">+betting(): String</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.79" y="708.674">+number(user:UserAccount,model:Model): String</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.79" y="724.674">+football(user:UserAccount,model:Model): String</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.79" y="740.674">+addBet(user:UserAccount,match:FootballMatch,</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.79" y="756.674">        homeScore:int,guestScore:int,amount:int): String</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.79" y="772.674">+addBet(user:UserAccount,lottery:LotteryEntity,</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.79" y="788.674">        numStr:String,superNumber:int,amount:int): String</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.79" y="804.674">+changeList(user:UserAccount,model:Model): String</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.79" y="820.674">+updateView(betId:long,category:Category,</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.79" y="836.674">            data:Data,model:Model): String</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.79" y="852.674">+setAmountOfCommunityBet(user:UserAccount,</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.79" y="868.674">                         betId:long,newAmount:int): String</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.79" y="884.674">+updateFootballBet(user:UserAccount,betId:long,</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.79" y="900.674">                   homeScore:int,guestScore:int,</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.79" y="916.674">                   newAmount:int): String</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.79" y="932.674">+updateLotteryBet(betId:long,numStr:String,</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.79" y="948.674">                  superNumber:int): String</text>
+    <rect style="fill: #ffcd99" x="973.79" y="634.674" width="464.3" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="973.79" y="634.674" width="464.3" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="1205.94" y="653.674">BettingController</text>
+    <rect style="fill: #ffcd99" x="973.79" y="662.674" width="464.3" height="356"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="973.79" y="662.674" width="464.3" height="356"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.79" y="676.674">+BettingController(management:BettingManagement,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.79" y="692.674">                   communityManagement:CommunityManagement,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.79" y="708.674">                   financeManagement:FinanceManagement,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.79" y="724.674">                   messageManagement:MessageManagement,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.79" y="740.674">                   userManagement:UserManagement)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.79" y="756.674">+betting(): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.79" y="772.674">+number(user:UserAccount,model:Model): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.79" y="788.674">+football(user:UserAccount,model:Model): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.79" y="804.674">+addBet(user:UserAccount,match:FootballMatch,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.79" y="820.674">        homeScore:int,guestScore:int,amount:int): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.79" y="836.674">+addBet(user:UserAccount,lottery:LotteryEntity,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.79" y="852.674">        numStr:String,superNumber:int,amount:int): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.79" y="868.674">+changeList(user:UserAccount,model:Model): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.79" y="884.674">+updateView(betId:long,category:Category,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.79" y="900.674">            data:Data,model:Model): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.79" y="916.674">+setAmountOfCommunityBet(user:UserAccount,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.79" y="932.674">                         betId:long,newAmount:int): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.79" y="948.674">+updateFootballBet(user:UserAccount,betId:long,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.79" y="964.674">                   homeScore:int,guestScore:int,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.79" y="980.674">                   newAmount:int): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.79" y="996.674">+updateLotteryBet(betId:long,numStr:String,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="976.79" y="1012.67">                  superNumber:int): String</text>
   </g>
   <g>
-    <rect style="fill: #ffcd99" x="1080.18" y="1050.62" width="364.2" height="28"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1080.18" y="1050.62" width="364.2" height="28"/>
-    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="1262.28" y="1069.62">CatalogDataInitializer</text>
-    <rect style="fill: #ffcd99" x="1080.18" y="1078.62" width="364.2" height="36"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1080.18" y="1078.62" width="364.2" height="36"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1083.18" y="1092.62">+CatalogDataInitializer(betCatalog:BetCatalog)</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1083.18" y="1108.62">+initialize(): void</text>
+    <rect style="fill: #ffcd99" x="965.625" y="1042.13" width="356.5" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="965.625" y="1042.13" width="356.5" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="1143.87" y="1061.13">CatalogDataInitializer</text>
+    <rect style="fill: #ffcd99" x="965.625" y="1070.13" width="356.5" height="52"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="965.625" y="1070.13" width="356.5" height="52"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="968.625" y="1084.13">+CatalogDataInitializer(catalog:DataCatalog,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="968.625" y="1100.13">                        parser:RestAPIParser)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="968.625" y="1116.13">+initialize(): void</text>
   </g>
   <g>
     <rect style="fill: #add8e6" x="80.4018" y="1246.02" width="331.152" height="206.968"/>
@@ -57,11 +62,11 @@
     <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="82.4018" y="1241.02">Salespoint</text>
   </g>
   <g>
-    <rect style="fill: #add8e6" x="1613.52" y="535.42" width="496.113" height="452.716"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1613.52" y="535.42" width="496.113" height="452.716"/>
-    <rect style="fill: #add8e6" x="1613.52" y="515.42" width="50.2" height="20"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1613.52" y="515.42" width="50.2" height="20"/>
-    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1615.52" y="530.42">number</text>
+    <rect style="fill: #add8e6" x="1595.13" y="816.848" width="496.113" height="393.13"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1595.13" y="816.848" width="496.113" height="393.13"/>
+    <rect style="fill: #add8e6" x="1595.13" y="796.848" width="50.2" height="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1595.13" y="796.848" width="50.2" height="20"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1597.13" y="811.848">number</text>
   </g>
   <g>
     <rect style="fill: #ffcd99" x="102.879" y="86.5548" width="525.9" height="28"/>
@@ -89,11 +94,11 @@
     <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:oblique;font-weight:normal" x="105.879" y="372.555">+payOut(): Map&lt;String, Double&gt;</text>
   </g>
   <g>
-    <rect style="fill: #add8e6" x="1614.96" y="63.0306" width="493.252" height="437.098"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1614.96" y="63.0306" width="493.252" height="437.098"/>
-    <rect style="fill: #add8e6" x="1614.96" y="43.0306" width="65.6" height="20"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1614.96" y="43.0306" width="65.6" height="20"/>
-    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1616.96" y="58.0306">football</text>
+    <rect style="fill: #add8e6" x="1599.41" y="83.5573" width="493.252" height="679.883"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1599.41" y="83.5573" width="493.252" height="679.883"/>
+    <rect style="fill: #add8e6" x="1599.41" y="63.5573" width="65.6" height="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1599.41" y="63.5573" width="65.6" height="20"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1601.41" y="78.5573">football</text>
   </g>
   <g>
     <rect style="fill: #ffcd99" x="113.773" y="1374.01" width="80.65" height="28"/>
@@ -128,55 +133,71 @@
     <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:oblique;font-weight:normal" x="1072.95" y="434.374">+toString(): String</text>
   </g>
   <g>
-    <rect style="fill: #ffcd99" x="1639.89" y="85.7874" width="441.2" height="28"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1639.89" y="85.7874" width="441.2" height="28"/>
-    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="1860.49" y="104.787">FootballMatch</text>
-    <rect style="fill: #ffcd99" x="1639.89" y="113.787" width="441.2" height="36"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1639.89" y="113.787" width="441.2" height="36"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1642.89" y="127.787">-home: String</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1642.89" y="143.787">-guest: String</text>
-    <rect style="fill: #ffcd99" x="1639.89" y="149.787" width="441.2" height="100"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1639.89" y="149.787" width="441.2" height="100"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1642.89" y="163.787">+FootballMatch(id:String,price:Money,date:LocalDateTime,</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1642.89" y="179.787">               category:Category,home:String,</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1642.89" y="195.787">               guest:String)</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1642.89" y="211.787">+getHome(): String</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1642.89" y="227.787">+getGuest(): String</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1642.89" y="243.787">+toString(): String</text>
+    <rect style="fill: #ffcd99" x="1617.26" y="101.344" width="456.6" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1617.26" y="101.344" width="456.6" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="1845.56" y="120.344">FootballMatch</text>
+    <rect style="fill: #ffcd99" x="1617.26" y="129.344" width="456.6" height="116"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1617.26" y="129.344" width="456.6" height="116"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1620.26" y="143.344">-home: String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1620.26" y="159.344">-guest: String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1620.26" y="175.344">-shortHome: String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1620.26" y="191.344">-shortGuest: String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1620.26" y="207.344">-homeIcon: String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1620.26" y="223.344">-guestIcon: String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1620.26" y="239.344">-league: String</text>
+    <rect style="fill: #ffcd99" x="1617.26" y="245.344" width="456.6" height="276"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1617.26" y="245.344" width="456.6" height="276"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1620.26" y="259.344">+FootballMatch(name:String,price:Money,date:LocalDateTime,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1620.26" y="275.344">               category:Category,home:String,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1620.26" y="291.344">               guest:String)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1620.26" y="307.344">+FootballMatch(name:String,price:Money,date:LocalDateTime,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1620.26" y="323.344">               category:Category,home:String,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1620.26" y="339.344">               guest:String,shortName:String,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1620.26" y="355.344">               shortGuest:String,homeIcon:String,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1620.26" y="371.344">               guestIcon:String,league:String)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1620.26" y="387.344">+getHome(): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1620.26" y="403.344">+getGuest(): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1620.26" y="419.344">+getShortHome(): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1620.26" y="435.344">+getShortGuest(): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1620.26" y="451.344">+getHomeIcon(): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1620.26" y="467.344">+getGuestIcon(): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1620.26" y="483.344">+getLeague(): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1620.26" y="499.344">+toString(): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1620.26" y="515.344">+toShortString(): String</text>
   </g>
   <g>
-    <rect style="fill: #ffcd99" x="1639.03" y="300.748" width="210.2" height="28"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1639.03" y="300.748" width="210.2" height="28"/>
-    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="1744.13" y="319.748">Score</text>
-    <rect style="fill: #ffcd99" x="1639.03" y="328.748" width="210.2" height="52"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1639.03" y="328.748" width="210.2" height="52"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1642.03" y="342.748">-home: int</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1642.03" y="358.748">-guest: int</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1642.03" y="374.748">-difference: int</text>
-    <rect style="fill: #ffcd99" x="1639.03" y="380.748" width="210.2" height="100"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1639.03" y="380.748" width="210.2" height="100"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1642.03" y="394.748">+Score(home:int,guest:int)</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1642.03" y="410.748">+getHome(): int</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1642.03" y="426.748">+getGuest(): int</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1642.03" y="442.748">+getDifference(): int</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1642.03" y="458.748">+compareTo(o:Score): int</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1642.03" y="474.748">+toString(): String</text>
-    <rect style="fill: #ffcd99" x="1803.23" y="286.748" width="61.9" height="20"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 6; stroke: #000000" x="1803.23" y="286.748" width="61.9" height="20"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1809.23" y="300.748">T:Score</text>
+    <rect style="fill: #ffcd99" x="1617.82" y="551.064" width="210.2" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1617.82" y="551.064" width="210.2" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="1722.92" y="570.064">Score</text>
+    <rect style="fill: #ffcd99" x="1617.82" y="579.064" width="210.2" height="52"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1617.82" y="579.064" width="210.2" height="52"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1620.82" y="593.064">-home: int</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1620.82" y="609.064">-guest: int</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1620.82" y="625.064">-difference: int</text>
+    <rect style="fill: #ffcd99" x="1617.82" y="631.064" width="210.2" height="100"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1617.82" y="631.064" width="210.2" height="100"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1620.82" y="645.064">+Score(home:int,guest:int)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1620.82" y="661.064">+getHome(): int</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1620.82" y="677.064">+getGuest(): int</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1620.82" y="693.064">+getDifference(): int</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1620.82" y="709.064">+compareTo(o:Score): int</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1620.82" y="725.064">+toString(): String</text>
+    <rect style="fill: #ffcd99" x="1782.02" y="537.064" width="61.9" height="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 6; stroke: #000000" x="1782.02" y="537.064" width="61.9" height="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1788.02" y="551.064">T:Score</text>
   </g>
   <g>
-    <rect style="fill: #ffcd99" x="1636.32" y="557.134" width="441.2" height="28"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1636.32" y="557.134" width="441.2" height="28"/>
-    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="1856.92" y="576.134">LotteryEntity</text>
-    <rect style="fill: #ffcd99" x="1636.32" y="585.134" width="441.2" height="20"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1636.32" y="585.134" width="441.2" height="20"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1639.32" y="599.134">-lotteryName: String</text>
-    <rect style="fill: #ffcd99" x="1636.32" y="605.134" width="441.2" height="52"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1636.32" y="605.134" width="441.2" height="52"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1639.32" y="619.134">+LotteryEntity(id:String,price:Money,date:LocalDateTime,</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1639.32" y="635.134">               category:Category,lotteryName:String)</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1639.32" y="651.134">+toString(): String</text>
+    <rect style="fill: #ffcd99" x="1617.93" y="838.562" width="441.2" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1617.93" y="838.562" width="441.2" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="1838.53" y="857.562">LotteryEntity</text>
+    <rect style="fill: #ffcd99" x="1617.93" y="866.562" width="441.2" height="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1617.93" y="866.562" width="441.2" height="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1620.93" y="880.562">-lotteryName: String</text>
+    <rect style="fill: #ffcd99" x="1617.93" y="886.562" width="441.2" height="52"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1617.93" y="886.562" width="441.2" height="52"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1620.93" y="900.562">+LotteryEntity(id:String,price:Money,date:LocalDateTime,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1620.93" y="916.562">               category:Category,lotteryName:String)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1620.93" y="932.562">+toString(): String</text>
   </g>
   <g>
     <rect style="fill: #90ee90" x="1292.11" y="77.3354" width="164" height="44"/>
@@ -192,33 +213,33 @@
     <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1416.11" y="77.3354">T:Result</text>
   </g>
   <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 8; stroke: #000000" points="1474.34,131.335 1560.08,131.335 1560.08,390.748 1638.03,390.748 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 8; stroke: #000000" points="1474.34,131.335 1560.08,131.335 1560.08,641.064 1616.83,641.064 "/>
     <polygon style="fill: #ffffff" points="1474.34,123.335 1458.34,131.335 1474.34,139.335 "/>
     <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1474.34,123.335 1458.34,131.335 1474.34,139.335 "/>
   </g>
   <g>
-    <rect style="fill: #ffcd99" x="1634.9" y="707.31" width="379.6" height="28"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1634.9" y="707.31" width="379.6" height="28"/>
-    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="1824.7" y="726.31">SelectNumber</text>
-    <rect style="fill: #ffcd99" x="1634.9" y="735.31" width="379.6" height="36"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1634.9" y="735.31" width="379.6" height="36"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1637.9" y="749.31">-numStr: String</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1637.9" y="765.31">-superNumber: int</text>
-    <rect style="fill: #ffcd99" x="1634.9" y="771.31" width="379.6" height="116"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1634.9" y="771.31" width="379.6" height="116"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1637.9" y="785.31">+getNumStr(): String</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1637.9" y="801.31">+getSuperNumber(): int</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1637.9" y="817.31">-countEquals(otherNumStr:String): int</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1637.9" y="833.31">-lotteryReturnWithSuperNumber(count:int): int</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1637.9" y="849.31">-lotteryReturnWithoutSuperNumber(count:int): int</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1637.9" y="865.31">+compareTo(o:SelectNumber): int</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1637.9" y="881.31">+toString(): String</text>
-    <rect style="fill: #ffcd99" x="1968.5" y="693.31" width="115.8" height="20"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 6; stroke: #000000" x="1968.5" y="693.31" width="115.8" height="20"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1974.5" y="707.31">T:SelectNumber</text>
+    <rect style="fill: #ffcd99" x="1616.52" y="988.738" width="379.6" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1616.52" y="988.738" width="379.6" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="1806.32" y="1007.74">SelectNumber</text>
+    <rect style="fill: #ffcd99" x="1616.52" y="1016.74" width="379.6" height="36"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1616.52" y="1016.74" width="379.6" height="36"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1619.52" y="1030.74">-numStr: String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1619.52" y="1046.74">-superNumber: int</text>
+    <rect style="fill: #ffcd99" x="1616.52" y="1052.74" width="379.6" height="116"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1616.52" y="1052.74" width="379.6" height="116"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1619.52" y="1066.74">+getNumStr(): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1619.52" y="1082.74">+getSuperNumber(): int</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1619.52" y="1098.74">-countEquals(otherNumStr:String): int</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1619.52" y="1114.74">-lotteryReturnWithSuperNumber(count:int): int</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1619.52" y="1130.74">-lotteryReturnWithoutSuperNumber(count:int): int</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1619.52" y="1146.74">+compareTo(o:SelectNumber): int</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1619.52" y="1162.74">+toString(): String</text>
+    <rect style="fill: #ffcd99" x="1950.12" y="974.738" width="115.8" height="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 6; stroke: #000000" x="1950.12" y="974.738" width="115.8" height="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1956.12" y="988.738">T:SelectNumber</text>
   </g>
   <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 8; stroke: #000000" points="1474.34,131.335 1560.08,131.335 1560.08,797.31 1633.91,797.31 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 8; stroke: #000000" points="1474.34,131.335 1560.08,131.335 1560.08,1078.74 1615.57,1078.74 "/>
     <polygon style="fill: #ffffff" points="1474.34,123.335 1458.34,131.335 1474.34,139.335 "/>
     <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1474.34,123.335 1458.34,131.335 1474.34,139.335 "/>
   </g>
@@ -258,11 +279,11 @@
     <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="235.434" y="1057.77">ID:Long</text>
   </g>
   <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1054,1082.62 861.291,1082.62 861.291,1082.52 657.412,1082.52 "/>
-    <polygon style="fill: #ffffff" points="1079.17,1082.62 1065.17,1087.42 1051.17,1082.62 1065.17,1077.82 "/>
-    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1079.17,1082.62 1065.17,1087.42 1051.17,1082.62 1065.17,1077.82 "/>
-    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="863.291" y="1079.57"></text>
-    <text font-size="12.7998" style="fill: #000000;text-anchor:end;font-family:monospace;font-style:normal;font-weight:normal" x="1047.17" y="1079.62"></text>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="939.448,1082.13 804.016,1082.13 804.016,1082.52 657.412,1082.52 "/>
+    <polygon style="fill: #ffffff" points="964.619,1082.13 950.619,1086.93 936.619,1082.13 950.619,1077.33 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="964.619,1082.13 950.619,1086.93 936.619,1082.13 950.619,1077.33 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="806.016" y="1079.32"></text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:end;font-family:monospace;font-style:normal;font-weight:normal" x="932.619" y="1079.13"></text>
     <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="661.412" y="1079.52"> -data</text>
     <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="661.412" y="1095.52">1</text>
   </g>
@@ -276,12 +297,12 @@
     <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="305.694" y="1374.93">T:Product</text>
   </g>
   <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 8; stroke: #000000" points="628.779,172.555 795.98,172.555 795.98,302.374 1063.24,302.374 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 8; stroke: #000000" points="628.78,172.555 795.98,172.555 795.98,302.374 1063.24,302.374 "/>
     <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1050.59,307.374 1066.59,302.374 1050.59,297.374 "/>
     <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="797.98" y="234.464">&lt;&lt;use&gt;&gt;</text>
   </g>
   <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 8; stroke: #000000" points="628.779,172.555 795.98,172.555 795.98,117.335 1284.4,117.335 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 8; stroke: #000000" points="628.78,172.555 795.98,172.555 795.98,117.335 1284.4,117.335 "/>
     <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1271.75,122.335 1287.75,117.335 1271.75,112.335 "/>
     <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="797.98" y="141.945">&lt;&lt;use&gt;&gt;</text>
   </g>
@@ -291,7 +312,7 @@
     <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="924.185" y="1360.79">Sort</text>
   </g>
   <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 8; stroke: #000000" points="738.733,916.74 924.186,916.74 924.186,1335.08 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 8; stroke: #000000" points="738.732,916.74 924.186,916.74 924.186,1335.08 "/>
     <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="919.186,1322.44 924.186,1338.44 929.186,1322.44 "/>
     <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="831.459" y="913.74">&lt;&lt;use&gt;&gt;</text>
   </g>
@@ -308,12 +329,12 @@
     <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="183.016" y="1316.84">DataInitializer</text>
   </g>
   <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 8; stroke: #000000" points="183.016,1262.59 183.016,1149.42 1262.28,1149.42 1262.28,1114.62 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 8; stroke: #000000" points="183.016,1262.59 183.016,1149.42 1143.87,1149.42 1143.87,1122.13 "/>
     <polygon style="fill: #ffffff" points="175.016,1262.59 183.016,1278.59 191.016,1262.59 "/>
     <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="175.016,1262.59 183.016,1278.59 191.016,1262.59 "/>
   </g>
   <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 8; stroke: #000000" points="102.879,208.555 24.7196,208.555 24.7196,1486.6 562.95,1486.6 562.95,1399.91 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 8; stroke: #000000" points="102.879,208.554 24.7196,208.554 24.7196,1486.6 562.95,1486.6 562.95,1399.91 "/>
     <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="567.95,1412.56 562.95,1396.56 557.95,1412.56 "/>
   </g>
   <g>
@@ -343,16 +364,16 @@
     <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1357.59,1349.18 1341.59,1354.18 1357.59,1359.18 "/>
   </g>
   <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="440.133,968.24 440.133,1016.16 206.284,1016.16 206.284,1057.77 "/>
-    <polygon style="fill: #ffffff" points="440.133,943.068 444.933,957.068 440.133,971.068 435.333,957.068 "/>
-    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="440.133,943.068 444.933,957.068 440.133,971.068 435.333,957.068 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="440.132,968.24 440.132,1016.16 206.284,1016.16 206.284,1057.77 "/>
+    <polygon style="fill: #ffffff" points="440.132,943.068 444.932,957.068 440.132,971.068 435.332,957.068 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="440.132,943.068 444.932,957.068 440.132,971.068 435.332,957.068 "/>
     <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="323.208" y="1013.16"></text>
-    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="451.133" y="955.068"></text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="451.132" y="955.068"></text>
     <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="210.284" y="1037.77"> -bets</text>
     <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="210.284" y="1053.77">1</text>
   </g>
   <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 8; stroke: #000000" points="1431.39,794.674 1487.65,794.674 1487.65,1257.19 1031.11,1257.19 1031.11,1324.59 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 8; stroke: #000000" points="1439.02,826.674 1487.65,826.674 1487.65,1257.19 1031.11,1257.19 1031.11,1324.59 "/>
     <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1026.11,1311.95 1031.11,1327.95 1036.11,1311.95 "/>
   </g>
   <g>
@@ -400,12 +421,12 @@
     <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="499.935" y="1206.65">&lt;T-&gt;Bet, ID-&gt;Long&gt;</text>
   </g>
   <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1460.94,326.374 1576.59,326.374 1576.59,607.134 1635.38,607.134 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1460.94,326.374 1576.59,326.374 1576.59,888.562 1616.93,888.562 "/>
     <polygon style="fill: #ffffff" points="1460.94,318.374 1444.94,326.374 1460.94,334.374 "/>
     <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1460.94,318.374 1444.94,326.374 1460.94,334.374 "/>
   </g>
   <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1460.94,326.374 1576.59,326.374 1576.59,167.787 1638.89,167.787 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1460.94,326.374 1576.59,326.374 1576.59,311.344 1616.38,311.344 "/>
     <polygon style="fill: #ffffff" points="1460.94,318.374 1444.94,326.374 1460.94,334.374 "/>
     <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1460.94,318.374 1444.94,326.374 1460.94,334.374 "/>
   </g>
@@ -437,29 +458,29 @@
     <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="146.033" y="952.74">                                category:Category): Streamable&lt;CommunityBet&gt;</text>
   </g>
   <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="947.611,794.674 849.012,794.674 849.012,794.74 739.242,794.74 "/>
-    <polygon style="fill: #ffffff" points="972.783,794.674 958.783,799.474 944.783,794.674 958.783,789.874 "/>
-    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="972.783,794.674 958.783,799.474 944.783,794.674 958.783,789.874 "/>
-    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="851.012" y="791.707"></text>
-    <text font-size="12.7998" style="fill: #000000;text-anchor:end;font-family:monospace;font-style:normal;font-weight:normal" x="940.783" y="791.674"></text>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="947.611,826.674 849.012,826.674 849.012,794.74 739.242,794.74 "/>
+    <polygon style="fill: #ffffff" points="972.783,826.674 958.783,831.474 944.783,826.674 958.783,821.874 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="972.783,826.674 958.783,831.474 944.783,826.674 958.783,821.874 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="851.012" y="807.707"></text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:end;font-family:monospace;font-style:normal;font-weight:normal" x="940.783" y="823.674"></text>
     <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="743.242" y="791.74"> management</text>
     <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="743.242" y="807.74">1</text>
   </g>
   <g>
-    <rect style="fill: #add8e6" x="1595.78" y="1315.51" width="173.947" height="73.5388"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1595.78" y="1315.51" width="173.947" height="73.5388"/>
-    <rect style="fill: #add8e6" x="1595.78" y="1295.51" width="57.9" height="20"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1595.78" y="1295.51" width="57.9" height="20"/>
-    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1597.78" y="1310.51">java.io</text>
+    <rect style="fill: #add8e6" x="1774.16" y="1333.35" width="173.947" height="73.5388"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1774.16" y="1333.35" width="173.947" height="73.5388"/>
+    <rect style="fill: #add8e6" x="1774.16" y="1313.35" width="57.9" height="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1774.16" y="1313.35" width="57.9" height="20"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1776.16" y="1328.35">java.io</text>
   </g>
   <g>
-    <rect style="fill: #ffcd99" x="1626.41" y="1339.51" width="115.45" height="28"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1626.41" y="1339.51" width="115.45" height="28"/>
-    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="1684.13" y="1358.51">Serializable</text>
+    <rect style="fill: #ffcd99" x="1804.79" y="1357.35" width="115.45" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1804.79" y="1357.35" width="115.45" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="1862.51" y="1376.35">Serializable</text>
   </g>
   <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 8; stroke: #000000" points="1456.11,99.3354 1554.49,99.3354 1554.49,27.7178 2132.2,27.7178 2132.2,1353.51 1748.56,1353.51 "/>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1761.21,1348.51 1745.21,1353.51 1761.21,1358.51 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 8; stroke: #000000" points="1456.11,99.3354 1554.49,99.3354 1554.49,27.7178 2132.2,27.7178 2132.2,1371.35 1926.94,1371.35 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1939.59,1366.35 1923.59,1371.35 1939.59,1376.35 "/>
     <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="1843.34" y="24.7178">&lt;&lt;use&gt;&gt;</text>
   </g>
   <g>
@@ -528,8 +549,25 @@
     <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="373.829,397.8 365.829,381.8 357.829,397.8 "/>
   </g>
   <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="365.829,396.791 365.829,428.488 894.122,428.488 894.122,451.979 "/>
-    <polygon style="fill: #ffffff" points="373.829,396.791 365.829,380.791 357.829,396.791 "/>
-    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="373.829,396.791 365.829,380.791 357.829,396.791 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="365.83,396.79 365.83,428.488 894.122,428.488 894.122,451.979 "/>
+    <polygon style="fill: #ffffff" points="373.83,396.79 365.83,380.79 357.83,396.79 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="373.83,396.79 365.83,380.79 357.83,396.79 "/>
+  </g>
+  <g>
+    <rect style="fill: #add8e6" x="1549.91" y="1336.04" width="173.947" height="73.5388"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1549.91" y="1336.04" width="173.947" height="73.5388"/>
+    <rect style="fill: #add8e6" x="1549.91" y="1316.04" width="40" height="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1549.91" y="1316.04" width="40" height="20"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1551.91" y="1331.04">rest</text>
+  </g>
+  <g>
+    <rect style="fill: #ffcd99" x="1568.3" y="1356.12" width="139.1" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1568.3" y="1356.12" width="139.1" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="1637.85" y="1375.12">RestAPIParser</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 8; stroke: #000000" points="1143.87,1123.13 1143.87,1232.99 1637.85,1232.99 1637.85,1348.41 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1632.85,1335.76 1637.85,1351.76 1642.85,1335.76 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="1390.86" y="1232.99">&lt;&lt;use&gt;&gt;</text>
   </g>
 </svg>

@@ -14,6 +14,7 @@
 |1.0    | 14.11.2021 | Hannes, Nick
 |1.1    | 29.11.2021 | Nick
 |2.0    | 20.12.2021 | Nick
+|2.1    | 22.01.2022 | Nick
 |===
 
 == Einführung und Ziele
@@ -247,19 +248,32 @@ image::./diagrams/developer_docu/class_lottery.svg[class_lottery, title= "Lotter
 |WebSecurityConfiguration |Konfigurationsklasse um grundlegende Sicherheit einzustellen
 |===
 
+=== Home
+image::./diagrams/developer_docu/class_home.svg[class_home, title= "Home", align=center]
+
+[options="header", cols="1,2"]
+|===
+|Klasse/Enumeration |Description
+|HomeController|SpringMVC Controller welcher die Übersicht und Nachrichten zeigt
+|Message|Eine Nachricht, die gespeichert werden soll
+|MessageManagement|Eine Klasse, um die Logik der Nachrichten zu verwalten
+|MessageRepository|Ein Interface um Nachrichten zu speichern
+|===
+
 === User
 image::./diagrams/developer_docu/class_user.svg[class_user, title= "User", align=center]
 
 [options="header"]
 |===
 |Klasse/Enumeration |Description
-|User| Eine Klasse, welche den Salespoint-UserAccount um eine Email-Adresse erweitert.
+|User| Eine Klasse, welche den Salespoint-UserAccount um eine E-Mail-Adresse erweitert.
 |UserController | SpringMVC Controller, welcher Anfragen für die Registrierung und Anzeige von Nutzern verwaltet.
 |UserDataInitializer | Eine Implementierung des DataInitializer um Standard-Nutzerkonten zu generieren.
 |UserManagement | Eine Klasse, welche für die Nutzerverwaltung zuständig ist.
 |UserRepository | Ein Interface für die Speicherung von Nutzerkonten, welches Instanzen von Nutzern verwaltet.
 |RegistrationForm | Eine Klasse, welche die Eingaben des Nutzers bei einer Registrierung auf ihre Richtigkeit prüft.
-|UserEditForm | Eine Klasse, welchs die Eingaben des Nutzers bei einer ´Nutzerdatenänderung auf ihre Richtigkeit prüft.
+|UserEditForm | Eine Klasse, welche die Eingaben des Nutzers bei einer ´Nutzerdatenänderung auf ihre Richtigkeit prüft.
+|PartnerCodeForm | Eine Klasse, welche die Eingaben des Nutzers beim Erstellen eines Partnercodes auf Richtigkeit prüft.
 |===
 
 
@@ -298,6 +312,7 @@ image::./diagrams/developer_docu/class_betting.svg[class_betting, title= "Bettin
 |FootballMatch |Ein Fußballspiel, auf das eine Wette abgeschlossen wird
 |Draw |Ein Lotterieziehungsergebnis
 |Score |Ein Fußballergebnis
+|RestAPIParser |Ein Klasse, um die Daten von OpenLigaDB zu verarbeiten und in der Klasse FootballMatch zu speichern
 |===
 
 === Finance
