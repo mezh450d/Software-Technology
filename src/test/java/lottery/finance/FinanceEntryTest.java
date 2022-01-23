@@ -52,14 +52,14 @@ class FinanceEntryTest {
 	}
 
 	@Test
-	void rejectsEmptyUser() {
+	void testRejectsEmptyUser() {
 
 		assertThatExceptionOfType(IllegalArgumentException.class)//
 			.isThrownBy(() -> new FinanceEntry(null, 100.0 ,"Test", LocalDateTime.now()));
 	}
 
 	@Test
-	void rejectsEmptyAmount() {
+	void testRejectsEmptyAmount() {
 
 		assertThatExceptionOfType(IllegalArgumentException.class)//
 				.isThrownBy(() -> new FinanceEntry(user.getUserAccount(), null ,"Test", LocalDateTime.now()));

@@ -119,7 +119,7 @@ public class AdminController {
 		model.addAttribute("matches", bettingManagement.findDataByCategory(Category.FOOTBALL));
 		model.addAttribute("lotteries", bettingManagement.findDataByCategory(Category.LOTTERY));
 
-		return "admin_evaluatebet";
+		return "admin_evaluateBet";
 	}
 
 	@PostMapping(path = "/admin/evaluateBets/football")

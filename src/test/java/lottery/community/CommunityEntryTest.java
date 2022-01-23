@@ -15,14 +15,14 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 public class CommunityEntryTest {
 
 	@Test
-	void rejectsEmptyName(){
+	void testRejectsEmptyName(){
 
 		assertThatExceptionOfType(IllegalArgumentException.class)//
 				.isThrownBy(() -> new Community(null, "password"));
 	}
 
 	@Test
-	void rejectsEmptyPassword(){
+	void testRejectsEmptyPassword(){
 
 		assertThatExceptionOfType(IllegalArgumentException.class)//
 				.isThrownBy(() -> new Community("name",null));

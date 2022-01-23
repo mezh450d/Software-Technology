@@ -79,7 +79,7 @@ public class AdminControllerIntegrationTest {
 	void testToAllData(){
 		Model model = new ExtendedModelMap();
 		String viewHome = adminController.allData(model);
-		assertThat(viewHome).isEqualTo("admin_evaluatebet");
+		assertThat(viewHome).isEqualTo("admin_evaluateBet");
 	}
 
 	@Test

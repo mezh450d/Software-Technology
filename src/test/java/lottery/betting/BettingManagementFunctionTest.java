@@ -43,6 +43,9 @@ public class BettingManagementFunctionTest {
 
 	User user;
 
+	@Mock
+	UserAccount mockUser;
+
 	@BeforeAll
 	void before(){
 		user = userManagement.findByUsername("testUser");
@@ -50,7 +53,7 @@ public class BettingManagementFunctionTest {
 		management.saveBet(new IndividualBet(null, new Score(2,1),
 				user.getUserAccount(), Money.of(10, EURO)));
 		management.saveBet(new IndividualBet(null, new SelectNumber("1,2,3,4,5,6",1),
-				user.getUserAccount(), Money.of(10, EURO)));
+				mockUser, Money.of(10, EURO)));
 	}
 
 	@Test
@@ -75,7 +78,7 @@ public class BettingManagementFunctionTest {
 	@Test
 	void testUserBets() {
 		Streamable<Bet> result = management.findBetsByUser("testUser");
-		assertThat(result).hasSize(2);
+		assertThat(result).hasSize(1);
 	}
 
 	@Test

@@ -30,7 +30,7 @@ class FinanceControllerIntegrationTest {
 	FinanceManagement finances;
 
 	@Test
-	void populatesModelForFinance() {
+	void testPopulatesModelForFinance() {
 
 		Model model = new ExtendedModelMap();
 		FinanceForm form = new FinanceForm(100.0, "");
