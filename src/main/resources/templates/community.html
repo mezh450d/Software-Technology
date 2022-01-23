@@ -31,7 +31,7 @@
             </div>
             <div class="container_content" id="current-communities">
                 <div id="communities_empty" th:if="${personalCommunities.empty}">
-                    <p class="empty_text">Sie sind noch keiner Gemeinschaft beigetreten</p>
+                    <p class="empty_text p-1">Sie sind noch keiner Gemeinschaft beigetreten</p>
                 </div>
             <div class="table-scroll-container" th:if="${!personalCommunities.empty}">
                 <table class="table-scroll">
@@ -61,7 +61,7 @@
             </div>
             <div class="container_content" id="joinable-communities">
                 <div id="join_communities_empty" th:if="${joinableCommunities.empty}">
-                    <p class="empty_text">Keine beitretbare Community zur Verfügung</p>
+                    <p class="empty_text p-1">Keine betretbare Community zur Verfügung</p>
                 </div>
                 <div class="table-scroll-container" th:if="${!joinableCommunities.empty}">
                     <table class="table-scroll">
