@@ -32,6 +32,7 @@ public class HomeController {
 	}
 
 	@GetMapping(path = "/home")
+	@PreAuthorize("hasAnyRole('USER','BOSS')")
 	public String home(@LoggedIn UserAccount user, Model model) {
 
 		Streamable<Role> roles = user.getRoles();

@@ -22,7 +22,7 @@
     <div class="main-header">
         <h1> ÜBERSICHT GEMEINSCHAFTEN</h1>
     </div>
-    <div class="content">
+    <div class="p-4">
     <h3>Suche nach einzelner Gemeinschaft:</h3>
     <form class="ui form" role="form" th:action="@{/admin/communities/getCommunityInfo}" method="get">
         <div class="field">
@@ -58,6 +58,7 @@
         </tr>
         </tbody>
     </table>
+        <a href="/admin"><button class="btn btn-primary">Zurück zur Admin-Übersicht</button></a>
     </div>
 </section>
 <!-- Bootstrap Bundle with Popper -->

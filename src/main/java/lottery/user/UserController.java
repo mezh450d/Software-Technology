@@ -32,6 +32,16 @@ public class UserController {
 		this.userManagement = userManagement;
 	}
 
+	@GetMapping("/")
+	public String index() {
+		return "landing_page";
+	}
+
+	@GetMapping("/register")
+	String register(Model model, RegistrationForm form) {
+		return "register";
+	}
+
 	@PostMapping("/register")
 	String registerNew(@Valid RegistrationForm form, BindingResult res, Errors result, Model model) {
 
@@ -83,7 +93,24 @@ public class UserController {
 		return "redirect:/login";
 	}
 
-	@PostMapping("/edit_user")
+	@GetMapping("/login")
+	public String login() {
+		return "login";
+	}
+
+	@GetMapping("/edit-user")
+	@PreAuthorize("hasRole('USER')")
+	public String editUser(@LoggedIn UserAccount user, Model model, UserEditForm form) {
+
+		model.addAttribute("firstName", user.getFirstname());
+		model.addAttribute("lastName", user.getLastname());
+		model.addAttribute("emailAddress", user.getEmail());
+		model.addAttribute("lotteryAddress", userManagement.findByUserAccount(user).getLotteryAddress());
+		model.addAttribute("form", form);
+		return "edit_user";
+	}
+
+	@PostMapping("/edit-user")
 	String editCurrentUser(@Valid @ModelAttribute("form") UserEditForm form, Errors errors,BindingResult res, Model model,
 						   @RequestParam(value = "action") String action, @LoggedIn UserAccount user) {
 
@@ -107,8 +134,6 @@ public class UserController {
 			}
 		}
 
-
-
 		//Falls das Formular Fehler enthält, keinen User bearbeiten
 		if (errors.hasErrors()) {
 			return editUser(user, model, form);
@@ -116,39 +141,6 @@ public class UserController {
 
 		userManagement.editUser(user, form);
 		return "redirect:/home";
-	}
-
-
-	@GetMapping("/register")
-	String register(Model model, RegistrationForm form) {
-		return "register";
-	}
-
-	@GetMapping("/")
-	public String index() {
-		return "redirect:landing_page";
-	}
-
-	@GetMapping("/landing_page")
-	public String landing() {
-		return "landing_page";
-	}
-
-	@GetMapping("/login")
-	public String login() {
-		return "login";
-	}
-
-	@GetMapping("/edit-user")
-	@PreAuthorize("hasRole('USER')")
-	public String editUser(@LoggedIn UserAccount user, Model model, UserEditForm form) {
-
-		model.addAttribute("firstName", user.getFirstname());
-		model.addAttribute("lastName", user.getLastname());
-		model.addAttribute("emailAddress", user.getEmail());
-		model.addAttribute("lotteryAddress", userManagement.findByUserAccount(user).getLotteryAddress());
-		model.addAttribute("form", form);
-		return "edit_user";
 	}
 
 	@GetMapping(path = "/partner")

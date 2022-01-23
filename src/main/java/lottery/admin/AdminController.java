@@ -165,7 +165,7 @@ public class AdminController {
 				financeManagement.deposit(new FinanceForm(entry.getValue(), description),
 						userManagement.findByUsername(entry.getKey()).getUserAccount());
 				Message message = new Message(userManagement.findByUsername(entry.getKey()).getUserAccount(),
-						"Ihre Wette ist abgeschlossen",
+						"Ihre Wette auf "+bet.getReference().toString()+" ist beendet.",
 						"Ihr Gewinn ist: "+ Money.of(entry.getValue(), EURO),
 						LocalDateTime.now());
 				messageManagement.save(message);

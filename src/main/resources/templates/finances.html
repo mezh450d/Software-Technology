@@ -41,14 +41,14 @@
                 <div class="container_content" id="payment_content">
                     <form   align="center" name ="finances" role="form"  th:object="${form}" th:action="@{/finances}" method="post">
                         <div class="field">
-                            <label th:text="Geldbetrag">Geldbetrag</label>
-                            <input class="input" type="number" th:field="*{amount}" th:errorclass="is-invalid" required="required" min="0" step="0.01"/> <br/> <br/>
+                            <label class="text-white" for="amount" th:text="Geldbetrag">Geldbetrag</label>
+                            <input id="amount" class="input" type="number" th:field="*{amount}" th:errorclass="is-invalid" required="required" min="0" step="0.01"/> <br/> <br/>
                             <div class="error">
                                 <p  th:if="${#fields.hasErrors('amount')}">Der Betrag kann nicht kleiner als 0 oder größer als 100,000,000 sein.</p>
                                 <p  th:if="${param.error}">Der Betrag kann nicht höher sein als der Saldo.</p>
                             </div>
-                            <label th:text="Beschreibung">Beschreibung</label>
-                            <input class="input" th:field="*{note}" type="text" />
+                            <label class="text-white" for="description" th:text="Beschreibung">Beschreibung</label>
+                            <input id="description" class="input" th:field="*{note}" type="text" />
                             <br/> <br/>
                         </div><br/>
                         <div class="buttons">

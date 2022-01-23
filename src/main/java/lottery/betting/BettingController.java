@@ -98,7 +98,7 @@ class BettingController {
 				messageManagement.save(message);
 				FinanceForm form = new FinanceForm(2.0, "Mahnung: " + match);
 				financeManagement.withdraw(form, user);
-				return "redirect:/betting/football?error";
+				return "redirect:/message";
 			}
 		} else {
 			if(financeManagement.withdraw(financeForm, user)){
@@ -111,7 +111,7 @@ class BettingController {
 				messageManagement.save(message);
 				FinanceForm form = new FinanceForm(2.0, "Mahnung: " + match);
 				financeManagement.withdraw(form, user);
-				return "redirect:/betting/football?error";
+				return "redirect:/message";
 			}
 		}
 
@@ -133,7 +133,7 @@ class BettingController {
 			messageManagement.save(message);
 			FinanceForm form = new FinanceForm(2.0, "Mahnung: für Lotto 6 aus 49 ("+amount+"x)");
 			financeManagement.withdraw(form, user);
-			return "redirect:/betting/lottery?error";
+			return "redirect:/message";
 		}
 		return "redirect:/home";
 	}
@@ -155,7 +155,7 @@ class BettingController {
 			messageManagement.save(message);
 			FinanceForm form = new FinanceForm(2.0, "Mahnung: für Lotto 6 aus 49 ("+amount+"x)");
 			financeManagement.withdraw(form, user);
-			return "redirect:/home?error";
+			return "redirect:/message";
 		}
 		return "redirect:/home";
 	}
