@@ -293,7 +293,7 @@ class BettingController {
 				messageManagement.save(message);
 				FinanceForm form = new FinanceForm(2.0, "Mahnung: für Betragsänderung");
 				financeManagement.withdraw(form, user);
-				return "redirect:/home?error";
+				return "redirect:/message";
 			}
 		} else if(difference < 0){
 			FinanceForm financeForm = new FinanceForm(-difference,
