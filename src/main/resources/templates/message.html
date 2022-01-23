@@ -19,11 +19,11 @@
 </head>
 <body>
     <nav th:include="navigation :: navigation"></nav>
-
-    <section class="main_content">
-        <h1>Nachrichten</h1>
-        <div class="separating_line"></div>
-
+    <section class="main-content">
+        <div class="main-header">
+            <h1>NACHRICHTEN</h1>
+        </div>
+        <div class="content">
         <h4> Neue Nachrichten:</h4>
         <ul class="list-group list-group-flush">
             <li th:each="message : ${newMessages}" class="list-group-item bg-dark text-white">
@@ -49,6 +49,7 @@
                 <small th:text="${message.date}">Datum</small>
             </li>
         </ul>
+        </div>
     </section>
 
 <!-- Bootstrap Bundle with Popper -->

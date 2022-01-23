@@ -19,47 +19,47 @@
 </head>
 <body>
 <nav th:include="navigation :: navigation"></nav>
-<section class="main_content">
-    <div class="main-head">
-        <h1>WETTEN</h1>
+<section class="main-content">
+    <div class="main-header">
+        <h1>FUßBALLTOTO</h1>
     </div>
-
-
-    <div class="card-container">
-        <div class="col" th:each="match : ${matches}">
-            <div class="card text-white bg-dark">
-                <div class="card-header bg-primary" th:text="${match.date}"></div>
-                <div class="card-body">
-                    <form method="post" role="form" class="ui form" th:action="@{/betting/football}">
-                        <input type="hidden" name="match" value="0" th:value="${match.id}"/>
-                        <h5 class="card-title text-center" th:text="${match.toShortString()}">Dark card title</h5>
-                        <div class="row">
-                            <img class="col-2" th:src="${match.homeIcon}" style="height:3rem;width: content-box"/>
-                            <div class="col-4">
-                                <input type="number" class="form-control" id="home_score" name="home_score" placeholder="Heim" min="0">
+    <div class="content">
+        <div class="card-container">
+            <div class="col" th:each="match : ${matches}">
+                <div class="card text-white bg-dark">
+                    <div class="card-header bg-primary" th:text="${match.date}"></div>
+                    <div class="card-body">
+                        <form method="post" role="form" class="ui form" th:action="@{/betting/football}">
+                            <input type="hidden" name="match" value="0" th:value="${match.id}"/>
+                            <h5 class="card-title text-center" th:text="${match.toShortString()}">Dark card title</h5>
+                            <div class="row">
+                                <img class="col-2" th:src="${match.homeIcon}" style="height:3rem;width: content-box"/>
+                                <div class="col-4">
+                                    <input type="number" class="form-control" id="home_score" name="home_score" placeholder="Heim" min="0">
+                                </div>
+                                <div class="col-4">
+                                    <input type="number" class="form-control" id="guest_score" name="guest_score" placeholder="Gast" min="0">
+                                </div>
+                                <img class="col-2" th:src="${match.guestIcon}" style="height:3rem;width: content-box"/>
                             </div>
-                            <div class="col-4">
-                                <input type="number" class="form-control" id="guest_score" name="guest_score" placeholder="Gast" min="0">
+                            <br/>
+                            <div class="row">
+                                <div class="col-4">
+                                    <input type="number" class="form-control" id="amount" name="amount" placeholder="Wettbetrag" min="1">
+                                </div>
+                                <div class="col-5">
+                                    <select class="form-control col-8" name="dropCommunity">
+                                        <option value="">Einzelwette</option>
+                                        <option th:each="community : ${personalCommunities}" th:value="${community.name}"
+                                                th:text="${community.name}"></option>
+                                    </select>
+                                </div>
+                                <div class="col-2">
+                                    <button type="submit" class="btn btn-success mb-3"><span> Wetten!</span></button>
+                                </div>
                             </div>
-                            <img class="col-2" th:src="${match.guestIcon}" style="height:3rem;width: content-box"/>
-                        </div>
-                        <br/>
-                        <div class="row">
-                            <div class="col-4">
-                                <input type="number" class="form-control" id="amount" name="amount" placeholder="Wettbetrag" min="1">
-                            </div>
-                            <div class="col-5">
-                                <select class="form-control col-8" name="dropCommunity">
-                                    <option value="">Einzelwette</option>
-                                    <option th:each="community : ${personalCommunities}" th:value="${community.name}"
-                                            th:text="${community.name}"></option>
-                                </select>
-                            </div>
-                            <div class="col-2">
-                                <button type="submit" class="btn btn-success mb-3"><span> Wetten!</span></button>
-                            </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

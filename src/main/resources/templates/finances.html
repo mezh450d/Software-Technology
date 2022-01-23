@@ -19,68 +19,68 @@
 </head>
 <body>
 <nav th:include="navigation :: navigation"></nav>
-<section class="main_content">
-
-    <h1>Finanzen</h1>
-    <div class="separating_line"></div>
-
-    <div id="wrapper">
-        <div class="container" id="user_balance">
-            <div class="container_head">
-                <p id="balance_label"> Ihr Saldo:</p>
-            </div>
-            <div class="container_content" id="user_balance_content">
-                <h2 >
-                    <p id=balance th:field="*{balance}" th:text="${balance}">0.0 EURO</p>
-                </h2>
-            </div>
-        </div>
-        <div class="container" id="payment">
-            <div class="container_head">
-                <p id="payment_label"> Einzahlung / Auszahlung:</p>
-            </div>
-            <div class="container_content" id="payment_content">
-                <form   align="center" name ="finances" role="form"  th:object="${form}" th:action="@{/finances}" method="post">
-                    <div class="field">
-                        <label th:text="Geldbetrag">Geldbetrag</label>
-                        <input class="input" type="number" th:field="*{amount}" th:errorclass="is-invalid" required="required" min="0" step="0.01"/> <br/> <br/>
-                        <div class="error">
-                            <p  th:if="${#fields.hasErrors('amount')}">Der Betrag kann nicht kleiner als 0 oder größer als 100,000,000 sein.</p>
-                            <p  th:if="${param.error}">Der Betrag kann nicht höher sein als der Saldo.</p>
-                        </div>
-                        <label th:text="Beschreibung">Beschreibung</label>
-                        <input class="input" th:field="*{note}" type="text" />
-                        <br/> <br/>
-                    </div><br/>
-                    <div class="buttons">
-                        <button class="btn btn-primary btn-lg"  type="submit" name="action" value="deposit">Einzahlung</button>
-                        <button class="btn btn-primary btn-lg" type="submit" name="action" value="withdraw">Auszahlung</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <div class="container" id="transactions">
-            <div class="container_head">
-                <p id="transactions_label"> Ihre Transaktionen:</p>
-            </div>
-            <div class="container_content">
-                <div id="bets_empty" th:if="${entries.empty}">
-                    <p id="empty_text">Sie haben noch keine Transaktionen getätigt.</p>
+<section class="main-content">
+    <div class="main-header">
+        <h1>FINANZEN</h1>
+    </div>
+    <div class="content">
+            <div class="container" id="user_balance">
+                <div class="container_head">
+                    <p id="balance_label"> Ihr Saldo:</p>
                 </div>
-                <ul th:each="entry : ${entries}">
-                    <li>
-                        <details>
-                            <summary th:text="${entry.amount}"></summary>
-                            <span>
-                                  <ul>
-                                    <li th:text="${entry.note}"></li>
-                                    <li th:text="${entry.date}"></li>
-                                  </ul>
-                                </span>
-                        </details>
-                    </li>
-                </ul>
+                <div class="container_content" id="user_balance_content">
+                    <h2 >
+                        <p id=balance th:field="*{balance}" th:text="${balance}">0.0 EURO</p>
+                    </h2>
+                </div>
+            </div>
+            <div class="container" id="payment">
+                <div class="container_head">
+                    <p id="payment_label"> Einzahlung / Auszahlung:</p>
+                </div>
+                <div class="container_content" id="payment_content">
+                    <form   align="center" name ="finances" role="form"  th:object="${form}" th:action="@{/finances}" method="post">
+                        <div class="field">
+                            <label th:text="Geldbetrag">Geldbetrag</label>
+                            <input class="input" type="number" th:field="*{amount}" th:errorclass="is-invalid" required="required" min="0" step="0.01"/> <br/> <br/>
+                            <div class="error">
+                                <p  th:if="${#fields.hasErrors('amount')}">Der Betrag kann nicht kleiner als 0 oder größer als 100,000,000 sein.</p>
+                                <p  th:if="${param.error}">Der Betrag kann nicht höher sein als der Saldo.</p>
+                            </div>
+                            <label th:text="Beschreibung">Beschreibung</label>
+                            <input class="input" th:field="*{note}" type="text" />
+                            <br/> <br/>
+                        </div><br/>
+                        <div class="buttons">
+                            <button class="btn btn-primary btn-lg"  type="submit" name="action" value="deposit">Einzahlung</button>
+                            <button class="btn btn-primary btn-lg" type="submit" name="action" value="withdraw">Auszahlung</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="container" id="transactions">
+                <div class="container_head">
+                    <p id="transactions_label"> Ihre Transaktionen:</p>
+                </div>
+                <div class="container_content">
+                    <div id="bets_empty" th:if="${entries.empty}">
+                        <p id="empty_text">Sie haben noch keine Transaktionen getätigt.</p>
+                    </div>
+                    <ul th:each="entry : ${entries}">
+                        <li>
+                            <details>
+                                <summary th:text="${entry.amount}"></summary>
+                                <span>
+                                      <ul>
+                                        <li th:text="${entry.note}"></li>
+                                        <li th:text="${entry.date}"></li>
+                                      </ul>
+                                    </span>
+                            </details>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

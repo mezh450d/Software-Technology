@@ -22,7 +22,7 @@ body{
   background-attachment: fixed;
 }
 
-.content{
+.main{
 
   width: 100%;
   margin: 0;
@@ -32,20 +32,6 @@ body{
   transform: translateY(-50%);
 }
 
-h1{
-  margin-top: 2vh;
-  margin-bottom: 0;
-  text-align: center;
-  font-size: 50px;
-  color: #e6e6e6;
-}
-
-h2{
-  margin-top: 0;
-  text-align: center;
-  font-size: 20px;
-  color: #e6e6e6;
-}
 
 
 
@@ -163,6 +149,24 @@ select:-webkit-autofill:focus {
 .login-box input[type="submit"]:hover{
   background: linear-gradient(45deg, rgba(3,80,225,1) 0%, rgba(25,130,225,1) 100%);
   font-size: 18px;
+}
+
+.input-label{
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  color: #e6e6e6;
+  font-size: 15px;
+  text-align: left;
+}
+
+.login-box p{
+font-size: 15px;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  color: #e6e6e6;
 }
 
 .login-box a{

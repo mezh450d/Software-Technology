@@ -20,44 +20,46 @@
 <body>
 <nav th:include="navigation :: navigation"></nav>
 
-<section class="main_content">
-  <h1>Wetten</h1>
-  <div class="separating_line"></div>
-
-  <div class="card-big" id="bet-card">
-    <div class="card-header">
-      <h3>Verfügbare Wetten</h3>
-    </div>
-    <div class="card-content">
-      <div id="bets-empty" th:if="${betList.empty}">
-        <p id="empty-text">Keine verfügbaren Wetten</p>
+<section class="main-content">
+  <div class="main-header">
+    <h1>WETTEN ÄNDERN</h1>
+  </div>
+  <div class="content">
+    <div class="card-big" id="bet-card">
+      <div class="card-header">
+        <h3>Verfügbare Wetten</h3>
       </div>
-      <table id="bet-table" th:if="${!betList.empty}">
-        <thead>
-        <tr>
-          <th scope="col"><h4>Wette</h4></th>
-          <th scope="col"><h4>Ergebnistipp</h4></th>
-          <th scope="col"><h4>Datum</h4></th>
-          <th scope="col"></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="bet : ${betList}" class="tr">
-          <form method="get" role="form" class="ui form" th:action="@{/betting/change/{betId}(betId=${bet.id})}">
-            <input type="hidden" name="bet" value="0" th:value="${bet.id}"/>
-            <input type="hidden" name="category" value="0" th:value="${bet.reference.category}"/>
-            <input type="hidden" name="reference" value="0" th:value="${bet.reference.id}"/>
-            <td th:text="${bet.reference}"></td>
-            <td th:text="${bet.value}"></td>
-            <td th:text="${bet.reference.date}"> </td>
-            <td>
-              <button type="submit" class="btn btn-primary btn-sm">ändern</button>
-            </td>
-          </form>
-        </tr>
+      <div class="card-content">
+        <div id="bets-empty" th:if="${betList.empty}">
+          <p id="empty-text">Keine verfügbaren Wetten</p>
+        </div>
+        <table id="bet-table" th:if="${!betList.empty}">
+          <thead>
+          <tr>
+            <th scope="col"><h4>Wette</h4></th>
+            <th scope="col"><h4>Ergebnistipp</h4></th>
+            <th scope="col"><h4>Datum</h4></th>
+            <th scope="col"></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="bet : ${betList}" class="tr">
+            <form method="get" role="form" class="ui form" th:action="@{/betting/change/{betId}(betId=${bet.id})}">
+              <input type="hidden" name="bet" value="0" th:value="${bet.id}"/>
+              <input type="hidden" name="category" value="0" th:value="${bet.reference.category}"/>
+              <input type="hidden" name="reference" value="0" th:value="${bet.reference.id}"/>
+              <td th:text="${bet.reference}"></td>
+              <td th:text="${bet.value}"></td>
+              <td th:text="${bet.reference.date}"> </td>
+              <td>
+                <button type="submit" class="btn btn-primary btn-sm">ändern</button>
+              </td>
+            </form>
+          </tr>
 
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </section>

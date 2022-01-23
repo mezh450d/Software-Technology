@@ -10,9 +10,9 @@
     <!-- CSS -->
     <link th:href="@{/resources/css/style_navigation.css}" rel="stylesheet"/>
 
-    <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style_login.css}" />
-
     <link th:href="@{/resources/css/style_general.css}" rel="stylesheet"/>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style_login.css}" />
 
     <link th:href="@{/resources/css/style_community.css}" rel="stylesheet"/>
 
@@ -22,25 +22,29 @@
 <body>
 <nav th:include="navigation :: navigation"></nav>
 
-<section class="main_content">
-    <div class="login_box">
+<section class="main-content">
+    <div class="main-header">
+        <h1>GEMEINSCHAFT BEITRETEN</h1>
+    </div>
+    <div class="content">
+    <div class="login-box">
         <div class="head">
             <h1>Gemeinschaft beitreten</h1>
         </div>
-        <div class="content">
+        <div class="login-content">
             <form method="post" role="form"  class="ui form" id="form" th:action="@{/community/join}" th:object="${createForm}">
                 <div class="error" th:if="${#fields.hasErrors('global')}"><p>Felerhafte Communitydaten.</p></div>
 
-                <div class="field">
-                    <label for="name">Name</label>
+                <div class="input-field">
+                    <p class="input-label">Name</p>
                     <input  id="name" name="name" th:errorclass="fieldError" type="text" required="required" th:value="${communityName}" placeholder="Gruppenname"/><br/>
                     <div class="ui negative message" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">
                         <p>Der Name darf nicht leer sein.</p>
                     </div>
                 </div>
 
-                <div class="field">
-                    <p>Passwort</p>
+                <div class="input-field">
+                    <p class="input-label">Passwort</p>
                     <input  id="password" th:field="*{password}" th:errorclass="fieldError" type="password"
                             required="required"  name="password" placeholder="Passwort eingeben">
                     <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Das Passwort darf
@@ -51,6 +55,7 @@
                 <input type="submit" class="ui button" value="Gemeinschaft beitreten">
             </form>
         </div>
+    </div>
     </div>
 </section>
 <!-- Bootstrap Bundle with Popper -->

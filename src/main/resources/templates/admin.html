@@ -19,8 +19,10 @@
 </head>
 <body>
 <section class="admin-content">
-    <h1>Admin</h1>
-    <div class="separating_line"></div>
+    <div class="main-header">
+        <h1>ADMIN</h1>
+    </div>
+    <div class="content">
 
     <div class="row">
         <div class="col-sm-6">
@@ -80,6 +82,7 @@
     <form class="item" sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
         <button type="submit" class="btn btn-danger">Logout</button>
     </form>
+    </div>
 </section>
 
 <!-- Bootstrap Bundle with Popper -->

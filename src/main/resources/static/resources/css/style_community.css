@@ -1,7 +1,6 @@
-    section #wrapper {
-        margin: auto;
+    .content{
+        margin: 0 auto;
         max-width: 1000px;
-        margin-top: 50px;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-gap: 20px;

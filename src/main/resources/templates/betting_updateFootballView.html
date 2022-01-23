@@ -20,12 +20,12 @@
 <body>
 <nav th:include="navigation :: navigation"></nav>
 
-<section class="main_content">
-  <h1>Wetten</h1>
-  <div class="separating_line"></div>
-
-  <div class="row row-cols-1 row-cols-md-3 g-4" >
-    <div class="col">
+<section class="main-content">
+  <div class="main-header">
+    <h1>WETTE ÄNDERN</h1>
+  </div>
+  <div class="content">
+    <div class="card-container">
       <div class="card text-white bg-dark">
         <div class="card-header bg-primary" th:text="${match.date}"></div>
         <div class="card-body">

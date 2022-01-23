@@ -42,9 +42,11 @@ public class HomeController {
 		model.addAttribute("balance", financeManagement.getUserBalance(user));
 		model.addAttribute("bets", bettingManagement.findBetsByUser(user.getUsername()));
 		model.addAttribute("username", user.getUsername());
+		model.addAttribute("firstname", user.getFirstname());
+		model.addAttribute("lastname", user.getLastname());
 		model.addAttribute("alert", messageManagement.newMessages(user.getUsername()));
-		model.addAttribute("email_address", user.getEmail());
-		model.addAttribute("lottery_address", userManagement.findByUserAccount(user).getLotteryAddress());
+		model.addAttribute("emailAddress", user.getEmail());
+		model.addAttribute("lotteryAddress", userManagement.findByUserAccount(user).getLotteryAddress());
 
 		return "home";
 	}

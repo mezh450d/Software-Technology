@@ -34,7 +34,7 @@ public class Lottery {
 		@Override
 		public void addViewControllers(ViewControllerRegistry registry) {
 			registry.addViewController(LOGIN_ROUTE).setViewName("login");
-			registry.addViewController("/").setViewName("login");
+			registry.addViewController("/").setViewName("landing_page");
 		}
 	}
 

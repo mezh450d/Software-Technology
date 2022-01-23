@@ -126,7 +126,12 @@ public class UserController {
 
 	@GetMapping("/")
 	public String index() {
-		return "redirect:login";
+		return "redirect:landing_page";
+	}
+
+	@GetMapping("/landing_page")
+	public String landing() {
+		return "landing_page";
 	}
 
 	@GetMapping("/login")

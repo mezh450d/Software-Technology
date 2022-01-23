@@ -2,7 +2,7 @@
 
 .card-container{
     margin: 0 auto;
-    max-width: 90%
+    max-width: 90%;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -27,7 +27,9 @@
     background: linear-gradient(45deg, rgba(13,110,253,1) 0%, rgba(40,177,252,1) 100%);
 }
 
-.hover-card{
+/* ==================== HOVER CARD BIG ==================== */
+
+.card-hover-big{
     background: #222;
     width: 400px;
     height: 500px;
@@ -37,9 +39,19 @@
     transition: all 200ms;
 }
 
-.hover-card:hover{
+.card-hover-big:hover{
     box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-    transform: scale(1.10);
+    transform: scale(1.05);
+}
+
+.card-hover-big .card-content{
+    padding: 15px;
+    text-align: justify;
+    height: 40%;
+}
+
+.card-hover-big .card-content p{
+    font-size: 20px;
 }
 
 
@@ -68,11 +80,6 @@
     background-position: center;
 }
 
-.card-content{
-    padding: 15px;
-    text-align: justify;
-    height: 40%;
-}
 
 .card-footer{
     width: 100%;
@@ -80,7 +87,7 @@
 }
 
 .card-footer a{
-    background: #0d6ef5;
+    background: linear-gradient(45deg, rgba(13,110,253,1) 0%, rgba(40,177,252,1) 100%);
     padding: 10px 20px;
     border-radius: 15px;
     display: block;
@@ -89,11 +96,14 @@
     color: white;
     margin: 10px 50px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
+    text-decoration: none;
+    color: white;
 }
 
 .card-footer a:hover{
     background: #0a4ed5;
 }
+
 
 
 .lottery-container{
@@ -142,6 +152,7 @@
     border-radius: 5px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.8);
     margin-bottom: 25px;
+    color: white;
 }
 
 
@@ -236,29 +247,39 @@ font-size: 20px;
     padding: 0;
     max-width: 1200px;
     min-height: 300px;
-    height: 300px;
+    max-height: 80vh;
     margin: 0 auto;
     background: #222;
     border-radius: 15px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.4);
 
 }
 
+#bet-card .card-header{
+    height: 50px;
+    color: white;
+}
+
 #bet-card .card-content{
+    max-height: 80vh;
+    min-height: 250px;
     padding: 0;
     background: #222;
     position: relative;
+    border-radius: 0 0 15px 15px;
+    overflow: auto;
 }
 
 
 #bet-table{
-    overflow: auto;
-    position: absolute;
+  overflow: auto;
+  max-height: 80vh;
   padding: 0;
   border-radius: 15px 15px 0 0;
   box-shadow: 0 5px 10px rgba(0,0,0,0.4);
   width: 100%;
   grid-row: 2;
-  height: 300px;
+  min-height: 250px;
 }
 
 
@@ -272,6 +293,7 @@ font-size: 20px;
 
 #bet-table table{
   width: 100%;
+  max-height: 80vh;
   background: none;
   overflow-y: auto;
 }
@@ -282,9 +304,11 @@ font-size: 20px;
   color: #999;
   font-size: 18px;
   text-align: left;
+  padding-top: 5px;
   padding-left: 25px;
   padding-right: 25px;
   position: sticky; top: 0;
+  box-shadow: 0 5px 2px rgba(0,0,0,0.2);
 }
 
 #bet-table tr{
@@ -293,7 +317,7 @@ font-size: 20px;
   background: none;
 }
 
-#bet-table tr:nth-child(even) {
+#bet-table tr:nth-child(odd) {
   background: #1C1C1C;
 }
 
