@@ -5,6 +5,7 @@ import lottery.betting.BettingManagement;
 import lottery.betting.bet.CommunityBet;
 import lottery.betting.data.Category;
 import lottery.finance.FinanceForm;
+import lottery.home.message.MessageManagement;
 import lottery.user.User;
 import org.javamoney.moneta.Money;
 import org.salespointframework.useraccount.UserAccount;
@@ -30,12 +31,14 @@ public class CommunityController {
 
 	private final CommunityManagement management;
 	private final BettingManagement bettingManagement;
+	private final MessageManagement messageManagement;
 
-	public CommunityController(CommunityManagement management, BettingManagement bettingManagement){
+	public CommunityController(CommunityManagement management, BettingManagement bettingManagement, MessageManagement messageManagement){
 
 		Assert.notNull(management, "CommunityManagement must not be null!");
 		this.management = management;
 		this.bettingManagement = bettingManagement;
+		this.messageManagement = messageManagement;
 	}
 
 	@GetMapping("/community")
@@ -44,6 +47,7 @@ public class CommunityController {
 
 		model.addAttribute("personalCommunities", management.findPersonalCommunities(user));
 		model.addAttribute("joinableCommunities", management.findJoinableCommunities(user));
+		model.addAttribute("alert", messageManagement.newMessages(user.getUsername()));
 
 		return "community";
 	}

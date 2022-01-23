@@ -24,13 +24,17 @@
     <div class="main-header">
         <h1>GEMEINSCHAFT</h1>
     </div>
-    <div class="content">
+    <div class="content" id="community_overview">
         <div class="container" id="your_communities">
             <div class="container_head">
                 <p>Ihre Gemeinschaften:</p>
             </div>
-            <div class="container_content">
-                <table class="table">
+            <div class="container_content" id="current-communities">
+                <div id="communities_empty" th:if="${personalCommunities.empty}">
+                    <p class="empty_text">Sie sind noch keiner Gemeinschaft beigetreten</p>
+                </div>
+            <div class="table-scroll-container" th:if="${!personalCommunities.empty}">
+                <table class="table-scroll">
                     <thead>
                     <tr>
                         <th scope="col">Gemeinschaftsname</th>
@@ -38,7 +42,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="community : ${personalCommunities} ">
+                    <tr th:each="community : ${personalCommunities} " class="tr">
                         <td th:text="${community.name}"></td>
                         <td>
                             <a th:href="@{/community/{communityName}(communityName=${community.name})}">
@@ -49,30 +53,36 @@
                     </tbody>
                 </table>
             </div>
+            </div>
         </div>
         <div class="container" id="other_communities">
             <div class="container_head">
                 <p>Beitretbare Gemeinschaften:</p>
             </div>
-            <div class="container_content">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col">Gemeinschaftsname</th>
-                        <th scope="col">Beitreten</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="community : ${joinableCommunities} ">
-                        <td th:text="${community.name}">CommunityName</td>
-                        <td>
-                            <a th:href="${'/community/join?communityName=' + community.name}">
-                                <button class="btn btn-primary btn-sm">Beitreten</button>
-                            </a>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+            <div class="container_content" id="joinable-communities">
+                <div id="join_communities_empty" th:if="${joinableCommunities.empty}">
+                    <p class="empty_text">Keine beitretbare Community zur Verfügung</p>
+                </div>
+                <div class="table-scroll-container" th:if="${!joinableCommunities.empty}">
+                    <table class="table-scroll">
+                        <thead>
+                        <tr>
+                            <th scope="col">Gemeinschaftsname</th>
+                            <th scope="col">Beitreten</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="community : ${joinableCommunities} " class="tr">
+                            <td th:text="${community.name}"></td>
+                            <td>
+                                <a th:href="${'/community/join?communityName=' + community.name}">
+                                    <button class="btn btn-primary btn-sm">Beitreten</button>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         <div class="container" id="create">

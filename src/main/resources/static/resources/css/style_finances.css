@@ -1,19 +1,24 @@
-    .content{
-      grid-template-columns: repeat(3, 1fr);
+    #finances-content{
+     margin: 0 auto;
+             max-width: 1000px;
+             display: grid;
+             grid-template-columns: repeat(2, 1fr);
+             grid-gap: 20px;
+             grid-auto-rows: minmax(100px, 300px);
     }
 
-    section #user_balance{
+    #user_balance{
       grid-column: 1 / 2;
       grid-row: 1 / 1;
     }
 
-    section #payment{
+    #payment{
       grid-column: 1 / 2;
       grid-row: 2 / 4;
 
     }
 
-    section #transactions{
+    #transactions{
       grid-column: 2 / 4;
       grid-row: 1 / 4;
     }

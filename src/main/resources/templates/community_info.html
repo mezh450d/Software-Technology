@@ -25,7 +25,113 @@
     <div class="main-header">
         <h1 th:text="${communityName}"></h1>
     </div>
-    <div class="content">
+    <div class="content" id="community-info">
+        <div class="container" id="members">
+            <div class="container_head">
+                <p id="members_label"> Mitglieder</p>
+            </div>
+            <div class="container_content">
+                <div class="table-scroll-container">
+                    <table class="table-scroll">
+                        <thead>
+                        <tr>
+                            <th scope="col"><h4>Mitglieder</h4></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="user : ${members}" class="tr">
+                            <td th:text="${user.id}"></td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" id="football-bets">
+            <div class="container_head">
+                <p id="football_label"> Fußballtoto-Wetten</p>
+            </div>
+            <div class="container_content">
+                <div class="table-scroll-container">
+                    <table class="table-scroll">
+                        <thead>
+                        <tr>
+                            <th>Wette</th>
+                            <th>Ergebnis</th>
+                            <th>Gesamtbetrag</th>
+                            <th>Eigener Betrag</th>
+                            <th>neuer Betrag</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="bet : ${footballBets}">
+                            <form method="post" role="form" id="form1" th:action="@{/community/bet}">
+                                <input type="hidden" name="bet" th:value="${bet.id}"/>
+                                <td th:text="${bet.reference}"></td>
+                                <td th:text="${bet.value}"></td>
+                                <td th:text="${bet.getTotalBettingAmount()}"></td>
+                                <td th:text="${bet.getSingleAmount(userName)}"></td>
+                                <td>
+                                    <input type="number" class="form-control" name="amount" placeholder="Wettbetrag" min="0">
+                                </td>
+                                <td>
+                                    <button type="submit" class="btn btn-primary mb-3"><span>Mitwetten!</span></button>
+                                </td>
+                            </form>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" id="lottery-bets">
+            <div class="container_head">
+                <p id="lottery_label"> Lotterie-Wetten</p>
+            </div>
+            <div class="container_content">
+                <div class="table-scroll-container">
+                    <table class="table-scroll">
+                        <thead>
+                        <tr>
+                            <th>Wette</th>
+                            <th>Ergebnis</th>
+                            <th>Gesamtbetrag</th>
+                            <th>Eigener Betrag</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="bet : ${lotteryBets}">
+                            <form method="post" role="form2" id="form" th:action="@{/community/bet}">
+                                <input type="hidden" name="bet" th:value="${bet.id}"/>
+                                <td th:text="${bet.reference}"></td>
+                                <td th:text="${bet.value}"></td>
+                                <td th:text="${bet.getTotalBettingAmount()}"></td>
+                                <td th:text="${bet.getSingleAmount(userName)}"></td>
+                                <td>
+                                    <button type="submit" class="btn btn-secondary mb-3"
+                                            th:if="${bet.getSingleAmount(userName).getNumber() == 10}"
+                                            name="amount" value=0 ><span>Aussetzen</span></button>
+                                    <button type="submit" class="btn btn-primary mb-3"
+                                            th:unless="${bet.getSingleAmount(userName).getNumber() == 10}"
+                                            name="amount"  value=10 ><span>Mitwetten!</span></button>
+                                </td>
+                            </form>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+
+<!--
     <table class="table table-dark table-striped">
         <thead>
         <tr>
@@ -69,6 +175,7 @@
         </tbody>
     </table>
 
+
     <table class="table table-dark table-striped">
         <thead>
         <tr>
@@ -99,6 +206,7 @@
             </tr>
         </tbody>
     </table>
+        -->
     </div>
 </section>
 
