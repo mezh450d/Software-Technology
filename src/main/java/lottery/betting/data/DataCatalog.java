@@ -16,7 +16,6 @@
 package lottery.betting.data;
 
 import org.salespointframework.catalog.Catalog;
-import org.salespointframework.catalog.ProductIdentifier;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.util.Streamable;
 
