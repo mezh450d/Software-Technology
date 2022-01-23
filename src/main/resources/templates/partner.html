@@ -12,38 +12,62 @@
 
     <link th:href="@{/resources/css/style_general.css}" rel="stylesheet"/>
 
+    <link th:href="@{/resources/css/style_login.css}" rel="stylesheet"/>
+
+    <link th:href="@{/resources/css/style_partner.css}" rel="stylesheet"/>
+
     <meta charset="UTF-8">
     <title>Partner</title>
 </head>
 <body>
 <nav th:include="navigation :: navigation"></nav>
 
-<section class="main_content">
-    <h1>Partner</h1>
-    <div class="separating_line"></div>
-
-    <div id="wrapper">
-        <div id="create-partner-code" th:if="${!hasPartnerCode}">
-            <form method="post" role="form" class="ui form" id="form" th:action="@{/partner}" th:object="${form}">
-
-                <div class="field">
-                    <p>Partner-Code</p>
-                    <input id="newPartnerCode" th:value="${newPartnerCode}" th:errorclass="fieldError" type="text"
-                           required="required" name="newPartnerCode" placeholder="Partner-Code eingeben">
-                </div>
-
-                <input type="submit" class="ui button" name="action" value="Code erstellen">
-            </form>
-        </div>
-        <div id="partner-code-container" th:if="${hasPartnerCode}">
-            <h4>Dein Persönlicher Partner-Code:</h4>
-            <p th:text="${partnerCode}"></p>
-        </div>
-        <div id="partner-container">
-            <h4>Dein Partner</h4>
-            <p th:text="${partner}"></p>
+<section class="main-content">
+    <div class="main-header">
+        <h1>PARTNER PROGRAMM</h1>
+    </div>
+    <div class="content">
+        <div id="general-info">
+            <h4>Hier können Sie erfahren, wie Sie und andere neue Nutzer von unserem Partner-Programm profitieren können.</h4>
+            <p style="text-align: justify; margin: 0">Wenn Sie genauso viel Spaß beim Wetten wie wir und viele andere Nutzer haben und einen Bekannten in die Welt des Glücksspiels einführen möchten, sind Sie bei unserem Partner-Programm genau richtig.</p>
         </div>
 
+        <div id="partner-grid">
+        <div id="partner-info">
+            <p style="padding-left: 5px;font-size: 20px;color: #0d6ef5;text-align: justify">Laden Sie Ihre Freunde ein und erhalten Sie Boni</p>
+            <p style="padding-left: 5px;text-align: justify;border-left: 3px solid #0d6ef5;">Es geht ganz einfach: </p>
+            <p style="padding-left: 5px;text-align: justify;border-left: 3px solid #0d6ef5;">Sie erstellen hier einen Partner-Code, welchen Sie an einem Bekannten weitergeben können. Dieser wird bei der Registrierung eingegeben. Nach der erfolgreichen Registrierung des Bekannten erhält dieser eine kostenlose Ziehung. </p>
+            <p style="padding-left: 5px;text-align: justify;border-left: 3px solid #0d6ef5;">Sie profitieren aber auch davon. Bei jeder Wette, die Ihr Partner abschließt, bekommen Sie eine kleine Provision.</p>
+        </div>
+
+        <div class="login-box" th:if="${!hasPartnerCode}">
+            <div class="head">
+                <h1>Partner-Code erstellen</h1>
+            </div>
+            <div class="login-content">
+                <form class="ui form" role="form" id="form" th:action="@{/partner}" th:object="${form}" method="post">
+                    <div th:if="${param.error}" class="alert-error">
+                        Fehlerhafter Code
+                    </div>
+                    <div class="input-field">
+                        <p>Partner-Code</p>
+                        <input id="newPartnerCode" th:value="${newPartnerCode}" th:errorclass="fieldError" type="text"
+                               required="required" name="newPartnerCode" placeholder="Partner-Code eingeben">
+                    </div>
+                    <input type="submit" name="action" class="ui button" value="Code erstellen">
+                </form>
+            </div>
+        </div>
+
+        <div class="container" id="partner-code" th:if="${hasPartnerCode}">
+            <div class="container_head">
+                <p id="partner-code-label"> Ihr Partner-Code</p>
+            </div>
+            <div class="container_content">
+                <p style="font-size: 30px;text-align:center;padding-top: 80px" th:text="${partnerCode}"></p>
+            </div>
+        </div>
+    </div>
     </div>
 </section>
 <!-- Bootstrap Bundle with Popper -->

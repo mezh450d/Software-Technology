@@ -114,3 +114,7 @@
     grid-column: 1;
         grid-row: 2;
 }
+
+.container_content{
+    padding: 0;
+}

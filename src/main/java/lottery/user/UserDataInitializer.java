@@ -46,14 +46,14 @@ public class UserDataInitializer implements DataInitializer {
 		var password = "123";
 
 		List.of(//
-				new RegistrationForm("hans", "hans@gmail.com", "0000000001", password, "00000"),
-				new RegistrationForm("nick", "nick@gmail.com", "0000000002", password, "00000"),
-				new RegistrationForm("jing", "jing@gmail.com", "0000000003", password, "00000"),
-				new RegistrationForm("hannes", "hannes@gmail.com", "0000000004", password, "00000"),
-				new RegistrationForm("ziyi", "ziyi@gmail.com", "0000000005", password, "00000"),
-				new RegistrationForm("meng", "meng@gmail.com", "0000000006", password, "00000"),
-				new RegistrationForm("shiyue", "shiyue@gmail.com", "0000000007", password, "00000"),
-				new RegistrationForm("testUser", "testUser@gmail.com", "0000000008", password, "00000")
+				new RegistrationForm("hans", "hans@gmail.com", "DE01234567890123456789", password, "00000"),
+				new RegistrationForm("nick", "nick@gmail.com", "DE01234567890123456789", password, "00000"),
+				new RegistrationForm("jing", "jing@gmail.com", "DE01234567890123456789", password, "00000"),
+				new RegistrationForm("hannes", "hannes@gmail.com", "DE01234567890123456789", password, "00000"),
+				new RegistrationForm("ziyi", "ziyi@gmail.com", "DE01234567890123456789", password, "00000"),
+				new RegistrationForm("meng", "meng@gmail.com", "DE01234567890123456789", password, "00000"),
+				new RegistrationForm("shiyue", "shiyue@gmail.com", "DE01234567890123456789", password, "00000"),
+				new RegistrationForm("testUser", "testUser@gmail.com", "DE01234567890123456789", password, "00000")
 		).forEach(userManagement::createUser);
 	}
 }

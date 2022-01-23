@@ -17,7 +17,7 @@ public class UserEditForm {
 	private final String emailAddress;
 
 	@NotEmpty(message = "{RegistrationForm.lotteryAddress.NotEmpty}")
-	@Pattern(regexp = "^[0-9]{10}$", message="{RegistrationForm.lotteryAddress.Pattern}")
+	@Pattern(regexp = "^[DE]{2}([0-9a-zA-Z]{20})$", message="{RegistrationForm.lotteryAddress.Pattern}")
 	private String lotteryAddress;
 
 

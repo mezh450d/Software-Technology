@@ -24,25 +24,25 @@
                 <p>Nutzername</p>
                 <input id="name" th:field="*{name}" th:errorclass="fieldError" type="text" required="required" name="name" placeholder="Nutzernamen eingeben"/>
                 <div class="error" th:if="${#fields.hasErrors('name')}"><p>Dieser Nutzername ist bereits vergeben.</p></div>
-                <div class="ui negative message" th:if="${#fields.hasErrors('global')}">
+                <div class="ui negative message" th:errors="*{name}">
                     <p>Dieses Feld darf nicht leer sein.</p><br>
                 </div>
             </div>
 
             <div class="input-field">
                 <p>E-Mail Adresse</p>
-                <input id="emailAddress" th:field="*{emailAddress}" th:errorclass="fieldError" type="text" required="required" name="emailAddress" placeholder="E-Mail Adresse eingeben"/>
+                <input id="emailAddress" th:field="*{emailAddress}" th:errorclass="fieldError" type="text" required="required" name="emailAddress" placeholder="z.B. name@mail.com"/>
                 <div class="error">
-                    <p th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}">Das Passwort darf
+                    <p th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}">Dieses Feld darf
                         nicht leer sein.</p>
                 </div>
             </div>
 
             <div class="input-field">
                 <p>Lotteriebank-Adresse</p>
-                <input id="lotteryAddress" th:field="*{lotteryAddress}" th:errorclass="fieldError" type="text" required="required" name="lotteryAddress" placeholder="Lotteriebank-Adresse eingeben"/>
+                <input id="lotteryAddress" th:field="*{lotteryAddress}" th:errorclass="fieldError" type="text" required="required" name="lotteryAddress" placeholder="z.B. DEXXXXXXXXXXXXXXXXXXXX"/>
                 <div class="error">
-                    <p th:if="${#fields.hasErrors('lotteryAddress')}" th:errors="*{lotteryAddress}">Das Passwort darf
+                    <p th:if="${#fields.hasErrors('lotteryAddress')}" th:errors="*{lotteryAddress}">Die Lotteriebankadresse darf
                         nicht leer sein.</p>
                 </div>
             </div>

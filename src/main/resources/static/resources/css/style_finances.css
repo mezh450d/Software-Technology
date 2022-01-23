@@ -27,6 +27,11 @@
       padding: auto;
     }
 
+    #balance{
+      text-align: center;
+      padding: 50px;
+    }
+
     .field{
       margin-top: 25px;
     }

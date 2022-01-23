@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class UserEditFormTest {
 
 	UserEditForm form = new UserEditForm("Anna", "Bauer",
-			"anna.1@gmail.com", "1234567890");
+			"anna.1@gmail.com", "DE01234567890123456789");
 
 	@Test
 	void testFirstName() {
@@ -27,7 +27,7 @@ public class UserEditFormTest {
 
 	@Test
 	void testLotteryAddress() {
-		assertEquals("1234567890", form.getLotteryAddress());
+		assertEquals("DE01234567890123456789", form.getLotteryAddress());
 	}
 
 }

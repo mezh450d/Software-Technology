@@ -47,7 +47,9 @@ public class UserController {
 
 		//Übergebene Daten werden auf Richtigkeit überprüft
 		if(form.getName().contains(" ") || form.getPartnerCode().contains(" ") || result.hasErrors()){
-			return "redirect:/register?error";
+			ObjectError error = new ObjectError("globalError", "Einige Angaben sind falsch.");
+			res.addError(error);
+			return "register";
 		}
 
 		//Falls der angegebene Nutzername schon vorhanden ist, keinen User erstellen
@@ -110,7 +112,7 @@ public class UserController {
 		return "edit_user";
 	}
 
-	@PostMapping("/edit-user")
+	@PostMapping("/edit_user")
 	String editCurrentUser(@Valid @ModelAttribute("form") UserEditForm form, Errors errors,BindingResult res, Model model,
 						   @RequestParam(value = "action") String action, @LoggedIn UserAccount user) {
 
@@ -126,7 +128,7 @@ public class UserController {
 
 		if(changedEmail){
 			for(User otherUser : users) {
-				if (otherUser.getUserAccount().getEmail().equals(email)) {
+				if (otherUser.getUserAccount().getEmail().equals(email) ) {
 					ObjectError error = new ObjectError("globalError", "Diese Emailadresse ist schon vergeben.");
 					res.addError(error);
 					return editUser(user, model, form);
