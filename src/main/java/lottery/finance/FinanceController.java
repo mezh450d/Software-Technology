@@ -2,6 +2,7 @@ package lottery.finance;
 
 import javax.validation.Valid;
 
+import lottery.home.message.MessageManagement;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,9 +18,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class FinanceController {
 
 	private final FinanceManagement management;
+	private final MessageManagement messageManagement;
 
-	FinanceController(FinanceManagement management) {
+	FinanceController(FinanceManagement management, MessageManagement messageManagement) {
 		this.management = management;
+		this.messageManagement = messageManagement;
 	}
 
 	@GetMapping(path = "/finances")
@@ -28,6 +31,7 @@ public class FinanceController {
 
 		model.addAttribute("entries", management.findEntriesByUser(user));
 		model.addAttribute("balance", management.getUserBalance(user));
+		model.addAttribute("alert", messageManagement.newMessages(user.getUsername()));
 		model.addAttribute("form", form);
 
 		return "finances";

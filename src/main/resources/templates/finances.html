@@ -23,10 +23,10 @@
     <div class="main-header">
         <h1>FINANZEN</h1>
     </div>
-    <div class="content">
+    <div class="content" id="finances-content">
             <div class="container" id="user_balance">
                 <div class="container_head">
-                    <p id="balance_label"> Ihr Saldo:</p>
+                    <p id="balance_label"> Ihr Guthaben</p>
                 </div>
                 <div class="container_content" id="user_balance_content">
                     <h2 >
@@ -36,7 +36,7 @@
             </div>
             <div class="container" id="payment">
                 <div class="container_head">
-                    <p id="payment_label"> Einzahlung / Auszahlung:</p>
+                    <p id="payment_label"> Einzahlung / Auszahlung</p>
                 </div>
                 <div class="container_content" id="payment_content">
                     <form   align="center" name ="finances" role="form"  th:object="${form}" th:action="@{/finances}" method="post">
@@ -61,7 +61,7 @@
 
             <div class="container" id="transactions">
                 <div class="container_head">
-                    <p id="transactions_label"> Ihre Transaktionen:</p>
+                    <p id="transactions_label"> Ihre Transaktionen</p>
                 </div>
                 <div class="container_content">
                     <div id="bets_empty" th:if="${entries.empty}">

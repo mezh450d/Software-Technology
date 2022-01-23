@@ -1,5 +1,6 @@
 package lottery.finance;
 
+import lottery.home.message.MessageManagement;
 import lottery.user.UserManagement;
 
 import static org.assertj.core.api.Assertions.*;
@@ -29,13 +30,16 @@ class FinanceControllerIntegrationTest {
 	@Mock
 	FinanceManagement finances;
 
+	@Mock
+	MessageManagement messages;
+
 	@Test
 	void populatesModelForFinance() {
 
 		Model model = new ExtendedModelMap();
 		FinanceForm form = new FinanceForm(100.0, "");
 		finances.deposit(form, user);
-		FinanceController controller = new FinanceController(finances);
+		FinanceController controller = new FinanceController(finances, messages);
 		String viewName = controller.finances(user, model, new FinanceForm(100.0, null));
 		assertThat(viewName).isEqualTo("finances");
 		assertThat(model.getAttribute("entries")).isEqualTo(finances.findEntriesByUser(user));
