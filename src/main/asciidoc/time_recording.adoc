@@ -13,15 +13,15 @@
 |8  |1020  |1000   |1300   |1000   |1450    |1100    |60
 |9  |1300  |1100    |1100    |1000    |1100    |1620    |20
 |10  |600  |600    |900    |690    |590    |600    |30
-|11  |1200  |…    |…    |…    |…    |1100    |30
-|12  |1200   |…    |…    |…    |…    |1400    |15
+|11  |1200  |200    |…    |…    |…    |1100    |30
+|12  |1200   |250   |…    |…    |…    |1400    |15
 |===
 
 *Summe der Arbeitsstunden pro Student:*
 
 //SUMME(SPALTE(DevX)) / 60
 * Hannes: 206 Stunden
-* Jing: ... Stunden
+* Jing: 162 Stunden
 * Shiyue: ... Stunden
 * Ziyi: ... Stunden
 * Meng: ... Stunden
@@ -32,7 +32,7 @@
 
 //SUMME(SPALTE(DevX)) / 60 / 12
 * Hannes: 17 Stunden
-* Jing: ... Stunden
+* Jing: 13，5 Stunden
 * Shiyue: ... Stunden
 * Ziyi: ... Stunden
 * Meng: ... Stunden
