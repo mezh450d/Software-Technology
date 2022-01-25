@@ -19,7 +19,6 @@
 
 *Summe der Arbeitsstunden pro Student:*
 
-//SUMME(SPALTE(DevX)) / 60
 * Hannes: 206 Stunden
 * Jing: 162 Stunden
 * Shiyue: 173 Stunden
@@ -30,7 +29,6 @@
 
 *Arbeitsstunden pro Woche pro Student:*
 
-//SUMME(SPALTE(DevX)) / 60 / 12
 * Hannes: 17 Stunden
 * Jing: 13,5 Stunden
 * Shiyue: 14,3 Stunden
@@ -41,5 +39,4 @@
 
 *Durchschnittliche Arbeitszeit aller Studenten pro Woche:*
 
-//(SUMME(SPALTE(Dev1)) + SUMME(SPALTE(Dev2)) + SUMME(SPALTE(Dev3)) + SUMME(SPALTE(Dev4)) + SUMME(SPALTE(Dev5)) +SUMME(SPALTE(Dev6))) / 6
-* ... Stunden
+* 15.02 Stunden
