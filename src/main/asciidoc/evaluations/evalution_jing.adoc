@@ -1,0 +1,34 @@
+= Persönliches Feedback eines Teammitgliedes des Softwarepraktikums 2021/22
+
+**Von:**
+Jing Zhou
+
+**Gruppe:**
+swt21w08
+
+== Was habe ich gelernt / was habe ich nicht gelernt?
+
+* Zusammenarbeit in einer Gruppe
+* Ablauf eines Projekts kennenlernen
+* Springframework kennenlernen
+* kleine Website entwerfen
+
+
+== Welche Erfahrungen habe ich mit der Zusammenarbeit im Team gemacht?
+
+* Kommunikation ist wichtig. Mache ich mehr Arbeit wie möglich, um das gesamte Projekt zu verbessern.
+
+== Welche Erfahrungen habe ich bei der Wiederverwendung von Bibliotheken/Frameworks (insbesondere SalesPoint) gemacht?
+
+* Die Bequemlichkeit ist gegeben, aber nicht für alle Situationen.
+
+== Welche Vorschläge zur weiteren Verbesserung des Softwarepraktikums gibt es?
+
+* Die Implementierung des Webparts wäre besser, wenn mehr Methoden verwendet werden könnten(wie javascript).
+
+== Feedback für den Tutor
+
+* Er gibt immer sehr hilfreiche Ratschläge und beantwortet Fragen umgehend.
+
+== Sonstiges und Anmerkungen
+
